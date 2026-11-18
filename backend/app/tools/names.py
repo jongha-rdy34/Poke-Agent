@@ -1,0 +1,94 @@
+"""[로컬 서버 API 툴] 한국어/영어 이름 → 식별자 변환.
+
+외부 API 세 곳은 영문 식별자만 받는다. 사용자는 '한카리아스', '지진'처럼 한국어로 말하므로
+PokeAPI에서 한 번 수집해 둔 매핑 파일(app/data/name_map.json)로 변환한다.
+매핑 파일은 scripts/build_name_map.py로 다시 만들 수 있다.
+"""
+from __future__ import annotations
+
+import json
+from functools import lru_cache
+from pathlib import Path
+from typing import Literal
+
+from app.tools.common import ErrorCode, ToolError, ok, safe_tool, to_id
+
+MAP_PATH = Path(__file__).resolve().parents[1] / "data" / "name_map.json"
+
+# 한국어 폼 접두/접미어 → Showdown 폼 접미어
+FORM_PREFIXES = {"메가": "-Mega", "알로라": "-Alola", "가라르": "-Galar", "히스이": "-Hisui", "팔데아": "-Paldea"}
+
+
+@lru_cache(maxsize=1)
+def _load() -> dict:
+    if not MAP_PATH.exists():
+        raise ToolError(ErrorCode.NO_DATA, "이름 매핑 파일이 없습니다. scripts/build_name_map.py를 먼저 실행하세요.")
+    data = json.loads(MAP_PATH.read_text(encoding="utf-8"))
+    index: dict[str, dict[str, list[dict]]] = {"pokemon": {}, "move": {}}
+    for kind, rows in (("pokemon", data["species"]), ("move", data["moves"])):
+        for row in rows:
+            keys = {row["id"], to_id(row["slug"])}
+            if row.get("ko"):
+                keys.add(row["ko"].replace(" ", ""))
+            for k in keys:
+                index[kind].setdefault(k, [])
+                if row not in index[kind][k]:
+                    index[kind][k].append(row)
+    return index
+
+
+def _split_form(name: str) -> tuple[str, str]:
+    """'메가한카리아스' -> ('한카리아스', '-Mega'). 폼 표기가 없으면 접미어는 ''."""
+    compact = name.replace(" ", "")
+    for ko, suffix in FORM_PREFIXES.items():
+        if compact.startswith(ko) and len(compact) > len(ko):
+            return compact[len(ko):], suffix
+    return compact, ""
+
+
+def resolve_one(name: str, kind: Literal["pokemon", "move"]) -> dict:
+    """이름 하나를 변환. 찾지 못하면 found=False로 돌려준다 (예외 없음)."""
+    index = _load()[kind]
+    raw = name.strip()
+    base, suffix = _split_form(raw) if kind == "pokemon" else (raw.replace(" ", ""), "")
+
+    hits = index.get(base) or index.get(to_id(base)) or []
+    if not hits and kind == "pokemon" and "-" in raw:
+        # 'Garchomp-Mega-Z', 'Indeedee-F' 처럼 영문 폼 표기는 앞부분이 종 이름
+        head, _, tail = raw.partition("-")
+        hits = index.get(to_id(head)) or []
+        suffix = "-" + tail if hits else ""
+
+    if not hits:
+        return {"input": name, "found": False, "reason": "NOT_FOUND"}
+    if len(hits) > 1:
+        return {"input": name, "found": False, "reason": "AMBIGUOUS",
+                "candidates": [h["en"] for h in hits]}
+
+    row = hits[0]
+    en = row["en"] + suffix
+    result = {
+        "input": name,
+        "found": True,
+        "en": en,
+        "ko": (FORM_KO.get(suffix, "") + row["ko"]) if row.get("ko") else None,
+        "showdown_id": to_id(en),          # get_meta_usage / get_move_info 입력
+    }
+    if kind == "pokemon":
+        result["pokeapi_name"] = en.lower().replace(" ", "-").replace(".", "").replace("'", "").replace(":", "")
+    return result
+
+
+FORM_KO = {v: k for k, v in FORM_PREFIXES.items()}
+
+
+@safe_tool
+def resolve_names(names: list[str], kind: Literal["pokemon", "move"] = "pokemon") -> dict:
+    if not names or any(not str(n).strip() for n in names):
+        raise ToolError(ErrorCode.BAD_ARGUMENT, "names에 빈 이름이 있습니다.")
+    results = [resolve_one(n, kind) for n in names]
+    if not any(r["found"] for r in results):
+        if any(r.get("reason") == "AMBIGUOUS" for r in results):
+            raise ToolError(ErrorCode.AMBIGUOUS, "이름이 여러 대상에 해당합니다. 정확한 이름을 다시 물어보세요.")
+        raise ToolError(ErrorCode.NOT_FOUND, f"이름을 찾지 못했습니다: {', '.join(names)}")
+    return ok({"kind": kind, "results": results, "source": "로컬 매핑 (PokeAPI 수집본)"})

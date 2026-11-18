@@ -1,0 +1,1310 @@
+[
+  {
+    "case": "등록된 Tool 명세",
+    "specs": [
+      {
+        "name": "get_meta_usage",
+        "description": "상대 포켓몬이 실전에서 주로 쓰는 기술·도구·특성·능력치 배분과 그 비율이 필요할 때 사용한다. 상대 6마리의 예상 세트를 볼 때, 또는 pokemon을 비워 현재 메타의 사용률 상위 후보 목록이 필요할 때 쓴다. 포맷·집계월·레이팅을 지정하지 않으면 기본값으로 조회하고 notes에 밝힌다.",
+        "input_schema": {
+          "properties": {
+            "pokemon": {
+              "description": "예상 세트를 볼 포켓몬 이름(영문/한국어). 비우면 사용률 상위 후보 목록을 돌려준다.",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 12,
+              "title": "Pokemon",
+              "type": "array"
+            },
+            "format": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Smogon 포맷 ID. 예: gen9championsbssregmc(싱글 6→3), gen9ou. 생략 시 기본 포맷.",
+              "title": "Format"
+            },
+            "month": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "집계월 YYYY-MM. 생략 시 가장 최근 집계월.",
+              "title": "Month"
+            },
+            "rating": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "레이팅 컷. 생략 시 1500.",
+              "title": "Rating"
+            },
+            "top_n": {
+              "default": 6,
+              "description": "기술/도구 등을 상위 몇 개까지 돌려줄지",
+              "maximum": 30,
+              "minimum": 1,
+              "title": "Top N",
+              "type": "integer"
+            }
+          },
+          "title": "MetaUsageInput",
+          "type": "object"
+        },
+        "kind": "external",
+        "source": "Smogon usage stats",
+        "requirement": "F3002"
+      },
+      {
+        "name": "get_pokemon_detail",
+        "description": "포켓몬 한 마리의 타입·종족값(특히 스피드)·특성이 필요할 때 사용한다. 선공 여부나 타입 상성을 판단하기 전에 내 포켓몬과 상대 포켓몬 각각에 대해 호출한다. judgeable=false면 그 포켓몬은 판단하지 말고 제외 사유를 밝힌다.",
+        "input_schema": {
+          "properties": {
+            "name": {
+              "description": "포켓몬 이름. 영문(Garchomp-Mega-Z), PokeAPI 이름, 한국어(한카리아스) 모두 가능",
+              "minLength": 1,
+              "title": "Name",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "title": "PokemonDetailInput",
+          "type": "object"
+        },
+        "kind": "external",
+        "source": "PokeAPI",
+        "requirement": "F3003"
+      },
+      {
+        "name": "get_move_info",
+        "description": "기술의 타입·물리/특수 분류·위력·명중률·우선도가 필요할 때 사용한다. 어떤 기술을 쓸지 비교하거나, 상대의 선공기(우선도>0)를 확인할 때 쓴다.",
+        "input_schema": {
+          "properties": {
+            "moves": {
+              "description": "기술 이름 목록. Smogon 기술 ID(earthquake), 영문, 한국어(지진) 모두 가능",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 24,
+              "minItems": 1,
+              "title": "Moves",
+              "type": "array"
+            }
+          },
+          "required": [
+            "moves"
+          ],
+          "title": "MoveInfoInput",
+          "type": "object"
+        },
+        "kind": "external",
+        "source": "Pokémon Showdown data",
+        "requirement": "F3004"
+      },
+      {
+        "name": "get_type_matchup",
+        "description": "공격 타입이 방어 포켓몬에게 몇 배로 들어가는지(0/0.25/0.5/1/2/4배) 계산이 필요할 때 사용한다. attack_types를 비우면 방어 측의 전체 약점·내성표를 돌려준다. 부유 같은 면역 특성은 defender_ability로 넘긴다.",
+        "input_schema": {
+          "properties": {
+            "defend_types": {
+              "description": "방어 측 타입 1~2개 (영문/한국어)",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 2,
+              "minItems": 1,
+              "title": "Defend Types",
+              "type": "array"
+            },
+            "attack_types": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "공격 기술 타입 목록. 생략 시 18타입 전체 약점표",
+              "title": "Attack Types"
+            },
+            "defender_ability": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "방어 측 특성(부유, 저수 등 면역 특성 반영). 영문 이름",
+              "title": "Defender Ability"
+            }
+          },
+          "required": [
+            "defend_types"
+          ],
+          "title": "TypeMatchupInput",
+          "type": "object"
+        },
+        "kind": "external",
+        "source": "Pokémon Showdown data",
+        "requirement": "F3004"
+      },
+      {
+        "name": "resolve_names",
+        "description": "사용자가 한국어(예: 한카리아스, 지진)나 애매한 이름으로 말했을 때, 다른 Tool에 넘길 영문 식별자로 바꿀 때 사용한다. AMBIGUOUS가 나오면 Tool을 더 부르지 말고 사용자에게 정확한 이름을 되묻는다.",
+        "input_schema": {
+          "properties": {
+            "names": {
+              "description": "변환할 이름 목록",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 24,
+              "minItems": 1,
+              "title": "Names",
+              "type": "array"
+            },
+            "kind": {
+              "default": "pokemon",
+              "description": "포켓몬 이름인지 기술 이름인지",
+              "enum": [
+                "pokemon",
+                "move"
+              ],
+              "title": "Kind",
+              "type": "string"
+            }
+          },
+          "required": [
+            "names"
+          ],
+          "title": "ResolveNamesInput",
+          "type": "object"
+        },
+        "kind": "local",
+        "source": "로컬 매핑 파일 (PokeAPI 수집본)",
+        "requirement": "F3001"
+      }
+    ]
+  },
+  {
+    "case": "[F3002 정상] 기본값(포맷·월 미지정) 사용률 상위 후보",
+    "tool": "get_meta_usage",
+    "args": {
+      "top_n": 6
+    },
+    "result": {
+      "ok": true,
+      "data": {
+        "format": "gen9championsbssregmc",
+        "month": "2026-10",
+        "rating": 1500,
+        "battles": 87848,
+        "requested": {
+          "format": null,
+          "month": null,
+          "rating": null
+        },
+        "estimated": false,
+        "notes": [
+          "포맷이 지정되지 않아 기본값 gen9championsbssregmc(싱글 6→3 선출)로 조회했습니다.",
+          "집계월이 지정되지 않아 가장 최근 2026-10 통계를 사용했습니다."
+        ],
+        "source": "Smogon usage stats (chaos)",
+        "mode": "ranking",
+        "ranking": [
+          {
+            "rank": 1,
+            "name": "Primarina",
+            "showdown_id": "primarina",
+            "usage_pct": 29.63
+          },
+          {
+            "rank": 2,
+            "name": "Garchomp",
+            "showdown_id": "garchomp",
+            "usage_pct": 27.41
+          },
+          {
+            "rank": 3,
+            "name": "Archaludon",
+            "showdown_id": "archaludon",
+            "usage_pct": 21.92
+          },
+          {
+            "rank": 4,
+            "name": "Gholdengo",
+            "showdown_id": "gholdengo",
+            "usage_pct": 19.5
+          },
+          {
+            "rank": 5,
+            "name": "Mimikyu",
+            "showdown_id": "mimikyu",
+            "usage_pct": 18.4
+          },
+          {
+            "rank": 6,
+            "name": "Golisopod-Mega",
+            "showdown_id": "golisopodmega",
+            "usage_pct": 18.24
+          },
+          {
+            "rank": 7,
+            "name": "Salamence-Mega",
+            "showdown_id": "salamencemega",
+            "usage_pct": 18.09
+          },
+          {
+            "rank": 8,
+            "name": "Corviknight",
+            "showdown_id": "corviknight",
+            "usage_pct": 17.56
+          },
+          {
+            "rank": 9,
+            "name": "Hippowdon",
+            "showdown_id": "hippowdon",
+            "usage_pct": 17.41
+          },
+          {
+            "rank": 10,
+            "name": "Basculegion",
+            "showdown_id": "basculegion",
+            "usage_pct": 13.86
+          },
+          {
+            "rank": 11,
+            "name": "Garchomp-Mega-Z",
+            "showdown_id": "garchompmegaz",
+            "usage_pct": 12.18
+          },
+          {
+            "rank": 12,
+            "name": "Meowscarada",
+            "showdown_id": "meowscarada",
+            "usage_pct": 11.18
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "[F3002 정상] 상대 포켓몬 예상 세트 (한국어 이름 포함)",
+    "tool": "get_meta_usage",
+    "args": {
+      "pokemon": [
+        "Garchomp",
+        "따라큐",
+        "Primarina"
+      ],
+      "top_n": 4
+    },
+    "result": {
+      "ok": true,
+      "data": {
+        "format": "gen9championsbssregmc",
+        "month": "2026-10",
+        "rating": 1500,
+        "battles": 87848,
+        "requested": {
+          "format": null,
+          "month": null,
+          "rating": null
+        },
+        "estimated": false,
+        "notes": [
+          "포맷이 지정되지 않아 기본값 gen9championsbssregmc(싱글 6→3 선출)로 조회했습니다.",
+          "집계월이 지정되지 않아 가장 최근 2026-10 통계를 사용했습니다."
+        ],
+        "source": "Smogon usage stats (chaos)",
+        "mode": "sets",
+        "pokemon": [
+          {
+            "input": "Garchomp",
+            "found": true,
+            "name": "Garchomp",
+            "showdown_id": "garchomp",
+            "usage_pct": 27.41,
+            "moves": [
+              {
+                "name": "earthquake",
+                "pct": 98.8
+              },
+              {
+                "name": "stealthrock",
+                "pct": 61.9
+              },
+              {
+                "name": "outrage",
+                "pct": 38.9
+              },
+              {
+                "name": "dragontail",
+                "pct": 38.6
+              }
+            ],
+            "items": [
+              {
+                "name": "choicescarf",
+                "pct": 34.2
+              },
+              {
+                "name": "focussash",
+                "pct": 23.1
+              },
+              {
+                "name": "sitrusberry",
+                "pct": 13.4
+              },
+              {
+                "name": "rockyhelmet",
+                "pct": 11.4
+              }
+            ],
+            "abilities": [
+              {
+                "name": "roughskin",
+                "pct": 98.0
+              },
+              {
+                "name": "sandveil",
+                "pct": 2.0
+              }
+            ],
+            "spreads": [
+              {
+                "nature": "Jolly",
+                "points": {
+                  "hp": 2,
+                  "atk": 32,
+                  "def": 0,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 24.0
+              },
+              {
+                "nature": "Adamant",
+                "points": {
+                  "hp": 2,
+                  "atk": 32,
+                  "def": 0,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 22.2
+              },
+              {
+                "nature": "Adamant",
+                "points": {
+                  "hp": 0,
+                  "atk": 32,
+                  "def": 2,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 3.5
+              }
+            ],
+            "teammates": [
+              {
+                "name": "Primarina",
+                "pct": 35.8
+              },
+              {
+                "name": "Corviknight",
+                "pct": 27.2
+              },
+              {
+                "name": "Mimikyu",
+                "pct": 21.0
+              },
+              {
+                "name": "Charizard-Mega-Y",
+                "pct": 19.8
+              },
+              {
+                "name": "Golisopod-Mega",
+                "pct": 18.6
+              }
+            ],
+            "checks_counters": [
+              {
+                "name": "Clefable-Mega",
+                "battles": 191,
+                "score": 75.5
+              },
+              {
+                "name": "Baxcalibur",
+                "battles": 277,
+                "score": 73.9
+              },
+              {
+                "name": "Vanilluxe",
+                "battles": 59,
+                "score": 73.1
+              },
+              {
+                "name": "Ninetales-Alola",
+                "battles": 201,
+                "score": 67.2
+              },
+              {
+                "name": "Umbreon",
+                "battles": 357,
+                "score": 67.2
+              }
+            ],
+            "tera_types": []
+          },
+          {
+            "input": "따라큐",
+            "found": true,
+            "name": "Mimikyu",
+            "showdown_id": "mimikyu",
+            "usage_pct": 18.4,
+            "moves": [
+              {
+                "name": "playrough",
+                "pct": 98.3
+              },
+              {
+                "name": "shadowsneak",
+                "pct": 95.9
+              },
+              {
+                "name": "swordsdance",
+                "pct": 82.6
+              },
+              {
+                "name": "shadowclaw",
+                "pct": 59.8
+              }
+            ],
+            "items": [
+              {
+                "name": "lifeorb",
+                "pct": 83.9
+              },
+              {
+                "name": "spelltag",
+                "pct": 3.2
+              },
+              {
+                "name": "scopelens",
+                "pct": 2.7
+              },
+              {
+                "name": "choicescarf",
+                "pct": 2.4
+              }
+            ],
+            "abilities": [
+              {
+                "name": "disguise",
+                "pct": 100.0
+              }
+            ],
+            "spreads": [
+              {
+                "nature": "Adamant",
+                "points": {
+                  "hp": 1,
+                  "atk": 32,
+                  "def": 1,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 20.7
+              },
+              {
+                "nature": "Adamant",
+                "points": {
+                  "hp": 2,
+                  "atk": 32,
+                  "def": 0,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 20.0
+              },
+              {
+                "nature": "Jolly",
+                "points": {
+                  "hp": 2,
+                  "atk": 32,
+                  "def": 0,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 12.2
+              }
+            ],
+            "teammates": [
+              {
+                "name": "Garchomp",
+                "pct": 31.5
+              },
+              {
+                "name": "Primarina",
+                "pct": 29.7
+              },
+              {
+                "name": "Metagross-Mega",
+                "pct": 24.7
+              },
+              {
+                "name": "Archaludon",
+                "pct": 22.4
+              },
+              {
+                "name": "Hippowdon",
+                "pct": 21.0
+              }
+            ],
+            "checks_counters": [
+              {
+                "name": "Pyroar-Mega",
+                "battles": 34,
+                "score": 88.6
+              },
+              {
+                "name": "Lucario-Mega-Z",
+                "battles": 243,
+                "score": 69.9
+              },
+              {
+                "name": "Golisopod-Mega",
+                "battles": 424,
+                "score": 63.3
+              },
+              {
+                "name": "Scizor-Mega",
+                "battles": 41,
+                "score": 61.5
+              },
+              {
+                "name": "Metagross-Mega",
+                "battles": 159,
+                "score": 59.0
+              }
+            ],
+            "tera_types": []
+          },
+          {
+            "input": "Primarina",
+            "found": true,
+            "name": "Primarina",
+            "showdown_id": "primarina",
+            "usage_pct": 29.63,
+            "moves": [
+              {
+                "name": "moonblast",
+                "pct": 97.9
+              },
+              {
+                "name": "sparklingaria",
+                "pct": 71.6
+              },
+              {
+                "name": "aquajet",
+                "pct": 65.4
+              },
+              {
+                "name": "encore",
+                "pct": 47.8
+              }
+            ],
+            "items": [
+              {
+                "name": "sitrusberry",
+                "pct": 47.0
+              },
+              {
+                "name": "leftovers",
+                "pct": 23.7
+              },
+              {
+                "name": "chestoberry",
+                "pct": 10.1
+              },
+              {
+                "name": "mysticwater",
+                "pct": 5.4
+              }
+            ],
+            "abilities": [
+              {
+                "name": "torrent",
+                "pct": 93.6
+              },
+              {
+                "name": "liquidvoice",
+                "pct": 6.4
+              }
+            ],
+            "spreads": [
+              {
+                "nature": "Modest",
+                "points": {
+                  "hp": 32,
+                  "atk": 0,
+                  "def": 20,
+                  "spa": 14,
+                  "spd": 0,
+                  "spe": 0
+                },
+                "pct": 6.9
+              },
+              {
+                "nature": "Modest",
+                "points": {
+                  "hp": 32,
+                  "atk": 0,
+                  "def": 0,
+                  "spa": 32,
+                  "spd": 2,
+                  "spe": 0
+                },
+                "pct": 5.6
+              },
+              {
+                "nature": "Quiet",
+                "points": {
+                  "hp": 32,
+                  "atk": 2,
+                  "def": 0,
+                  "spa": 32,
+                  "spd": 0,
+                  "spe": 0
+                },
+                "pct": 5.4
+              }
+            ],
+            "teammates": [
+              {
+                "name": "Garchomp",
+                "pct": 33.3
+              },
+              {
+                "name": "Salamence-Mega",
+                "pct": 29.5
+              },
+              {
+                "name": "Golisopod-Mega",
+                "pct": 25.1
+              },
+              {
+                "name": "Gholdengo",
+                "pct": 23.2
+              },
+              {
+                "name": "Hippowdon",
+                "pct": 20.9
+              }
+            ],
+            "checks_counters": [
+              {
+                "name": "Venusaur-Mega",
+                "battles": 252,
+                "score": 80.9
+              },
+              {
+                "name": "Meganium-Mega",
+                "battles": 136,
+                "score": 80.8
+              },
+              {
+                "name": "Venusaur",
+                "battles": 36,
+                "score": 79.4
+              },
+              {
+                "name": "Metagross-Mega",
+                "battles": 322,
+                "score": 70.2
+              },
+              {
+                "name": "Raichu-Mega-Y",
+                "battles": 226,
+                "score": 70.0
+              }
+            ],
+            "tera_types": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "[F3002 추정] 아직 없는 미래 월 요청 → 최근 집계월로 추정",
+    "tool": "get_meta_usage",
+    "args": {
+      "pokemon": [
+        "Garchomp"
+      ],
+      "month": "2026-12",
+      "top_n": 3
+    },
+    "result": {
+      "ok": true,
+      "data": {
+        "format": "gen9championsbssregmc",
+        "month": "2026-10",
+        "rating": 1500,
+        "battles": 87848,
+        "requested": {
+          "format": null,
+          "month": "2026-12",
+          "rating": null
+        },
+        "estimated": true,
+        "notes": [
+          "포맷이 지정되지 않아 기본값 gen9championsbssregmc(싱글 6→3 선출)로 조회했습니다.",
+          "2026-12 통계는 아직 없어 가장 최근 집계월 2026-10 기준으로 추정했습니다."
+        ],
+        "source": "Smogon usage stats (chaos)",
+        "mode": "sets",
+        "pokemon": [
+          {
+            "input": "Garchomp",
+            "found": true,
+            "name": "Garchomp",
+            "showdown_id": "garchomp",
+            "usage_pct": 27.41,
+            "moves": [
+              {
+                "name": "earthquake",
+                "pct": 98.8
+              },
+              {
+                "name": "stealthrock",
+                "pct": 61.9
+              },
+              {
+                "name": "outrage",
+                "pct": 38.9
+              }
+            ],
+            "items": [
+              {
+                "name": "choicescarf",
+                "pct": 34.2
+              },
+              {
+                "name": "focussash",
+                "pct": 23.1
+              },
+              {
+                "name": "sitrusberry",
+                "pct": 13.4
+              }
+            ],
+            "abilities": [
+              {
+                "name": "roughskin",
+                "pct": 98.0
+              },
+              {
+                "name": "sandveil",
+                "pct": 2.0
+              }
+            ],
+            "spreads": [
+              {
+                "nature": "Jolly",
+                "points": {
+                  "hp": 2,
+                  "atk": 32,
+                  "def": 0,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 24.0
+              },
+              {
+                "nature": "Adamant",
+                "points": {
+                  "hp": 2,
+                  "atk": 32,
+                  "def": 0,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 22.2
+              },
+              {
+                "nature": "Adamant",
+                "points": {
+                  "hp": 0,
+                  "atk": 32,
+                  "def": 2,
+                  "spa": 0,
+                  "spd": 0,
+                  "spe": 32
+                },
+                "pct": 3.5
+              }
+            ],
+            "teammates": [
+              {
+                "name": "Primarina",
+                "pct": 35.8
+              },
+              {
+                "name": "Corviknight",
+                "pct": 27.2
+              },
+              {
+                "name": "Mimikyu",
+                "pct": 21.0
+              },
+              {
+                "name": "Charizard-Mega-Y",
+                "pct": 19.8
+              },
+              {
+                "name": "Golisopod-Mega",
+                "pct": 18.6
+              }
+            ],
+            "checks_counters": [
+              {
+                "name": "Clefable-Mega",
+                "battles": 191,
+                "score": 75.5
+              },
+              {
+                "name": "Baxcalibur",
+                "battles": 277,
+                "score": 73.9
+              },
+              {
+                "name": "Vanilluxe",
+                "battles": 59,
+                "score": 73.1
+              },
+              {
+                "name": "Ninetales-Alola",
+                "battles": 201,
+                "score": 67.2
+              },
+              {
+                "name": "Umbreon",
+                "battles": 357,
+                "score": 67.2
+              }
+            ],
+            "tera_types": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "[F3002 실패] 형식이 틀린 월",
+    "tool": "get_meta_usage",
+    "args": {
+      "month": "12월"
+    },
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "BAD_ARGUMENT",
+        "message": "month는 YYYY-MM 형식이어야 합니다."
+      }
+    }
+  },
+  {
+    "case": "[F3002 실패] 없는 포맷",
+    "tool": "get_meta_usage",
+    "args": {
+      "format": "gen9notaformat"
+    },
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "NOT_FOUND",
+        "message": "최근 6개월 통계에 포맷 'gen9notaformat'이(가) 없습니다."
+      }
+    }
+  },
+  {
+    "case": "[F3003 정상] 상세정보 (이름 규칙 보정: Mimikyu → mimikyu-disguised)",
+    "tool": "get_pokemon_detail",
+    "args": {
+      "name": "Mimikyu"
+    },
+    "result": {
+      "ok": true,
+      "data": {
+        "name": "mimikyu-disguised",
+        "ko_name": "따라큐",
+        "types": [
+          "Ghost",
+          "Fairy"
+        ],
+        "base_stats": {
+          "hp": 55,
+          "atk": 90,
+          "def": 80,
+          "spa": 50,
+          "spd": 105,
+          "spe": 96
+        },
+        "abilities": [
+          {
+            "name": "disguise",
+            "hidden": false
+          }
+        ],
+        "judgeable": true,
+        "missing": [],
+        "notes": [
+          "'mimikyu' 폼이 따로 없어 기본 폼 'mimikyu-disguised'으로 조회했습니다."
+        ],
+        "source": "PokeAPI"
+      }
+    }
+  },
+  {
+    "case": "[F3003 정상] 한국어 이름",
+    "tool": "get_pokemon_detail",
+    "args": {
+      "name": "한카리아스"
+    },
+    "result": {
+      "ok": true,
+      "data": {
+        "name": "garchomp",
+        "ko_name": "한카리아스",
+        "types": [
+          "Dragon",
+          "Ground"
+        ],
+        "base_stats": {
+          "hp": 108,
+          "atk": 130,
+          "def": 95,
+          "spa": 80,
+          "spd": 85,
+          "spe": 102
+        },
+        "abilities": [
+          {
+            "name": "sand-veil",
+            "hidden": false
+          },
+          {
+            "name": "rough-skin",
+            "hidden": true
+          }
+        ],
+        "judgeable": true,
+        "missing": [],
+        "notes": [],
+        "source": "PokeAPI"
+      }
+    }
+  },
+  {
+    "case": "[F3003 실패] 빈 입력",
+    "tool": "get_pokemon_detail",
+    "args": {
+      "name": ""
+    },
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "BAD_ARGUMENT",
+        "message": "입력 형식 오류 (name): String should have at least 1 character"
+      }
+    }
+  },
+  {
+    "case": "[F3003 실패] 없는 포켓몬",
+    "tool": "get_pokemon_detail",
+    "args": {
+      "name": "Notamon"
+    },
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "NOT_FOUND",
+        "message": "요청한 대상이 외부 데이터에 없습니다."
+      }
+    }
+  },
+  {
+    "case": "[F3004 정상] 기술 정보 (Smogon 기술 ID 그대로 입력)",
+    "tool": "get_move_info",
+    "args": {
+      "moves": [
+        "earthquake",
+        "suckerpunch",
+        "기습"
+      ]
+    },
+    "result": {
+      "ok": true,
+      "data": {
+        "moves": [
+          {
+            "input": "earthquake",
+            "found": true,
+            "id": "earthquake",
+            "name": "Earthquake",
+            "ko_name": "지진",
+            "type": "Ground",
+            "category": "Physical",
+            "base_power": 100,
+            "accuracy": 100,
+            "always_hits": false,
+            "priority": 0,
+            "contact": false
+          },
+          {
+            "input": "suckerpunch",
+            "found": true,
+            "id": "suckerpunch",
+            "name": "Sucker Punch",
+            "ko_name": "기습",
+            "type": "Dark",
+            "category": "Physical",
+            "base_power": 70,
+            "accuracy": 100,
+            "always_hits": false,
+            "priority": 1,
+            "contact": true
+          },
+          {
+            "input": "기습",
+            "found": true,
+            "id": "suckerpunch",
+            "name": "Sucker Punch",
+            "ko_name": "기습",
+            "type": "Dark",
+            "category": "Physical",
+            "base_power": 70,
+            "accuracy": 100,
+            "always_hits": false,
+            "priority": 1,
+            "contact": true
+          }
+        ],
+        "source": "Pokémon Showdown data (moves.json)"
+      }
+    }
+  },
+  {
+    "case": "[F3004 정상] 타입 상성 + 특성 면역",
+    "tool": "get_type_matchup",
+    "args": {
+      "defend_types": [
+        "Dragon"
+      ],
+      "attack_types": [
+        "Ground",
+        "Ice",
+        "Fairy"
+      ],
+      "defender_ability": "Levitate"
+    },
+    "result": {
+      "ok": true,
+      "data": {
+        "defend_types": [
+          "Dragon"
+        ],
+        "defender_ability": "Levitate",
+        "matchups": [
+          {
+            "attack_type": "Ground",
+            "multiplier": 0.0
+          },
+          {
+            "attack_type": "Ice",
+            "multiplier": 2.0
+          },
+          {
+            "attack_type": "Fairy",
+            "multiplier": 2.0
+          }
+        ],
+        "weak_to": [
+          "Ice",
+          "Fairy"
+        ],
+        "resists": [],
+        "immune_to": [
+          "Ground"
+        ],
+        "notes": [
+          "특성 Levitate: Ground 배율 ×0"
+        ],
+        "source": "Pokémon Showdown data (typechart.js)"
+      }
+    }
+  },
+  {
+    "case": "[F3004 결과 없음] 없는 기술만 요청",
+    "tool": "get_move_info",
+    "args": {
+      "moves": [
+        "notamove"
+      ]
+    },
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "NOT_FOUND",
+        "message": "기술을 찾지 못했습니다: notamove"
+      }
+    }
+  },
+  {
+    "case": "[F3004 실패] 없는 타입",
+    "tool": "get_type_matchup",
+    "args": {
+      "defend_types": [
+        "Light"
+      ]
+    },
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "NOT_FOUND",
+        "message": "알 수 없는 타입입니다: ['Light']"
+      }
+    }
+  },
+  {
+    "case": "[로컬] 이름 변환",
+    "tool": "resolve_names",
+    "args": {
+      "names": [
+        "한카리아스",
+        "메가한카리아스",
+        "누구지"
+      ]
+    },
+    "result": {
+      "ok": true,
+      "data": {
+        "kind": "pokemon",
+        "results": [
+          {
+            "input": "한카리아스",
+            "found": true,
+            "en": "Garchomp",
+            "ko": "한카리아스",
+            "showdown_id": "garchomp",
+            "pokeapi_name": "garchomp"
+          },
+          {
+            "input": "메가한카리아스",
+            "found": true,
+            "en": "Garchomp-Mega",
+            "ko": "메가한카리아스",
+            "showdown_id": "garchompmega",
+            "pokeapi_name": "garchomp-mega"
+          },
+          {
+            "input": "누구지",
+            "found": false,
+            "reason": "NOT_FOUND"
+          }
+        ],
+        "source": "로컬 매핑 (PokeAPI 수집본)"
+      }
+    }
+  },
+  {
+    "case": "[공통 실패] 등록되지 않은 Tool",
+    "tool": "no_such_tool",
+    "args": {},
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "UNKNOWN_TOOL",
+        "message": "등록되지 않은 Tool입니다: no_such_tool"
+      }
+    }
+  },
+  {
+    "case": "[get_meta_usage 실패] 외부 서버 연결 불가",
+    "tool": "get_meta_usage",
+    "args": {},
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "UPSTREAM_ERROR",
+        "message": "외부 데이터 서버에 연결하지 못했습니다."
+      }
+    }
+  },
+  {
+    "case": "[get_pokemon_detail 실패] 외부 서버 연결 불가",
+    "tool": "get_pokemon_detail",
+    "args": {
+      "name": "Garchomp"
+    },
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "UPSTREAM_ERROR",
+        "message": "외부 데이터 서버에 연결하지 못했습니다."
+      }
+    }
+  },
+  {
+    "case": "[get_move_info 실패] 외부 서버 연결 불가",
+    "tool": "get_move_info",
+    "args": {
+      "moves": [
+        "earthquake"
+      ]
+    },
+    "result": {
+      "ok": false,
+      "error": {
+        "code": "UPSTREAM_ERROR",
+        "message": "외부 데이터 서버에 연결하지 못했습니다."
+      }
+    }
+  }
+]

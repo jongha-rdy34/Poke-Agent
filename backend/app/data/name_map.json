@@ -1,0 +1,11779 @@
+{
+"source": "PokeAPI (pokeapi.co)",
+"species": [
+{
+"slug": "bulbasaur",
+"en": "Bulbasaur",
+"ko": "이상해씨",
+"id": "bulbasaur"
+},
+{
+"slug": "ivysaur",
+"en": "Ivysaur",
+"ko": "이상해풀",
+"id": "ivysaur"
+},
+{
+"slug": "venusaur",
+"en": "Venusaur",
+"ko": "이상해꽃",
+"id": "venusaur"
+},
+{
+"slug": "charmander",
+"en": "Charmander",
+"ko": "파이리",
+"id": "charmander"
+},
+{
+"slug": "charmeleon",
+"en": "Charmeleon",
+"ko": "리자드",
+"id": "charmeleon"
+},
+{
+"slug": "charizard",
+"en": "Charizard",
+"ko": "리자몽",
+"id": "charizard"
+},
+{
+"slug": "squirtle",
+"en": "Squirtle",
+"ko": "꼬부기",
+"id": "squirtle"
+},
+{
+"slug": "wartortle",
+"en": "Wartortle",
+"ko": "어니부기",
+"id": "wartortle"
+},
+{
+"slug": "blastoise",
+"en": "Blastoise",
+"ko": "거북왕",
+"id": "blastoise"
+},
+{
+"slug": "caterpie",
+"en": "Caterpie",
+"ko": "캐터피",
+"id": "caterpie"
+},
+{
+"slug": "metapod",
+"en": "Metapod",
+"ko": "단데기",
+"id": "metapod"
+},
+{
+"slug": "butterfree",
+"en": "Butterfree",
+"ko": "버터플",
+"id": "butterfree"
+},
+{
+"slug": "weedle",
+"en": "Weedle",
+"ko": "뿔충이",
+"id": "weedle"
+},
+{
+"slug": "kakuna",
+"en": "Kakuna",
+"ko": "딱충이",
+"id": "kakuna"
+},
+{
+"slug": "beedrill",
+"en": "Beedrill",
+"ko": "독침붕",
+"id": "beedrill"
+},
+{
+"slug": "pidgey",
+"en": "Pidgey",
+"ko": "구구",
+"id": "pidgey"
+},
+{
+"slug": "pidgeotto",
+"en": "Pidgeotto",
+"ko": "피죤",
+"id": "pidgeotto"
+},
+{
+"slug": "pidgeot",
+"en": "Pidgeot",
+"ko": "피죤투",
+"id": "pidgeot"
+},
+{
+"slug": "rattata",
+"en": "Rattata",
+"ko": "꼬렛",
+"id": "rattata"
+},
+{
+"slug": "raticate",
+"en": "Raticate",
+"ko": "레트라",
+"id": "raticate"
+},
+{
+"slug": "spearow",
+"en": "Spearow",
+"ko": "깨비참",
+"id": "spearow"
+},
+{
+"slug": "fearow",
+"en": "Fearow",
+"ko": "깨비드릴조",
+"id": "fearow"
+},
+{
+"slug": "ekans",
+"en": "Ekans",
+"ko": "아보",
+"id": "ekans"
+},
+{
+"slug": "arbok",
+"en": "Arbok",
+"ko": "아보크",
+"id": "arbok"
+},
+{
+"slug": "pikachu",
+"en": "Pikachu",
+"ko": "피카츄",
+"id": "pikachu"
+},
+{
+"slug": "raichu",
+"en": "Raichu",
+"ko": "라이츄",
+"id": "raichu"
+},
+{
+"slug": "sandshrew",
+"en": "Sandshrew",
+"ko": "모래두지",
+"id": "sandshrew"
+},
+{
+"slug": "sandslash",
+"en": "Sandslash",
+"ko": "고지",
+"id": "sandslash"
+},
+{
+"slug": "nidoran-f",
+"en": "Nidoran♀",
+"ko": "니드런♀",
+"id": "nidoran"
+},
+{
+"slug": "nidorina",
+"en": "Nidorina",
+"ko": "니드리나",
+"id": "nidorina"
+},
+{
+"slug": "nidoqueen",
+"en": "Nidoqueen",
+"ko": "니드퀸",
+"id": "nidoqueen"
+},
+{
+"slug": "nidoran-m",
+"en": "Nidoran♂",
+"ko": "니드런♂",
+"id": "nidoran"
+},
+{
+"slug": "nidorino",
+"en": "Nidorino",
+"ko": "니드리노",
+"id": "nidorino"
+},
+{
+"slug": "nidoking",
+"en": "Nidoking",
+"ko": "니드킹",
+"id": "nidoking"
+},
+{
+"slug": "clefairy",
+"en": "Clefairy",
+"ko": "삐삐",
+"id": "clefairy"
+},
+{
+"slug": "clefable",
+"en": "Clefable",
+"ko": "픽시",
+"id": "clefable"
+},
+{
+"slug": "vulpix",
+"en": "Vulpix",
+"ko": "식스테일",
+"id": "vulpix"
+},
+{
+"slug": "ninetales",
+"en": "Ninetales",
+"ko": "나인테일",
+"id": "ninetales"
+},
+{
+"slug": "jigglypuff",
+"en": "Jigglypuff",
+"ko": "푸린",
+"id": "jigglypuff"
+},
+{
+"slug": "wigglytuff",
+"en": "Wigglytuff",
+"ko": "푸크린",
+"id": "wigglytuff"
+},
+{
+"slug": "zubat",
+"en": "Zubat",
+"ko": "주뱃",
+"id": "zubat"
+},
+{
+"slug": "golbat",
+"en": "Golbat",
+"ko": "골뱃",
+"id": "golbat"
+},
+{
+"slug": "oddish",
+"en": "Oddish",
+"ko": "뚜벅쵸",
+"id": "oddish"
+},
+{
+"slug": "gloom",
+"en": "Gloom",
+"ko": "냄새꼬",
+"id": "gloom"
+},
+{
+"slug": "vileplume",
+"en": "Vileplume",
+"ko": "라플레시아",
+"id": "vileplume"
+},
+{
+"slug": "paras",
+"en": "Paras",
+"ko": "파라스",
+"id": "paras"
+},
+{
+"slug": "parasect",
+"en": "Parasect",
+"ko": "파라섹트",
+"id": "parasect"
+},
+{
+"slug": "venonat",
+"en": "Venonat",
+"ko": "콘팡",
+"id": "venonat"
+},
+{
+"slug": "venomoth",
+"en": "Venomoth",
+"ko": "도나리",
+"id": "venomoth"
+},
+{
+"slug": "diglett",
+"en": "Diglett",
+"ko": "디그다",
+"id": "diglett"
+},
+{
+"slug": "dugtrio",
+"en": "Dugtrio",
+"ko": "닥트리오",
+"id": "dugtrio"
+},
+{
+"slug": "meowth",
+"en": "Meowth",
+"ko": "나옹",
+"id": "meowth"
+},
+{
+"slug": "persian",
+"en": "Persian",
+"ko": "페르시온",
+"id": "persian"
+},
+{
+"slug": "psyduck",
+"en": "Psyduck",
+"ko": "고라파덕",
+"id": "psyduck"
+},
+{
+"slug": "golduck",
+"en": "Golduck",
+"ko": "골덕",
+"id": "golduck"
+},
+{
+"slug": "mankey",
+"en": "Mankey",
+"ko": "망키",
+"id": "mankey"
+},
+{
+"slug": "primeape",
+"en": "Primeape",
+"ko": "성원숭",
+"id": "primeape"
+},
+{
+"slug": "growlithe",
+"en": "Growlithe",
+"ko": "가디",
+"id": "growlithe"
+},
+{
+"slug": "arcanine",
+"en": "Arcanine",
+"ko": "윈디",
+"id": "arcanine"
+},
+{
+"slug": "poliwag",
+"en": "Poliwag",
+"ko": "발챙이",
+"id": "poliwag"
+},
+{
+"slug": "poliwhirl",
+"en": "Poliwhirl",
+"ko": "슈륙챙이",
+"id": "poliwhirl"
+},
+{
+"slug": "poliwrath",
+"en": "Poliwrath",
+"ko": "강챙이",
+"id": "poliwrath"
+},
+{
+"slug": "abra",
+"en": "Abra",
+"ko": "캐이시",
+"id": "abra"
+},
+{
+"slug": "kadabra",
+"en": "Kadabra",
+"ko": "윤겔라",
+"id": "kadabra"
+},
+{
+"slug": "alakazam",
+"en": "Alakazam",
+"ko": "후딘",
+"id": "alakazam"
+},
+{
+"slug": "machop",
+"en": "Machop",
+"ko": "알통몬",
+"id": "machop"
+},
+{
+"slug": "machoke",
+"en": "Machoke",
+"ko": "근육몬",
+"id": "machoke"
+},
+{
+"slug": "machamp",
+"en": "Machamp",
+"ko": "괴력몬",
+"id": "machamp"
+},
+{
+"slug": "bellsprout",
+"en": "Bellsprout",
+"ko": "모다피",
+"id": "bellsprout"
+},
+{
+"slug": "weepinbell",
+"en": "Weepinbell",
+"ko": "우츠동",
+"id": "weepinbell"
+},
+{
+"slug": "victreebel",
+"en": "Victreebel",
+"ko": "우츠보트",
+"id": "victreebel"
+},
+{
+"slug": "tentacool",
+"en": "Tentacool",
+"ko": "왕눈해",
+"id": "tentacool"
+},
+{
+"slug": "tentacruel",
+"en": "Tentacruel",
+"ko": "독파리",
+"id": "tentacruel"
+},
+{
+"slug": "geodude",
+"en": "Geodude",
+"ko": "꼬마돌",
+"id": "geodude"
+},
+{
+"slug": "graveler",
+"en": "Graveler",
+"ko": "데구리",
+"id": "graveler"
+},
+{
+"slug": "golem",
+"en": "Golem",
+"ko": "딱구리",
+"id": "golem"
+},
+{
+"slug": "ponyta",
+"en": "Ponyta",
+"ko": "포니타",
+"id": "ponyta"
+},
+{
+"slug": "rapidash",
+"en": "Rapidash",
+"ko": "날쌩마",
+"id": "rapidash"
+},
+{
+"slug": "slowpoke",
+"en": "Slowpoke",
+"ko": "야돈",
+"id": "slowpoke"
+},
+{
+"slug": "slowbro",
+"en": "Slowbro",
+"ko": "야도란",
+"id": "slowbro"
+},
+{
+"slug": "magnemite",
+"en": "Magnemite",
+"ko": "코일",
+"id": "magnemite"
+},
+{
+"slug": "magneton",
+"en": "Magneton",
+"ko": "레어코일",
+"id": "magneton"
+},
+{
+"slug": "farfetchd",
+"en": "Farfetch’d",
+"ko": "파오리",
+"id": "farfetchd"
+},
+{
+"slug": "doduo",
+"en": "Doduo",
+"ko": "두두",
+"id": "doduo"
+},
+{
+"slug": "dodrio",
+"en": "Dodrio",
+"ko": "두트리오",
+"id": "dodrio"
+},
+{
+"slug": "seel",
+"en": "Seel",
+"ko": "쥬쥬",
+"id": "seel"
+},
+{
+"slug": "dewgong",
+"en": "Dewgong",
+"ko": "쥬레곤",
+"id": "dewgong"
+},
+{
+"slug": "grimer",
+"en": "Grimer",
+"ko": "질퍽이",
+"id": "grimer"
+},
+{
+"slug": "muk",
+"en": "Muk",
+"ko": "질뻐기",
+"id": "muk"
+},
+{
+"slug": "shellder",
+"en": "Shellder",
+"ko": "셀러",
+"id": "shellder"
+},
+{
+"slug": "cloyster",
+"en": "Cloyster",
+"ko": "파르셀",
+"id": "cloyster"
+},
+{
+"slug": "gastly",
+"en": "Gastly",
+"ko": "고오스",
+"id": "gastly"
+},
+{
+"slug": "haunter",
+"en": "Haunter",
+"ko": "고우스트",
+"id": "haunter"
+},
+{
+"slug": "gengar",
+"en": "Gengar",
+"ko": "팬텀",
+"id": "gengar"
+},
+{
+"slug": "onix",
+"en": "Onix",
+"ko": "롱스톤",
+"id": "onix"
+},
+{
+"slug": "drowzee",
+"en": "Drowzee",
+"ko": "슬리프",
+"id": "drowzee"
+},
+{
+"slug": "hypno",
+"en": "Hypno",
+"ko": "슬리퍼",
+"id": "hypno"
+},
+{
+"slug": "krabby",
+"en": "Krabby",
+"ko": "크랩",
+"id": "krabby"
+},
+{
+"slug": "kingler",
+"en": "Kingler",
+"ko": "킹크랩",
+"id": "kingler"
+},
+{
+"slug": "voltorb",
+"en": "Voltorb",
+"ko": "찌리리공",
+"id": "voltorb"
+},
+{
+"slug": "electrode",
+"en": "Electrode",
+"ko": "붐볼",
+"id": "electrode"
+},
+{
+"slug": "exeggcute",
+"en": "Exeggcute",
+"ko": "아라리",
+"id": "exeggcute"
+},
+{
+"slug": "exeggutor",
+"en": "Exeggutor",
+"ko": "나시",
+"id": "exeggutor"
+},
+{
+"slug": "cubone",
+"en": "Cubone",
+"ko": "탕구리",
+"id": "cubone"
+},
+{
+"slug": "marowak",
+"en": "Marowak",
+"ko": "텅구리",
+"id": "marowak"
+},
+{
+"slug": "hitmonlee",
+"en": "Hitmonlee",
+"ko": "시라소몬",
+"id": "hitmonlee"
+},
+{
+"slug": "hitmonchan",
+"en": "Hitmonchan",
+"ko": "홍수몬",
+"id": "hitmonchan"
+},
+{
+"slug": "lickitung",
+"en": "Lickitung",
+"ko": "내루미",
+"id": "lickitung"
+},
+{
+"slug": "koffing",
+"en": "Koffing",
+"ko": "또가스",
+"id": "koffing"
+},
+{
+"slug": "weezing",
+"en": "Weezing",
+"ko": "또도가스",
+"id": "weezing"
+},
+{
+"slug": "rhyhorn",
+"en": "Rhyhorn",
+"ko": "뿔카노",
+"id": "rhyhorn"
+},
+{
+"slug": "rhydon",
+"en": "Rhydon",
+"ko": "코뿌리",
+"id": "rhydon"
+},
+{
+"slug": "chansey",
+"en": "Chansey",
+"ko": "럭키",
+"id": "chansey"
+},
+{
+"slug": "tangela",
+"en": "Tangela",
+"ko": "덩쿠리",
+"id": "tangela"
+},
+{
+"slug": "kangaskhan",
+"en": "Kangaskhan",
+"ko": "캥카",
+"id": "kangaskhan"
+},
+{
+"slug": "horsea",
+"en": "Horsea",
+"ko": "쏘드라",
+"id": "horsea"
+},
+{
+"slug": "seadra",
+"en": "Seadra",
+"ko": "시드라",
+"id": "seadra"
+},
+{
+"slug": "goldeen",
+"en": "Goldeen",
+"ko": "콘치",
+"id": "goldeen"
+},
+{
+"slug": "seaking",
+"en": "Seaking",
+"ko": "왕콘치",
+"id": "seaking"
+},
+{
+"slug": "staryu",
+"en": "Staryu",
+"ko": "별가사리",
+"id": "staryu"
+},
+{
+"slug": "starmie",
+"en": "Starmie",
+"ko": "아쿠스타",
+"id": "starmie"
+},
+{
+"slug": "mr-mime",
+"en": "Mr. Mime",
+"ko": "마임맨",
+"id": "mrmime"
+},
+{
+"slug": "scyther",
+"en": "Scyther",
+"ko": "스라크",
+"id": "scyther"
+},
+{
+"slug": "jynx",
+"en": "Jynx",
+"ko": "루주라",
+"id": "jynx"
+},
+{
+"slug": "electabuzz",
+"en": "Electabuzz",
+"ko": "에레브",
+"id": "electabuzz"
+},
+{
+"slug": "magmar",
+"en": "Magmar",
+"ko": "마그마",
+"id": "magmar"
+},
+{
+"slug": "pinsir",
+"en": "Pinsir",
+"ko": "쁘사이저",
+"id": "pinsir"
+},
+{
+"slug": "tauros",
+"en": "Tauros",
+"ko": "켄타로스",
+"id": "tauros"
+},
+{
+"slug": "magikarp",
+"en": "Magikarp",
+"ko": "잉어킹",
+"id": "magikarp"
+},
+{
+"slug": "gyarados",
+"en": "Gyarados",
+"ko": "갸라도스",
+"id": "gyarados"
+},
+{
+"slug": "lapras",
+"en": "Lapras",
+"ko": "라프라스",
+"id": "lapras"
+},
+{
+"slug": "ditto",
+"en": "Ditto",
+"ko": "메타몽",
+"id": "ditto"
+},
+{
+"slug": "eevee",
+"en": "Eevee",
+"ko": "이브이",
+"id": "eevee"
+},
+{
+"slug": "vaporeon",
+"en": "Vaporeon",
+"ko": "샤미드",
+"id": "vaporeon"
+},
+{
+"slug": "jolteon",
+"en": "Jolteon",
+"ko": "쥬피썬더",
+"id": "jolteon"
+},
+{
+"slug": "flareon",
+"en": "Flareon",
+"ko": "부스터",
+"id": "flareon"
+},
+{
+"slug": "porygon",
+"en": "Porygon",
+"ko": "폴리곤",
+"id": "porygon"
+},
+{
+"slug": "omanyte",
+"en": "Omanyte",
+"ko": "암나이트",
+"id": "omanyte"
+},
+{
+"slug": "omastar",
+"en": "Omastar",
+"ko": "암스타",
+"id": "omastar"
+},
+{
+"slug": "kabuto",
+"en": "Kabuto",
+"ko": "투구",
+"id": "kabuto"
+},
+{
+"slug": "kabutops",
+"en": "Kabutops",
+"ko": "투구푸스",
+"id": "kabutops"
+},
+{
+"slug": "aerodactyl",
+"en": "Aerodactyl",
+"ko": "프테라",
+"id": "aerodactyl"
+},
+{
+"slug": "snorlax",
+"en": "Snorlax",
+"ko": "잠만보",
+"id": "snorlax"
+},
+{
+"slug": "articuno",
+"en": "Articuno",
+"ko": "프리져",
+"id": "articuno"
+},
+{
+"slug": "zapdos",
+"en": "Zapdos",
+"ko": "썬더",
+"id": "zapdos"
+},
+{
+"slug": "moltres",
+"en": "Moltres",
+"ko": "파이어",
+"id": "moltres"
+},
+{
+"slug": "dratini",
+"en": "Dratini",
+"ko": "미뇽",
+"id": "dratini"
+},
+{
+"slug": "dragonair",
+"en": "Dragonair",
+"ko": "신뇽",
+"id": "dragonair"
+},
+{
+"slug": "dragonite",
+"en": "Dragonite",
+"ko": "망나뇽",
+"id": "dragonite"
+},
+{
+"slug": "mewtwo",
+"en": "Mewtwo",
+"ko": "뮤츠",
+"id": "mewtwo"
+},
+{
+"slug": "mew",
+"en": "Mew",
+"ko": "뮤",
+"id": "mew"
+},
+{
+"slug": "chikorita",
+"en": "Chikorita",
+"ko": "치코리타",
+"id": "chikorita"
+},
+{
+"slug": "bayleef",
+"en": "Bayleef",
+"ko": "베이리프",
+"id": "bayleef"
+},
+{
+"slug": "meganium",
+"en": "Meganium",
+"ko": "메가니움",
+"id": "meganium"
+},
+{
+"slug": "cyndaquil",
+"en": "Cyndaquil",
+"ko": "브케인",
+"id": "cyndaquil"
+},
+{
+"slug": "quilava",
+"en": "Quilava",
+"ko": "마그케인",
+"id": "quilava"
+},
+{
+"slug": "typhlosion",
+"en": "Typhlosion",
+"ko": "블레이범",
+"id": "typhlosion"
+},
+{
+"slug": "totodile",
+"en": "Totodile",
+"ko": "리아코",
+"id": "totodile"
+},
+{
+"slug": "croconaw",
+"en": "Croconaw",
+"ko": "엘리게이",
+"id": "croconaw"
+},
+{
+"slug": "feraligatr",
+"en": "Feraligatr",
+"ko": "장크로다일",
+"id": "feraligatr"
+},
+{
+"slug": "sentret",
+"en": "Sentret",
+"ko": "꼬리선",
+"id": "sentret"
+},
+{
+"slug": "furret",
+"en": "Furret",
+"ko": "다꼬리",
+"id": "furret"
+},
+{
+"slug": "hoothoot",
+"en": "Hoothoot",
+"ko": "부우부",
+"id": "hoothoot"
+},
+{
+"slug": "noctowl",
+"en": "Noctowl",
+"ko": "야부엉",
+"id": "noctowl"
+},
+{
+"slug": "ledyba",
+"en": "Ledyba",
+"ko": "레디바",
+"id": "ledyba"
+},
+{
+"slug": "ledian",
+"en": "Ledian",
+"ko": "레디안",
+"id": "ledian"
+},
+{
+"slug": "spinarak",
+"en": "Spinarak",
+"ko": "페이검",
+"id": "spinarak"
+},
+{
+"slug": "ariados",
+"en": "Ariados",
+"ko": "아리아도스",
+"id": "ariados"
+},
+{
+"slug": "crobat",
+"en": "Crobat",
+"ko": "크로뱃",
+"id": "crobat"
+},
+{
+"slug": "chinchou",
+"en": "Chinchou",
+"ko": "초라기",
+"id": "chinchou"
+},
+{
+"slug": "lanturn",
+"en": "Lanturn",
+"ko": "랜턴",
+"id": "lanturn"
+},
+{
+"slug": "pichu",
+"en": "Pichu",
+"ko": "피츄",
+"id": "pichu"
+},
+{
+"slug": "cleffa",
+"en": "Cleffa",
+"ko": "삐",
+"id": "cleffa"
+},
+{
+"slug": "igglybuff",
+"en": "Igglybuff",
+"ko": "푸푸린",
+"id": "igglybuff"
+},
+{
+"slug": "togepi",
+"en": "Togepi",
+"ko": "토게피",
+"id": "togepi"
+},
+{
+"slug": "togetic",
+"en": "Togetic",
+"ko": "토게틱",
+"id": "togetic"
+},
+{
+"slug": "natu",
+"en": "Natu",
+"ko": "네이티",
+"id": "natu"
+},
+{
+"slug": "xatu",
+"en": "Xatu",
+"ko": "네이티오",
+"id": "xatu"
+},
+{
+"slug": "mareep",
+"en": "Mareep",
+"ko": "메리프",
+"id": "mareep"
+},
+{
+"slug": "flaaffy",
+"en": "Flaaffy",
+"ko": "보송송",
+"id": "flaaffy"
+},
+{
+"slug": "ampharos",
+"en": "Ampharos",
+"ko": "전룡",
+"id": "ampharos"
+},
+{
+"slug": "bellossom",
+"en": "Bellossom",
+"ko": "아르코",
+"id": "bellossom"
+},
+{
+"slug": "marill",
+"en": "Marill",
+"ko": "마릴",
+"id": "marill"
+},
+{
+"slug": "azumarill",
+"en": "Azumarill",
+"ko": "마릴리",
+"id": "azumarill"
+},
+{
+"slug": "sudowoodo",
+"en": "Sudowoodo",
+"ko": "꼬지모",
+"id": "sudowoodo"
+},
+{
+"slug": "politoed",
+"en": "Politoed",
+"ko": "왕구리",
+"id": "politoed"
+},
+{
+"slug": "hoppip",
+"en": "Hoppip",
+"ko": "통통코",
+"id": "hoppip"
+},
+{
+"slug": "skiploom",
+"en": "Skiploom",
+"ko": "두코",
+"id": "skiploom"
+},
+{
+"slug": "jumpluff",
+"en": "Jumpluff",
+"ko": "솜솜코",
+"id": "jumpluff"
+},
+{
+"slug": "aipom",
+"en": "Aipom",
+"ko": "에이팜",
+"id": "aipom"
+},
+{
+"slug": "sunkern",
+"en": "Sunkern",
+"ko": "해너츠",
+"id": "sunkern"
+},
+{
+"slug": "sunflora",
+"en": "Sunflora",
+"ko": "해루미",
+"id": "sunflora"
+},
+{
+"slug": "yanma",
+"en": "Yanma",
+"ko": "왕자리",
+"id": "yanma"
+},
+{
+"slug": "wooper",
+"en": "Wooper",
+"ko": "우파",
+"id": "wooper"
+},
+{
+"slug": "quagsire",
+"en": "Quagsire",
+"ko": "누오",
+"id": "quagsire"
+},
+{
+"slug": "espeon",
+"en": "Espeon",
+"ko": "에브이",
+"id": "espeon"
+},
+{
+"slug": "umbreon",
+"en": "Umbreon",
+"ko": "블래키",
+"id": "umbreon"
+},
+{
+"slug": "murkrow",
+"en": "Murkrow",
+"ko": "니로우",
+"id": "murkrow"
+},
+{
+"slug": "slowking",
+"en": "Slowking",
+"ko": "야도킹",
+"id": "slowking"
+},
+{
+"slug": "misdreavus",
+"en": "Misdreavus",
+"ko": "무우마",
+"id": "misdreavus"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"ko": "안농",
+"id": "unown"
+},
+{
+"slug": "wobbuffet",
+"en": "Wobbuffet",
+"ko": "마자용",
+"id": "wobbuffet"
+},
+{
+"slug": "girafarig",
+"en": "Girafarig",
+"ko": "키링키",
+"id": "girafarig"
+},
+{
+"slug": "pineco",
+"en": "Pineco",
+"ko": "피콘",
+"id": "pineco"
+},
+{
+"slug": "forretress",
+"en": "Forretress",
+"ko": "쏘콘",
+"id": "forretress"
+},
+{
+"slug": "dunsparce",
+"en": "Dunsparce",
+"ko": "노고치",
+"id": "dunsparce"
+},
+{
+"slug": "gligar",
+"en": "Gligar",
+"ko": "글라이거",
+"id": "gligar"
+},
+{
+"slug": "steelix",
+"en": "Steelix",
+"ko": "강철톤",
+"id": "steelix"
+},
+{
+"slug": "snubbull",
+"en": "Snubbull",
+"ko": "블루",
+"id": "snubbull"
+},
+{
+"slug": "granbull",
+"en": "Granbull",
+"ko": "그랑블루",
+"id": "granbull"
+},
+{
+"slug": "qwilfish",
+"en": "Qwilfish",
+"ko": "침바루",
+"id": "qwilfish"
+},
+{
+"slug": "scizor",
+"en": "Scizor",
+"ko": "핫삼",
+"id": "scizor"
+},
+{
+"slug": "shuckle",
+"en": "Shuckle",
+"ko": "단단지",
+"id": "shuckle"
+},
+{
+"slug": "heracross",
+"en": "Heracross",
+"ko": "헤라크로스",
+"id": "heracross"
+},
+{
+"slug": "sneasel",
+"en": "Sneasel",
+"ko": "포푸니",
+"id": "sneasel"
+},
+{
+"slug": "teddiursa",
+"en": "Teddiursa",
+"ko": "깜지곰",
+"id": "teddiursa"
+},
+{
+"slug": "ursaring",
+"en": "Ursaring",
+"ko": "링곰",
+"id": "ursaring"
+},
+{
+"slug": "slugma",
+"en": "Slugma",
+"ko": "마그마그",
+"id": "slugma"
+},
+{
+"slug": "magcargo",
+"en": "Magcargo",
+"ko": "마그카르고",
+"id": "magcargo"
+},
+{
+"slug": "swinub",
+"en": "Swinub",
+"ko": "꾸꾸리",
+"id": "swinub"
+},
+{
+"slug": "piloswine",
+"en": "Piloswine",
+"ko": "메꾸리",
+"id": "piloswine"
+},
+{
+"slug": "corsola",
+"en": "Corsola",
+"ko": "코산호",
+"id": "corsola"
+},
+{
+"slug": "remoraid",
+"en": "Remoraid",
+"ko": "총어",
+"id": "remoraid"
+},
+{
+"slug": "octillery",
+"en": "Octillery",
+"ko": "대포무노",
+"id": "octillery"
+},
+{
+"slug": "delibird",
+"en": "Delibird",
+"ko": "딜리버드",
+"id": "delibird"
+},
+{
+"slug": "mantine",
+"en": "Mantine",
+"ko": "만타인",
+"id": "mantine"
+},
+{
+"slug": "skarmory",
+"en": "Skarmory",
+"ko": "무장조",
+"id": "skarmory"
+},
+{
+"slug": "houndour",
+"en": "Houndour",
+"ko": "델빌",
+"id": "houndour"
+},
+{
+"slug": "houndoom",
+"en": "Houndoom",
+"ko": "헬가",
+"id": "houndoom"
+},
+{
+"slug": "kingdra",
+"en": "Kingdra",
+"ko": "킹드라",
+"id": "kingdra"
+},
+{
+"slug": "phanpy",
+"en": "Phanpy",
+"ko": "코코리",
+"id": "phanpy"
+},
+{
+"slug": "donphan",
+"en": "Donphan",
+"ko": "코리갑",
+"id": "donphan"
+},
+{
+"slug": "porygon2",
+"en": "Porygon2",
+"ko": "폴리곤2",
+"id": "porygon2"
+},
+{
+"slug": "stantler",
+"en": "Stantler",
+"ko": "노라키",
+"id": "stantler"
+},
+{
+"slug": "smeargle",
+"en": "Smeargle",
+"ko": "루브도",
+"id": "smeargle"
+},
+{
+"slug": "tyrogue",
+"en": "Tyrogue",
+"ko": "배루키",
+"id": "tyrogue"
+},
+{
+"slug": "hitmontop",
+"en": "Hitmontop",
+"ko": "카포에라",
+"id": "hitmontop"
+},
+{
+"slug": "smoochum",
+"en": "Smoochum",
+"ko": "뽀뽀라",
+"id": "smoochum"
+},
+{
+"slug": "elekid",
+"en": "Elekid",
+"ko": "에레키드",
+"id": "elekid"
+},
+{
+"slug": "magby",
+"en": "Magby",
+"ko": "마그비",
+"id": "magby"
+},
+{
+"slug": "miltank",
+"en": "Miltank",
+"ko": "밀탱크",
+"id": "miltank"
+},
+{
+"slug": "blissey",
+"en": "Blissey",
+"ko": "해피너스",
+"id": "blissey"
+},
+{
+"slug": "raikou",
+"en": "Raikou",
+"ko": "라이코",
+"id": "raikou"
+},
+{
+"slug": "entei",
+"en": "Entei",
+"ko": "앤테이",
+"id": "entei"
+},
+{
+"slug": "suicune",
+"en": "Suicune",
+"ko": "스이쿤",
+"id": "suicune"
+},
+{
+"slug": "larvitar",
+"en": "Larvitar",
+"ko": "애버라스",
+"id": "larvitar"
+},
+{
+"slug": "pupitar",
+"en": "Pupitar",
+"ko": "데기라스",
+"id": "pupitar"
+},
+{
+"slug": "tyranitar",
+"en": "Tyranitar",
+"ko": "마기라스",
+"id": "tyranitar"
+},
+{
+"slug": "lugia",
+"en": "Lugia",
+"ko": "루기아",
+"id": "lugia"
+},
+{
+"slug": "ho-oh",
+"en": "Ho-Oh",
+"ko": "칠색조",
+"id": "hooh"
+},
+{
+"slug": "celebi",
+"en": "Celebi",
+"ko": "세레비",
+"id": "celebi"
+},
+{
+"slug": "treecko",
+"en": "Treecko",
+"ko": "나무지기",
+"id": "treecko"
+},
+{
+"slug": "grovyle",
+"en": "Grovyle",
+"ko": "나무돌이",
+"id": "grovyle"
+},
+{
+"slug": "sceptile",
+"en": "Sceptile",
+"ko": "나무킹",
+"id": "sceptile"
+},
+{
+"slug": "torchic",
+"en": "Torchic",
+"ko": "아차모",
+"id": "torchic"
+},
+{
+"slug": "combusken",
+"en": "Combusken",
+"ko": "영치코",
+"id": "combusken"
+},
+{
+"slug": "blaziken",
+"en": "Blaziken",
+"ko": "번치코",
+"id": "blaziken"
+},
+{
+"slug": "mudkip",
+"en": "Mudkip",
+"ko": "물짱이",
+"id": "mudkip"
+},
+{
+"slug": "marshtomp",
+"en": "Marshtomp",
+"ko": "늪짱이",
+"id": "marshtomp"
+},
+{
+"slug": "swampert",
+"en": "Swampert",
+"ko": "대짱이",
+"id": "swampert"
+},
+{
+"slug": "poochyena",
+"en": "Poochyena",
+"ko": "포챠나",
+"id": "poochyena"
+},
+{
+"slug": "mightyena",
+"en": "Mightyena",
+"ko": "그라에나",
+"id": "mightyena"
+},
+{
+"slug": "zigzagoon",
+"en": "Zigzagoon",
+"ko": "지그제구리",
+"id": "zigzagoon"
+},
+{
+"slug": "linoone",
+"en": "Linoone",
+"ko": "직구리",
+"id": "linoone"
+},
+{
+"slug": "wurmple",
+"en": "Wurmple",
+"ko": "개무소",
+"id": "wurmple"
+},
+{
+"slug": "silcoon",
+"en": "Silcoon",
+"ko": "실쿤",
+"id": "silcoon"
+},
+{
+"slug": "beautifly",
+"en": "Beautifly",
+"ko": "뷰티플라이",
+"id": "beautifly"
+},
+{
+"slug": "cascoon",
+"en": "Cascoon",
+"ko": "카스쿤",
+"id": "cascoon"
+},
+{
+"slug": "dustox",
+"en": "Dustox",
+"ko": "독케일",
+"id": "dustox"
+},
+{
+"slug": "lotad",
+"en": "Lotad",
+"ko": "연꽃몬",
+"id": "lotad"
+},
+{
+"slug": "lombre",
+"en": "Lombre",
+"ko": "로토스",
+"id": "lombre"
+},
+{
+"slug": "ludicolo",
+"en": "Ludicolo",
+"ko": "로파파",
+"id": "ludicolo"
+},
+{
+"slug": "seedot",
+"en": "Seedot",
+"ko": "도토링",
+"id": "seedot"
+},
+{
+"slug": "nuzleaf",
+"en": "Nuzleaf",
+"ko": "잎새코",
+"id": "nuzleaf"
+},
+{
+"slug": "shiftry",
+"en": "Shiftry",
+"ko": "다탱구",
+"id": "shiftry"
+},
+{
+"slug": "taillow",
+"en": "Taillow",
+"ko": "테일로",
+"id": "taillow"
+},
+{
+"slug": "swellow",
+"en": "Swellow",
+"ko": "스왈로",
+"id": "swellow"
+},
+{
+"slug": "wingull",
+"en": "Wingull",
+"ko": "갈모매",
+"id": "wingull"
+},
+{
+"slug": "pelipper",
+"en": "Pelipper",
+"ko": "패리퍼",
+"id": "pelipper"
+},
+{
+"slug": "ralts",
+"en": "Ralts",
+"ko": "랄토스",
+"id": "ralts"
+},
+{
+"slug": "kirlia",
+"en": "Kirlia",
+"ko": "킬리아",
+"id": "kirlia"
+},
+{
+"slug": "gardevoir",
+"en": "Gardevoir",
+"ko": "가디안",
+"id": "gardevoir"
+},
+{
+"slug": "surskit",
+"en": "Surskit",
+"ko": "비구술",
+"id": "surskit"
+},
+{
+"slug": "masquerain",
+"en": "Masquerain",
+"ko": "비나방",
+"id": "masquerain"
+},
+{
+"slug": "shroomish",
+"en": "Shroomish",
+"ko": "버섯꼬",
+"id": "shroomish"
+},
+{
+"slug": "breloom",
+"en": "Breloom",
+"ko": "버섯모",
+"id": "breloom"
+},
+{
+"slug": "slakoth",
+"en": "Slakoth",
+"ko": "게을로",
+"id": "slakoth"
+},
+{
+"slug": "vigoroth",
+"en": "Vigoroth",
+"ko": "발바로",
+"id": "vigoroth"
+},
+{
+"slug": "slaking",
+"en": "Slaking",
+"ko": "게을킹",
+"id": "slaking"
+},
+{
+"slug": "nincada",
+"en": "Nincada",
+"ko": "토중몬",
+"id": "nincada"
+},
+{
+"slug": "ninjask",
+"en": "Ninjask",
+"ko": "아이스크",
+"id": "ninjask"
+},
+{
+"slug": "shedinja",
+"en": "Shedinja",
+"ko": "껍질몬",
+"id": "shedinja"
+},
+{
+"slug": "whismur",
+"en": "Whismur",
+"ko": "소곤룡",
+"id": "whismur"
+},
+{
+"slug": "loudred",
+"en": "Loudred",
+"ko": "노공룡",
+"id": "loudred"
+},
+{
+"slug": "exploud",
+"en": "Exploud",
+"ko": "폭음룡",
+"id": "exploud"
+},
+{
+"slug": "makuhita",
+"en": "Makuhita",
+"ko": "마크탕",
+"id": "makuhita"
+},
+{
+"slug": "hariyama",
+"en": "Hariyama",
+"ko": "하리뭉",
+"id": "hariyama"
+},
+{
+"slug": "azurill",
+"en": "Azurill",
+"ko": "루리리",
+"id": "azurill"
+},
+{
+"slug": "nosepass",
+"en": "Nosepass",
+"ko": "코코파스",
+"id": "nosepass"
+},
+{
+"slug": "skitty",
+"en": "Skitty",
+"ko": "에나비",
+"id": "skitty"
+},
+{
+"slug": "delcatty",
+"en": "Delcatty",
+"ko": "델케티",
+"id": "delcatty"
+},
+{
+"slug": "sableye",
+"en": "Sableye",
+"ko": "깜까미",
+"id": "sableye"
+},
+{
+"slug": "mawile",
+"en": "Mawile",
+"ko": "입치트",
+"id": "mawile"
+},
+{
+"slug": "aron",
+"en": "Aron",
+"ko": "가보리",
+"id": "aron"
+},
+{
+"slug": "lairon",
+"en": "Lairon",
+"ko": "갱도라",
+"id": "lairon"
+},
+{
+"slug": "aggron",
+"en": "Aggron",
+"ko": "보스로라",
+"id": "aggron"
+},
+{
+"slug": "meditite",
+"en": "Meditite",
+"ko": "요가랑",
+"id": "meditite"
+},
+{
+"slug": "medicham",
+"en": "Medicham",
+"ko": "요가램",
+"id": "medicham"
+},
+{
+"slug": "electrike",
+"en": "Electrike",
+"ko": "썬더라이",
+"id": "electrike"
+},
+{
+"slug": "manectric",
+"en": "Manectric",
+"ko": "썬더볼트",
+"id": "manectric"
+},
+{
+"slug": "plusle",
+"en": "Plusle",
+"ko": "플러시",
+"id": "plusle"
+},
+{
+"slug": "minun",
+"en": "Minun",
+"ko": "마이농",
+"id": "minun"
+},
+{
+"slug": "volbeat",
+"en": "Volbeat",
+"ko": "볼비트",
+"id": "volbeat"
+},
+{
+"slug": "illumise",
+"en": "Illumise",
+"ko": "네오비트",
+"id": "illumise"
+},
+{
+"slug": "roselia",
+"en": "Roselia",
+"ko": "로젤리아",
+"id": "roselia"
+},
+{
+"slug": "gulpin",
+"en": "Gulpin",
+"ko": "꼴깍몬",
+"id": "gulpin"
+},
+{
+"slug": "swalot",
+"en": "Swalot",
+"ko": "꿀꺽몬",
+"id": "swalot"
+},
+{
+"slug": "carvanha",
+"en": "Carvanha",
+"ko": "샤프니아",
+"id": "carvanha"
+},
+{
+"slug": "sharpedo",
+"en": "Sharpedo",
+"ko": "샤크니아",
+"id": "sharpedo"
+},
+{
+"slug": "wailmer",
+"en": "Wailmer",
+"ko": "고래왕자",
+"id": "wailmer"
+},
+{
+"slug": "wailord",
+"en": "Wailord",
+"ko": "고래왕",
+"id": "wailord"
+},
+{
+"slug": "numel",
+"en": "Numel",
+"ko": "둔타",
+"id": "numel"
+},
+{
+"slug": "camerupt",
+"en": "Camerupt",
+"ko": "폭타",
+"id": "camerupt"
+},
+{
+"slug": "torkoal",
+"en": "Torkoal",
+"ko": "코터스",
+"id": "torkoal"
+},
+{
+"slug": "spoink",
+"en": "Spoink",
+"ko": "피그점프",
+"id": "spoink"
+},
+{
+"slug": "grumpig",
+"en": "Grumpig",
+"ko": "피그킹",
+"id": "grumpig"
+},
+{
+"slug": "spinda",
+"en": "Spinda",
+"ko": "얼루기",
+"id": "spinda"
+},
+{
+"slug": "trapinch",
+"en": "Trapinch",
+"ko": "톱치",
+"id": "trapinch"
+},
+{
+"slug": "vibrava",
+"en": "Vibrava",
+"ko": "비브라바",
+"id": "vibrava"
+},
+{
+"slug": "flygon",
+"en": "Flygon",
+"ko": "플라이곤",
+"id": "flygon"
+},
+{
+"slug": "cacnea",
+"en": "Cacnea",
+"ko": "선인왕",
+"id": "cacnea"
+},
+{
+"slug": "cacturne",
+"en": "Cacturne",
+"ko": "밤선인",
+"id": "cacturne"
+},
+{
+"slug": "swablu",
+"en": "Swablu",
+"ko": "파비코",
+"id": "swablu"
+},
+{
+"slug": "altaria",
+"en": "Altaria",
+"ko": "파비코리",
+"id": "altaria"
+},
+{
+"slug": "zangoose",
+"en": "Zangoose",
+"ko": "쟝고",
+"id": "zangoose"
+},
+{
+"slug": "seviper",
+"en": "Seviper",
+"ko": "세비퍼",
+"id": "seviper"
+},
+{
+"slug": "lunatone",
+"en": "Lunatone",
+"ko": "루나톤",
+"id": "lunatone"
+},
+{
+"slug": "solrock",
+"en": "Solrock",
+"ko": "솔록",
+"id": "solrock"
+},
+{
+"slug": "barboach",
+"en": "Barboach",
+"ko": "미꾸리",
+"id": "barboach"
+},
+{
+"slug": "whiscash",
+"en": "Whiscash",
+"ko": "메깅",
+"id": "whiscash"
+},
+{
+"slug": "corphish",
+"en": "Corphish",
+"ko": "가재군",
+"id": "corphish"
+},
+{
+"slug": "crawdaunt",
+"en": "Crawdaunt",
+"ko": "가재장군",
+"id": "crawdaunt"
+},
+{
+"slug": "baltoy",
+"en": "Baltoy",
+"ko": "오뚝군",
+"id": "baltoy"
+},
+{
+"slug": "claydol",
+"en": "Claydol",
+"ko": "점토도리",
+"id": "claydol"
+},
+{
+"slug": "lileep",
+"en": "Lileep",
+"ko": "릴링",
+"id": "lileep"
+},
+{
+"slug": "cradily",
+"en": "Cradily",
+"ko": "릴리요",
+"id": "cradily"
+},
+{
+"slug": "anorith",
+"en": "Anorith",
+"ko": "아노딥스",
+"id": "anorith"
+},
+{
+"slug": "armaldo",
+"en": "Armaldo",
+"ko": "아말도",
+"id": "armaldo"
+},
+{
+"slug": "feebas",
+"en": "Feebas",
+"ko": "빈티나",
+"id": "feebas"
+},
+{
+"slug": "milotic",
+"en": "Milotic",
+"ko": "밀로틱",
+"id": "milotic"
+},
+{
+"slug": "castform",
+"en": "Castform",
+"ko": "캐스퐁",
+"id": "castform"
+},
+{
+"slug": "kecleon",
+"en": "Kecleon",
+"ko": "켈리몬",
+"id": "kecleon"
+},
+{
+"slug": "shuppet",
+"en": "Shuppet",
+"ko": "어둠대신",
+"id": "shuppet"
+},
+{
+"slug": "banette",
+"en": "Banette",
+"ko": "다크펫",
+"id": "banette"
+},
+{
+"slug": "duskull",
+"en": "Duskull",
+"ko": "해골몽",
+"id": "duskull"
+},
+{
+"slug": "dusclops",
+"en": "Dusclops",
+"ko": "미라몽",
+"id": "dusclops"
+},
+{
+"slug": "tropius",
+"en": "Tropius",
+"ko": "트로피우스",
+"id": "tropius"
+},
+{
+"slug": "chimecho",
+"en": "Chimecho",
+"ko": "치렁",
+"id": "chimecho"
+},
+{
+"slug": "absol",
+"en": "Absol",
+"ko": "앱솔",
+"id": "absol"
+},
+{
+"slug": "wynaut",
+"en": "Wynaut",
+"ko": "마자",
+"id": "wynaut"
+},
+{
+"slug": "snorunt",
+"en": "Snorunt",
+"ko": "눈꼬마",
+"id": "snorunt"
+},
+{
+"slug": "glalie",
+"en": "Glalie",
+"ko": "얼음귀신",
+"id": "glalie"
+},
+{
+"slug": "spheal",
+"en": "Spheal",
+"ko": "대굴레오",
+"id": "spheal"
+},
+{
+"slug": "sealeo",
+"en": "Sealeo",
+"ko": "씨레오",
+"id": "sealeo"
+},
+{
+"slug": "walrein",
+"en": "Walrein",
+"ko": "씨카이저",
+"id": "walrein"
+},
+{
+"slug": "clamperl",
+"en": "Clamperl",
+"ko": "진주몽",
+"id": "clamperl"
+},
+{
+"slug": "huntail",
+"en": "Huntail",
+"ko": "헌테일",
+"id": "huntail"
+},
+{
+"slug": "gorebyss",
+"en": "Gorebyss",
+"ko": "분홍장이",
+"id": "gorebyss"
+},
+{
+"slug": "relicanth",
+"en": "Relicanth",
+"ko": "시라칸",
+"id": "relicanth"
+},
+{
+"slug": "luvdisc",
+"en": "Luvdisc",
+"ko": "사랑동이",
+"id": "luvdisc"
+},
+{
+"slug": "bagon",
+"en": "Bagon",
+"ko": "아공이",
+"id": "bagon"
+},
+{
+"slug": "shelgon",
+"en": "Shelgon",
+"ko": "쉘곤",
+"id": "shelgon"
+},
+{
+"slug": "salamence",
+"en": "Salamence",
+"ko": "보만다",
+"id": "salamence"
+},
+{
+"slug": "beldum",
+"en": "Beldum",
+"ko": "메탕",
+"id": "beldum"
+},
+{
+"slug": "metang",
+"en": "Metang",
+"ko": "메탕구",
+"id": "metang"
+},
+{
+"slug": "metagross",
+"en": "Metagross",
+"ko": "메타그로스",
+"id": "metagross"
+},
+{
+"slug": "regirock",
+"en": "Regirock",
+"ko": "레지락",
+"id": "regirock"
+},
+{
+"slug": "regice",
+"en": "Regice",
+"ko": "레지아이스",
+"id": "regice"
+},
+{
+"slug": "registeel",
+"en": "Registeel",
+"ko": "레지스틸",
+"id": "registeel"
+},
+{
+"slug": "latias",
+"en": "Latias",
+"ko": "라티아스",
+"id": "latias"
+},
+{
+"slug": "latios",
+"en": "Latios",
+"ko": "라티오스",
+"id": "latios"
+},
+{
+"slug": "kyogre",
+"en": "Kyogre",
+"ko": "가이오가",
+"id": "kyogre"
+},
+{
+"slug": "groudon",
+"en": "Groudon",
+"ko": "그란돈",
+"id": "groudon"
+},
+{
+"slug": "rayquaza",
+"en": "Rayquaza",
+"ko": "레쿠쟈",
+"id": "rayquaza"
+},
+{
+"slug": "jirachi",
+"en": "Jirachi",
+"ko": "지라치",
+"id": "jirachi"
+},
+{
+"slug": "deoxys",
+"en": "Deoxys",
+"ko": "테오키스",
+"id": "deoxys"
+},
+{
+"slug": "turtwig",
+"en": "Turtwig",
+"ko": "모부기",
+"id": "turtwig"
+},
+{
+"slug": "grotle",
+"en": "Grotle",
+"ko": "수풀부기",
+"id": "grotle"
+},
+{
+"slug": "torterra",
+"en": "Torterra",
+"ko": "토대부기",
+"id": "torterra"
+},
+{
+"slug": "chimchar",
+"en": "Chimchar",
+"ko": "불꽃숭이",
+"id": "chimchar"
+},
+{
+"slug": "monferno",
+"en": "Monferno",
+"ko": "파이숭이",
+"id": "monferno"
+},
+{
+"slug": "infernape",
+"en": "Infernape",
+"ko": "초염몽",
+"id": "infernape"
+},
+{
+"slug": "piplup",
+"en": "Piplup",
+"ko": "팽도리",
+"id": "piplup"
+},
+{
+"slug": "prinplup",
+"en": "Prinplup",
+"ko": "팽태자",
+"id": "prinplup"
+},
+{
+"slug": "empoleon",
+"en": "Empoleon",
+"ko": "엠페르트",
+"id": "empoleon"
+},
+{
+"slug": "starly",
+"en": "Starly",
+"ko": "찌르꼬",
+"id": "starly"
+},
+{
+"slug": "staravia",
+"en": "Staravia",
+"ko": "찌르버드",
+"id": "staravia"
+},
+{
+"slug": "staraptor",
+"en": "Staraptor",
+"ko": "찌르호크",
+"id": "staraptor"
+},
+{
+"slug": "bidoof",
+"en": "Bidoof",
+"ko": "비버니",
+"id": "bidoof"
+},
+{
+"slug": "bibarel",
+"en": "Bibarel",
+"ko": "비버통",
+"id": "bibarel"
+},
+{
+"slug": "kricketot",
+"en": "Kricketot",
+"ko": "귀뚤뚜기",
+"id": "kricketot"
+},
+{
+"slug": "kricketune",
+"en": "Kricketune",
+"ko": "귀뚤톡크",
+"id": "kricketune"
+},
+{
+"slug": "shinx",
+"en": "Shinx",
+"ko": "꼬링크",
+"id": "shinx"
+},
+{
+"slug": "luxio",
+"en": "Luxio",
+"ko": "럭시오",
+"id": "luxio"
+},
+{
+"slug": "luxray",
+"en": "Luxray",
+"ko": "렌트라",
+"id": "luxray"
+},
+{
+"slug": "budew",
+"en": "Budew",
+"ko": "꼬몽울",
+"id": "budew"
+},
+{
+"slug": "roserade",
+"en": "Roserade",
+"ko": "로즈레이드",
+"id": "roserade"
+},
+{
+"slug": "cranidos",
+"en": "Cranidos",
+"ko": "두개도스",
+"id": "cranidos"
+},
+{
+"slug": "rampardos",
+"en": "Rampardos",
+"ko": "램펄드",
+"id": "rampardos"
+},
+{
+"slug": "shieldon",
+"en": "Shieldon",
+"ko": "방패톱스",
+"id": "shieldon"
+},
+{
+"slug": "bastiodon",
+"en": "Bastiodon",
+"ko": "바리톱스",
+"id": "bastiodon"
+},
+{
+"slug": "burmy",
+"en": "Burmy",
+"ko": "도롱충이",
+"id": "burmy"
+},
+{
+"slug": "wormadam",
+"en": "Wormadam",
+"ko": "도롱마담",
+"id": "wormadam"
+},
+{
+"slug": "mothim",
+"en": "Mothim",
+"ko": "나메일",
+"id": "mothim"
+},
+{
+"slug": "combee",
+"en": "Combee",
+"ko": "세꿀버리",
+"id": "combee"
+},
+{
+"slug": "vespiquen",
+"en": "Vespiquen",
+"ko": "비퀸",
+"id": "vespiquen"
+},
+{
+"slug": "pachirisu",
+"en": "Pachirisu",
+"ko": "파치리스",
+"id": "pachirisu"
+},
+{
+"slug": "buizel",
+"en": "Buizel",
+"ko": "브이젤",
+"id": "buizel"
+},
+{
+"slug": "floatzel",
+"en": "Floatzel",
+"ko": "플로젤",
+"id": "floatzel"
+},
+{
+"slug": "cherubi",
+"en": "Cherubi",
+"ko": "체리버",
+"id": "cherubi"
+},
+{
+"slug": "cherrim",
+"en": "Cherrim",
+"ko": "체리꼬",
+"id": "cherrim"
+},
+{
+"slug": "shellos",
+"en": "Shellos",
+"ko": "깝질무",
+"id": "shellos"
+},
+{
+"slug": "gastrodon",
+"en": "Gastrodon",
+"ko": "트리토돈",
+"id": "gastrodon"
+},
+{
+"slug": "ambipom",
+"en": "Ambipom",
+"ko": "겟핸보숭",
+"id": "ambipom"
+},
+{
+"slug": "drifloon",
+"en": "Drifloon",
+"ko": "흔들풍손",
+"id": "drifloon"
+},
+{
+"slug": "drifblim",
+"en": "Drifblim",
+"ko": "둥실라이드",
+"id": "drifblim"
+},
+{
+"slug": "buneary",
+"en": "Buneary",
+"ko": "이어롤",
+"id": "buneary"
+},
+{
+"slug": "lopunny",
+"en": "Lopunny",
+"ko": "이어롭",
+"id": "lopunny"
+},
+{
+"slug": "mismagius",
+"en": "Mismagius",
+"ko": "무우마직",
+"id": "mismagius"
+},
+{
+"slug": "honchkrow",
+"en": "Honchkrow",
+"ko": "돈크로우",
+"id": "honchkrow"
+},
+{
+"slug": "glameow",
+"en": "Glameow",
+"ko": "나옹마",
+"id": "glameow"
+},
+{
+"slug": "purugly",
+"en": "Purugly",
+"ko": "몬냥이",
+"id": "purugly"
+},
+{
+"slug": "chingling",
+"en": "Chingling",
+"ko": "랑딸랑",
+"id": "chingling"
+},
+{
+"slug": "stunky",
+"en": "Stunky",
+"ko": "스컹뿡",
+"id": "stunky"
+},
+{
+"slug": "skuntank",
+"en": "Skuntank",
+"ko": "스컹탱크",
+"id": "skuntank"
+},
+{
+"slug": "bronzor",
+"en": "Bronzor",
+"ko": "동미러",
+"id": "bronzor"
+},
+{
+"slug": "bronzong",
+"en": "Bronzong",
+"ko": "동탁군",
+"id": "bronzong"
+},
+{
+"slug": "bonsly",
+"en": "Bonsly",
+"ko": "꼬지지",
+"id": "bonsly"
+},
+{
+"slug": "mime-jr",
+"en": "Mime Jr.",
+"ko": "흉내내",
+"id": "mimejr"
+},
+{
+"slug": "happiny",
+"en": "Happiny",
+"ko": "핑복",
+"id": "happiny"
+},
+{
+"slug": "chatot",
+"en": "Chatot",
+"ko": "페라페",
+"id": "chatot"
+},
+{
+"slug": "spiritomb",
+"en": "Spiritomb",
+"ko": "화강돌",
+"id": "spiritomb"
+},
+{
+"slug": "gible",
+"en": "Gible",
+"ko": "딥상어동",
+"id": "gible"
+},
+{
+"slug": "gabite",
+"en": "Gabite",
+"ko": "한바이트",
+"id": "gabite"
+},
+{
+"slug": "garchomp",
+"en": "Garchomp",
+"ko": "한카리아스",
+"id": "garchomp"
+},
+{
+"slug": "munchlax",
+"en": "Munchlax",
+"ko": "먹고자",
+"id": "munchlax"
+},
+{
+"slug": "riolu",
+"en": "Riolu",
+"ko": "리오르",
+"id": "riolu"
+},
+{
+"slug": "lucario",
+"en": "Lucario",
+"ko": "루카리오",
+"id": "lucario"
+},
+{
+"slug": "hippopotas",
+"en": "Hippopotas",
+"ko": "히포포타스",
+"id": "hippopotas"
+},
+{
+"slug": "hippowdon",
+"en": "Hippowdon",
+"ko": "하마돈",
+"id": "hippowdon"
+},
+{
+"slug": "skorupi",
+"en": "Skorupi",
+"ko": "스콜피",
+"id": "skorupi"
+},
+{
+"slug": "drapion",
+"en": "Drapion",
+"ko": "드래피온",
+"id": "drapion"
+},
+{
+"slug": "croagunk",
+"en": "Croagunk",
+"ko": "삐딱구리",
+"id": "croagunk"
+},
+{
+"slug": "toxicroak",
+"en": "Toxicroak",
+"ko": "독개굴",
+"id": "toxicroak"
+},
+{
+"slug": "carnivine",
+"en": "Carnivine",
+"ko": "무스틈니",
+"id": "carnivine"
+},
+{
+"slug": "finneon",
+"en": "Finneon",
+"ko": "형광어",
+"id": "finneon"
+},
+{
+"slug": "lumineon",
+"en": "Lumineon",
+"ko": "네오라이트",
+"id": "lumineon"
+},
+{
+"slug": "mantyke",
+"en": "Mantyke",
+"ko": "타만타",
+"id": "mantyke"
+},
+{
+"slug": "snover",
+"en": "Snover",
+"ko": "눈쓰개",
+"id": "snover"
+},
+{
+"slug": "abomasnow",
+"en": "Abomasnow",
+"ko": "눈설왕",
+"id": "abomasnow"
+},
+{
+"slug": "weavile",
+"en": "Weavile",
+"ko": "포푸니라",
+"id": "weavile"
+},
+{
+"slug": "magnezone",
+"en": "Magnezone",
+"ko": "자포코일",
+"id": "magnezone"
+},
+{
+"slug": "lickilicky",
+"en": "Lickilicky",
+"ko": "내룸벨트",
+"id": "lickilicky"
+},
+{
+"slug": "rhyperior",
+"en": "Rhyperior",
+"ko": "거대코뿌리",
+"id": "rhyperior"
+},
+{
+"slug": "tangrowth",
+"en": "Tangrowth",
+"ko": "덩쿠림보",
+"id": "tangrowth"
+},
+{
+"slug": "electivire",
+"en": "Electivire",
+"ko": "에레키블",
+"id": "electivire"
+},
+{
+"slug": "magmortar",
+"en": "Magmortar",
+"ko": "마그마번",
+"id": "magmortar"
+},
+{
+"slug": "togekiss",
+"en": "Togekiss",
+"ko": "토게키스",
+"id": "togekiss"
+},
+{
+"slug": "yanmega",
+"en": "Yanmega",
+"ko": "메가자리",
+"id": "yanmega"
+},
+{
+"slug": "leafeon",
+"en": "Leafeon",
+"ko": "리피아",
+"id": "leafeon"
+},
+{
+"slug": "glaceon",
+"en": "Glaceon",
+"ko": "글레이시아",
+"id": "glaceon"
+},
+{
+"slug": "gliscor",
+"en": "Gliscor",
+"ko": "글라이온",
+"id": "gliscor"
+},
+{
+"slug": "mamoswine",
+"en": "Mamoswine",
+"ko": "맘모꾸리",
+"id": "mamoswine"
+},
+{
+"slug": "porygon-z",
+"en": "Porygon-Z",
+"ko": "폴리곤Z",
+"id": "porygonz"
+},
+{
+"slug": "gallade",
+"en": "Gallade",
+"ko": "엘레이드",
+"id": "gallade"
+},
+{
+"slug": "probopass",
+"en": "Probopass",
+"ko": "대코파스",
+"id": "probopass"
+},
+{
+"slug": "dusknoir",
+"en": "Dusknoir",
+"ko": "야느와르몽",
+"id": "dusknoir"
+},
+{
+"slug": "froslass",
+"en": "Froslass",
+"ko": "눈여아",
+"id": "froslass"
+},
+{
+"slug": "rotom",
+"en": "Rotom",
+"ko": "로토무",
+"id": "rotom"
+},
+{
+"slug": "uxie",
+"en": "Uxie",
+"ko": "유크시",
+"id": "uxie"
+},
+{
+"slug": "mesprit",
+"en": "Mesprit",
+"ko": "엠라이트",
+"id": "mesprit"
+},
+{
+"slug": "azelf",
+"en": "Azelf",
+"ko": "아그놈",
+"id": "azelf"
+},
+{
+"slug": "dialga",
+"en": "Dialga",
+"ko": "디아루가",
+"id": "dialga"
+},
+{
+"slug": "palkia",
+"en": "Palkia",
+"ko": "펄기아",
+"id": "palkia"
+},
+{
+"slug": "heatran",
+"en": "Heatran",
+"ko": "히드런",
+"id": "heatran"
+},
+{
+"slug": "regigigas",
+"en": "Regigigas",
+"ko": "레지기가스",
+"id": "regigigas"
+},
+{
+"slug": "giratina",
+"en": "Giratina",
+"ko": "기라티나",
+"id": "giratina"
+},
+{
+"slug": "cresselia",
+"en": "Cresselia",
+"ko": "크레세리아",
+"id": "cresselia"
+},
+{
+"slug": "phione",
+"en": "Phione",
+"ko": "피오네",
+"id": "phione"
+},
+{
+"slug": "manaphy",
+"en": "Manaphy",
+"ko": "마나피",
+"id": "manaphy"
+},
+{
+"slug": "darkrai",
+"en": "Darkrai",
+"ko": "다크라이",
+"id": "darkrai"
+},
+{
+"slug": "shaymin",
+"en": "Shaymin",
+"ko": "쉐이미",
+"id": "shaymin"
+},
+{
+"slug": "arceus",
+"en": "Arceus",
+"ko": "아르세우스",
+"id": "arceus"
+},
+{
+"slug": "victini",
+"en": "Victini",
+"ko": "비크티니",
+"id": "victini"
+},
+{
+"slug": "snivy",
+"en": "Snivy",
+"ko": "주리비얀",
+"id": "snivy"
+},
+{
+"slug": "servine",
+"en": "Servine",
+"ko": "샤비",
+"id": "servine"
+},
+{
+"slug": "serperior",
+"en": "Serperior",
+"ko": "샤로다",
+"id": "serperior"
+},
+{
+"slug": "tepig",
+"en": "Tepig",
+"ko": "뚜꾸리",
+"id": "tepig"
+},
+{
+"slug": "pignite",
+"en": "Pignite",
+"ko": "차오꿀",
+"id": "pignite"
+},
+{
+"slug": "emboar",
+"en": "Emboar",
+"ko": "염무왕",
+"id": "emboar"
+},
+{
+"slug": "oshawott",
+"en": "Oshawott",
+"ko": "수댕이",
+"id": "oshawott"
+},
+{
+"slug": "dewott",
+"en": "Dewott",
+"ko": "쌍검자비",
+"id": "dewott"
+},
+{
+"slug": "samurott",
+"en": "Samurott",
+"ko": "대검귀",
+"id": "samurott"
+},
+{
+"slug": "patrat",
+"en": "Patrat",
+"ko": "보르쥐",
+"id": "patrat"
+},
+{
+"slug": "watchog",
+"en": "Watchog",
+"ko": "보르그",
+"id": "watchog"
+},
+{
+"slug": "lillipup",
+"en": "Lillipup",
+"ko": "요테리",
+"id": "lillipup"
+},
+{
+"slug": "herdier",
+"en": "Herdier",
+"ko": "하데리어",
+"id": "herdier"
+},
+{
+"slug": "stoutland",
+"en": "Stoutland",
+"ko": "바랜드",
+"id": "stoutland"
+},
+{
+"slug": "purrloin",
+"en": "Purrloin",
+"ko": "쌔비냥",
+"id": "purrloin"
+},
+{
+"slug": "liepard",
+"en": "Liepard",
+"ko": "레파르다스",
+"id": "liepard"
+},
+{
+"slug": "pansage",
+"en": "Pansage",
+"ko": "야나프",
+"id": "pansage"
+},
+{
+"slug": "simisage",
+"en": "Simisage",
+"ko": "야나키",
+"id": "simisage"
+},
+{
+"slug": "pansear",
+"en": "Pansear",
+"ko": "바오프",
+"id": "pansear"
+},
+{
+"slug": "simisear",
+"en": "Simisear",
+"ko": "바오키",
+"id": "simisear"
+},
+{
+"slug": "panpour",
+"en": "Panpour",
+"ko": "앗차프",
+"id": "panpour"
+},
+{
+"slug": "simipour",
+"en": "Simipour",
+"ko": "앗차키",
+"id": "simipour"
+},
+{
+"slug": "munna",
+"en": "Munna",
+"ko": "몽나",
+"id": "munna"
+},
+{
+"slug": "musharna",
+"en": "Musharna",
+"ko": "몽얌나",
+"id": "musharna"
+},
+{
+"slug": "pidove",
+"en": "Pidove",
+"ko": "콩둘기",
+"id": "pidove"
+},
+{
+"slug": "tranquill",
+"en": "Tranquill",
+"ko": "유토브",
+"id": "tranquill"
+},
+{
+"slug": "unfezant",
+"en": "Unfezant",
+"ko": "켄호로우",
+"id": "unfezant"
+},
+{
+"slug": "blitzle",
+"en": "Blitzle",
+"ko": "줄뮤마",
+"id": "blitzle"
+},
+{
+"slug": "zebstrika",
+"en": "Zebstrika",
+"ko": "제브라이카",
+"id": "zebstrika"
+},
+{
+"slug": "roggenrola",
+"en": "Roggenrola",
+"ko": "단굴",
+"id": "roggenrola"
+},
+{
+"slug": "boldore",
+"en": "Boldore",
+"ko": "암트르",
+"id": "boldore"
+},
+{
+"slug": "gigalith",
+"en": "Gigalith",
+"ko": "기가이어스",
+"id": "gigalith"
+},
+{
+"slug": "woobat",
+"en": "Woobat",
+"ko": "또르박쥐",
+"id": "woobat"
+},
+{
+"slug": "swoobat",
+"en": "Swoobat",
+"ko": "맘박쥐",
+"id": "swoobat"
+},
+{
+"slug": "drilbur",
+"en": "Drilbur",
+"ko": "두더류",
+"id": "drilbur"
+},
+{
+"slug": "excadrill",
+"en": "Excadrill",
+"ko": "몰드류",
+"id": "excadrill"
+},
+{
+"slug": "audino",
+"en": "Audino",
+"ko": "다부니",
+"id": "audino"
+},
+{
+"slug": "timburr",
+"en": "Timburr",
+"ko": "으랏차",
+"id": "timburr"
+},
+{
+"slug": "gurdurr",
+"en": "Gurdurr",
+"ko": "토쇠골",
+"id": "gurdurr"
+},
+{
+"slug": "conkeldurr",
+"en": "Conkeldurr",
+"ko": "노보청",
+"id": "conkeldurr"
+},
+{
+"slug": "tympole",
+"en": "Tympole",
+"ko": "동챙이",
+"id": "tympole"
+},
+{
+"slug": "palpitoad",
+"en": "Palpitoad",
+"ko": "두까비",
+"id": "palpitoad"
+},
+{
+"slug": "seismitoad",
+"en": "Seismitoad",
+"ko": "두빅굴",
+"id": "seismitoad"
+},
+{
+"slug": "throh",
+"en": "Throh",
+"ko": "던지미",
+"id": "throh"
+},
+{
+"slug": "sawk",
+"en": "Sawk",
+"ko": "타격귀",
+"id": "sawk"
+},
+{
+"slug": "sewaddle",
+"en": "Sewaddle",
+"ko": "두르보",
+"id": "sewaddle"
+},
+{
+"slug": "swadloon",
+"en": "Swadloon",
+"ko": "두르쿤",
+"id": "swadloon"
+},
+{
+"slug": "leavanny",
+"en": "Leavanny",
+"ko": "모아머",
+"id": "leavanny"
+},
+{
+"slug": "venipede",
+"en": "Venipede",
+"ko": "마디네",
+"id": "venipede"
+},
+{
+"slug": "whirlipede",
+"en": "Whirlipede",
+"ko": "휠구",
+"id": "whirlipede"
+},
+{
+"slug": "scolipede",
+"en": "Scolipede",
+"ko": "펜드라",
+"id": "scolipede"
+},
+{
+"slug": "cottonee",
+"en": "Cottonee",
+"ko": "소미안",
+"id": "cottonee"
+},
+{
+"slug": "whimsicott",
+"en": "Whimsicott",
+"ko": "엘풍",
+"id": "whimsicott"
+},
+{
+"slug": "petilil",
+"en": "Petilil",
+"ko": "치릴리",
+"id": "petilil"
+},
+{
+"slug": "lilligant",
+"en": "Lilligant",
+"ko": "드레디어",
+"id": "lilligant"
+},
+{
+"slug": "basculin",
+"en": "Basculin",
+"ko": "배쓰나이",
+"id": "basculin"
+},
+{
+"slug": "sandile",
+"en": "Sandile",
+"ko": "깜눈크",
+"id": "sandile"
+},
+{
+"slug": "krokorok",
+"en": "Krokorok",
+"ko": "악비르",
+"id": "krokorok"
+},
+{
+"slug": "krookodile",
+"en": "Krookodile",
+"ko": "악비아르",
+"id": "krookodile"
+},
+{
+"slug": "darumaka",
+"en": "Darumaka",
+"ko": "달막화",
+"id": "darumaka"
+},
+{
+"slug": "darmanitan",
+"en": "Darmanitan",
+"ko": "불비달마",
+"id": "darmanitan"
+},
+{
+"slug": "maractus",
+"en": "Maractus",
+"ko": "마라카치",
+"id": "maractus"
+},
+{
+"slug": "dwebble",
+"en": "Dwebble",
+"ko": "돌살이",
+"id": "dwebble"
+},
+{
+"slug": "crustle",
+"en": "Crustle",
+"ko": "암팰리스",
+"id": "crustle"
+},
+{
+"slug": "scraggy",
+"en": "Scraggy",
+"ko": "곤율랭",
+"id": "scraggy"
+},
+{
+"slug": "scrafty",
+"en": "Scrafty",
+"ko": "곤율거니",
+"id": "scrafty"
+},
+{
+"slug": "sigilyph",
+"en": "Sigilyph",
+"ko": "심보러",
+"id": "sigilyph"
+},
+{
+"slug": "yamask",
+"en": "Yamask",
+"ko": "데스마스",
+"id": "yamask"
+},
+{
+"slug": "cofagrigus",
+"en": "Cofagrigus",
+"ko": "데스니칸",
+"id": "cofagrigus"
+},
+{
+"slug": "tirtouga",
+"en": "Tirtouga",
+"ko": "프로토가",
+"id": "tirtouga"
+},
+{
+"slug": "carracosta",
+"en": "Carracosta",
+"ko": "늑골라",
+"id": "carracosta"
+},
+{
+"slug": "archen",
+"en": "Archen",
+"ko": "아켄",
+"id": "archen"
+},
+{
+"slug": "archeops",
+"en": "Archeops",
+"ko": "아케오스",
+"id": "archeops"
+},
+{
+"slug": "trubbish",
+"en": "Trubbish",
+"ko": "깨봉이",
+"id": "trubbish"
+},
+{
+"slug": "garbodor",
+"en": "Garbodor",
+"ko": "더스트나",
+"id": "garbodor"
+},
+{
+"slug": "zorua",
+"en": "Zorua",
+"ko": "조로아",
+"id": "zorua"
+},
+{
+"slug": "zoroark",
+"en": "Zoroark",
+"ko": "조로아크",
+"id": "zoroark"
+},
+{
+"slug": "minccino",
+"en": "Minccino",
+"ko": "치라미",
+"id": "minccino"
+},
+{
+"slug": "cinccino",
+"en": "Cinccino",
+"ko": "치라치노",
+"id": "cinccino"
+},
+{
+"slug": "gothita",
+"en": "Gothita",
+"ko": "고디탱",
+"id": "gothita"
+},
+{
+"slug": "gothorita",
+"en": "Gothorita",
+"ko": "고디보미",
+"id": "gothorita"
+},
+{
+"slug": "gothitelle",
+"en": "Gothitelle",
+"ko": "고디모아젤",
+"id": "gothitelle"
+},
+{
+"slug": "solosis",
+"en": "Solosis",
+"ko": "유니란",
+"id": "solosis"
+},
+{
+"slug": "duosion",
+"en": "Duosion",
+"ko": "듀란",
+"id": "duosion"
+},
+{
+"slug": "reuniclus",
+"en": "Reuniclus",
+"ko": "란쿨루스",
+"id": "reuniclus"
+},
+{
+"slug": "ducklett",
+"en": "Ducklett",
+"ko": "꼬지보리",
+"id": "ducklett"
+},
+{
+"slug": "swanna",
+"en": "Swanna",
+"ko": "스완나",
+"id": "swanna"
+},
+{
+"slug": "vanillite",
+"en": "Vanillite",
+"ko": "바닐프티",
+"id": "vanillite"
+},
+{
+"slug": "vanillish",
+"en": "Vanillish",
+"ko": "바닐리치",
+"id": "vanillish"
+},
+{
+"slug": "vanilluxe",
+"en": "Vanilluxe",
+"ko": "배바닐라",
+"id": "vanilluxe"
+},
+{
+"slug": "deerling",
+"en": "Deerling",
+"ko": "사철록",
+"id": "deerling"
+},
+{
+"slug": "sawsbuck",
+"en": "Sawsbuck",
+"ko": "바라철록",
+"id": "sawsbuck"
+},
+{
+"slug": "emolga",
+"en": "Emolga",
+"ko": "에몽가",
+"id": "emolga"
+},
+{
+"slug": "karrablast",
+"en": "Karrablast",
+"ko": "딱정곤",
+"id": "karrablast"
+},
+{
+"slug": "escavalier",
+"en": "Escavalier",
+"ko": "슈바르고",
+"id": "escavalier"
+},
+{
+"slug": "foongus",
+"en": "Foongus",
+"ko": "깜놀버슬",
+"id": "foongus"
+},
+{
+"slug": "amoonguss",
+"en": "Amoonguss",
+"ko": "뽀록나",
+"id": "amoonguss"
+},
+{
+"slug": "frillish",
+"en": "Frillish",
+"ko": "탱그릴",
+"id": "frillish"
+},
+{
+"slug": "jellicent",
+"en": "Jellicent",
+"ko": "탱탱겔",
+"id": "jellicent"
+},
+{
+"slug": "alomomola",
+"en": "Alomomola",
+"ko": "맘복치",
+"id": "alomomola"
+},
+{
+"slug": "joltik",
+"en": "Joltik",
+"ko": "파쪼옥",
+"id": "joltik"
+},
+{
+"slug": "galvantula",
+"en": "Galvantula",
+"ko": "전툴라",
+"id": "galvantula"
+},
+{
+"slug": "ferroseed",
+"en": "Ferroseed",
+"ko": "철시드",
+"id": "ferroseed"
+},
+{
+"slug": "ferrothorn",
+"en": "Ferrothorn",
+"ko": "너트령",
+"id": "ferrothorn"
+},
+{
+"slug": "klink",
+"en": "Klink",
+"ko": "기어르",
+"id": "klink"
+},
+{
+"slug": "klang",
+"en": "Klang",
+"ko": "기기어르",
+"id": "klang"
+},
+{
+"slug": "klinklang",
+"en": "Klinklang",
+"ko": "기기기어르",
+"id": "klinklang"
+},
+{
+"slug": "tynamo",
+"en": "Tynamo",
+"ko": "저리어",
+"id": "tynamo"
+},
+{
+"slug": "eelektrik",
+"en": "Eelektrik",
+"ko": "저리릴",
+"id": "eelektrik"
+},
+{
+"slug": "eelektross",
+"en": "Eelektross",
+"ko": "저리더프",
+"id": "eelektross"
+},
+{
+"slug": "elgyem",
+"en": "Elgyem",
+"ko": "리그레",
+"id": "elgyem"
+},
+{
+"slug": "beheeyem",
+"en": "Beheeyem",
+"ko": "벰크",
+"id": "beheeyem"
+},
+{
+"slug": "litwick",
+"en": "Litwick",
+"ko": "불켜미",
+"id": "litwick"
+},
+{
+"slug": "lampent",
+"en": "Lampent",
+"ko": "램프라",
+"id": "lampent"
+},
+{
+"slug": "chandelure",
+"en": "Chandelure",
+"ko": "샹델라",
+"id": "chandelure"
+},
+{
+"slug": "axew",
+"en": "Axew",
+"ko": "터검니",
+"id": "axew"
+},
+{
+"slug": "fraxure",
+"en": "Fraxure",
+"ko": "액슨도",
+"id": "fraxure"
+},
+{
+"slug": "haxorus",
+"en": "Haxorus",
+"ko": "액스라이즈",
+"id": "haxorus"
+},
+{
+"slug": "cubchoo",
+"en": "Cubchoo",
+"ko": "코고미",
+"id": "cubchoo"
+},
+{
+"slug": "beartic",
+"en": "Beartic",
+"ko": "툰베어",
+"id": "beartic"
+},
+{
+"slug": "cryogonal",
+"en": "Cryogonal",
+"ko": "프리지오",
+"id": "cryogonal"
+},
+{
+"slug": "shelmet",
+"en": "Shelmet",
+"ko": "쪼마리",
+"id": "shelmet"
+},
+{
+"slug": "accelgor",
+"en": "Accelgor",
+"ko": "어지리더",
+"id": "accelgor"
+},
+{
+"slug": "stunfisk",
+"en": "Stunfisk",
+"ko": "메더",
+"id": "stunfisk"
+},
+{
+"slug": "mienfoo",
+"en": "Mienfoo",
+"ko": "비조푸",
+"id": "mienfoo"
+},
+{
+"slug": "mienshao",
+"en": "Mienshao",
+"ko": "비조도",
+"id": "mienshao"
+},
+{
+"slug": "druddigon",
+"en": "Druddigon",
+"ko": "크리만",
+"id": "druddigon"
+},
+{
+"slug": "golett",
+"en": "Golett",
+"ko": "골비람",
+"id": "golett"
+},
+{
+"slug": "golurk",
+"en": "Golurk",
+"ko": "골루그",
+"id": "golurk"
+},
+{
+"slug": "pawniard",
+"en": "Pawniard",
+"ko": "자망칼",
+"id": "pawniard"
+},
+{
+"slug": "bisharp",
+"en": "Bisharp",
+"ko": "절각참",
+"id": "bisharp"
+},
+{
+"slug": "bouffalant",
+"en": "Bouffalant",
+"ko": "버프론",
+"id": "bouffalant"
+},
+{
+"slug": "rufflet",
+"en": "Rufflet",
+"ko": "수리둥보",
+"id": "rufflet"
+},
+{
+"slug": "braviary",
+"en": "Braviary",
+"ko": "워글",
+"id": "braviary"
+},
+{
+"slug": "vullaby",
+"en": "Vullaby",
+"ko": "벌차이",
+"id": "vullaby"
+},
+{
+"slug": "mandibuzz",
+"en": "Mandibuzz",
+"ko": "버랜지나",
+"id": "mandibuzz"
+},
+{
+"slug": "heatmor",
+"en": "Heatmor",
+"ko": "앤티골",
+"id": "heatmor"
+},
+{
+"slug": "durant",
+"en": "Durant",
+"ko": "아이앤트",
+"id": "durant"
+},
+{
+"slug": "deino",
+"en": "Deino",
+"ko": "모노두",
+"id": "deino"
+},
+{
+"slug": "zweilous",
+"en": "Zweilous",
+"ko": "디헤드",
+"id": "zweilous"
+},
+{
+"slug": "hydreigon",
+"en": "Hydreigon",
+"ko": "삼삼드래",
+"id": "hydreigon"
+},
+{
+"slug": "larvesta",
+"en": "Larvesta",
+"ko": "활화르바",
+"id": "larvesta"
+},
+{
+"slug": "volcarona",
+"en": "Volcarona",
+"ko": "불카모스",
+"id": "volcarona"
+},
+{
+"slug": "cobalion",
+"en": "Cobalion",
+"ko": "코바르온",
+"id": "cobalion"
+},
+{
+"slug": "terrakion",
+"en": "Terrakion",
+"ko": "테라키온",
+"id": "terrakion"
+},
+{
+"slug": "virizion",
+"en": "Virizion",
+"ko": "비리디온",
+"id": "virizion"
+},
+{
+"slug": "tornadus",
+"en": "Tornadus",
+"ko": "토네로스",
+"id": "tornadus"
+},
+{
+"slug": "thundurus",
+"en": "Thundurus",
+"ko": "볼트로스",
+"id": "thundurus"
+},
+{
+"slug": "reshiram",
+"en": "Reshiram",
+"ko": "레시라무",
+"id": "reshiram"
+},
+{
+"slug": "zekrom",
+"en": "Zekrom",
+"ko": "제크로무",
+"id": "zekrom"
+},
+{
+"slug": "landorus",
+"en": "Landorus",
+"ko": "랜드로스",
+"id": "landorus"
+},
+{
+"slug": "kyurem",
+"en": "Kyurem",
+"ko": "큐레무",
+"id": "kyurem"
+},
+{
+"slug": "keldeo",
+"en": "Keldeo",
+"ko": "케르디오",
+"id": "keldeo"
+},
+{
+"slug": "meloetta",
+"en": "Meloetta",
+"ko": "메로엣타",
+"id": "meloetta"
+},
+{
+"slug": "genesect",
+"en": "Genesect",
+"ko": "게노세크트",
+"id": "genesect"
+},
+{
+"slug": "chespin",
+"en": "Chespin",
+"ko": "도치마론",
+"id": "chespin"
+},
+{
+"slug": "quilladin",
+"en": "Quilladin",
+"ko": "도치보구",
+"id": "quilladin"
+},
+{
+"slug": "chesnaught",
+"en": "Chesnaught",
+"ko": "브리가론",
+"id": "chesnaught"
+},
+{
+"slug": "fennekin",
+"en": "Fennekin",
+"ko": "푸호꼬",
+"id": "fennekin"
+},
+{
+"slug": "braixen",
+"en": "Braixen",
+"ko": "테르나",
+"id": "braixen"
+},
+{
+"slug": "delphox",
+"en": "Delphox",
+"ko": "마폭시",
+"id": "delphox"
+},
+{
+"slug": "froakie",
+"en": "Froakie",
+"ko": "개구마르",
+"id": "froakie"
+},
+{
+"slug": "frogadier",
+"en": "Frogadier",
+"ko": "개굴반장",
+"id": "frogadier"
+},
+{
+"slug": "greninja",
+"en": "Greninja",
+"ko": "개굴닌자",
+"id": "greninja"
+},
+{
+"slug": "bunnelby",
+"en": "Bunnelby",
+"ko": "파르빗",
+"id": "bunnelby"
+},
+{
+"slug": "diggersby",
+"en": "Diggersby",
+"ko": "파르토",
+"id": "diggersby"
+},
+{
+"slug": "fletchling",
+"en": "Fletchling",
+"ko": "화살꼬빈",
+"id": "fletchling"
+},
+{
+"slug": "fletchinder",
+"en": "Fletchinder",
+"ko": "불화살빈",
+"id": "fletchinder"
+},
+{
+"slug": "talonflame",
+"en": "Talonflame",
+"ko": "파이어로",
+"id": "talonflame"
+},
+{
+"slug": "scatterbug",
+"en": "Scatterbug",
+"ko": "분이벌레",
+"id": "scatterbug"
+},
+{
+"slug": "spewpa",
+"en": "Spewpa",
+"ko": "분떠도리",
+"id": "spewpa"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"ko": "비비용",
+"id": "vivillon"
+},
+{
+"slug": "litleo",
+"en": "Litleo",
+"ko": "레오꼬",
+"id": "litleo"
+},
+{
+"slug": "pyroar",
+"en": "Pyroar",
+"ko": "화염레오",
+"id": "pyroar"
+},
+{
+"slug": "flabebe",
+"en": "Flabébé",
+"ko": "플라베베",
+"id": "flabb"
+},
+{
+"slug": "floette",
+"en": "Floette",
+"ko": "플라엣테",
+"id": "floette"
+},
+{
+"slug": "florges",
+"en": "Florges",
+"ko": "플라제스",
+"id": "florges"
+},
+{
+"slug": "skiddo",
+"en": "Skiddo",
+"ko": "메이클",
+"id": "skiddo"
+},
+{
+"slug": "gogoat",
+"en": "Gogoat",
+"ko": "고고트",
+"id": "gogoat"
+},
+{
+"slug": "pancham",
+"en": "Pancham",
+"ko": "판짱",
+"id": "pancham"
+},
+{
+"slug": "pangoro",
+"en": "Pangoro",
+"ko": "부란다",
+"id": "pangoro"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"ko": "트리미앙",
+"id": "furfrou"
+},
+{
+"slug": "espurr",
+"en": "Espurr",
+"ko": "냐스퍼",
+"id": "espurr"
+},
+{
+"slug": "meowstic",
+"en": "Meowstic",
+"ko": "냐오닉스",
+"id": "meowstic"
+},
+{
+"slug": "honedge",
+"en": "Honedge",
+"ko": "단칼빙",
+"id": "honedge"
+},
+{
+"slug": "doublade",
+"en": "Doublade",
+"ko": "쌍검킬",
+"id": "doublade"
+},
+{
+"slug": "aegislash",
+"en": "Aegislash",
+"ko": "킬가르도",
+"id": "aegislash"
+},
+{
+"slug": "spritzee",
+"en": "Spritzee",
+"ko": "슈쁘",
+"id": "spritzee"
+},
+{
+"slug": "aromatisse",
+"en": "Aromatisse",
+"ko": "프레프티르",
+"id": "aromatisse"
+},
+{
+"slug": "swirlix",
+"en": "Swirlix",
+"ko": "나룸퍼프",
+"id": "swirlix"
+},
+{
+"slug": "slurpuff",
+"en": "Slurpuff",
+"ko": "나루림",
+"id": "slurpuff"
+},
+{
+"slug": "inkay",
+"en": "Inkay",
+"ko": "오케이징",
+"id": "inkay"
+},
+{
+"slug": "malamar",
+"en": "Malamar",
+"ko": "칼라마네로",
+"id": "malamar"
+},
+{
+"slug": "binacle",
+"en": "Binacle",
+"ko": "거북손손",
+"id": "binacle"
+},
+{
+"slug": "barbaracle",
+"en": "Barbaracle",
+"ko": "거북손데스",
+"id": "barbaracle"
+},
+{
+"slug": "skrelp",
+"en": "Skrelp",
+"ko": "수레기",
+"id": "skrelp"
+},
+{
+"slug": "dragalge",
+"en": "Dragalge",
+"ko": "드래캄",
+"id": "dragalge"
+},
+{
+"slug": "clauncher",
+"en": "Clauncher",
+"ko": "완철포",
+"id": "clauncher"
+},
+{
+"slug": "clawitzer",
+"en": "Clawitzer",
+"ko": "블로스터",
+"id": "clawitzer"
+},
+{
+"slug": "helioptile",
+"en": "Helioptile",
+"ko": "목도리키텔",
+"id": "helioptile"
+},
+{
+"slug": "heliolisk",
+"en": "Heliolisk",
+"ko": "일레도리자드",
+"id": "heliolisk"
+},
+{
+"slug": "tyrunt",
+"en": "Tyrunt",
+"ko": "티고라스",
+"id": "tyrunt"
+},
+{
+"slug": "tyrantrum",
+"en": "Tyrantrum",
+"ko": "견고라스",
+"id": "tyrantrum"
+},
+{
+"slug": "amaura",
+"en": "Amaura",
+"ko": "아마루스",
+"id": "amaura"
+},
+{
+"slug": "aurorus",
+"en": "Aurorus",
+"ko": "아마루르가",
+"id": "aurorus"
+},
+{
+"slug": "sylveon",
+"en": "Sylveon",
+"ko": "님피아",
+"id": "sylveon"
+},
+{
+"slug": "hawlucha",
+"en": "Hawlucha",
+"ko": "루차불",
+"id": "hawlucha"
+},
+{
+"slug": "dedenne",
+"en": "Dedenne",
+"ko": "데덴네",
+"id": "dedenne"
+},
+{
+"slug": "carbink",
+"en": "Carbink",
+"ko": "멜리시",
+"id": "carbink"
+},
+{
+"slug": "goomy",
+"en": "Goomy",
+"ko": "미끄메라",
+"id": "goomy"
+},
+{
+"slug": "sliggoo",
+"en": "Sliggoo",
+"ko": "미끄네일",
+"id": "sliggoo"
+},
+{
+"slug": "goodra",
+"en": "Goodra",
+"ko": "미끄래곤",
+"id": "goodra"
+},
+{
+"slug": "klefki",
+"en": "Klefki",
+"ko": "클레피",
+"id": "klefki"
+},
+{
+"slug": "phantump",
+"en": "Phantump",
+"ko": "나목령",
+"id": "phantump"
+},
+{
+"slug": "trevenant",
+"en": "Trevenant",
+"ko": "대로트",
+"id": "trevenant"
+},
+{
+"slug": "pumpkaboo",
+"en": "Pumpkaboo",
+"ko": "호바귀",
+"id": "pumpkaboo"
+},
+{
+"slug": "gourgeist",
+"en": "Gourgeist",
+"ko": "펌킨인",
+"id": "gourgeist"
+},
+{
+"slug": "bergmite",
+"en": "Bergmite",
+"ko": "꽁어름",
+"id": "bergmite"
+},
+{
+"slug": "avalugg",
+"en": "Avalugg",
+"ko": "크레베이스",
+"id": "avalugg"
+},
+{
+"slug": "noibat",
+"en": "Noibat",
+"ko": "음뱃",
+"id": "noibat"
+},
+{
+"slug": "noivern",
+"en": "Noivern",
+"ko": "음번",
+"id": "noivern"
+},
+{
+"slug": "xerneas",
+"en": "Xerneas",
+"ko": "제르네아스",
+"id": "xerneas"
+},
+{
+"slug": "yveltal",
+"en": "Yveltal",
+"ko": "이벨타르",
+"id": "yveltal"
+},
+{
+"slug": "zygarde",
+"en": "Zygarde",
+"ko": "지가르데",
+"id": "zygarde"
+},
+{
+"slug": "diancie",
+"en": "Diancie",
+"ko": "디안시",
+"id": "diancie"
+},
+{
+"slug": "hoopa",
+"en": "Hoopa",
+"ko": "후파",
+"id": "hoopa"
+},
+{
+"slug": "volcanion",
+"en": "Volcanion",
+"ko": "볼케니온",
+"id": "volcanion"
+},
+{
+"slug": "rowlet",
+"en": "Rowlet",
+"ko": "나몰빼미",
+"id": "rowlet"
+},
+{
+"slug": "dartrix",
+"en": "Dartrix",
+"ko": "빼미스로우",
+"id": "dartrix"
+},
+{
+"slug": "decidueye",
+"en": "Decidueye",
+"ko": "모크나이퍼",
+"id": "decidueye"
+},
+{
+"slug": "litten",
+"en": "Litten",
+"ko": "냐오불",
+"id": "litten"
+},
+{
+"slug": "torracat",
+"en": "Torracat",
+"ko": "냐오히트",
+"id": "torracat"
+},
+{
+"slug": "incineroar",
+"en": "Incineroar",
+"ko": "어흥염",
+"id": "incineroar"
+},
+{
+"slug": "popplio",
+"en": "Popplio",
+"ko": "누리공",
+"id": "popplio"
+},
+{
+"slug": "brionne",
+"en": "Brionne",
+"ko": "키요공",
+"id": "brionne"
+},
+{
+"slug": "primarina",
+"en": "Primarina",
+"ko": "누리레느",
+"id": "primarina"
+},
+{
+"slug": "pikipek",
+"en": "Pikipek",
+"ko": "콕코구리",
+"id": "pikipek"
+},
+{
+"slug": "trumbeak",
+"en": "Trumbeak",
+"ko": "크라파",
+"id": "trumbeak"
+},
+{
+"slug": "toucannon",
+"en": "Toucannon",
+"ko": "왕큰부리",
+"id": "toucannon"
+},
+{
+"slug": "yungoos",
+"en": "Yungoos",
+"ko": "영구스",
+"id": "yungoos"
+},
+{
+"slug": "gumshoos",
+"en": "Gumshoos",
+"ko": "형사구스",
+"id": "gumshoos"
+},
+{
+"slug": "grubbin",
+"en": "Grubbin",
+"ko": "턱지충이",
+"id": "grubbin"
+},
+{
+"slug": "charjabug",
+"en": "Charjabug",
+"ko": "전지충이",
+"id": "charjabug"
+},
+{
+"slug": "vikavolt",
+"en": "Vikavolt",
+"ko": "투구뿌논",
+"id": "vikavolt"
+},
+{
+"slug": "crabrawler",
+"en": "Crabrawler",
+"ko": "오기지게",
+"id": "crabrawler"
+},
+{
+"slug": "crabominable",
+"en": "Crabominable",
+"ko": "모단단게",
+"id": "crabominable"
+},
+{
+"slug": "oricorio",
+"en": "Oricorio",
+"ko": "춤추새",
+"id": "oricorio"
+},
+{
+"slug": "cutiefly",
+"en": "Cutiefly",
+"ko": "에블리",
+"id": "cutiefly"
+},
+{
+"slug": "ribombee",
+"en": "Ribombee",
+"ko": "에리본",
+"id": "ribombee"
+},
+{
+"slug": "rockruff",
+"en": "Rockruff",
+"ko": "암멍이",
+"id": "rockruff"
+},
+{
+"slug": "lycanroc",
+"en": "Lycanroc",
+"ko": "루가루암",
+"id": "lycanroc"
+},
+{
+"slug": "wishiwashi",
+"en": "Wishiwashi",
+"ko": "약어리",
+"id": "wishiwashi"
+},
+{
+"slug": "mareanie",
+"en": "Mareanie",
+"ko": "시마사리",
+"id": "mareanie"
+},
+{
+"slug": "toxapex",
+"en": "Toxapex",
+"ko": "더시마사리",
+"id": "toxapex"
+},
+{
+"slug": "mudbray",
+"en": "Mudbray",
+"ko": "머드나기",
+"id": "mudbray"
+},
+{
+"slug": "mudsdale",
+"en": "Mudsdale",
+"ko": "만마드",
+"id": "mudsdale"
+},
+{
+"slug": "dewpider",
+"en": "Dewpider",
+"ko": "물거미",
+"id": "dewpider"
+},
+{
+"slug": "araquanid",
+"en": "Araquanid",
+"ko": "깨비물거미",
+"id": "araquanid"
+},
+{
+"slug": "fomantis",
+"en": "Fomantis",
+"ko": "짜랑랑",
+"id": "fomantis"
+},
+{
+"slug": "lurantis",
+"en": "Lurantis",
+"ko": "라란티스",
+"id": "lurantis"
+},
+{
+"slug": "morelull",
+"en": "Morelull",
+"ko": "자마슈",
+"id": "morelull"
+},
+{
+"slug": "shiinotic",
+"en": "Shiinotic",
+"ko": "마셰이드",
+"id": "shiinotic"
+},
+{
+"slug": "salandit",
+"en": "Salandit",
+"ko": "야도뇽",
+"id": "salandit"
+},
+{
+"slug": "salazzle",
+"en": "Salazzle",
+"ko": "염뉴트",
+"id": "salazzle"
+},
+{
+"slug": "stufful",
+"en": "Stufful",
+"ko": "포곰곰",
+"id": "stufful"
+},
+{
+"slug": "bewear",
+"en": "Bewear",
+"ko": "이븐곰",
+"id": "bewear"
+},
+{
+"slug": "bounsweet",
+"en": "Bounsweet",
+"ko": "달콤아",
+"id": "bounsweet"
+},
+{
+"slug": "steenee",
+"en": "Steenee",
+"ko": "달무리나",
+"id": "steenee"
+},
+{
+"slug": "tsareena",
+"en": "Tsareena",
+"ko": "달코퀸",
+"id": "tsareena"
+},
+{
+"slug": "comfey",
+"en": "Comfey",
+"ko": "큐아링",
+"id": "comfey"
+},
+{
+"slug": "oranguru",
+"en": "Oranguru",
+"ko": "하랑우탄",
+"id": "oranguru"
+},
+{
+"slug": "passimian",
+"en": "Passimian",
+"ko": "내던숭이",
+"id": "passimian"
+},
+{
+"slug": "wimpod",
+"en": "Wimpod",
+"ko": "꼬시레",
+"id": "wimpod"
+},
+{
+"slug": "golisopod",
+"en": "Golisopod",
+"ko": "갑주무사",
+"id": "golisopod"
+},
+{
+"slug": "sandygast",
+"en": "Sandygast",
+"ko": "모래꿍",
+"id": "sandygast"
+},
+{
+"slug": "palossand",
+"en": "Palossand",
+"ko": "모래성이당",
+"id": "palossand"
+},
+{
+"slug": "pyukumuku",
+"en": "Pyukumuku",
+"ko": "해무기",
+"id": "pyukumuku"
+},
+{
+"slug": "type-null",
+"en": "Type: Null",
+"ko": "타입:널",
+"id": "typenull"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"ko": "실버디",
+"id": "silvally"
+},
+{
+"slug": "minior",
+"en": "Minior",
+"ko": "메테노",
+"id": "minior"
+},
+{
+"slug": "komala",
+"en": "Komala",
+"ko": "자말라",
+"id": "komala"
+},
+{
+"slug": "turtonator",
+"en": "Turtonator",
+"ko": "폭거북스",
+"id": "turtonator"
+},
+{
+"slug": "togedemaru",
+"en": "Togedemaru",
+"ko": "토게데마루",
+"id": "togedemaru"
+},
+{
+"slug": "mimikyu",
+"en": "Mimikyu",
+"ko": "따라큐",
+"id": "mimikyu"
+},
+{
+"slug": "bruxish",
+"en": "Bruxish",
+"ko": "치갈기",
+"id": "bruxish"
+},
+{
+"slug": "drampa",
+"en": "Drampa",
+"ko": "할비롱",
+"id": "drampa"
+},
+{
+"slug": "dhelmise",
+"en": "Dhelmise",
+"ko": "타타륜",
+"id": "dhelmise"
+},
+{
+"slug": "jangmo-o",
+"en": "Jangmo-o",
+"ko": "짜랑꼬",
+"id": "jangmoo"
+},
+{
+"slug": "hakamo-o",
+"en": "Hakamo-o",
+"ko": "짜랑고우",
+"id": "hakamoo"
+},
+{
+"slug": "kommo-o",
+"en": "Kommo-o",
+"ko": "짜랑고우거",
+"id": "kommoo"
+},
+{
+"slug": "tapu-koko",
+"en": "Tapu Koko",
+"ko": "카푸꼬꼬꼭",
+"id": "tapukoko"
+},
+{
+"slug": "tapu-lele",
+"en": "Tapu Lele",
+"ko": "카푸나비나",
+"id": "tapulele"
+},
+{
+"slug": "tapu-bulu",
+"en": "Tapu Bulu",
+"ko": "카푸브루루",
+"id": "tapubulu"
+},
+{
+"slug": "tapu-fini",
+"en": "Tapu Fini",
+"ko": "카푸느지느",
+"id": "tapufini"
+},
+{
+"slug": "cosmog",
+"en": "Cosmog",
+"ko": "코스모그",
+"id": "cosmog"
+},
+{
+"slug": "cosmoem",
+"en": "Cosmoem",
+"ko": "코스모움",
+"id": "cosmoem"
+},
+{
+"slug": "solgaleo",
+"en": "Solgaleo",
+"ko": "솔가레오",
+"id": "solgaleo"
+},
+{
+"slug": "lunala",
+"en": "Lunala",
+"ko": "루나아라",
+"id": "lunala"
+},
+{
+"slug": "nihilego",
+"en": "Nihilego",
+"ko": "텅비드",
+"id": "nihilego"
+},
+{
+"slug": "buzzwole",
+"en": "Buzzwole",
+"ko": "매시붕",
+"id": "buzzwole"
+},
+{
+"slug": "pheromosa",
+"en": "Pheromosa",
+"ko": "페로코체",
+"id": "pheromosa"
+},
+{
+"slug": "xurkitree",
+"en": "Xurkitree",
+"ko": "전수목",
+"id": "xurkitree"
+},
+{
+"slug": "celesteela",
+"en": "Celesteela",
+"ko": "철화구야",
+"id": "celesteela"
+},
+{
+"slug": "kartana",
+"en": "Kartana",
+"ko": "종이신도",
+"id": "kartana"
+},
+{
+"slug": "guzzlord",
+"en": "Guzzlord",
+"ko": "악식킹",
+"id": "guzzlord"
+},
+{
+"slug": "necrozma",
+"en": "Necrozma",
+"ko": "네크로즈마",
+"id": "necrozma"
+},
+{
+"slug": "magearna",
+"en": "Magearna",
+"ko": "마기아나",
+"id": "magearna"
+},
+{
+"slug": "marshadow",
+"en": "Marshadow",
+"ko": "마샤도",
+"id": "marshadow"
+},
+{
+"slug": "poipole",
+"en": "Poipole",
+"ko": "베베놈",
+"id": "poipole"
+},
+{
+"slug": "naganadel",
+"en": "Naganadel",
+"ko": "아고용",
+"id": "naganadel"
+},
+{
+"slug": "stakataka",
+"en": "Stakataka",
+"ko": "차곡차곡",
+"id": "stakataka"
+},
+{
+"slug": "blacephalon",
+"en": "Blacephalon",
+"ko": "두파팡",
+"id": "blacephalon"
+},
+{
+"slug": "zeraora",
+"en": "Zeraora",
+"ko": "제라오라",
+"id": "zeraora"
+},
+{
+"slug": "meltan",
+"en": "Meltan",
+"ko": "멜탄",
+"id": "meltan"
+},
+{
+"slug": "melmetal",
+"en": "Melmetal",
+"ko": "멜메탈",
+"id": "melmetal"
+},
+{
+"slug": "grookey",
+"en": "Grookey",
+"ko": "흥나숭",
+"id": "grookey"
+},
+{
+"slug": "thwackey",
+"en": "Thwackey",
+"ko": "채키몽",
+"id": "thwackey"
+},
+{
+"slug": "rillaboom",
+"en": "Rillaboom",
+"ko": "고릴타",
+"id": "rillaboom"
+},
+{
+"slug": "scorbunny",
+"en": "Scorbunny",
+"ko": "염버니",
+"id": "scorbunny"
+},
+{
+"slug": "raboot",
+"en": "Raboot",
+"ko": "래비풋",
+"id": "raboot"
+},
+{
+"slug": "cinderace",
+"en": "Cinderace",
+"ko": "에이스번",
+"id": "cinderace"
+},
+{
+"slug": "sobble",
+"en": "Sobble",
+"ko": "울머기",
+"id": "sobble"
+},
+{
+"slug": "drizzile",
+"en": "Drizzile",
+"ko": "누겔레온",
+"id": "drizzile"
+},
+{
+"slug": "inteleon",
+"en": "Inteleon",
+"ko": "인텔리레온",
+"id": "inteleon"
+},
+{
+"slug": "skwovet",
+"en": "Skwovet",
+"ko": "탐리스",
+"id": "skwovet"
+},
+{
+"slug": "greedent",
+"en": "Greedent",
+"ko": "요씽리스",
+"id": "greedent"
+},
+{
+"slug": "rookidee",
+"en": "Rookidee",
+"ko": "파라꼬",
+"id": "rookidee"
+},
+{
+"slug": "corvisquire",
+"en": "Corvisquire",
+"ko": "파크로우",
+"id": "corvisquire"
+},
+{
+"slug": "corviknight",
+"en": "Corviknight",
+"ko": "아머까오",
+"id": "corviknight"
+},
+{
+"slug": "blipbug",
+"en": "Blipbug",
+"ko": "두루지벌레",
+"id": "blipbug"
+},
+{
+"slug": "dottler",
+"en": "Dottler",
+"ko": "레돔벌레",
+"id": "dottler"
+},
+{
+"slug": "orbeetle",
+"en": "Orbeetle",
+"ko": "이올브",
+"id": "orbeetle"
+},
+{
+"slug": "nickit",
+"en": "Nickit",
+"ko": "훔처우",
+"id": "nickit"
+},
+{
+"slug": "thievul",
+"en": "Thievul",
+"ko": "폭슬라이",
+"id": "thievul"
+},
+{
+"slug": "gossifleur",
+"en": "Gossifleur",
+"ko": "꼬모카",
+"id": "gossifleur"
+},
+{
+"slug": "eldegoss",
+"en": "Eldegoss",
+"ko": "백솜모카",
+"id": "eldegoss"
+},
+{
+"slug": "wooloo",
+"en": "Wooloo",
+"ko": "우르",
+"id": "wooloo"
+},
+{
+"slug": "dubwool",
+"en": "Dubwool",
+"ko": "배우르",
+"id": "dubwool"
+},
+{
+"slug": "chewtle",
+"en": "Chewtle",
+"ko": "깨물부기",
+"id": "chewtle"
+},
+{
+"slug": "drednaw",
+"en": "Drednaw",
+"ko": "갈가부기",
+"id": "drednaw"
+},
+{
+"slug": "yamper",
+"en": "Yamper",
+"ko": "멍파치",
+"id": "yamper"
+},
+{
+"slug": "boltund",
+"en": "Boltund",
+"ko": "펄스멍",
+"id": "boltund"
+},
+{
+"slug": "rolycoly",
+"en": "Rolycoly",
+"ko": "탄동",
+"id": "rolycoly"
+},
+{
+"slug": "carkol",
+"en": "Carkol",
+"ko": "탄차곤",
+"id": "carkol"
+},
+{
+"slug": "coalossal",
+"en": "Coalossal",
+"ko": "석탄산",
+"id": "coalossal"
+},
+{
+"slug": "applin",
+"en": "Applin",
+"ko": "과사삭벌레",
+"id": "applin"
+},
+{
+"slug": "flapple",
+"en": "Flapple",
+"ko": "애프룡",
+"id": "flapple"
+},
+{
+"slug": "appletun",
+"en": "Appletun",
+"ko": "단지래플",
+"id": "appletun"
+},
+{
+"slug": "silicobra",
+"en": "Silicobra",
+"ko": "모래뱀",
+"id": "silicobra"
+},
+{
+"slug": "sandaconda",
+"en": "Sandaconda",
+"ko": "사다이사",
+"id": "sandaconda"
+},
+{
+"slug": "cramorant",
+"en": "Cramorant",
+"ko": "윽우지",
+"id": "cramorant"
+},
+{
+"slug": "arrokuda",
+"en": "Arrokuda",
+"ko": "찌로꼬치",
+"id": "arrokuda"
+},
+{
+"slug": "barraskewda",
+"en": "Barraskewda",
+"ko": "꼬치조",
+"id": "barraskewda"
+},
+{
+"slug": "toxel",
+"en": "Toxel",
+"ko": "일레즌",
+"id": "toxel"
+},
+{
+"slug": "toxtricity",
+"en": "Toxtricity",
+"ko": "스트린더",
+"id": "toxtricity"
+},
+{
+"slug": "sizzlipede",
+"en": "Sizzlipede",
+"ko": "태우지네",
+"id": "sizzlipede"
+},
+{
+"slug": "centiskorch",
+"en": "Centiskorch",
+"ko": "다태우지네",
+"id": "centiskorch"
+},
+{
+"slug": "clobbopus",
+"en": "Clobbopus",
+"ko": "때때무노",
+"id": "clobbopus"
+},
+{
+"slug": "grapploct",
+"en": "Grapploct",
+"ko": "케오퍼스",
+"id": "grapploct"
+},
+{
+"slug": "sinistea",
+"en": "Sinistea",
+"ko": "데인차",
+"id": "sinistea"
+},
+{
+"slug": "polteageist",
+"en": "Polteageist",
+"ko": "포트데스",
+"id": "polteageist"
+},
+{
+"slug": "hatenna",
+"en": "Hatenna",
+"ko": "몸지브림",
+"id": "hatenna"
+},
+{
+"slug": "hattrem",
+"en": "Hattrem",
+"ko": "손지브림",
+"id": "hattrem"
+},
+{
+"slug": "hatterene",
+"en": "Hatterene",
+"ko": "브리무음",
+"id": "hatterene"
+},
+{
+"slug": "impidimp",
+"en": "Impidimp",
+"ko": "메롱꿍",
+"id": "impidimp"
+},
+{
+"slug": "morgrem",
+"en": "Morgrem",
+"ko": "쏘겨모",
+"id": "morgrem"
+},
+{
+"slug": "grimmsnarl",
+"en": "Grimmsnarl",
+"ko": "오롱털",
+"id": "grimmsnarl"
+},
+{
+"slug": "obstagoon",
+"en": "Obstagoon",
+"ko": "가로막구리",
+"id": "obstagoon"
+},
+{
+"slug": "perrserker",
+"en": "Perrserker",
+"ko": "나이킹",
+"id": "perrserker"
+},
+{
+"slug": "cursola",
+"en": "Cursola",
+"ko": "산호르곤",
+"id": "cursola"
+},
+{
+"slug": "sirfetchd",
+"en": "Sirfetch’d",
+"ko": "창파나이트",
+"id": "sirfetchd"
+},
+{
+"slug": "mr-rime",
+"en": "Mr. Rime",
+"ko": "마임꽁꽁",
+"id": "mrrime"
+},
+{
+"slug": "runerigus",
+"en": "Runerigus",
+"ko": "데스판",
+"id": "runerigus"
+},
+{
+"slug": "milcery",
+"en": "Milcery",
+"ko": "마빌크",
+"id": "milcery"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"ko": "마휘핑",
+"id": "alcremie"
+},
+{
+"slug": "falinks",
+"en": "Falinks",
+"ko": "대여르",
+"id": "falinks"
+},
+{
+"slug": "pincurchin",
+"en": "Pincurchin",
+"ko": "찌르성게",
+"id": "pincurchin"
+},
+{
+"slug": "snom",
+"en": "Snom",
+"ko": "누니머기",
+"id": "snom"
+},
+{
+"slug": "frosmoth",
+"en": "Frosmoth",
+"ko": "모스노우",
+"id": "frosmoth"
+},
+{
+"slug": "stonjourner",
+"en": "Stonjourner",
+"ko": "돌헨진",
+"id": "stonjourner"
+},
+{
+"slug": "eiscue",
+"en": "Eiscue",
+"ko": "빙큐보",
+"id": "eiscue"
+},
+{
+"slug": "indeedee",
+"en": "Indeedee",
+"ko": "에써르",
+"id": "indeedee"
+},
+{
+"slug": "morpeko",
+"en": "Morpeko",
+"ko": "모르페코",
+"id": "morpeko"
+},
+{
+"slug": "cufant",
+"en": "Cufant",
+"ko": "끼리동",
+"id": "cufant"
+},
+{
+"slug": "copperajah",
+"en": "Copperajah",
+"ko": "대왕끼리동",
+"id": "copperajah"
+},
+{
+"slug": "dracozolt",
+"en": "Dracozolt",
+"ko": "파치래곤",
+"id": "dracozolt"
+},
+{
+"slug": "arctozolt",
+"en": "Arctozolt",
+"ko": "파치르돈",
+"id": "arctozolt"
+},
+{
+"slug": "dracovish",
+"en": "Dracovish",
+"ko": "어래곤",
+"id": "dracovish"
+},
+{
+"slug": "arctovish",
+"en": "Arctovish",
+"ko": "어치르돈",
+"id": "arctovish"
+},
+{
+"slug": "duraludon",
+"en": "Duraludon",
+"ko": "두랄루돈",
+"id": "duraludon"
+},
+{
+"slug": "dreepy",
+"en": "Dreepy",
+"ko": "드라꼰",
+"id": "dreepy"
+},
+{
+"slug": "drakloak",
+"en": "Drakloak",
+"ko": "드래런치",
+"id": "drakloak"
+},
+{
+"slug": "dragapult",
+"en": "Dragapult",
+"ko": "드래펄트",
+"id": "dragapult"
+},
+{
+"slug": "zacian",
+"en": "Zacian",
+"ko": "자시안",
+"id": "zacian"
+},
+{
+"slug": "zamazenta",
+"en": "Zamazenta",
+"ko": "자마젠타",
+"id": "zamazenta"
+},
+{
+"slug": "eternatus",
+"en": "Eternatus",
+"ko": "무한다이노",
+"id": "eternatus"
+},
+{
+"slug": "kubfu",
+"en": "Kubfu",
+"ko": "치고마",
+"id": "kubfu"
+},
+{
+"slug": "urshifu",
+"en": "Urshifu",
+"ko": "우라오스",
+"id": "urshifu"
+},
+{
+"slug": "zarude",
+"en": "Zarude",
+"ko": "자루도",
+"id": "zarude"
+},
+{
+"slug": "regieleki",
+"en": "Regieleki",
+"ko": "레지에레키",
+"id": "regieleki"
+},
+{
+"slug": "regidrago",
+"en": "Regidrago",
+"ko": "레지드래고",
+"id": "regidrago"
+},
+{
+"slug": "glastrier",
+"en": "Glastrier",
+"ko": "블리자포스",
+"id": "glastrier"
+},
+{
+"slug": "spectrier",
+"en": "Spectrier",
+"ko": "레이스포스",
+"id": "spectrier"
+},
+{
+"slug": "calyrex",
+"en": "Calyrex",
+"ko": "버드렉스",
+"id": "calyrex"
+},
+{
+"slug": "wyrdeer",
+"en": "Wyrdeer",
+"ko": "신비록",
+"id": "wyrdeer"
+},
+{
+"slug": "kleavor",
+"en": "Kleavor",
+"ko": "사마자르",
+"id": "kleavor"
+},
+{
+"slug": "ursaluna",
+"en": "Ursaluna",
+"ko": "다투곰",
+"id": "ursaluna"
+},
+{
+"slug": "basculegion",
+"en": "Basculegion",
+"ko": "대쓰여너",
+"id": "basculegion"
+},
+{
+"slug": "sneasler",
+"en": "Sneasler",
+"ko": "포푸니크",
+"id": "sneasler"
+},
+{
+"slug": "overqwil",
+"en": "Overqwil",
+"ko": "장침바루",
+"id": "overqwil"
+},
+{
+"slug": "enamorus",
+"en": "Enamorus",
+"ko": "러브로스",
+"id": "enamorus"
+},
+{
+"slug": "sprigatito",
+"en": "Sprigatito",
+"ko": "나오하",
+"id": "sprigatito"
+},
+{
+"slug": "floragato",
+"en": "Floragato",
+"ko": "나로테",
+"id": "floragato"
+},
+{
+"slug": "meowscarada",
+"en": "Meowscarada",
+"ko": "마스카나",
+"id": "meowscarada"
+},
+{
+"slug": "fuecoco",
+"en": "Fuecoco",
+"ko": "뜨아거",
+"id": "fuecoco"
+},
+{
+"slug": "crocalor",
+"en": "Crocalor",
+"ko": "악뜨거",
+"id": "crocalor"
+},
+{
+"slug": "skeledirge",
+"en": "Skeledirge",
+"ko": "라우드본",
+"id": "skeledirge"
+},
+{
+"slug": "quaxly",
+"en": "Quaxly",
+"ko": "꾸왁스",
+"id": "quaxly"
+},
+{
+"slug": "quaxwell",
+"en": "Quaxwell",
+"ko": "아꾸왁",
+"id": "quaxwell"
+},
+{
+"slug": "quaquaval",
+"en": "Quaquaval",
+"ko": "웨이니발",
+"id": "quaquaval"
+},
+{
+"slug": "lechonk",
+"en": "Lechonk",
+"ko": "맛보돈",
+"id": "lechonk"
+},
+{
+"slug": "oinkologne",
+"en": "Oinkologne",
+"ko": "퍼퓨돈",
+"id": "oinkologne"
+},
+{
+"slug": "tarountula",
+"en": "Tarountula",
+"ko": "타랜툴라",
+"id": "tarountula"
+},
+{
+"slug": "spidops",
+"en": "Spidops",
+"ko": "트래피더",
+"id": "spidops"
+},
+{
+"slug": "nymble",
+"en": "Nymble",
+"ko": "콩알뚜기",
+"id": "nymble"
+},
+{
+"slug": "lokix",
+"en": "Lokix",
+"ko": "엑스레그",
+"id": "lokix"
+},
+{
+"slug": "pawmi",
+"en": "Pawmi",
+"ko": "빠모",
+"id": "pawmi"
+},
+{
+"slug": "pawmo",
+"en": "Pawmo",
+"ko": "빠모트",
+"id": "pawmo"
+},
+{
+"slug": "pawmot",
+"en": "Pawmot",
+"ko": "빠르모트",
+"id": "pawmot"
+},
+{
+"slug": "tandemaus",
+"en": "Tandemaus",
+"ko": "두리쥐",
+"id": "tandemaus"
+},
+{
+"slug": "maushold",
+"en": "Maushold",
+"ko": "파밀리쥐",
+"id": "maushold"
+},
+{
+"slug": "fidough",
+"en": "Fidough",
+"ko": "쫀도기",
+"id": "fidough"
+},
+{
+"slug": "dachsbun",
+"en": "Dachsbun",
+"ko": "바우첼",
+"id": "dachsbun"
+},
+{
+"slug": "smoliv",
+"en": "Smoliv",
+"ko": "미니브",
+"id": "smoliv"
+},
+{
+"slug": "dolliv",
+"en": "Dolliv",
+"ko": "올리뇨",
+"id": "dolliv"
+},
+{
+"slug": "arboliva",
+"en": "Arboliva",
+"ko": "올리르바",
+"id": "arboliva"
+},
+{
+"slug": "squawkabilly",
+"en": "Squawkabilly",
+"ko": "시비꼬",
+"id": "squawkabilly"
+},
+{
+"slug": "nacli",
+"en": "Nacli",
+"ko": "베베솔트",
+"id": "nacli"
+},
+{
+"slug": "naclstack",
+"en": "Naclstack",
+"ko": "스태솔트",
+"id": "naclstack"
+},
+{
+"slug": "garganacl",
+"en": "Garganacl",
+"ko": "콜로솔트",
+"id": "garganacl"
+},
+{
+"slug": "charcadet",
+"en": "Charcadet",
+"ko": "카르본",
+"id": "charcadet"
+},
+{
+"slug": "armarouge",
+"en": "Armarouge",
+"ko": "카디나르마",
+"id": "armarouge"
+},
+{
+"slug": "ceruledge",
+"en": "Ceruledge",
+"ko": "파라블레이즈",
+"id": "ceruledge"
+},
+{
+"slug": "tadbulb",
+"en": "Tadbulb",
+"ko": "빈나두",
+"id": "tadbulb"
+},
+{
+"slug": "bellibolt",
+"en": "Bellibolt",
+"ko": "찌리배리",
+"id": "bellibolt"
+},
+{
+"slug": "wattrel",
+"en": "Wattrel",
+"ko": "찌리비",
+"id": "wattrel"
+},
+{
+"slug": "kilowattrel",
+"en": "Kilowattrel",
+"ko": "찌리비크",
+"id": "kilowattrel"
+},
+{
+"slug": "maschiff",
+"en": "Maschiff",
+"ko": "오라티프",
+"id": "maschiff"
+},
+{
+"slug": "mabosstiff",
+"en": "Mabosstiff",
+"ko": "마피티프",
+"id": "mabosstiff"
+},
+{
+"slug": "shroodle",
+"en": "Shroodle",
+"ko": "땃쭈르",
+"id": "shroodle"
+},
+{
+"slug": "grafaiai",
+"en": "Grafaiai",
+"ko": "태깅구르",
+"id": "grafaiai"
+},
+{
+"slug": "bramblin",
+"en": "Bramblin",
+"ko": "그푸리",
+"id": "bramblin"
+},
+{
+"slug": "brambleghast",
+"en": "Brambleghast",
+"ko": "공푸리",
+"id": "brambleghast"
+},
+{
+"slug": "toedscool",
+"en": "Toedscool",
+"ko": "들눈해",
+"id": "toedscool"
+},
+{
+"slug": "toedscruel",
+"en": "Toedscruel",
+"ko": "육파리",
+"id": "toedscruel"
+},
+{
+"slug": "klawf",
+"en": "Klawf",
+"ko": "절벼게",
+"id": "klawf"
+},
+{
+"slug": "capsakid",
+"en": "Capsakid",
+"ko": "캡싸이",
+"id": "capsakid"
+},
+{
+"slug": "scovillain",
+"en": "Scovillain",
+"ko": "스코빌런",
+"id": "scovillain"
+},
+{
+"slug": "rellor",
+"en": "Rellor",
+"ko": "구르데",
+"id": "rellor"
+},
+{
+"slug": "rabsca",
+"en": "Rabsca",
+"ko": "베라카스",
+"id": "rabsca"
+},
+{
+"slug": "flittle",
+"en": "Flittle",
+"ko": "하느라기",
+"id": "flittle"
+},
+{
+"slug": "espathra",
+"en": "Espathra",
+"ko": "클레스퍼트라",
+"id": "espathra"
+},
+{
+"slug": "tinkatink",
+"en": "Tinkatink",
+"ko": "어리짱",
+"id": "tinkatink"
+},
+{
+"slug": "tinkatuff",
+"en": "Tinkatuff",
+"ko": "벼리짱",
+"id": "tinkatuff"
+},
+{
+"slug": "tinkaton",
+"en": "Tinkaton",
+"ko": "두드리짱",
+"id": "tinkaton"
+},
+{
+"slug": "wiglett",
+"en": "Wiglett",
+"ko": "바다그다",
+"id": "wiglett"
+},
+{
+"slug": "wugtrio",
+"en": "Wugtrio",
+"ko": "바닥트리오",
+"id": "wugtrio"
+},
+{
+"slug": "bombirdier",
+"en": "Bombirdier",
+"ko": "떨구새",
+"id": "bombirdier"
+},
+{
+"slug": "finizen",
+"en": "Finizen",
+"ko": "맨돌핀",
+"id": "finizen"
+},
+{
+"slug": "palafin",
+"en": "Palafin",
+"ko": "돌핀맨",
+"id": "palafin"
+},
+{
+"slug": "varoom",
+"en": "Varoom",
+"ko": "부르롱",
+"id": "varoom"
+},
+{
+"slug": "revavroom",
+"en": "Revavroom",
+"ko": "부르르룸",
+"id": "revavroom"
+},
+{
+"slug": "cyclizar",
+"en": "Cyclizar",
+"ko": "모토마",
+"id": "cyclizar"
+},
+{
+"slug": "orthworm",
+"en": "Orthworm",
+"ko": "꿈트렁",
+"id": "orthworm"
+},
+{
+"slug": "glimmet",
+"en": "Glimmet",
+"ko": "초롱순",
+"id": "glimmet"
+},
+{
+"slug": "glimmora",
+"en": "Glimmora",
+"ko": "킬라플로르",
+"id": "glimmora"
+},
+{
+"slug": "greavard",
+"en": "Greavard",
+"ko": "망망이",
+"id": "greavard"
+},
+{
+"slug": "houndstone",
+"en": "Houndstone",
+"ko": "묘두기",
+"id": "houndstone"
+},
+{
+"slug": "flamigo",
+"en": "Flamigo",
+"ko": "꼬이밍고",
+"id": "flamigo"
+},
+{
+"slug": "cetoddle",
+"en": "Cetoddle",
+"ko": "터벅고래",
+"id": "cetoddle"
+},
+{
+"slug": "cetitan",
+"en": "Cetitan",
+"ko": "우락고래",
+"id": "cetitan"
+},
+{
+"slug": "veluza",
+"en": "Veluza",
+"ko": "가비루사",
+"id": "veluza"
+},
+{
+"slug": "dondozo",
+"en": "Dondozo",
+"ko": "어써러셔",
+"id": "dondozo"
+},
+{
+"slug": "tatsugiri",
+"en": "Tatsugiri",
+"ko": "싸리용",
+"id": "tatsugiri"
+},
+{
+"slug": "annihilape",
+"en": "Annihilape",
+"ko": "저승갓숭",
+"id": "annihilape"
+},
+{
+"slug": "clodsire",
+"en": "Clodsire",
+"ko": "토오",
+"id": "clodsire"
+},
+{
+"slug": "farigiraf",
+"en": "Farigiraf",
+"ko": "키키링",
+"id": "farigiraf"
+},
+{
+"slug": "dudunsparce",
+"en": "Dudunsparce",
+"ko": "노고고치",
+"id": "dudunsparce"
+},
+{
+"slug": "kingambit",
+"en": "Kingambit",
+"ko": "대도각참",
+"id": "kingambit"
+},
+{
+"slug": "great-tusk",
+"en": "Great Tusk",
+"ko": "위대한엄니",
+"id": "greattusk"
+},
+{
+"slug": "scream-tail",
+"en": "Scream Tail",
+"ko": "우렁찬꼬리",
+"id": "screamtail"
+},
+{
+"slug": "brute-bonnet",
+"en": "Brute Bonnet",
+"ko": "사나운버섯",
+"id": "brutebonnet"
+},
+{
+"slug": "flutter-mane",
+"en": "Flutter Mane",
+"ko": "날개치는머리",
+"id": "fluttermane"
+},
+{
+"slug": "slither-wing",
+"en": "Slither Wing",
+"ko": "땅을기는날개",
+"id": "slitherwing"
+},
+{
+"slug": "sandy-shocks",
+"en": "Sandy Shocks",
+"ko": "모래털가죽",
+"id": "sandyshocks"
+},
+{
+"slug": "iron-treads",
+"en": "Iron Treads",
+"ko": "무쇠바퀴",
+"id": "irontreads"
+},
+{
+"slug": "iron-bundle",
+"en": "Iron Bundle",
+"ko": "무쇠보따리",
+"id": "ironbundle"
+},
+{
+"slug": "iron-hands",
+"en": "Iron Hands",
+"ko": "무쇠손",
+"id": "ironhands"
+},
+{
+"slug": "iron-jugulis",
+"en": "Iron Jugulis",
+"ko": "무쇠머리",
+"id": "ironjugulis"
+},
+{
+"slug": "iron-moth",
+"en": "Iron Moth",
+"ko": "무쇠독나방",
+"id": "ironmoth"
+},
+{
+"slug": "iron-thorns",
+"en": "Iron Thorns",
+"ko": "무쇠가시",
+"id": "ironthorns"
+},
+{
+"slug": "frigibax",
+"en": "Frigibax",
+"ko": "드니차",
+"id": "frigibax"
+},
+{
+"slug": "arctibax",
+"en": "Arctibax",
+"ko": "드니꽁",
+"id": "arctibax"
+},
+{
+"slug": "baxcalibur",
+"en": "Baxcalibur",
+"ko": "드닐레이브",
+"id": "baxcalibur"
+},
+{
+"slug": "gimmighoul",
+"en": "Gimmighoul",
+"ko": "모으령",
+"id": "gimmighoul"
+},
+{
+"slug": "gholdengo",
+"en": "Gholdengo",
+"ko": "타부자고",
+"id": "gholdengo"
+},
+{
+"slug": "wo-chien",
+"en": "Wo-Chien",
+"ko": "총지엔",
+"id": "wochien"
+},
+{
+"slug": "chien-pao",
+"en": "Chien-Pao",
+"ko": "파오젠",
+"id": "chienpao"
+},
+{
+"slug": "ting-lu",
+"en": "Ting-Lu",
+"ko": "딩루",
+"id": "tinglu"
+},
+{
+"slug": "chi-yu",
+"en": "Chi-Yu",
+"ko": "위유이",
+"id": "chiyu"
+},
+{
+"slug": "roaring-moon",
+"en": "Roaring Moon",
+"ko": "고동치는달",
+"id": "roaringmoon"
+},
+{
+"slug": "iron-valiant",
+"en": "Iron Valiant",
+"ko": "무쇠무인",
+"id": "ironvaliant"
+},
+{
+"slug": "koraidon",
+"en": "Koraidon",
+"ko": "코라이돈",
+"id": "koraidon"
+},
+{
+"slug": "miraidon",
+"en": "Miraidon",
+"ko": "미라이돈",
+"id": "miraidon"
+},
+{
+"slug": "walking-wake",
+"en": "Walking Wake",
+"ko": "굽이치는물결",
+"id": "walkingwake"
+},
+{
+"slug": "iron-leaves",
+"en": "Iron Leaves",
+"ko": "무쇠잎새",
+"id": "ironleaves"
+},
+{
+"slug": "dipplin",
+"en": "Dipplin",
+"ko": "과미르",
+"id": "dipplin"
+},
+{
+"slug": "poltchageist",
+"en": "Poltchageist",
+"ko": "차데스",
+"id": "poltchageist"
+},
+{
+"slug": "sinistcha",
+"en": "Sinistcha",
+"ko": "그우린차",
+"id": "sinistcha"
+},
+{
+"slug": "okidogi",
+"en": "Okidogi",
+"ko": "조타구",
+"id": "okidogi"
+},
+{
+"slug": "munkidori",
+"en": "Munkidori",
+"ko": "이야후",
+"id": "munkidori"
+},
+{
+"slug": "fezandipiti",
+"en": "Fezandipiti",
+"ko": "기로치",
+"id": "fezandipiti"
+},
+{
+"slug": "ogerpon",
+"en": "Ogerpon",
+"ko": "오거폰",
+"id": "ogerpon"
+},
+{
+"slug": "archaludon",
+"en": "Archaludon",
+"ko": "브리두라스",
+"id": "archaludon"
+},
+{
+"slug": "hydrapple",
+"en": "Hydrapple",
+"ko": "과미드라",
+"id": "hydrapple"
+},
+{
+"slug": "gouging-fire",
+"en": "Gouging Fire",
+"ko": "꿰뚫는화염",
+"id": "gougingfire"
+},
+{
+"slug": "raging-bolt",
+"en": "Raging Bolt",
+"ko": "날뛰는우레",
+"id": "ragingbolt"
+},
+{
+"slug": "iron-boulder",
+"en": "Iron Boulder",
+"ko": "무쇠암석",
+"id": "ironboulder"
+},
+{
+"slug": "iron-crown",
+"en": "Iron Crown",
+"ko": "무쇠감투",
+"id": "ironcrown"
+},
+{
+"slug": "terapagos",
+"en": "Terapagos",
+"ko": "테라파고스",
+"id": "terapagos"
+},
+{
+"slug": "pecharunt",
+"en": "Pecharunt",
+"ko": "복숭악동",
+"id": "pecharunt"
+}
+],
+"moves": [
+{
+"slug": "pound",
+"en": "Pound",
+"ko": "막치기",
+"id": "pound"
+},
+{
+"slug": "karate-chop",
+"en": "Karate Chop",
+"ko": "태권당수",
+"id": "karatechop"
+},
+{
+"slug": "double-slap",
+"en": "Double Slap",
+"ko": "연속뺨치기",
+"id": "doubleslap"
+},
+{
+"slug": "comet-punch",
+"en": "Comet Punch",
+"ko": "연속펀치",
+"id": "cometpunch"
+},
+{
+"slug": "mega-punch",
+"en": "Mega Punch",
+"ko": "메가톤펀치",
+"id": "megapunch"
+},
+{
+"slug": "pay-day",
+"en": "Pay Day",
+"ko": "고양이돈받기",
+"id": "payday"
+},
+{
+"slug": "fire-punch",
+"en": "Fire Punch",
+"ko": "불꽃펀치",
+"id": "firepunch"
+},
+{
+"slug": "ice-punch",
+"en": "Ice Punch",
+"ko": "냉동펀치",
+"id": "icepunch"
+},
+{
+"slug": "thunder-punch",
+"en": "Thunder Punch",
+"ko": "번개펀치",
+"id": "thunderpunch"
+},
+{
+"slug": "scratch",
+"en": "Scratch",
+"ko": "할퀴기",
+"id": "scratch"
+},
+{
+"slug": "vice-grip",
+"en": "Vise Grip",
+"ko": "찝기",
+"id": "visegrip"
+},
+{
+"slug": "guillotine",
+"en": "Guillotine",
+"ko": "가위자르기",
+"id": "guillotine"
+},
+{
+"slug": "razor-wind",
+"en": "Razor Wind",
+"ko": "칼바람",
+"id": "razorwind"
+},
+{
+"slug": "swords-dance",
+"en": "Swords Dance",
+"ko": "칼춤",
+"id": "swordsdance"
+},
+{
+"slug": "cut",
+"en": "Cut",
+"ko": "풀베기",
+"id": "cut"
+},
+{
+"slug": "gust",
+"en": "Gust",
+"ko": "바람일으키기",
+"id": "gust"
+},
+{
+"slug": "wing-attack",
+"en": "Wing Attack",
+"ko": "날개치기",
+"id": "wingattack"
+},
+{
+"slug": "whirlwind",
+"en": "Whirlwind",
+"ko": "날려버리기",
+"id": "whirlwind"
+},
+{
+"slug": "fly",
+"en": "Fly",
+"ko": "공중날기",
+"id": "fly"
+},
+{
+"slug": "bind",
+"en": "Bind",
+"ko": "조이기",
+"id": "bind"
+},
+{
+"slug": "slam",
+"en": "Slam",
+"ko": "힘껏치기",
+"id": "slam"
+},
+{
+"slug": "vine-whip",
+"en": "Vine Whip",
+"ko": "덩굴채찍",
+"id": "vinewhip"
+},
+{
+"slug": "stomp",
+"en": "Stomp",
+"ko": "짓밟기",
+"id": "stomp"
+},
+{
+"slug": "double-kick",
+"en": "Double Kick",
+"ko": "두번차기",
+"id": "doublekick"
+},
+{
+"slug": "mega-kick",
+"en": "Mega Kick",
+"ko": "메가톤킥",
+"id": "megakick"
+},
+{
+"slug": "jump-kick",
+"en": "Jump Kick",
+"ko": "점프킥",
+"id": "jumpkick"
+},
+{
+"slug": "rolling-kick",
+"en": "Rolling Kick",
+"ko": "돌려차기",
+"id": "rollingkick"
+},
+{
+"slug": "sand-attack",
+"en": "Sand Attack",
+"ko": "모래뿌리기",
+"id": "sandattack"
+},
+{
+"slug": "headbutt",
+"en": "Headbutt",
+"ko": "박치기",
+"id": "headbutt"
+},
+{
+"slug": "horn-attack",
+"en": "Horn Attack",
+"ko": "뿔찌르기",
+"id": "hornattack"
+},
+{
+"slug": "fury-attack",
+"en": "Fury Attack",
+"ko": "마구찌르기",
+"id": "furyattack"
+},
+{
+"slug": "horn-drill",
+"en": "Horn Drill",
+"ko": "뿔드릴",
+"id": "horndrill"
+},
+{
+"slug": "tackle",
+"en": "Tackle",
+"ko": "몸통박치기",
+"id": "tackle"
+},
+{
+"slug": "body-slam",
+"en": "Body Slam",
+"ko": "누르기",
+"id": "bodyslam"
+},
+{
+"slug": "wrap",
+"en": "Wrap",
+"ko": "김밥말이",
+"id": "wrap"
+},
+{
+"slug": "take-down",
+"en": "Take Down",
+"ko": "돌진",
+"id": "takedown"
+},
+{
+"slug": "thrash",
+"en": "Thrash",
+"ko": "난동부리기",
+"id": "thrash"
+},
+{
+"slug": "double-edge",
+"en": "Double-Edge",
+"ko": "이판사판태클",
+"id": "doubleedge"
+},
+{
+"slug": "tail-whip",
+"en": "Tail Whip",
+"ko": "꼬리흔들기",
+"id": "tailwhip"
+},
+{
+"slug": "poison-sting",
+"en": "Poison Sting",
+"ko": "독침",
+"id": "poisonsting"
+},
+{
+"slug": "twineedle",
+"en": "Twineedle",
+"ko": "더블니들",
+"id": "twineedle"
+},
+{
+"slug": "pin-missile",
+"en": "Pin Missile",
+"ko": "바늘미사일",
+"id": "pinmissile"
+},
+{
+"slug": "leer",
+"en": "Leer",
+"ko": "째려보기",
+"id": "leer"
+},
+{
+"slug": "bite",
+"en": "Bite",
+"ko": "물기",
+"id": "bite"
+},
+{
+"slug": "growl",
+"en": "Growl",
+"ko": "울음소리",
+"id": "growl"
+},
+{
+"slug": "roar",
+"en": "Roar",
+"ko": "울부짖기",
+"id": "roar"
+},
+{
+"slug": "sing",
+"en": "Sing",
+"ko": "노래하기",
+"id": "sing"
+},
+{
+"slug": "supersonic",
+"en": "Supersonic",
+"ko": "초음파",
+"id": "supersonic"
+},
+{
+"slug": "sonic-boom",
+"en": "Sonic Boom",
+"ko": "소닉붐",
+"id": "sonicboom"
+},
+{
+"slug": "disable",
+"en": "Disable",
+"ko": "사슬묶기",
+"id": "disable"
+},
+{
+"slug": "acid",
+"en": "Acid",
+"ko": "용해액",
+"id": "acid"
+},
+{
+"slug": "ember",
+"en": "Ember",
+"ko": "불꽃세례",
+"id": "ember"
+},
+{
+"slug": "flamethrower",
+"en": "Flamethrower",
+"ko": "화염방사",
+"id": "flamethrower"
+},
+{
+"slug": "mist",
+"en": "Mist",
+"ko": "흰안개",
+"id": "mist"
+},
+{
+"slug": "water-gun",
+"en": "Water Gun",
+"ko": "물대포",
+"id": "watergun"
+},
+{
+"slug": "hydro-pump",
+"en": "Hydro Pump",
+"ko": "하이드로펌프",
+"id": "hydropump"
+},
+{
+"slug": "surf",
+"en": "Surf",
+"ko": "파도타기",
+"id": "surf"
+},
+{
+"slug": "ice-beam",
+"en": "Ice Beam",
+"ko": "냉동빔",
+"id": "icebeam"
+},
+{
+"slug": "blizzard",
+"en": "Blizzard",
+"ko": "눈보라",
+"id": "blizzard"
+},
+{
+"slug": "psybeam",
+"en": "Psybeam",
+"ko": "환상빔",
+"id": "psybeam"
+},
+{
+"slug": "bubble-beam",
+"en": "Bubble Beam",
+"ko": "거품광선",
+"id": "bubblebeam"
+},
+{
+"slug": "aurora-beam",
+"en": "Aurora Beam",
+"ko": "오로라빔",
+"id": "aurorabeam"
+},
+{
+"slug": "hyper-beam",
+"en": "Hyper Beam",
+"ko": "파괴광선",
+"id": "hyperbeam"
+},
+{
+"slug": "peck",
+"en": "Peck",
+"ko": "쪼기",
+"id": "peck"
+},
+{
+"slug": "drill-peck",
+"en": "Drill Peck",
+"ko": "회전부리",
+"id": "drillpeck"
+},
+{
+"slug": "submission",
+"en": "Submission",
+"ko": "지옥의바퀴",
+"id": "submission"
+},
+{
+"slug": "low-kick",
+"en": "Low Kick",
+"ko": "안다리걸기",
+"id": "lowkick"
+},
+{
+"slug": "counter",
+"en": "Counter",
+"ko": "카운터",
+"id": "counter"
+},
+{
+"slug": "seismic-toss",
+"en": "Seismic Toss",
+"ko": "지구던지기",
+"id": "seismictoss"
+},
+{
+"slug": "strength",
+"en": "Strength",
+"ko": "괴력",
+"id": "strength"
+},
+{
+"slug": "absorb",
+"en": "Absorb",
+"ko": "흡수",
+"id": "absorb"
+},
+{
+"slug": "mega-drain",
+"en": "Mega Drain",
+"ko": "메가드레인",
+"id": "megadrain"
+},
+{
+"slug": "leech-seed",
+"en": "Leech Seed",
+"ko": "씨뿌리기",
+"id": "leechseed"
+},
+{
+"slug": "growth",
+"en": "Growth",
+"ko": "성장",
+"id": "growth"
+},
+{
+"slug": "razor-leaf",
+"en": "Razor Leaf",
+"ko": "잎날가르기",
+"id": "razorleaf"
+},
+{
+"slug": "solar-beam",
+"en": "Solar Beam",
+"ko": "솔라빔",
+"id": "solarbeam"
+},
+{
+"slug": "poison-powder",
+"en": "Poison Powder",
+"ko": "독가루",
+"id": "poisonpowder"
+},
+{
+"slug": "stun-spore",
+"en": "Stun Spore",
+"ko": "저리가루",
+"id": "stunspore"
+},
+{
+"slug": "sleep-powder",
+"en": "Sleep Powder",
+"ko": "수면가루",
+"id": "sleeppowder"
+},
+{
+"slug": "petal-dance",
+"en": "Petal Dance",
+"ko": "꽃잎댄스",
+"id": "petaldance"
+},
+{
+"slug": "string-shot",
+"en": "String Shot",
+"ko": "실뿜기",
+"id": "stringshot"
+},
+{
+"slug": "dragon-rage",
+"en": "Dragon Rage",
+"ko": "용의분노",
+"id": "dragonrage"
+},
+{
+"slug": "fire-spin",
+"en": "Fire Spin",
+"ko": "회오리불꽃",
+"id": "firespin"
+},
+{
+"slug": "thunder-shock",
+"en": "Thunder Shock",
+"ko": "전기쇼크",
+"id": "thundershock"
+},
+{
+"slug": "thunderbolt",
+"en": "Thunderbolt",
+"ko": "10만볼트",
+"id": "thunderbolt"
+},
+{
+"slug": "thunder-wave",
+"en": "Thunder Wave",
+"ko": "전기자석파",
+"id": "thunderwave"
+},
+{
+"slug": "thunder",
+"en": "Thunder",
+"ko": "번개",
+"id": "thunder"
+},
+{
+"slug": "rock-throw",
+"en": "Rock Throw",
+"ko": "돌떨구기",
+"id": "rockthrow"
+},
+{
+"slug": "earthquake",
+"en": "Earthquake",
+"ko": "지진",
+"id": "earthquake"
+},
+{
+"slug": "fissure",
+"en": "Fissure",
+"ko": "땅가르기",
+"id": "fissure"
+},
+{
+"slug": "dig",
+"en": "Dig",
+"ko": "구멍파기",
+"id": "dig"
+},
+{
+"slug": "toxic",
+"en": "Toxic",
+"ko": "맹독",
+"id": "toxic"
+},
+{
+"slug": "confusion",
+"en": "Confusion",
+"ko": "염동력",
+"id": "confusion"
+},
+{
+"slug": "psychic",
+"en": "Psychic",
+"ko": "사이코키네시스",
+"id": "psychic"
+},
+{
+"slug": "hypnosis",
+"en": "Hypnosis",
+"ko": "최면술",
+"id": "hypnosis"
+},
+{
+"slug": "meditate",
+"en": "Meditate",
+"ko": "요가포즈",
+"id": "meditate"
+},
+{
+"slug": "agility",
+"en": "Agility",
+"ko": "고속이동",
+"id": "agility"
+},
+{
+"slug": "quick-attack",
+"en": "Quick Attack",
+"ko": "전광석화",
+"id": "quickattack"
+},
+{
+"slug": "rage",
+"en": "Rage",
+"ko": "분노",
+"id": "rage"
+},
+{
+"slug": "teleport",
+"en": "Teleport",
+"ko": "순간이동",
+"id": "teleport"
+},
+{
+"slug": "night-shade",
+"en": "Night Shade",
+"ko": "나이트헤드",
+"id": "nightshade"
+},
+{
+"slug": "mimic",
+"en": "Mimic",
+"ko": "흉내내기",
+"id": "mimic"
+},
+{
+"slug": "screech",
+"en": "Screech",
+"ko": "싫은소리",
+"id": "screech"
+},
+{
+"slug": "double-team",
+"en": "Double Team",
+"ko": "그림자분신",
+"id": "doubleteam"
+},
+{
+"slug": "recover",
+"en": "Recover",
+"ko": "HP회복",
+"id": "recover"
+},
+{
+"slug": "harden",
+"en": "Harden",
+"ko": "단단해지기",
+"id": "harden"
+},
+{
+"slug": "minimize",
+"en": "Minimize",
+"ko": "작아지기",
+"id": "minimize"
+},
+{
+"slug": "smokescreen",
+"en": "Smokescreen",
+"ko": "연막",
+"id": "smokescreen"
+},
+{
+"slug": "confuse-ray",
+"en": "Confuse Ray",
+"ko": "이상한빛",
+"id": "confuseray"
+},
+{
+"slug": "withdraw",
+"en": "Withdraw",
+"ko": "껍질에숨기",
+"id": "withdraw"
+},
+{
+"slug": "defense-curl",
+"en": "Defense Curl",
+"ko": "웅크리기",
+"id": "defensecurl"
+},
+{
+"slug": "barrier",
+"en": "Barrier",
+"ko": "배리어",
+"id": "barrier"
+},
+{
+"slug": "light-screen",
+"en": "Light Screen",
+"ko": "빛의장막",
+"id": "lightscreen"
+},
+{
+"slug": "haze",
+"en": "Haze",
+"ko": "흑안개",
+"id": "haze"
+},
+{
+"slug": "reflect",
+"en": "Reflect",
+"ko": "리플렉터",
+"id": "reflect"
+},
+{
+"slug": "focus-energy",
+"en": "Focus Energy",
+"ko": "기충전",
+"id": "focusenergy"
+},
+{
+"slug": "bide",
+"en": "Bide",
+"ko": "참기",
+"id": "bide"
+},
+{
+"slug": "metronome",
+"en": "Metronome",
+"ko": "손가락흔들기",
+"id": "metronome"
+},
+{
+"slug": "mirror-move",
+"en": "Mirror Move",
+"ko": "따라하기",
+"id": "mirrormove"
+},
+{
+"slug": "self-destruct",
+"en": "Self-Destruct",
+"ko": "자폭",
+"id": "selfdestruct"
+},
+{
+"slug": "egg-bomb",
+"en": "Egg Bomb",
+"ko": "알폭탄",
+"id": "eggbomb"
+},
+{
+"slug": "lick",
+"en": "Lick",
+"ko": "핥기",
+"id": "lick"
+},
+{
+"slug": "smog",
+"en": "Smog",
+"ko": "스모그",
+"id": "smog"
+},
+{
+"slug": "sludge",
+"en": "Sludge",
+"ko": "오물공격",
+"id": "sludge"
+},
+{
+"slug": "bone-club",
+"en": "Bone Club",
+"ko": "뼈다귀치기",
+"id": "boneclub"
+},
+{
+"slug": "fire-blast",
+"en": "Fire Blast",
+"ko": "불대문자",
+"id": "fireblast"
+},
+{
+"slug": "waterfall",
+"en": "Waterfall",
+"ko": "폭포오르기",
+"id": "waterfall"
+},
+{
+"slug": "clamp",
+"en": "Clamp",
+"ko": "껍질끼우기",
+"id": "clamp"
+},
+{
+"slug": "swift",
+"en": "Swift",
+"ko": "스피드스타",
+"id": "swift"
+},
+{
+"slug": "skull-bash",
+"en": "Skull Bash",
+"ko": "로켓박치기",
+"id": "skullbash"
+},
+{
+"slug": "spike-cannon",
+"en": "Spike Cannon",
+"ko": "가시대포",
+"id": "spikecannon"
+},
+{
+"slug": "constrict",
+"en": "Constrict",
+"ko": "휘감기",
+"id": "constrict"
+},
+{
+"slug": "amnesia",
+"en": "Amnesia",
+"ko": "망각술",
+"id": "amnesia"
+},
+{
+"slug": "kinesis",
+"en": "Kinesis",
+"ko": "숟가락휘기",
+"id": "kinesis"
+},
+{
+"slug": "soft-boiled",
+"en": "Soft-Boiled",
+"ko": "알낳기",
+"id": "softboiled"
+},
+{
+"slug": "high-jump-kick",
+"en": "High Jump Kick",
+"ko": "무릎차기",
+"id": "highjumpkick"
+},
+{
+"slug": "glare",
+"en": "Glare",
+"ko": "뱀눈초리",
+"id": "glare"
+},
+{
+"slug": "dream-eater",
+"en": "Dream Eater",
+"ko": "꿈먹기",
+"id": "dreameater"
+},
+{
+"slug": "poison-gas",
+"en": "Poison Gas",
+"ko": "독가스",
+"id": "poisongas"
+},
+{
+"slug": "barrage",
+"en": "Barrage",
+"ko": "구슬던지기",
+"id": "barrage"
+},
+{
+"slug": "leech-life",
+"en": "Leech Life",
+"ko": "흡혈",
+"id": "leechlife"
+},
+{
+"slug": "lovely-kiss",
+"en": "Lovely Kiss",
+"ko": "악마의키스",
+"id": "lovelykiss"
+},
+{
+"slug": "sky-attack",
+"en": "Sky Attack",
+"ko": "불새",
+"id": "skyattack"
+},
+{
+"slug": "transform",
+"en": "Transform",
+"ko": "변신",
+"id": "transform"
+},
+{
+"slug": "bubble",
+"en": "Bubble",
+"ko": "거품",
+"id": "bubble"
+},
+{
+"slug": "dizzy-punch",
+"en": "Dizzy Punch",
+"ko": "잼잼펀치",
+"id": "dizzypunch"
+},
+{
+"slug": "spore",
+"en": "Spore",
+"ko": "버섯포자",
+"id": "spore"
+},
+{
+"slug": "flash",
+"en": "Flash",
+"ko": "플래시",
+"id": "flash"
+},
+{
+"slug": "psywave",
+"en": "Psywave",
+"ko": "사이코웨이브",
+"id": "psywave"
+},
+{
+"slug": "splash",
+"en": "Splash",
+"ko": "튀어오르기",
+"id": "splash"
+},
+{
+"slug": "acid-armor",
+"en": "Acid Armor",
+"ko": "녹기",
+"id": "acidarmor"
+},
+{
+"slug": "crabhammer",
+"en": "Crabhammer",
+"ko": "집게해머",
+"id": "crabhammer"
+},
+{
+"slug": "explosion",
+"en": "Explosion",
+"ko": "대폭발",
+"id": "explosion"
+},
+{
+"slug": "fury-swipes",
+"en": "Fury Swipes",
+"ko": "마구할퀴기",
+"id": "furyswipes"
+},
+{
+"slug": "bonemerang",
+"en": "Bonemerang",
+"ko": "뼈다귀부메랑",
+"id": "bonemerang"
+},
+{
+"slug": "rest",
+"en": "Rest",
+"ko": "잠자기",
+"id": "rest"
+},
+{
+"slug": "rock-slide",
+"en": "Rock Slide",
+"ko": "스톤샤워",
+"id": "rockslide"
+},
+{
+"slug": "hyper-fang",
+"en": "Hyper Fang",
+"ko": "필살앞니",
+"id": "hyperfang"
+},
+{
+"slug": "sharpen",
+"en": "Sharpen",
+"ko": "각지기",
+"id": "sharpen"
+},
+{
+"slug": "conversion",
+"en": "Conversion",
+"ko": "텍스처",
+"id": "conversion"
+},
+{
+"slug": "tri-attack",
+"en": "Tri Attack",
+"ko": "트라이어택",
+"id": "triattack"
+},
+{
+"slug": "super-fang",
+"en": "Super Fang",
+"ko": "분노의앞니",
+"id": "superfang"
+},
+{
+"slug": "slash",
+"en": "Slash",
+"ko": "베어가르기",
+"id": "slash"
+},
+{
+"slug": "substitute",
+"en": "Substitute",
+"ko": "대타출동",
+"id": "substitute"
+},
+{
+"slug": "struggle",
+"en": "Struggle",
+"ko": "발버둥",
+"id": "struggle"
+},
+{
+"slug": "sketch",
+"en": "Sketch",
+"ko": "스케치",
+"id": "sketch"
+},
+{
+"slug": "triple-kick",
+"en": "Triple Kick",
+"ko": "트리플킥",
+"id": "triplekick"
+},
+{
+"slug": "thief",
+"en": "Thief",
+"ko": "도둑질",
+"id": "thief"
+},
+{
+"slug": "spider-web",
+"en": "Spider Web",
+"ko": "거미집",
+"id": "spiderweb"
+},
+{
+"slug": "mind-reader",
+"en": "Mind Reader",
+"ko": "마음의눈",
+"id": "mindreader"
+},
+{
+"slug": "nightmare",
+"en": "Nightmare",
+"ko": "악몽",
+"id": "nightmare"
+},
+{
+"slug": "flame-wheel",
+"en": "Flame Wheel",
+"ko": "화염바퀴",
+"id": "flamewheel"
+},
+{
+"slug": "snore",
+"en": "Snore",
+"ko": "코골기",
+"id": "snore"
+},
+{
+"slug": "curse",
+"en": "Curse",
+"ko": "저주",
+"id": "curse"
+},
+{
+"slug": "flail",
+"en": "Flail",
+"ko": "바둥바둥",
+"id": "flail"
+},
+{
+"slug": "conversion-2",
+"en": "Conversion 2",
+"ko": "텍스처2",
+"id": "conversion2"
+},
+{
+"slug": "aeroblast",
+"en": "Aeroblast",
+"ko": "에어로블라스트",
+"id": "aeroblast"
+},
+{
+"slug": "cotton-spore",
+"en": "Cotton Spore",
+"ko": "목화포자",
+"id": "cottonspore"
+},
+{
+"slug": "reversal",
+"en": "Reversal",
+"ko": "기사회생",
+"id": "reversal"
+},
+{
+"slug": "spite",
+"en": "Spite",
+"ko": "원한",
+"id": "spite"
+},
+{
+"slug": "powder-snow",
+"en": "Powder Snow",
+"ko": "눈싸라기",
+"id": "powdersnow"
+},
+{
+"slug": "protect",
+"en": "Protect",
+"ko": "방어",
+"id": "protect"
+},
+{
+"slug": "mach-punch",
+"en": "Mach Punch",
+"ko": "마하펀치",
+"id": "machpunch"
+},
+{
+"slug": "scary-face",
+"en": "Scary Face",
+"ko": "겁나는얼굴",
+"id": "scaryface"
+},
+{
+"slug": "feint-attack",
+"en": "Feint Attack",
+"ko": "속여때리기",
+"id": "feintattack"
+},
+{
+"slug": "sweet-kiss",
+"en": "Sweet Kiss",
+"ko": "천사의키스",
+"id": "sweetkiss"
+},
+{
+"slug": "belly-drum",
+"en": "Belly Drum",
+"ko": "배북",
+"id": "bellydrum"
+},
+{
+"slug": "sludge-bomb",
+"en": "Sludge Bomb",
+"ko": "오물폭탄",
+"id": "sludgebomb"
+},
+{
+"slug": "mud-slap",
+"en": "Mud-Slap",
+"ko": "진흙뿌리기",
+"id": "mudslap"
+},
+{
+"slug": "octazooka",
+"en": "Octazooka",
+"ko": "대포무노포",
+"id": "octazooka"
+},
+{
+"slug": "spikes",
+"en": "Spikes",
+"ko": "압정뿌리기",
+"id": "spikes"
+},
+{
+"slug": "zap-cannon",
+"en": "Zap Cannon",
+"ko": "전자포",
+"id": "zapcannon"
+},
+{
+"slug": "foresight",
+"en": "Foresight",
+"ko": "꿰뚫어보기",
+"id": "foresight"
+},
+{
+"slug": "destiny-bond",
+"en": "Destiny Bond",
+"ko": "길동무",
+"id": "destinybond"
+},
+{
+"slug": "perish-song",
+"en": "Perish Song",
+"ko": "멸망의노래",
+"id": "perishsong"
+},
+{
+"slug": "icy-wind",
+"en": "Icy Wind",
+"ko": "얼어붙은바람",
+"id": "icywind"
+},
+{
+"slug": "detect",
+"en": "Detect",
+"ko": "판별",
+"id": "detect"
+},
+{
+"slug": "bone-rush",
+"en": "Bone Rush",
+"ko": "본러시",
+"id": "bonerush"
+},
+{
+"slug": "lock-on",
+"en": "Lock-On",
+"ko": "록온",
+"id": "lockon"
+},
+{
+"slug": "outrage",
+"en": "Outrage",
+"ko": "역린",
+"id": "outrage"
+},
+{
+"slug": "sandstorm",
+"en": "Sandstorm",
+"ko": "모래바람",
+"id": "sandstorm"
+},
+{
+"slug": "giga-drain",
+"en": "Giga Drain",
+"ko": "기가드레인",
+"id": "gigadrain"
+},
+{
+"slug": "endure",
+"en": "Endure",
+"ko": "버티기",
+"id": "endure"
+},
+{
+"slug": "charm",
+"en": "Charm",
+"ko": "애교부리기",
+"id": "charm"
+},
+{
+"slug": "rollout",
+"en": "Rollout",
+"ko": "구르기",
+"id": "rollout"
+},
+{
+"slug": "false-swipe",
+"en": "False Swipe",
+"ko": "칼등치기",
+"id": "falseswipe"
+},
+{
+"slug": "swagger",
+"en": "Swagger",
+"ko": "뽐내기",
+"id": "swagger"
+},
+{
+"slug": "milk-drink",
+"en": "Milk Drink",
+"ko": "우유마시기",
+"id": "milkdrink"
+},
+{
+"slug": "spark",
+"en": "Spark",
+"ko": "스파크",
+"id": "spark"
+},
+{
+"slug": "fury-cutter",
+"en": "Fury Cutter",
+"ko": "연속자르기",
+"id": "furycutter"
+},
+{
+"slug": "steel-wing",
+"en": "Steel Wing",
+"ko": "강철날개",
+"id": "steelwing"
+},
+{
+"slug": "mean-look",
+"en": "Mean Look",
+"ko": "검은눈빛",
+"id": "meanlook"
+},
+{
+"slug": "attract",
+"en": "Attract",
+"ko": "헤롱헤롱",
+"id": "attract"
+},
+{
+"slug": "sleep-talk",
+"en": "Sleep Talk",
+"ko": "잠꼬대",
+"id": "sleeptalk"
+},
+{
+"slug": "heal-bell",
+"en": "Heal Bell",
+"ko": "치료방울",
+"id": "healbell"
+},
+{
+"slug": "return",
+"en": "Return",
+"ko": "은혜갚기",
+"id": "return"
+},
+{
+"slug": "present",
+"en": "Present",
+"ko": "프레젠트",
+"id": "present"
+},
+{
+"slug": "frustration",
+"en": "Frustration",
+"ko": "화풀이",
+"id": "frustration"
+},
+{
+"slug": "safeguard",
+"en": "Safeguard",
+"ko": "신비의부적",
+"id": "safeguard"
+},
+{
+"slug": "pain-split",
+"en": "Pain Split",
+"ko": "아픔나누기",
+"id": "painsplit"
+},
+{
+"slug": "sacred-fire",
+"en": "Sacred Fire",
+"ko": "성스러운불꽃",
+"id": "sacredfire"
+},
+{
+"slug": "magnitude",
+"en": "Magnitude",
+"ko": "매그니튜드",
+"id": "magnitude"
+},
+{
+"slug": "dynamic-punch",
+"en": "Dynamic Punch",
+"ko": "폭발펀치",
+"id": "dynamicpunch"
+},
+{
+"slug": "megahorn",
+"en": "Megahorn",
+"ko": "메가혼",
+"id": "megahorn"
+},
+{
+"slug": "dragon-breath",
+"en": "Dragon Breath",
+"ko": "용의숨결",
+"id": "dragonbreath"
+},
+{
+"slug": "baton-pass",
+"en": "Baton Pass",
+"ko": "배턴터치",
+"id": "batonpass"
+},
+{
+"slug": "encore",
+"en": "Encore",
+"ko": "앙코르",
+"id": "encore"
+},
+{
+"slug": "pursuit",
+"en": "Pursuit",
+"ko": "따라가때리기",
+"id": "pursuit"
+},
+{
+"slug": "rapid-spin",
+"en": "Rapid Spin",
+"ko": "고속스핀",
+"id": "rapidspin"
+},
+{
+"slug": "sweet-scent",
+"en": "Sweet Scent",
+"ko": "달콤한향기",
+"id": "sweetscent"
+},
+{
+"slug": "iron-tail",
+"en": "Iron Tail",
+"ko": "아이언테일",
+"id": "irontail"
+},
+{
+"slug": "metal-claw",
+"en": "Metal Claw",
+"ko": "메탈클로",
+"id": "metalclaw"
+},
+{
+"slug": "vital-throw",
+"en": "Vital Throw",
+"ko": "받아던지기",
+"id": "vitalthrow"
+},
+{
+"slug": "morning-sun",
+"en": "Morning Sun",
+"ko": "아침햇살",
+"id": "morningsun"
+},
+{
+"slug": "synthesis",
+"en": "Synthesis",
+"ko": "광합성",
+"id": "synthesis"
+},
+{
+"slug": "moonlight",
+"en": "Moonlight",
+"ko": "달빛",
+"id": "moonlight"
+},
+{
+"slug": "hidden-power",
+"en": "Hidden Power",
+"ko": "잠재파워",
+"id": "hiddenpower"
+},
+{
+"slug": "cross-chop",
+"en": "Cross Chop",
+"ko": "크로스촙",
+"id": "crosschop"
+},
+{
+"slug": "twister",
+"en": "Twister",
+"ko": "회오리",
+"id": "twister"
+},
+{
+"slug": "rain-dance",
+"en": "Rain Dance",
+"ko": "비바라기",
+"id": "raindance"
+},
+{
+"slug": "sunny-day",
+"en": "Sunny Day",
+"ko": "쾌청",
+"id": "sunnyday"
+},
+{
+"slug": "crunch",
+"en": "Crunch",
+"ko": "깨물어부수기",
+"id": "crunch"
+},
+{
+"slug": "mirror-coat",
+"en": "Mirror Coat",
+"ko": "미러코트",
+"id": "mirrorcoat"
+},
+{
+"slug": "psych-up",
+"en": "Psych Up",
+"ko": "자기암시",
+"id": "psychup"
+},
+{
+"slug": "extreme-speed",
+"en": "Extreme Speed",
+"ko": "신속",
+"id": "extremespeed"
+},
+{
+"slug": "ancient-power",
+"en": "Ancient Power",
+"ko": "원시의힘",
+"id": "ancientpower"
+},
+{
+"slug": "shadow-ball",
+"en": "Shadow Ball",
+"ko": "섀도볼",
+"id": "shadowball"
+},
+{
+"slug": "future-sight",
+"en": "Future Sight",
+"ko": "미래예지",
+"id": "futuresight"
+},
+{
+"slug": "rock-smash",
+"en": "Rock Smash",
+"ko": "바위깨기",
+"id": "rocksmash"
+},
+{
+"slug": "whirlpool",
+"en": "Whirlpool",
+"ko": "바다회오리",
+"id": "whirlpool"
+},
+{
+"slug": "beat-up",
+"en": "Beat Up",
+"ko": "집단구타",
+"id": "beatup"
+},
+{
+"slug": "fake-out",
+"en": "Fake Out",
+"ko": "속이기",
+"id": "fakeout"
+},
+{
+"slug": "uproar",
+"en": "Uproar",
+"ko": "소란피기",
+"id": "uproar"
+},
+{
+"slug": "stockpile",
+"en": "Stockpile",
+"ko": "비축하기",
+"id": "stockpile"
+},
+{
+"slug": "spit-up",
+"en": "Spit Up",
+"ko": "토해내기",
+"id": "spitup"
+},
+{
+"slug": "swallow",
+"en": "Swallow",
+"ko": "꿀꺽",
+"id": "swallow"
+},
+{
+"slug": "heat-wave",
+"en": "Heat Wave",
+"ko": "열풍",
+"id": "heatwave"
+},
+{
+"slug": "hail",
+"en": "Hail",
+"ko": "싸라기눈",
+"id": "hail"
+},
+{
+"slug": "torment",
+"en": "Torment",
+"ko": "트집",
+"id": "torment"
+},
+{
+"slug": "flatter",
+"en": "Flatter",
+"ko": "부추기기",
+"id": "flatter"
+},
+{
+"slug": "will-o-wisp",
+"en": "Will-O-Wisp",
+"ko": "도깨비불",
+"id": "willowisp"
+},
+{
+"slug": "memento",
+"en": "Memento",
+"ko": "추억의선물",
+"id": "memento"
+},
+{
+"slug": "facade",
+"en": "Facade",
+"ko": "객기",
+"id": "facade"
+},
+{
+"slug": "focus-punch",
+"en": "Focus Punch",
+"ko": "힘껏펀치",
+"id": "focuspunch"
+},
+{
+"slug": "smelling-salts",
+"en": "Smelling Salts",
+"ko": "정신차리기",
+"id": "smellingsalts"
+},
+{
+"slug": "follow-me",
+"en": "Follow Me",
+"ko": "날따름",
+"id": "followme"
+},
+{
+"slug": "nature-power",
+"en": "Nature Power",
+"ko": "자연의힘",
+"id": "naturepower"
+},
+{
+"slug": "charge",
+"en": "Charge",
+"ko": "충전",
+"id": "charge"
+},
+{
+"slug": "taunt",
+"en": "Taunt",
+"ko": "도발",
+"id": "taunt"
+},
+{
+"slug": "helping-hand",
+"en": "Helping Hand",
+"ko": "도우미",
+"id": "helpinghand"
+},
+{
+"slug": "trick",
+"en": "Trick",
+"ko": "트릭",
+"id": "trick"
+},
+{
+"slug": "role-play",
+"en": "Role Play",
+"ko": "역할",
+"id": "roleplay"
+},
+{
+"slug": "wish",
+"en": "Wish",
+"ko": "희망사항",
+"id": "wish"
+},
+{
+"slug": "assist",
+"en": "Assist",
+"ko": "조수",
+"id": "assist"
+},
+{
+"slug": "ingrain",
+"en": "Ingrain",
+"ko": "뿌리박기",
+"id": "ingrain"
+},
+{
+"slug": "superpower",
+"en": "Superpower",
+"ko": "엄청난힘",
+"id": "superpower"
+},
+{
+"slug": "magic-coat",
+"en": "Magic Coat",
+"ko": "매직코트",
+"id": "magiccoat"
+},
+{
+"slug": "recycle",
+"en": "Recycle",
+"ko": "리사이클",
+"id": "recycle"
+},
+{
+"slug": "revenge",
+"en": "Revenge",
+"ko": "리벤지",
+"id": "revenge"
+},
+{
+"slug": "brick-break",
+"en": "Brick Break",
+"ko": "깨뜨리다",
+"id": "brickbreak"
+},
+{
+"slug": "yawn",
+"en": "Yawn",
+"ko": "하품",
+"id": "yawn"
+},
+{
+"slug": "knock-off",
+"en": "Knock Off",
+"ko": "탁쳐서떨구기",
+"id": "knockoff"
+},
+{
+"slug": "endeavor",
+"en": "Endeavor",
+"ko": "죽기살기",
+"id": "endeavor"
+},
+{
+"slug": "eruption",
+"en": "Eruption",
+"ko": "분화",
+"id": "eruption"
+},
+{
+"slug": "skill-swap",
+"en": "Skill Swap",
+"ko": "스킬스왑",
+"id": "skillswap"
+},
+{
+"slug": "imprison",
+"en": "Imprison",
+"ko": "봉인",
+"id": "imprison"
+},
+{
+"slug": "refresh",
+"en": "Refresh",
+"ko": "리프레시",
+"id": "refresh"
+},
+{
+"slug": "grudge",
+"en": "Grudge",
+"ko": "원념",
+"id": "grudge"
+},
+{
+"slug": "snatch",
+"en": "Snatch",
+"ko": "가로채기",
+"id": "snatch"
+},
+{
+"slug": "secret-power",
+"en": "Secret Power",
+"ko": "비밀의힘",
+"id": "secretpower"
+},
+{
+"slug": "dive",
+"en": "Dive",
+"ko": "다이빙",
+"id": "dive"
+},
+{
+"slug": "arm-thrust",
+"en": "Arm Thrust",
+"ko": "손바닥치기",
+"id": "armthrust"
+},
+{
+"slug": "camouflage",
+"en": "Camouflage",
+"ko": "보호색",
+"id": "camouflage"
+},
+{
+"slug": "tail-glow",
+"en": "Tail Glow",
+"ko": "반딧불",
+"id": "tailglow"
+},
+{
+"slug": "luster-purge",
+"en": "Luster Purge",
+"ko": "러스터퍼지",
+"id": "lusterpurge"
+},
+{
+"slug": "mist-ball",
+"en": "Mist Ball",
+"ko": "미스트볼",
+"id": "mistball"
+},
+{
+"slug": "feather-dance",
+"en": "Feather Dance",
+"ko": "깃털댄스",
+"id": "featherdance"
+},
+{
+"slug": "teeter-dance",
+"en": "Teeter Dance",
+"ko": "흔들흔들댄스",
+"id": "teeterdance"
+},
+{
+"slug": "blaze-kick",
+"en": "Blaze Kick",
+"ko": "블레이즈킥",
+"id": "blazekick"
+},
+{
+"slug": "mud-sport",
+"en": "Mud Sport",
+"ko": "흙놀이",
+"id": "mudsport"
+},
+{
+"slug": "ice-ball",
+"en": "Ice Ball",
+"ko": "아이스볼",
+"id": "iceball"
+},
+{
+"slug": "needle-arm",
+"en": "Needle Arm",
+"ko": "바늘팔",
+"id": "needlearm"
+},
+{
+"slug": "slack-off",
+"en": "Slack Off",
+"ko": "게으름피우기",
+"id": "slackoff"
+},
+{
+"slug": "hyper-voice",
+"en": "Hyper Voice",
+"ko": "하이퍼보이스",
+"id": "hypervoice"
+},
+{
+"slug": "poison-fang",
+"en": "Poison Fang",
+"ko": "맹독엄니",
+"id": "poisonfang"
+},
+{
+"slug": "crush-claw",
+"en": "Crush Claw",
+"ko": "브레이크클로",
+"id": "crushclaw"
+},
+{
+"slug": "blast-burn",
+"en": "Blast Burn",
+"ko": "블라스트번",
+"id": "blastburn"
+},
+{
+"slug": "hydro-cannon",
+"en": "Hydro Cannon",
+"ko": "하이드로캐논",
+"id": "hydrocannon"
+},
+{
+"slug": "meteor-mash",
+"en": "Meteor Mash",
+"ko": "코멧펀치",
+"id": "meteormash"
+},
+{
+"slug": "astonish",
+"en": "Astonish",
+"ko": "놀래키기",
+"id": "astonish"
+},
+{
+"slug": "weather-ball",
+"en": "Weather Ball",
+"ko": "웨더볼",
+"id": "weatherball"
+},
+{
+"slug": "aromatherapy",
+"en": "Aromatherapy",
+"ko": "아로마테라피",
+"id": "aromatherapy"
+},
+{
+"slug": "fake-tears",
+"en": "Fake Tears",
+"ko": "거짓울음",
+"id": "faketears"
+},
+{
+"slug": "air-cutter",
+"en": "Air Cutter",
+"ko": "에어커터",
+"id": "aircutter"
+},
+{
+"slug": "overheat",
+"en": "Overheat",
+"ko": "오버히트",
+"id": "overheat"
+},
+{
+"slug": "odor-sleuth",
+"en": "Odor Sleuth",
+"ko": "냄새구별",
+"id": "odorsleuth"
+},
+{
+"slug": "rock-tomb",
+"en": "Rock Tomb",
+"ko": "암석봉인",
+"id": "rocktomb"
+},
+{
+"slug": "silver-wind",
+"en": "Silver Wind",
+"ko": "은빛바람",
+"id": "silverwind"
+},
+{
+"slug": "metal-sound",
+"en": "Metal Sound",
+"ko": "금속음",
+"id": "metalsound"
+},
+{
+"slug": "grass-whistle",
+"en": "Grass Whistle",
+"ko": "풀피리",
+"id": "grasswhistle"
+},
+{
+"slug": "tickle",
+"en": "Tickle",
+"ko": "간지르기",
+"id": "tickle"
+},
+{
+"slug": "cosmic-power",
+"en": "Cosmic Power",
+"ko": "코스믹파워",
+"id": "cosmicpower"
+},
+{
+"slug": "water-spout",
+"en": "Water Spout",
+"ko": "해수스파우팅",
+"id": "waterspout"
+},
+{
+"slug": "signal-beam",
+"en": "Signal Beam",
+"ko": "시그널빔",
+"id": "signalbeam"
+},
+{
+"slug": "shadow-punch",
+"en": "Shadow Punch",
+"ko": "섀도펀치",
+"id": "shadowpunch"
+},
+{
+"slug": "extrasensory",
+"en": "Extrasensory",
+"ko": "신통력",
+"id": "extrasensory"
+},
+{
+"slug": "sky-uppercut",
+"en": "Sky Uppercut",
+"ko": "스카이어퍼",
+"id": "skyuppercut"
+},
+{
+"slug": "sand-tomb",
+"en": "Sand Tomb",
+"ko": "모래지옥",
+"id": "sandtomb"
+},
+{
+"slug": "sheer-cold",
+"en": "Sheer Cold",
+"ko": "절대영도",
+"id": "sheercold"
+},
+{
+"slug": "muddy-water",
+"en": "Muddy Water",
+"ko": "탁류",
+"id": "muddywater"
+},
+{
+"slug": "bullet-seed",
+"en": "Bullet Seed",
+"ko": "씨기관총",
+"id": "bulletseed"
+},
+{
+"slug": "aerial-ace",
+"en": "Aerial Ace",
+"ko": "제비반환",
+"id": "aerialace"
+},
+{
+"slug": "icicle-spear",
+"en": "Icicle Spear",
+"ko": "고드름침",
+"id": "iciclespear"
+},
+{
+"slug": "iron-defense",
+"en": "Iron Defense",
+"ko": "철벽",
+"id": "irondefense"
+},
+{
+"slug": "block",
+"en": "Block",
+"ko": "블록",
+"id": "block"
+},
+{
+"slug": "howl",
+"en": "Howl",
+"ko": "멀리짖기",
+"id": "howl"
+},
+{
+"slug": "dragon-claw",
+"en": "Dragon Claw",
+"ko": "드래곤클로",
+"id": "dragonclaw"
+},
+{
+"slug": "frenzy-plant",
+"en": "Frenzy Plant",
+"ko": "하드플랜트",
+"id": "frenzyplant"
+},
+{
+"slug": "bulk-up",
+"en": "Bulk Up",
+"ko": "벌크업",
+"id": "bulkup"
+},
+{
+"slug": "bounce",
+"en": "Bounce",
+"ko": "뛰어오르기",
+"id": "bounce"
+},
+{
+"slug": "mud-shot",
+"en": "Mud Shot",
+"ko": "머드샷",
+"id": "mudshot"
+},
+{
+"slug": "poison-tail",
+"en": "Poison Tail",
+"ko": "포이즌테일",
+"id": "poisontail"
+},
+{
+"slug": "covet",
+"en": "Covet",
+"ko": "탐내다",
+"id": "covet"
+},
+{
+"slug": "volt-tackle",
+"en": "Volt Tackle",
+"ko": "볼트태클",
+"id": "volttackle"
+},
+{
+"slug": "magical-leaf",
+"en": "Magical Leaf",
+"ko": "매지컬리프",
+"id": "magicalleaf"
+},
+{
+"slug": "water-sport",
+"en": "Water Sport",
+"ko": "물놀이",
+"id": "watersport"
+},
+{
+"slug": "calm-mind",
+"en": "Calm Mind",
+"ko": "명상",
+"id": "calmmind"
+},
+{
+"slug": "leaf-blade",
+"en": "Leaf Blade",
+"ko": "리프블레이드",
+"id": "leafblade"
+},
+{
+"slug": "dragon-dance",
+"en": "Dragon Dance",
+"ko": "용의춤",
+"id": "dragondance"
+},
+{
+"slug": "rock-blast",
+"en": "Rock Blast",
+"ko": "록블라스트",
+"id": "rockblast"
+},
+{
+"slug": "shock-wave",
+"en": "Shock Wave",
+"ko": "전격파",
+"id": "shockwave"
+},
+{
+"slug": "water-pulse",
+"en": "Water Pulse",
+"ko": "물의파동",
+"id": "waterpulse"
+},
+{
+"slug": "doom-desire",
+"en": "Doom Desire",
+"ko": "파멸의소원",
+"id": "doomdesire"
+},
+{
+"slug": "psycho-boost",
+"en": "Psycho Boost",
+"ko": "사이코부스트",
+"id": "psychoboost"
+},
+{
+"slug": "roost",
+"en": "Roost",
+"ko": "날개쉬기",
+"id": "roost"
+},
+{
+"slug": "gravity",
+"en": "Gravity",
+"ko": "중력",
+"id": "gravity"
+},
+{
+"slug": "miracle-eye",
+"en": "Miracle Eye",
+"ko": "미라클아이",
+"id": "miracleeye"
+},
+{
+"slug": "wake-up-slap",
+"en": "Wake-Up Slap",
+"ko": "잠깨움뺨치기",
+"id": "wakeupslap"
+},
+{
+"slug": "hammer-arm",
+"en": "Hammer Arm",
+"ko": "암해머",
+"id": "hammerarm"
+},
+{
+"slug": "gyro-ball",
+"en": "Gyro Ball",
+"ko": "자이로볼",
+"id": "gyroball"
+},
+{
+"slug": "healing-wish",
+"en": "Healing Wish",
+"ko": "치유소원",
+"id": "healingwish"
+},
+{
+"slug": "brine",
+"en": "Brine",
+"ko": "소금물",
+"id": "brine"
+},
+{
+"slug": "natural-gift",
+"en": "Natural Gift",
+"ko": "자연의은혜",
+"id": "naturalgift"
+},
+{
+"slug": "feint",
+"en": "Feint",
+"ko": "페인트",
+"id": "feint"
+},
+{
+"slug": "pluck",
+"en": "Pluck",
+"ko": "쪼아대기",
+"id": "pluck"
+},
+{
+"slug": "tailwind",
+"en": "Tailwind",
+"ko": "순풍",
+"id": "tailwind"
+},
+{
+"slug": "acupressure",
+"en": "Acupressure",
+"ko": "경혈찌르기",
+"id": "acupressure"
+},
+{
+"slug": "metal-burst",
+"en": "Metal Burst",
+"ko": "메탈버스트",
+"id": "metalburst"
+},
+{
+"slug": "u-turn",
+"en": "U-turn",
+"ko": "유턴",
+"id": "uturn"
+},
+{
+"slug": "close-combat",
+"en": "Close Combat",
+"ko": "인파이트",
+"id": "closecombat"
+},
+{
+"slug": "payback",
+"en": "Payback",
+"ko": "보복",
+"id": "payback"
+},
+{
+"slug": "assurance",
+"en": "Assurance",
+"ko": "승부굳히기",
+"id": "assurance"
+},
+{
+"slug": "embargo",
+"en": "Embargo",
+"ko": "금제",
+"id": "embargo"
+},
+{
+"slug": "fling",
+"en": "Fling",
+"ko": "내던지기",
+"id": "fling"
+},
+{
+"slug": "psycho-shift",
+"en": "Psycho Shift",
+"ko": "사이코시프트",
+"id": "psychoshift"
+},
+{
+"slug": "trump-card",
+"en": "Trump Card",
+"ko": "마지막수단",
+"id": "trumpcard"
+},
+{
+"slug": "heal-block",
+"en": "Heal Block",
+"ko": "회복봉인",
+"id": "healblock"
+},
+{
+"slug": "wring-out",
+"en": "Wring Out",
+"ko": "쥐어짜기",
+"id": "wringout"
+},
+{
+"slug": "power-trick",
+"en": "Power Trick",
+"ko": "파워트릭",
+"id": "powertrick"
+},
+{
+"slug": "gastro-acid",
+"en": "Gastro Acid",
+"ko": "위액",
+"id": "gastroacid"
+},
+{
+"slug": "lucky-chant",
+"en": "Lucky Chant",
+"ko": "주술",
+"id": "luckychant"
+},
+{
+"slug": "me-first",
+"en": "Me First",
+"ko": "선취",
+"id": "mefirst"
+},
+{
+"slug": "copycat",
+"en": "Copycat",
+"ko": "흉내쟁이",
+"id": "copycat"
+},
+{
+"slug": "power-swap",
+"en": "Power Swap",
+"ko": "파워스왑",
+"id": "powerswap"
+},
+{
+"slug": "guard-swap",
+"en": "Guard Swap",
+"ko": "가드스왑",
+"id": "guardswap"
+},
+{
+"slug": "punishment",
+"en": "Punishment",
+"ko": "혼내기",
+"id": "punishment"
+},
+{
+"slug": "last-resort",
+"en": "Last Resort",
+"ko": "비장의무기",
+"id": "lastresort"
+},
+{
+"slug": "worry-seed",
+"en": "Worry Seed",
+"ko": "고민씨",
+"id": "worryseed"
+},
+{
+"slug": "sucker-punch",
+"en": "Sucker Punch",
+"ko": "기습",
+"id": "suckerpunch"
+},
+{
+"slug": "toxic-spikes",
+"en": "Toxic Spikes",
+"ko": "독압정",
+"id": "toxicspikes"
+},
+{
+"slug": "heart-swap",
+"en": "Heart Swap",
+"ko": "하트스왑",
+"id": "heartswap"
+},
+{
+"slug": "aqua-ring",
+"en": "Aqua Ring",
+"ko": "아쿠아링",
+"id": "aquaring"
+},
+{
+"slug": "magnet-rise",
+"en": "Magnet Rise",
+"ko": "전자부유",
+"id": "magnetrise"
+},
+{
+"slug": "flare-blitz",
+"en": "Flare Blitz",
+"ko": "플레어드라이브",
+"id": "flareblitz"
+},
+{
+"slug": "force-palm",
+"en": "Force Palm",
+"ko": "발경",
+"id": "forcepalm"
+},
+{
+"slug": "aura-sphere",
+"en": "Aura Sphere",
+"ko": "파동탄",
+"id": "aurasphere"
+},
+{
+"slug": "rock-polish",
+"en": "Rock Polish",
+"ko": "록커트",
+"id": "rockpolish"
+},
+{
+"slug": "poison-jab",
+"en": "Poison Jab",
+"ko": "독찌르기",
+"id": "poisonjab"
+},
+{
+"slug": "dark-pulse",
+"en": "Dark Pulse",
+"ko": "악의파동",
+"id": "darkpulse"
+},
+{
+"slug": "night-slash",
+"en": "Night Slash",
+"ko": "깜짝베기",
+"id": "nightslash"
+},
+{
+"slug": "aqua-tail",
+"en": "Aqua Tail",
+"ko": "아쿠아테일",
+"id": "aquatail"
+},
+{
+"slug": "seed-bomb",
+"en": "Seed Bomb",
+"ko": "씨폭탄",
+"id": "seedbomb"
+},
+{
+"slug": "air-slash",
+"en": "Air Slash",
+"ko": "에어슬래시",
+"id": "airslash"
+},
+{
+"slug": "x-scissor",
+"en": "X-Scissor",
+"ko": "시저크로스",
+"id": "xscissor"
+},
+{
+"slug": "bug-buzz",
+"en": "Bug Buzz",
+"ko": "벌레의야단법석",
+"id": "bugbuzz"
+},
+{
+"slug": "dragon-pulse",
+"en": "Dragon Pulse",
+"ko": "용의파동",
+"id": "dragonpulse"
+},
+{
+"slug": "dragon-rush",
+"en": "Dragon Rush",
+"ko": "드래곤다이브",
+"id": "dragonrush"
+},
+{
+"slug": "power-gem",
+"en": "Power Gem",
+"ko": "파워젬",
+"id": "powergem"
+},
+{
+"slug": "drain-punch",
+"en": "Drain Punch",
+"ko": "드레인펀치",
+"id": "drainpunch"
+},
+{
+"slug": "vacuum-wave",
+"en": "Vacuum Wave",
+"ko": "진공파",
+"id": "vacuumwave"
+},
+{
+"slug": "focus-blast",
+"en": "Focus Blast",
+"ko": "기합구슬",
+"id": "focusblast"
+},
+{
+"slug": "energy-ball",
+"en": "Energy Ball",
+"ko": "에너지볼",
+"id": "energyball"
+},
+{
+"slug": "brave-bird",
+"en": "Brave Bird",
+"ko": "브레이브버드",
+"id": "bravebird"
+},
+{
+"slug": "earth-power",
+"en": "Earth Power",
+"ko": "대지의힘",
+"id": "earthpower"
+},
+{
+"slug": "switcheroo",
+"en": "Switcheroo",
+"ko": "바꿔치기",
+"id": "switcheroo"
+},
+{
+"slug": "giga-impact",
+"en": "Giga Impact",
+"ko": "기가임팩트",
+"id": "gigaimpact"
+},
+{
+"slug": "nasty-plot",
+"en": "Nasty Plot",
+"ko": "나쁜음모",
+"id": "nastyplot"
+},
+{
+"slug": "bullet-punch",
+"en": "Bullet Punch",
+"ko": "불릿펀치",
+"id": "bulletpunch"
+},
+{
+"slug": "avalanche",
+"en": "Avalanche",
+"ko": "눈사태",
+"id": "avalanche"
+},
+{
+"slug": "ice-shard",
+"en": "Ice Shard",
+"ko": "얼음뭉치",
+"id": "iceshard"
+},
+{
+"slug": "shadow-claw",
+"en": "Shadow Claw",
+"ko": "섀도클로",
+"id": "shadowclaw"
+},
+{
+"slug": "thunder-fang",
+"en": "Thunder Fang",
+"ko": "번개엄니",
+"id": "thunderfang"
+},
+{
+"slug": "ice-fang",
+"en": "Ice Fang",
+"ko": "얼음엄니",
+"id": "icefang"
+},
+{
+"slug": "fire-fang",
+"en": "Fire Fang",
+"ko": "불꽃엄니",
+"id": "firefang"
+},
+{
+"slug": "shadow-sneak",
+"en": "Shadow Sneak",
+"ko": "야습",
+"id": "shadowsneak"
+},
+{
+"slug": "mud-bomb",
+"en": "Mud Bomb",
+"ko": "진흙폭탄",
+"id": "mudbomb"
+},
+{
+"slug": "psycho-cut",
+"en": "Psycho Cut",
+"ko": "사이코커터",
+"id": "psychocut"
+},
+{
+"slug": "zen-headbutt",
+"en": "Zen Headbutt",
+"ko": "사념의박치기",
+"id": "zenheadbutt"
+},
+{
+"slug": "mirror-shot",
+"en": "Mirror Shot",
+"ko": "미러샷",
+"id": "mirrorshot"
+},
+{
+"slug": "flash-cannon",
+"en": "Flash Cannon",
+"ko": "러스터캐논",
+"id": "flashcannon"
+},
+{
+"slug": "rock-climb",
+"en": "Rock Climb",
+"ko": "록클라임",
+"id": "rockclimb"
+},
+{
+"slug": "defog",
+"en": "Defog",
+"ko": "안개제거",
+"id": "defog"
+},
+{
+"slug": "trick-room",
+"en": "Trick Room",
+"ko": "트릭룸",
+"id": "trickroom"
+},
+{
+"slug": "draco-meteor",
+"en": "Draco Meteor",
+"ko": "용성군",
+"id": "dracometeor"
+},
+{
+"slug": "discharge",
+"en": "Discharge",
+"ko": "방전",
+"id": "discharge"
+},
+{
+"slug": "lava-plume",
+"en": "Lava Plume",
+"ko": "분연",
+"id": "lavaplume"
+},
+{
+"slug": "leaf-storm",
+"en": "Leaf Storm",
+"ko": "리프스톰",
+"id": "leafstorm"
+},
+{
+"slug": "power-whip",
+"en": "Power Whip",
+"ko": "파워휩",
+"id": "powerwhip"
+},
+{
+"slug": "rock-wrecker",
+"en": "Rock Wrecker",
+"ko": "암석포",
+"id": "rockwrecker"
+},
+{
+"slug": "cross-poison",
+"en": "Cross Poison",
+"ko": "크로스포이즌",
+"id": "crosspoison"
+},
+{
+"slug": "gunk-shot",
+"en": "Gunk Shot",
+"ko": "더스트슈트",
+"id": "gunkshot"
+},
+{
+"slug": "iron-head",
+"en": "Iron Head",
+"ko": "아이언헤드",
+"id": "ironhead"
+},
+{
+"slug": "magnet-bomb",
+"en": "Magnet Bomb",
+"ko": "마그넷봄",
+"id": "magnetbomb"
+},
+{
+"slug": "stone-edge",
+"en": "Stone Edge",
+"ko": "스톤에지",
+"id": "stoneedge"
+},
+{
+"slug": "captivate",
+"en": "Captivate",
+"ko": "유혹",
+"id": "captivate"
+},
+{
+"slug": "stealth-rock",
+"en": "Stealth Rock",
+"ko": "스텔스록",
+"id": "stealthrock"
+},
+{
+"slug": "grass-knot",
+"en": "Grass Knot",
+"ko": "풀묶기",
+"id": "grassknot"
+},
+{
+"slug": "chatter",
+"en": "Chatter",
+"ko": "수다",
+"id": "chatter"
+},
+{
+"slug": "judgment",
+"en": "Judgment",
+"ko": "심판의뭉치",
+"id": "judgment"
+},
+{
+"slug": "bug-bite",
+"en": "Bug Bite",
+"ko": "벌레먹기",
+"id": "bugbite"
+},
+{
+"slug": "charge-beam",
+"en": "Charge Beam",
+"ko": "차지빔",
+"id": "chargebeam"
+},
+{
+"slug": "wood-hammer",
+"en": "Wood Hammer",
+"ko": "우드해머",
+"id": "woodhammer"
+},
+{
+"slug": "aqua-jet",
+"en": "Aqua Jet",
+"ko": "아쿠아제트",
+"id": "aquajet"
+},
+{
+"slug": "attack-order",
+"en": "Attack Order",
+"ko": "공격지령",
+"id": "attackorder"
+},
+{
+"slug": "defend-order",
+"en": "Defend Order",
+"ko": "방어지령",
+"id": "defendorder"
+},
+{
+"slug": "heal-order",
+"en": "Heal Order",
+"ko": "회복지령",
+"id": "healorder"
+},
+{
+"slug": "head-smash",
+"en": "Head Smash",
+"ko": "양날박치기",
+"id": "headsmash"
+},
+{
+"slug": "double-hit",
+"en": "Double Hit",
+"ko": "더블어택",
+"id": "doublehit"
+},
+{
+"slug": "roar-of-time",
+"en": "Roar of Time",
+"ko": "시간의포효",
+"id": "roaroftime"
+},
+{
+"slug": "spacial-rend",
+"en": "Spacial Rend",
+"ko": "공간절단",
+"id": "spacialrend"
+},
+{
+"slug": "lunar-dance",
+"en": "Lunar Dance",
+"ko": "초승달춤",
+"id": "lunardance"
+},
+{
+"slug": "crush-grip",
+"en": "Crush Grip",
+"ko": "묵사발",
+"id": "crushgrip"
+},
+{
+"slug": "magma-storm",
+"en": "Magma Storm",
+"ko": "마그마스톰",
+"id": "magmastorm"
+},
+{
+"slug": "dark-void",
+"en": "Dark Void",
+"ko": "다크홀",
+"id": "darkvoid"
+},
+{
+"slug": "seed-flare",
+"en": "Seed Flare",
+"ko": "시드플레어",
+"id": "seedflare"
+},
+{
+"slug": "ominous-wind",
+"en": "Ominous Wind",
+"ko": "괴상한바람",
+"id": "ominouswind"
+},
+{
+"slug": "shadow-force",
+"en": "Shadow Force",
+"ko": "섀도다이브",
+"id": "shadowforce"
+},
+{
+"slug": "hone-claws",
+"en": "Hone Claws",
+"ko": "손톱갈기",
+"id": "honeclaws"
+},
+{
+"slug": "wide-guard",
+"en": "Wide Guard",
+"ko": "와이드가드",
+"id": "wideguard"
+},
+{
+"slug": "guard-split",
+"en": "Guard Split",
+"ko": "가드셰어",
+"id": "guardsplit"
+},
+{
+"slug": "power-split",
+"en": "Power Split",
+"ko": "파워셰어",
+"id": "powersplit"
+},
+{
+"slug": "wonder-room",
+"en": "Wonder Room",
+"ko": "원더룸",
+"id": "wonderroom"
+},
+{
+"slug": "psyshock",
+"en": "Psyshock",
+"ko": "사이코쇼크",
+"id": "psyshock"
+},
+{
+"slug": "venoshock",
+"en": "Venoshock",
+"ko": "베놈쇼크",
+"id": "venoshock"
+},
+{
+"slug": "autotomize",
+"en": "Autotomize",
+"ko": "바디퍼지",
+"id": "autotomize"
+},
+{
+"slug": "rage-powder",
+"en": "Rage Powder",
+"ko": "분노가루",
+"id": "ragepowder"
+},
+{
+"slug": "telekinesis",
+"en": "Telekinesis",
+"ko": "텔레키네시스",
+"id": "telekinesis"
+},
+{
+"slug": "magic-room",
+"en": "Magic Room",
+"ko": "매직룸",
+"id": "magicroom"
+},
+{
+"slug": "smack-down",
+"en": "Smack Down",
+"ko": "떨어뜨리기",
+"id": "smackdown"
+},
+{
+"slug": "storm-throw",
+"en": "Storm Throw",
+"ko": "업어후리기",
+"id": "stormthrow"
+},
+{
+"slug": "flame-burst",
+"en": "Flame Burst",
+"ko": "불꽃튀기기",
+"id": "flameburst"
+},
+{
+"slug": "sludge-wave",
+"en": "Sludge Wave",
+"ko": "오물웨이브",
+"id": "sludgewave"
+},
+{
+"slug": "quiver-dance",
+"en": "Quiver Dance",
+"ko": "나비춤",
+"id": "quiverdance"
+},
+{
+"slug": "heavy-slam",
+"en": "Heavy Slam",
+"ko": "헤비봄버",
+"id": "heavyslam"
+},
+{
+"slug": "synchronoise",
+"en": "Synchronoise",
+"ko": "싱크로노이즈",
+"id": "synchronoise"
+},
+{
+"slug": "electro-ball",
+"en": "Electro Ball",
+"ko": "일렉트릭볼",
+"id": "electroball"
+},
+{
+"slug": "soak",
+"en": "Soak",
+"ko": "물붓기",
+"id": "soak"
+},
+{
+"slug": "flame-charge",
+"en": "Flame Charge",
+"ko": "니트로차지",
+"id": "flamecharge"
+},
+{
+"slug": "coil",
+"en": "Coil",
+"ko": "똬리틀기",
+"id": "coil"
+},
+{
+"slug": "low-sweep",
+"en": "Low Sweep",
+"ko": "로킥",
+"id": "lowsweep"
+},
+{
+"slug": "acid-spray",
+"en": "Acid Spray",
+"ko": "애시드봄",
+"id": "acidspray"
+},
+{
+"slug": "foul-play",
+"en": "Foul Play",
+"ko": "속임수",
+"id": "foulplay"
+},
+{
+"slug": "simple-beam",
+"en": "Simple Beam",
+"ko": "심플빔",
+"id": "simplebeam"
+},
+{
+"slug": "entrainment",
+"en": "Entrainment",
+"ko": "동료만들기",
+"id": "entrainment"
+},
+{
+"slug": "after-you",
+"en": "After You",
+"ko": "당신먼저",
+"id": "afteryou"
+},
+{
+"slug": "round",
+"en": "Round",
+"ko": "돌림노래",
+"id": "round"
+},
+{
+"slug": "echoed-voice",
+"en": "Echoed Voice",
+"ko": "에코보이스",
+"id": "echoedvoice"
+},
+{
+"slug": "chip-away",
+"en": "Chip Away",
+"ko": "야금야금",
+"id": "chipaway"
+},
+{
+"slug": "clear-smog",
+"en": "Clear Smog",
+"ko": "클리어스모그",
+"id": "clearsmog"
+},
+{
+"slug": "stored-power",
+"en": "Stored Power",
+"ko": "어시스트파워",
+"id": "storedpower"
+},
+{
+"slug": "quick-guard",
+"en": "Quick Guard",
+"ko": "패스트가드",
+"id": "quickguard"
+},
+{
+"slug": "ally-switch",
+"en": "Ally Switch",
+"ko": "사이드체인지",
+"id": "allyswitch"
+},
+{
+"slug": "scald",
+"en": "Scald",
+"ko": "열탕",
+"id": "scald"
+},
+{
+"slug": "shell-smash",
+"en": "Shell Smash",
+"ko": "껍질깨기",
+"id": "shellsmash"
+},
+{
+"slug": "heal-pulse",
+"en": "Heal Pulse",
+"ko": "치유파동",
+"id": "healpulse"
+},
+{
+"slug": "hex",
+"en": "Hex",
+"ko": "병상첨병",
+"id": "hex"
+},
+{
+"slug": "sky-drop",
+"en": "Sky Drop",
+"ko": "프리폴",
+"id": "skydrop"
+},
+{
+"slug": "shift-gear",
+"en": "Shift Gear",
+"ko": "기어체인지",
+"id": "shiftgear"
+},
+{
+"slug": "circle-throw",
+"en": "Circle Throw",
+"ko": "배대뒤치기",
+"id": "circlethrow"
+},
+{
+"slug": "incinerate",
+"en": "Incinerate",
+"ko": "불태우기",
+"id": "incinerate"
+},
+{
+"slug": "quash",
+"en": "Quash",
+"ko": "순서미루기",
+"id": "quash"
+},
+{
+"slug": "acrobatics",
+"en": "Acrobatics",
+"ko": "애크러뱃",
+"id": "acrobatics"
+},
+{
+"slug": "reflect-type",
+"en": "Reflect Type",
+"ko": "미러타입",
+"id": "reflecttype"
+},
+{
+"slug": "retaliate",
+"en": "Retaliate",
+"ko": "원수갚기",
+"id": "retaliate"
+},
+{
+"slug": "final-gambit",
+"en": "Final Gambit",
+"ko": "목숨걸기",
+"id": "finalgambit"
+},
+{
+"slug": "bestow",
+"en": "Bestow",
+"ko": "기프트패스",
+"id": "bestow"
+},
+{
+"slug": "inferno",
+"en": "Inferno",
+"ko": "연옥",
+"id": "inferno"
+},
+{
+"slug": "water-pledge",
+"en": "Water Pledge",
+"ko": "물의맹세",
+"id": "waterpledge"
+},
+{
+"slug": "fire-pledge",
+"en": "Fire Pledge",
+"ko": "불꽃의맹세",
+"id": "firepledge"
+},
+{
+"slug": "grass-pledge",
+"en": "Grass Pledge",
+"ko": "풀의맹세",
+"id": "grasspledge"
+},
+{
+"slug": "volt-switch",
+"en": "Volt Switch",
+"ko": "볼트체인지",
+"id": "voltswitch"
+},
+{
+"slug": "struggle-bug",
+"en": "Struggle Bug",
+"ko": "벌레의저항",
+"id": "strugglebug"
+},
+{
+"slug": "bulldoze",
+"en": "Bulldoze",
+"ko": "땅고르기",
+"id": "bulldoze"
+},
+{
+"slug": "frost-breath",
+"en": "Frost Breath",
+"ko": "얼음숨결",
+"id": "frostbreath"
+},
+{
+"slug": "dragon-tail",
+"en": "Dragon Tail",
+"ko": "드래곤테일",
+"id": "dragontail"
+},
+{
+"slug": "work-up",
+"en": "Work Up",
+"ko": "분발",
+"id": "workup"
+},
+{
+"slug": "electroweb",
+"en": "Electroweb",
+"ko": "일렉트릭네트",
+"id": "electroweb"
+},
+{
+"slug": "wild-charge",
+"en": "Wild Charge",
+"ko": "와일드볼트",
+"id": "wildcharge"
+},
+{
+"slug": "drill-run",
+"en": "Drill Run",
+"ko": "드릴라이너",
+"id": "drillrun"
+},
+{
+"slug": "dual-chop",
+"en": "Dual Chop",
+"ko": "더블촙",
+"id": "dualchop"
+},
+{
+"slug": "heart-stamp",
+"en": "Heart Stamp",
+"ko": "하트스탬프",
+"id": "heartstamp"
+},
+{
+"slug": "horn-leech",
+"en": "Horn Leech",
+"ko": "우드혼",
+"id": "hornleech"
+},
+{
+"slug": "sacred-sword",
+"en": "Sacred Sword",
+"ko": "성스러운칼",
+"id": "sacredsword"
+},
+{
+"slug": "razor-shell",
+"en": "Razor Shell",
+"ko": "셸블레이드",
+"id": "razorshell"
+},
+{
+"slug": "heat-crash",
+"en": "Heat Crash",
+"ko": "히트스탬프",
+"id": "heatcrash"
+},
+{
+"slug": "leaf-tornado",
+"en": "Leaf Tornado",
+"ko": "그래스믹서",
+"id": "leaftornado"
+},
+{
+"slug": "steamroller",
+"en": "Steamroller",
+"ko": "하드롤러",
+"id": "steamroller"
+},
+{
+"slug": "cotton-guard",
+"en": "Cotton Guard",
+"ko": "코튼가드",
+"id": "cottonguard"
+},
+{
+"slug": "night-daze",
+"en": "Night Daze",
+"ko": "나이트버스트",
+"id": "nightdaze"
+},
+{
+"slug": "psystrike",
+"en": "Psystrike",
+"ko": "사이코브레이크",
+"id": "psystrike"
+},
+{
+"slug": "tail-slap",
+"en": "Tail Slap",
+"ko": "스위프뺨치기",
+"id": "tailslap"
+},
+{
+"slug": "hurricane",
+"en": "Hurricane",
+"ko": "폭풍",
+"id": "hurricane"
+},
+{
+"slug": "head-charge",
+"en": "Head Charge",
+"ko": "아프로브레이크",
+"id": "headcharge"
+},
+{
+"slug": "gear-grind",
+"en": "Gear Grind",
+"ko": "기어소서",
+"id": "geargrind"
+},
+{
+"slug": "searing-shot",
+"en": "Searing Shot",
+"ko": "화염탄",
+"id": "searingshot"
+},
+{
+"slug": "techno-blast",
+"en": "Techno Blast",
+"ko": "테크노버스터",
+"id": "technoblast"
+},
+{
+"slug": "relic-song",
+"en": "Relic Song",
+"ko": "옛노래",
+"id": "relicsong"
+},
+{
+"slug": "secret-sword",
+"en": "Secret Sword",
+"ko": "신비의칼",
+"id": "secretsword"
+},
+{
+"slug": "glaciate",
+"en": "Glaciate",
+"ko": "얼어붙은세계",
+"id": "glaciate"
+},
+{
+"slug": "bolt-strike",
+"en": "Bolt Strike",
+"ko": "뇌격",
+"id": "boltstrike"
+},
+{
+"slug": "blue-flare",
+"en": "Blue Flare",
+"ko": "푸른불꽃",
+"id": "blueflare"
+},
+{
+"slug": "fiery-dance",
+"en": "Fiery Dance",
+"ko": "불꽃춤",
+"id": "fierydance"
+},
+{
+"slug": "freeze-shock",
+"en": "Freeze Shock",
+"ko": "프리즈볼트",
+"id": "freezeshock"
+},
+{
+"slug": "ice-burn",
+"en": "Ice Burn",
+"ko": "콜드플레어",
+"id": "iceburn"
+},
+{
+"slug": "snarl",
+"en": "Snarl",
+"ko": "바크아웃",
+"id": "snarl"
+},
+{
+"slug": "icicle-crash",
+"en": "Icicle Crash",
+"ko": "고드름떨구기",
+"id": "iciclecrash"
+},
+{
+"slug": "v-create",
+"en": "V-create",
+"ko": "V제너레이트",
+"id": "vcreate"
+},
+{
+"slug": "fusion-flare",
+"en": "Fusion Flare",
+"ko": "크로스플레임",
+"id": "fusionflare"
+},
+{
+"slug": "fusion-bolt",
+"en": "Fusion Bolt",
+"ko": "크로스썬더",
+"id": "fusionbolt"
+},
+{
+"slug": "flying-press",
+"en": "Flying Press",
+"ko": "플라잉프레스",
+"id": "flyingpress"
+},
+{
+"slug": "mat-block",
+"en": "Mat Block",
+"ko": "마룻바닥세워막기",
+"id": "matblock"
+},
+{
+"slug": "belch",
+"en": "Belch",
+"ko": "트림",
+"id": "belch"
+},
+{
+"slug": "rototiller",
+"en": "Rototiller",
+"ko": "일구기",
+"id": "rototiller"
+},
+{
+"slug": "sticky-web",
+"en": "Sticky Web",
+"ko": "끈적끈적네트",
+"id": "stickyweb"
+},
+{
+"slug": "fell-stinger",
+"en": "Fell Stinger",
+"ko": "마지막일침",
+"id": "fellstinger"
+},
+{
+"slug": "phantom-force",
+"en": "Phantom Force",
+"ko": "고스트다이브",
+"id": "phantomforce"
+},
+{
+"slug": "trick-or-treat",
+"en": "Trick-or-Treat",
+"ko": "핼러윈",
+"id": "trickortreat"
+},
+{
+"slug": "noble-roar",
+"en": "Noble Roar",
+"ko": "부르짖기",
+"id": "nobleroar"
+},
+{
+"slug": "ion-deluge",
+"en": "Ion Deluge",
+"ko": "플라스마샤워",
+"id": "iondeluge"
+},
+{
+"slug": "parabolic-charge",
+"en": "Parabolic Charge",
+"ko": "파라볼라차지",
+"id": "paraboliccharge"
+},
+{
+"slug": "forests-curse",
+"en": "Forest’s Curse",
+"ko": "숲의저주",
+"id": "forestscurse"
+},
+{
+"slug": "petal-blizzard",
+"en": "Petal Blizzard",
+"ko": "꽃보라",
+"id": "petalblizzard"
+},
+{
+"slug": "freeze-dry",
+"en": "Freeze-Dry",
+"ko": "프리즈드라이",
+"id": "freezedry"
+},
+{
+"slug": "disarming-voice",
+"en": "Disarming Voice",
+"ko": "차밍보이스",
+"id": "disarmingvoice"
+},
+{
+"slug": "parting-shot",
+"en": "Parting Shot",
+"ko": "막말내뱉기",
+"id": "partingshot"
+},
+{
+"slug": "topsy-turvy",
+"en": "Topsy-Turvy",
+"ko": "뒤집어엎기",
+"id": "topsyturvy"
+},
+{
+"slug": "draining-kiss",
+"en": "Draining Kiss",
+"ko": "드레인키스",
+"id": "drainingkiss"
+},
+{
+"slug": "crafty-shield",
+"en": "Crafty Shield",
+"ko": "트릭가드",
+"id": "craftyshield"
+},
+{
+"slug": "flower-shield",
+"en": "Flower Shield",
+"ko": "플라워가드",
+"id": "flowershield"
+},
+{
+"slug": "grassy-terrain",
+"en": "Grassy Terrain",
+"ko": "그래스필드",
+"id": "grassyterrain"
+},
+{
+"slug": "misty-terrain",
+"en": "Misty Terrain",
+"ko": "미스트필드",
+"id": "mistyterrain"
+},
+{
+"slug": "electrify",
+"en": "Electrify",
+"ko": "송전",
+"id": "electrify"
+},
+{
+"slug": "play-rough",
+"en": "Play Rough",
+"ko": "치근거리기",
+"id": "playrough"
+},
+{
+"slug": "fairy-wind",
+"en": "Fairy Wind",
+"ko": "요정의바람",
+"id": "fairywind"
+},
+{
+"slug": "moonblast",
+"en": "Moonblast",
+"ko": "문포스",
+"id": "moonblast"
+},
+{
+"slug": "boomburst",
+"en": "Boomburst",
+"ko": "폭음파",
+"id": "boomburst"
+},
+{
+"slug": "fairy-lock",
+"en": "Fairy Lock",
+"ko": "페어리록",
+"id": "fairylock"
+},
+{
+"slug": "kings-shield",
+"en": "King’s Shield",
+"ko": "킹실드",
+"id": "kingsshield"
+},
+{
+"slug": "play-nice",
+"en": "Play Nice",
+"ko": "친해지기",
+"id": "playnice"
+},
+{
+"slug": "confide",
+"en": "Confide",
+"ko": "비밀이야기",
+"id": "confide"
+},
+{
+"slug": "diamond-storm",
+"en": "Diamond Storm",
+"ko": "다이아스톰",
+"id": "diamondstorm"
+},
+{
+"slug": "steam-eruption",
+"en": "Steam Eruption",
+"ko": "스팀버스트",
+"id": "steameruption"
+},
+{
+"slug": "hyperspace-hole",
+"en": "Hyperspace Hole",
+"ko": "이차원홀",
+"id": "hyperspacehole"
+},
+{
+"slug": "water-shuriken",
+"en": "Water Shuriken",
+"ko": "물수리검",
+"id": "watershuriken"
+},
+{
+"slug": "mystical-fire",
+"en": "Mystical Fire",
+"ko": "매지컬플레임",
+"id": "mysticalfire"
+},
+{
+"slug": "spiky-shield",
+"en": "Spiky Shield",
+"ko": "니들가드",
+"id": "spikyshield"
+},
+{
+"slug": "aromatic-mist",
+"en": "Aromatic Mist",
+"ko": "아로마미스트",
+"id": "aromaticmist"
+},
+{
+"slug": "eerie-impulse",
+"en": "Eerie Impulse",
+"ko": "괴전파",
+"id": "eerieimpulse"
+},
+{
+"slug": "venom-drench",
+"en": "Venom Drench",
+"ko": "베놈트랩",
+"id": "venomdrench"
+},
+{
+"slug": "powder",
+"en": "Powder",
+"ko": "분진",
+"id": "powder"
+},
+{
+"slug": "geomancy",
+"en": "Geomancy",
+"ko": "지오컨트롤",
+"id": "geomancy"
+},
+{
+"slug": "magnetic-flux",
+"en": "Magnetic Flux",
+"ko": "자기장조작",
+"id": "magneticflux"
+},
+{
+"slug": "happy-hour",
+"en": "Happy Hour",
+"ko": "해피타임",
+"id": "happyhour"
+},
+{
+"slug": "electric-terrain",
+"en": "Electric Terrain",
+"ko": "일렉트릭필드",
+"id": "electricterrain"
+},
+{
+"slug": "dazzling-gleam",
+"en": "Dazzling Gleam",
+"ko": "매지컬샤인",
+"id": "dazzlinggleam"
+},
+{
+"slug": "celebrate",
+"en": "Celebrate",
+"ko": "축하",
+"id": "celebrate"
+},
+{
+"slug": "hold-hands",
+"en": "Hold Hands",
+"ko": "손에손잡기",
+"id": "holdhands"
+},
+{
+"slug": "baby-doll-eyes",
+"en": "Baby-Doll Eyes",
+"ko": "초롱초롱눈동자",
+"id": "babydolleyes"
+},
+{
+"slug": "nuzzle",
+"en": "Nuzzle",
+"ko": "볼부비부비",
+"id": "nuzzle"
+},
+{
+"slug": "hold-back",
+"en": "Hold Back",
+"ko": "적당히손봐주기",
+"id": "holdback"
+},
+{
+"slug": "infestation",
+"en": "Infestation",
+"ko": "엉겨붙기",
+"id": "infestation"
+},
+{
+"slug": "power-up-punch",
+"en": "Power-Up Punch",
+"ko": "그로우펀치",
+"id": "poweruppunch"
+},
+{
+"slug": "oblivion-wing",
+"en": "Oblivion Wing",
+"ko": "데스윙",
+"id": "oblivionwing"
+},
+{
+"slug": "thousand-arrows",
+"en": "Thousand Arrows",
+"ko": "사우전드애로",
+"id": "thousandarrows"
+},
+{
+"slug": "thousand-waves",
+"en": "Thousand Waves",
+"ko": "사우전드웨이브",
+"id": "thousandwaves"
+},
+{
+"slug": "lands-wrath",
+"en": "Land’s Wrath",
+"ko": "그라운드포스",
+"id": "landswrath"
+},
+{
+"slug": "light-of-ruin",
+"en": "Light of Ruin",
+"ko": "파멸의빛",
+"id": "lightofruin"
+},
+{
+"slug": "origin-pulse",
+"en": "Origin Pulse",
+"ko": "근원의파동",
+"id": "originpulse"
+},
+{
+"slug": "precipice-blades",
+"en": "Precipice Blades",
+"ko": "단애의칼",
+"id": "precipiceblades"
+},
+{
+"slug": "dragon-ascent",
+"en": "Dragon Ascent",
+"ko": "화룡점정",
+"id": "dragonascent"
+},
+{
+"slug": "hyperspace-fury",
+"en": "Hyperspace Fury",
+"ko": "이차원러시",
+"id": "hyperspacefury"
+},
+{
+"slug": "breakneck-blitz--physical",
+"en": "Breakneck Blitz",
+"ko": "울트라대시어택",
+"id": "breakneckblitz"
+},
+{
+"slug": "breakneck-blitz--special",
+"en": "Breakneck Blitz",
+"ko": "울트라대시어택",
+"id": "breakneckblitz"
+},
+{
+"slug": "all-out-pummeling--physical",
+"en": "All-Out Pummeling",
+"ko": "전력무쌍격렬권",
+"id": "alloutpummeling"
+},
+{
+"slug": "all-out-pummeling--special",
+"en": "All-Out Pummeling",
+"ko": "전력무쌍격렬권",
+"id": "alloutpummeling"
+},
+{
+"slug": "supersonic-skystrike--physical",
+"en": "Supersonic Skystrike",
+"ko": "파이널다이브클래시",
+"id": "supersonicskystrike"
+},
+{
+"slug": "supersonic-skystrike--special",
+"en": "Supersonic Skystrike",
+"ko": "파이널다이브클래시",
+"id": "supersonicskystrike"
+},
+{
+"slug": "acid-downpour--physical",
+"en": "Acid Downpour",
+"ko": "애시드포이즌딜리트",
+"id": "aciddownpour"
+},
+{
+"slug": "acid-downpour--special",
+"en": "Acid Downpour",
+"ko": "애시드포이즌딜리트",
+"id": "aciddownpour"
+},
+{
+"slug": "tectonic-rage--physical",
+"en": "Tectonic Rage",
+"ko": "라이징랜드오버",
+"id": "tectonicrage"
+},
+{
+"slug": "tectonic-rage--special",
+"en": "Tectonic Rage",
+"ko": "라이징랜드오버",
+"id": "tectonicrage"
+},
+{
+"slug": "continental-crush--physical",
+"en": "Continental Crush",
+"ko": "월즈엔드폴",
+"id": "continentalcrush"
+},
+{
+"slug": "continental-crush--special",
+"en": "Continental Crush",
+"ko": "월즈엔드폴",
+"id": "continentalcrush"
+},
+{
+"slug": "savage-spin-out--physical",
+"en": "Savage Spin-Out",
+"ko": "절대포식회전참",
+"id": "savagespinout"
+},
+{
+"slug": "savage-spin-out--special",
+"en": "Savage Spin-Out",
+"ko": "절대포식회전참",
+"id": "savagespinout"
+},
+{
+"slug": "never-ending-nightmare--physical",
+"en": "Never-Ending Nightmare",
+"ko": "무한암야로의유인",
+"id": "neverendingnightmare"
+},
+{
+"slug": "never-ending-nightmare--special",
+"en": "Never-Ending Nightmare",
+"ko": "무한암야로의유인",
+"id": "neverendingnightmare"
+},
+{
+"slug": "corkscrew-crash--physical",
+"en": "Corkscrew Crash",
+"ko": "초월나선연격",
+"id": "corkscrewcrash"
+},
+{
+"slug": "corkscrew-crash--special",
+"en": "Corkscrew Crash",
+"ko": "초월나선연격",
+"id": "corkscrewcrash"
+},
+{
+"slug": "inferno-overdrive--physical",
+"en": "Inferno Overdrive",
+"ko": "다이내믹풀플레임",
+"id": "infernooverdrive"
+},
+{
+"slug": "inferno-overdrive--special",
+"en": "Inferno Overdrive",
+"ko": "다이내믹풀플레임",
+"id": "infernooverdrive"
+},
+{
+"slug": "hydro-vortex--physical",
+"en": "Hydro Vortex",
+"ko": "슈퍼아쿠아토네이도",
+"id": "hydrovortex"
+},
+{
+"slug": "hydro-vortex--special",
+"en": "Hydro Vortex",
+"ko": "슈퍼아쿠아토네이도",
+"id": "hydrovortex"
+},
+{
+"slug": "bloom-doom--physical",
+"en": "Bloom Doom",
+"ko": "블룸샤인엑스트라",
+"id": "bloomdoom"
+},
+{
+"slug": "bloom-doom--special",
+"en": "Bloom Doom",
+"ko": "블룸샤인엑스트라",
+"id": "bloomdoom"
+},
+{
+"slug": "gigavolt-havoc--physical",
+"en": "Gigavolt Havoc",
+"ko": "스파킹기가볼트",
+"id": "gigavolthavoc"
+},
+{
+"slug": "gigavolt-havoc--special",
+"en": "Gigavolt Havoc",
+"ko": "스파킹기가볼트",
+"id": "gigavolthavoc"
+},
+{
+"slug": "shattered-psyche--physical",
+"en": "Shattered Psyche",
+"ko": "맥시멈사이브레이커",
+"id": "shatteredpsyche"
+},
+{
+"slug": "shattered-psyche--special",
+"en": "Shattered Psyche",
+"ko": "맥시멈사이브레이커",
+"id": "shatteredpsyche"
+},
+{
+"slug": "subzero-slammer--physical",
+"en": "Subzero Slammer",
+"ko": "레이징지오프리즈",
+"id": "subzeroslammer"
+},
+{
+"slug": "subzero-slammer--special",
+"en": "Subzero Slammer",
+"ko": "레이징지오프리즈",
+"id": "subzeroslammer"
+},
+{
+"slug": "devastating-drake--physical",
+"en": "Devastating Drake",
+"ko": "얼티메이트드래곤번",
+"id": "devastatingdrake"
+},
+{
+"slug": "devastating-drake--special",
+"en": "Devastating Drake",
+"ko": "얼티메이트드래곤번",
+"id": "devastatingdrake"
+},
+{
+"slug": "black-hole-eclipse--physical",
+"en": "Black Hole Eclipse",
+"ko": "블랙홀이클립스",
+"id": "blackholeeclipse"
+},
+{
+"slug": "black-hole-eclipse--special",
+"en": "Black Hole Eclipse",
+"ko": "블랙홀이클립스",
+"id": "blackholeeclipse"
+},
+{
+"slug": "twinkle-tackle--physical",
+"en": "Twinkle Tackle",
+"ko": "러블리스타임팩트",
+"id": "twinkletackle"
+},
+{
+"slug": "twinkle-tackle--special",
+"en": "Twinkle Tackle",
+"ko": "러블리스타임팩트",
+"id": "twinkletackle"
+},
+{
+"slug": "catastropika",
+"en": "Catastropika",
+"ko": "필살피카슛",
+"id": "catastropika"
+},
+{
+"slug": "shore-up",
+"en": "Shore Up",
+"ko": "모래모으기",
+"id": "shoreup"
+},
+{
+"slug": "first-impression",
+"en": "First Impression",
+"ko": "만나자마자",
+"id": "firstimpression"
+},
+{
+"slug": "baneful-bunker",
+"en": "Baneful Bunker",
+"ko": "토치카",
+"id": "banefulbunker"
+},
+{
+"slug": "spirit-shackle",
+"en": "Spirit Shackle",
+"ko": "그림자꿰매기",
+"id": "spiritshackle"
+},
+{
+"slug": "darkest-lariat",
+"en": "Darkest Lariat",
+"ko": "DD래리어트",
+"id": "darkestlariat"
+},
+{
+"slug": "sparkling-aria",
+"en": "Sparkling Aria",
+"ko": "물거품아리아",
+"id": "sparklingaria"
+},
+{
+"slug": "ice-hammer",
+"en": "Ice Hammer",
+"ko": "아이스해머",
+"id": "icehammer"
+},
+{
+"slug": "floral-healing",
+"en": "Floral Healing",
+"ko": "플라워힐",
+"id": "floralhealing"
+},
+{
+"slug": "high-horsepower",
+"en": "High Horsepower",
+"ko": "10만마력",
+"id": "highhorsepower"
+},
+{
+"slug": "strength-sap",
+"en": "Strength Sap",
+"ko": "힘흡수",
+"id": "strengthsap"
+},
+{
+"slug": "solar-blade",
+"en": "Solar Blade",
+"ko": "솔라블레이드",
+"id": "solarblade"
+},
+{
+"slug": "leafage",
+"en": "Leafage",
+"ko": "나뭇잎",
+"id": "leafage"
+},
+{
+"slug": "spotlight",
+"en": "Spotlight",
+"ko": "스포트라이트",
+"id": "spotlight"
+},
+{
+"slug": "toxic-thread",
+"en": "Toxic Thread",
+"ko": "독실",
+"id": "toxicthread"
+},
+{
+"slug": "laser-focus",
+"en": "Laser Focus",
+"ko": "예민해지기",
+"id": "laserfocus"
+},
+{
+"slug": "gear-up",
+"en": "Gear Up",
+"ko": "어시스트기어",
+"id": "gearup"
+},
+{
+"slug": "throat-chop",
+"en": "Throat Chop",
+"ko": "지옥찌르기",
+"id": "throatchop"
+},
+{
+"slug": "pollen-puff",
+"en": "Pollen Puff",
+"ko": "꽃가루경단",
+"id": "pollenpuff"
+},
+{
+"slug": "anchor-shot",
+"en": "Anchor Shot",
+"ko": "앵커샷",
+"id": "anchorshot"
+},
+{
+"slug": "psychic-terrain",
+"en": "Psychic Terrain",
+"ko": "사이코필드",
+"id": "psychicterrain"
+},
+{
+"slug": "lunge",
+"en": "Lunge",
+"ko": "덤벼들기",
+"id": "lunge"
+},
+{
+"slug": "fire-lash",
+"en": "Fire Lash",
+"ko": "불꽃채찍",
+"id": "firelash"
+},
+{
+"slug": "power-trip",
+"en": "Power Trip",
+"ko": "기어오르기",
+"id": "powertrip"
+},
+{
+"slug": "burn-up",
+"en": "Burn Up",
+"ko": "불사르기",
+"id": "burnup"
+},
+{
+"slug": "speed-swap",
+"en": "Speed Swap",
+"ko": "스피드스왑",
+"id": "speedswap"
+},
+{
+"slug": "smart-strike",
+"en": "Smart Strike",
+"ko": "스마트혼",
+"id": "smartstrike"
+},
+{
+"slug": "purify",
+"en": "Purify",
+"ko": "정화",
+"id": "purify"
+},
+{
+"slug": "revelation-dance",
+"en": "Revelation Dance",
+"ko": "잠재댄스",
+"id": "revelationdance"
+},
+{
+"slug": "core-enforcer",
+"en": "Core Enforcer",
+"ko": "코어퍼니셔",
+"id": "coreenforcer"
+},
+{
+"slug": "trop-kick",
+"en": "Trop Kick",
+"ko": "트로피컬킥",
+"id": "tropkick"
+},
+{
+"slug": "instruct",
+"en": "Instruct",
+"ko": "지휘",
+"id": "instruct"
+},
+{
+"slug": "beak-blast",
+"en": "Beak Blast",
+"ko": "부리캐논",
+"id": "beakblast"
+},
+{
+"slug": "clanging-scales",
+"en": "Clanging Scales",
+"ko": "스케일노이즈",
+"id": "clangingscales"
+},
+{
+"slug": "dragon-hammer",
+"en": "Dragon Hammer",
+"ko": "드래곤해머",
+"id": "dragonhammer"
+},
+{
+"slug": "brutal-swing",
+"en": "Brutal Swing",
+"ko": "세차게휘두르기",
+"id": "brutalswing"
+},
+{
+"slug": "aurora-veil",
+"en": "Aurora Veil",
+"ko": "오로라베일",
+"id": "auroraveil"
+},
+{
+"slug": "sinister-arrow-raid",
+"en": "Sinister Arrow Raid",
+"ko": "섀도애로우즈스트라이크",
+"id": "sinisterarrowraid"
+},
+{
+"slug": "malicious-moonsault",
+"en": "Malicious Moonsault",
+"ko": "하이퍼다크크러셔",
+"id": "maliciousmoonsault"
+},
+{
+"slug": "oceanic-operetta",
+"en": "Oceanic Operetta",
+"ko": "바다의심포니",
+"id": "oceanicoperetta"
+},
+{
+"slug": "guardian-of-alola",
+"en": "Guardian of Alola",
+"ko": "알로라의수호자",
+"id": "guardianofalola"
+},
+{
+"slug": "soul-stealing-7-star-strike",
+"en": "Soul-Stealing 7-Star Strike",
+"ko": "칠성탈혼퇴",
+"id": "soulstealing7starstrike"
+},
+{
+"slug": "stoked-sparksurfer",
+"en": "Stoked Sparksurfer",
+"ko": "라이트닝서프라이드",
+"id": "stokedsparksurfer"
+},
+{
+"slug": "pulverizing-pancake",
+"en": "Pulverizing Pancake",
+"ko": "진심의공격",
+"id": "pulverizingpancake"
+},
+{
+"slug": "extreme-evoboost",
+"en": "Extreme Evoboost",
+"ko": "나인이볼부스트",
+"id": "extremeevoboost"
+},
+{
+"slug": "genesis-supernova",
+"en": "Genesis Supernova",
+"ko": "오리진즈슈퍼노바",
+"id": "genesissupernova"
+},
+{
+"slug": "shell-trap",
+"en": "Shell Trap",
+"ko": "트랩셸",
+"id": "shelltrap"
+},
+{
+"slug": "fleur-cannon",
+"en": "Fleur Cannon",
+"ko": "플뢰르캐논",
+"id": "fleurcannon"
+},
+{
+"slug": "psychic-fangs",
+"en": "Psychic Fangs",
+"ko": "사이코팽",
+"id": "psychicfangs"
+},
+{
+"slug": "stomping-tantrum",
+"en": "Stomping Tantrum",
+"ko": "분함의발구르기",
+"id": "stompingtantrum"
+},
+{
+"slug": "shadow-bone",
+"en": "Shadow Bone",
+"ko": "섀도본",
+"id": "shadowbone"
+},
+{
+"slug": "accelerock",
+"en": "Accelerock",
+"ko": "액셀록",
+"id": "accelerock"
+},
+{
+"slug": "liquidation",
+"en": "Liquidation",
+"ko": "아쿠아브레이크",
+"id": "liquidation"
+},
+{
+"slug": "prismatic-laser",
+"en": "Prismatic Laser",
+"ko": "프리즘레이저",
+"id": "prismaticlaser"
+},
+{
+"slug": "spectral-thief",
+"en": "Spectral Thief",
+"ko": "섀도스틸",
+"id": "spectralthief"
+},
+{
+"slug": "sunsteel-strike",
+"en": "Sunsteel Strike",
+"ko": "메테오드라이브",
+"id": "sunsteelstrike"
+},
+{
+"slug": "moongeist-beam",
+"en": "Moongeist Beam",
+"ko": "섀도레이",
+"id": "moongeistbeam"
+},
+{
+"slug": "tearful-look",
+"en": "Tearful Look",
+"ko": "눈물그렁그렁",
+"id": "tearfullook"
+},
+{
+"slug": "zing-zap",
+"en": "Zing Zap",
+"ko": "찌리리따끔따끔",
+"id": "zingzap"
+},
+{
+"slug": "natures-madness",
+"en": "Nature’s Madness",
+"ko": "자연의분노",
+"id": "naturesmadness"
+},
+{
+"slug": "multi-attack",
+"en": "Multi-Attack",
+"ko": "멀티어택",
+"id": "multiattack"
+},
+{
+"slug": "10-000-000-volt-thunderbolt",
+"en": "10,000,000 Volt Thunderbolt",
+"ko": "1000만볼트",
+"id": "10000000voltthunderbolt"
+},
+{
+"slug": "mind-blown",
+"en": "Mind Blown",
+"ko": "깜짝헤드",
+"id": "mindblown"
+},
+{
+"slug": "plasma-fists",
+"en": "Plasma Fists",
+"ko": "플라스마피스트",
+"id": "plasmafists"
+},
+{
+"slug": "photon-geyser",
+"en": "Photon Geyser",
+"ko": "포톤가이저",
+"id": "photongeyser"
+},
+{
+"slug": "light-that-burns-the-sky",
+"en": "Light That Burns the Sky",
+"ko": "하늘을태우는멸망의빛",
+"id": "lightthatburnsthesky"
+},
+{
+"slug": "searing-sunraze-smash",
+"en": "Searing Sunraze Smash",
+"ko": "선샤인스매셔",
+"id": "searingsunrazesmash"
+},
+{
+"slug": "menacing-moonraze-maelstrom",
+"en": "Menacing Moonraze Maelstrom",
+"ko": "문라이트블래스터",
+"id": "menacingmoonrazemaelstrom"
+},
+{
+"slug": "lets-snuggle-forever",
+"en": "Let’s Snuggle Forever",
+"ko": "투닥투닥프렌드타임",
+"id": "letssnuggleforever"
+},
+{
+"slug": "splintered-stormshards",
+"en": "Splintered Stormshards",
+"ko": "레이디얼에지스톰",
+"id": "splinteredstormshards"
+},
+{
+"slug": "clangorous-soulblaze",
+"en": "Clangorous Soulblaze",
+"ko": "브레이징소울비트",
+"id": "clangoroussoulblaze"
+},
+{
+"slug": "zippy-zap",
+"en": "Zippy Zap",
+"ko": "파찌파찌액셀",
+"id": "zippyzap"
+},
+{
+"slug": "splishy-splash",
+"en": "Splishy Splash",
+"ko": "참방참방서핑",
+"id": "splishysplash"
+},
+{
+"slug": "floaty-fall",
+"en": "Floaty Fall",
+"ko": "둥실둥실폴",
+"id": "floatyfall"
+},
+{
+"slug": "pika-papow",
+"en": "Pika Papow",
+"ko": "피카피카썬더",
+"id": "pikapapow"
+},
+{
+"slug": "bouncy-bubble",
+"en": "Bouncy Bubble",
+"ko": "생생버블",
+"id": "bouncybubble"
+},
+{
+"slug": "buzzy-buzz",
+"en": "Buzzy Buzz",
+"ko": "찌릿찌릿일렉",
+"id": "buzzybuzz"
+},
+{
+"slug": "sizzly-slide",
+"en": "Sizzly Slide",
+"ko": "이글이글번",
+"id": "sizzlyslide"
+},
+{
+"slug": "glitzy-glow",
+"en": "Glitzy Glow",
+"ko": "콸콸오라",
+"id": "glitzyglow"
+},
+{
+"slug": "baddy-bad",
+"en": "Baddy Bad",
+"ko": "아그아그존",
+"id": "baddybad"
+},
+{
+"slug": "sappy-seed",
+"en": "Sappy Seed",
+"ko": "쑥쑥봄버",
+"id": "sappyseed"
+},
+{
+"slug": "freezy-frost",
+"en": "Freezy Frost",
+"ko": "꽁꽁프로스트",
+"id": "freezyfrost"
+},
+{
+"slug": "sparkly-swirl",
+"en": "Sparkly Swirl",
+"ko": "반짝반짝스톰",
+"id": "sparklyswirl"
+},
+{
+"slug": "veevee-volley",
+"en": "Veevee Volley",
+"ko": "브이브이브레이크",
+"id": "veeveevolley"
+},
+{
+"slug": "double-iron-bash",
+"en": "Double Iron Bash",
+"ko": "더블펀처",
+"id": "doubleironbash"
+},
+{
+"slug": "max-guard",
+"en": "Max Guard",
+"ko": "다이월",
+"id": "maxguard"
+},
+{
+"slug": "dynamax-cannon",
+"en": "Dynamax Cannon",
+"ko": "다이맥스포",
+"id": "dynamaxcannon"
+},
+{
+"slug": "snipe-shot",
+"en": "Snipe Shot",
+"ko": "노려맞히기",
+"id": "snipeshot"
+},
+{
+"slug": "jaw-lock",
+"en": "Jaw Lock",
+"ko": "물고버티기",
+"id": "jawlock"
+},
+{
+"slug": "stuff-cheeks",
+"en": "Stuff Cheeks",
+"ko": "볼가득넣기",
+"id": "stuffcheeks"
+},
+{
+"slug": "no-retreat",
+"en": "No Retreat",
+"ko": "배수의진",
+"id": "noretreat"
+},
+{
+"slug": "tar-shot",
+"en": "Tar Shot",
+"ko": "타르샷",
+"id": "tarshot"
+},
+{
+"slug": "magic-powder",
+"en": "Magic Powder",
+"ko": "마법가루",
+"id": "magicpowder"
+},
+{
+"slug": "dragon-darts",
+"en": "Dragon Darts",
+"ko": "드래곤애로",
+"id": "dragondarts"
+},
+{
+"slug": "teatime",
+"en": "Teatime",
+"ko": "다과회",
+"id": "teatime"
+},
+{
+"slug": "octolock",
+"en": "Octolock",
+"ko": "문어굳히기",
+"id": "octolock"
+},
+{
+"slug": "bolt-beak",
+"en": "Bolt Beak",
+"ko": "전격부리",
+"id": "boltbeak"
+},
+{
+"slug": "fishious-rend",
+"en": "Fishious Rend",
+"ko": "아가미물기",
+"id": "fishiousrend"
+},
+{
+"slug": "court-change",
+"en": "Court Change",
+"ko": "코트체인지",
+"id": "courtchange"
+},
+{
+"slug": "max-flare",
+"en": "Max Flare",
+"ko": "다이번",
+"id": "maxflare"
+},
+{
+"slug": "max-flutterby",
+"en": "Max Flutterby",
+"ko": "다이웜",
+"id": "maxflutterby"
+},
+{
+"slug": "max-lightning",
+"en": "Max Lightning",
+"ko": "다이썬더",
+"id": "maxlightning"
+},
+{
+"slug": "max-strike",
+"en": "Max Strike",
+"ko": "다이어택",
+"id": "maxstrike"
+},
+{
+"slug": "max-knuckle",
+"en": "Max Knuckle",
+"ko": "다이너클",
+"id": "maxknuckle"
+},
+{
+"slug": "max-phantasm",
+"en": "Max Phantasm",
+"ko": "다이할로우",
+"id": "maxphantasm"
+},
+{
+"slug": "max-hailstorm",
+"en": "Max Hailstorm",
+"ko": "다이아이스",
+"id": "maxhailstorm"
+},
+{
+"slug": "max-ooze",
+"en": "Max Ooze",
+"ko": "다이애시드",
+"id": "maxooze"
+},
+{
+"slug": "max-geyser",
+"en": "Max Geyser",
+"ko": "다이스트림",
+"id": "maxgeyser"
+},
+{
+"slug": "max-airstream",
+"en": "Max Airstream",
+"ko": "다이제트",
+"id": "maxairstream"
+},
+{
+"slug": "max-starfall",
+"en": "Max Starfall",
+"ko": "다이페어리",
+"id": "maxstarfall"
+},
+{
+"slug": "max-wyrmwind",
+"en": "Max Wyrmwind",
+"ko": "다이드라군",
+"id": "maxwyrmwind"
+},
+{
+"slug": "max-mindstorm",
+"en": "Max Mindstorm",
+"ko": "다이사이코",
+"id": "maxmindstorm"
+},
+{
+"slug": "max-rockfall",
+"en": "Max Rockfall",
+"ko": "다이록",
+"id": "maxrockfall"
+},
+{
+"slug": "max-quake",
+"en": "Max Quake",
+"ko": "다이어스",
+"id": "maxquake"
+},
+{
+"slug": "max-darkness",
+"en": "Max Darkness",
+"ko": "다이아크",
+"id": "maxdarkness"
+},
+{
+"slug": "max-overgrowth",
+"en": "Max Overgrowth",
+"ko": "다이그래스",
+"id": "maxovergrowth"
+},
+{
+"slug": "max-steelspike",
+"en": "Max Steelspike",
+"ko": "다이스틸",
+"id": "maxsteelspike"
+},
+{
+"slug": "clangorous-soul",
+"en": "Clangorous Soul",
+"ko": "소울비트",
+"id": "clangoroussoul"
+},
+{
+"slug": "body-press",
+"en": "Body Press",
+"ko": "바디프레스",
+"id": "bodypress"
+},
+{
+"slug": "decorate",
+"en": "Decorate",
+"ko": "데코레이션",
+"id": "decorate"
+},
+{
+"slug": "drum-beating",
+"en": "Drum Beating",
+"ko": "드럼어택",
+"id": "drumbeating"
+},
+{
+"slug": "snap-trap",
+"en": "Snap Trap",
+"ko": "집게덫",
+"id": "snaptrap"
+},
+{
+"slug": "pyro-ball",
+"en": "Pyro Ball",
+"ko": "화염볼",
+"id": "pyroball"
+},
+{
+"slug": "behemoth-blade",
+"en": "Behemoth Blade",
+"ko": "거수참",
+"id": "behemothblade"
+},
+{
+"slug": "behemoth-bash",
+"en": "Behemoth Bash",
+"ko": "거수탄",
+"id": "behemothbash"
+},
+{
+"slug": "aura-wheel",
+"en": "Aura Wheel",
+"ko": "오라휠",
+"id": "aurawheel"
+},
+{
+"slug": "breaking-swipe",
+"en": "Breaking Swipe",
+"ko": "와이드브레이커",
+"id": "breakingswipe"
+},
+{
+"slug": "branch-poke",
+"en": "Branch Poke",
+"ko": "가지찌르기",
+"id": "branchpoke"
+},
+{
+"slug": "overdrive",
+"en": "Overdrive",
+"ko": "오버드라이브",
+"id": "overdrive"
+},
+{
+"slug": "apple-acid",
+"en": "Apple Acid",
+"ko": "사과산",
+"id": "appleacid"
+},
+{
+"slug": "grav-apple",
+"en": "Grav Apple",
+"ko": "G의힘",
+"id": "gravapple"
+},
+{
+"slug": "spirit-break",
+"en": "Spirit Break",
+"ko": "소울크래시",
+"id": "spiritbreak"
+},
+{
+"slug": "strange-steam",
+"en": "Strange Steam",
+"ko": "원더스팀",
+"id": "strangesteam"
+},
+{
+"slug": "life-dew",
+"en": "Life Dew",
+"ko": "생명의물방울",
+"id": "lifedew"
+},
+{
+"slug": "obstruct",
+"en": "Obstruct",
+"ko": "블로킹",
+"id": "obstruct"
+},
+{
+"slug": "false-surrender",
+"en": "False Surrender",
+"ko": "사죄의찌르기",
+"id": "falsesurrender"
+},
+{
+"slug": "meteor-assault",
+"en": "Meteor Assault",
+"ko": "스타어설트",
+"id": "meteorassault"
+},
+{
+"slug": "eternabeam",
+"en": "Eternabeam",
+"ko": "무한다이빔",
+"id": "eternabeam"
+},
+{
+"slug": "steel-beam",
+"en": "Steel Beam",
+"ko": "철제광선",
+"id": "steelbeam"
+},
+{
+"slug": "expanding-force",
+"en": "Expanding Force",
+"ko": "와이드포스",
+"id": "expandingforce"
+},
+{
+"slug": "steel-roller",
+"en": "Steel Roller",
+"ko": "아이언롤러",
+"id": "steelroller"
+},
+{
+"slug": "scale-shot",
+"en": "Scale Shot",
+"ko": "스케일샷",
+"id": "scaleshot"
+},
+{
+"slug": "meteor-beam",
+"en": "Meteor Beam",
+"ko": "메테오빔",
+"id": "meteorbeam"
+},
+{
+"slug": "shell-side-arm",
+"en": "Shell Side Arm",
+"ko": "셸암즈",
+"id": "shellsidearm"
+},
+{
+"slug": "misty-explosion",
+"en": "Misty Explosion",
+"ko": "미스트버스트",
+"id": "mistyexplosion"
+},
+{
+"slug": "grassy-glide",
+"en": "Grassy Glide",
+"ko": "그래스슬라이더",
+"id": "grassyglide"
+},
+{
+"slug": "rising-voltage",
+"en": "Rising Voltage",
+"ko": "라이징볼트",
+"id": "risingvoltage"
+},
+{
+"slug": "terrain-pulse",
+"en": "Terrain Pulse",
+"ko": "대지의파동",
+"id": "terrainpulse"
+},
+{
+"slug": "skitter-smack",
+"en": "Skitter Smack",
+"ko": "엄습하는일격",
+"id": "skittersmack"
+},
+{
+"slug": "burning-jealousy",
+"en": "Burning Jealousy",
+"ko": "질투의불꽃",
+"id": "burningjealousy"
+},
+{
+"slug": "lash-out",
+"en": "Lash Out",
+"ko": "분풀이",
+"id": "lashout"
+},
+{
+"slug": "poltergeist",
+"en": "Poltergeist",
+"ko": "폴터가이스트",
+"id": "poltergeist"
+},
+{
+"slug": "corrosive-gas",
+"en": "Corrosive Gas",
+"ko": "부식가스",
+"id": "corrosivegas"
+},
+{
+"slug": "coaching",
+"en": "Coaching",
+"ko": "코칭",
+"id": "coaching"
+},
+{
+"slug": "flip-turn",
+"en": "Flip Turn",
+"ko": "퀵턴",
+"id": "flipturn"
+},
+{
+"slug": "triple-axel",
+"en": "Triple Axel",
+"ko": "트리플악셀",
+"id": "tripleaxel"
+},
+{
+"slug": "dual-wingbeat",
+"en": "Dual Wingbeat",
+"ko": "더블윙",
+"id": "dualwingbeat"
+},
+{
+"slug": "scorching-sands",
+"en": "Scorching Sands",
+"ko": "열사의대지",
+"id": "scorchingsands"
+},
+{
+"slug": "jungle-healing",
+"en": "Jungle Healing",
+"ko": "정글힐",
+"id": "junglehealing"
+},
+{
+"slug": "wicked-blow",
+"en": "Wicked Blow",
+"ko": "암흑강타",
+"id": "wickedblow"
+},
+{
+"slug": "surging-strikes",
+"en": "Surging Strikes",
+"ko": "수류연타",
+"id": "surgingstrikes"
+},
+{
+"slug": "thunder-cage",
+"en": "Thunder Cage",
+"ko": "썬더프리즌",
+"id": "thundercage"
+},
+{
+"slug": "dragon-energy",
+"en": "Dragon Energy",
+"ko": "드래곤에너지",
+"id": "dragonenergy"
+},
+{
+"slug": "freezing-glare",
+"en": "Freezing Glare",
+"ko": "얼어붙는시선",
+"id": "freezingglare"
+},
+{
+"slug": "fiery-wrath",
+"en": "Fiery Wrath",
+"ko": "타오르는분노",
+"id": "fierywrath"
+},
+{
+"slug": "thunderous-kick",
+"en": "Thunderous Kick",
+"ko": "천둥차기",
+"id": "thunderouskick"
+},
+{
+"slug": "glacial-lance",
+"en": "Glacial Lance",
+"ko": "블리자드랜스",
+"id": "glaciallance"
+},
+{
+"slug": "astral-barrage",
+"en": "Astral Barrage",
+"ko": "아스트랄비트",
+"id": "astralbarrage"
+},
+{
+"slug": "eerie-spell",
+"en": "Eerie Spell",
+"ko": "섬뜩한주문",
+"id": "eeriespell"
+},
+{
+"slug": "dire-claw",
+"en": "Dire Claw",
+"ko": "페이탈클로",
+"id": "direclaw"
+},
+{
+"slug": "psyshield-bash",
+"en": "Psyshield Bash",
+"ko": "배리어러시",
+"id": "psyshieldbash"
+},
+{
+"slug": "power-shift",
+"en": "Power Shift",
+"ko": "파워시프트",
+"id": "powershift"
+},
+{
+"slug": "stone-axe",
+"en": "Stone Axe",
+"ko": "암석액스",
+"id": "stoneaxe"
+},
+{
+"slug": "springtide-storm",
+"en": "Springtide Storm",
+"ko": "봄의폭풍",
+"id": "springtidestorm"
+},
+{
+"slug": "mystical-power",
+"en": "Mystical Power",
+"ko": "신비의힘",
+"id": "mysticalpower"
+},
+{
+"slug": "raging-fury",
+"en": "Raging Fury",
+"ko": "대격분",
+"id": "ragingfury"
+},
+{
+"slug": "wave-crash",
+"en": "Wave Crash",
+"ko": "웨이브태클",
+"id": "wavecrash"
+},
+{
+"slug": "chloroblast",
+"en": "Chloroblast",
+"ko": "클로로블라스트",
+"id": "chloroblast"
+},
+{
+"slug": "mountain-gale",
+"en": "Mountain Gale",
+"ko": "빙산바람",
+"id": "mountaingale"
+},
+{
+"slug": "victory-dance",
+"en": "Victory Dance",
+"ko": "승리의춤",
+"id": "victorydance"
+},
+{
+"slug": "headlong-rush",
+"en": "Headlong Rush",
+"ko": "들이받기",
+"id": "headlongrush"
+},
+{
+"slug": "barb-barrage",
+"en": "Barb Barrage",
+"ko": "독침천발",
+"id": "barbbarrage"
+},
+{
+"slug": "esper-wing",
+"en": "Esper Wing",
+"ko": "오라윙",
+"id": "esperwing"
+},
+{
+"slug": "bitter-malice",
+"en": "Bitter Malice",
+"ko": "천추지한",
+"id": "bittermalice"
+},
+{
+"slug": "shelter",
+"en": "Shelter",
+"ko": "농성",
+"id": "shelter"
+},
+{
+"slug": "triple-arrows",
+"en": "Triple Arrows",
+"ko": "3연화살",
+"id": "triplearrows"
+},
+{
+"slug": "infernal-parade",
+"en": "Infernal Parade",
+"ko": "백귀야행",
+"id": "infernalparade"
+},
+{
+"slug": "ceaseless-edge",
+"en": "Ceaseless Edge",
+"ko": "비검천중파",
+"id": "ceaselessedge"
+},
+{
+"slug": "bleakwind-storm",
+"en": "Bleakwind Storm",
+"ko": "찬바람폭풍",
+"id": "bleakwindstorm"
+},
+{
+"slug": "wildbolt-storm",
+"en": "Wildbolt Storm",
+"ko": "번개폭풍",
+"id": "wildboltstorm"
+},
+{
+"slug": "sandsear-storm",
+"en": "Sandsear Storm",
+"ko": "열사의폭풍",
+"id": "sandsearstorm"
+},
+{
+"slug": "lunar-blessing",
+"en": "Lunar Blessing",
+"ko": "초승달의기도",
+"id": "lunarblessing"
+},
+{
+"slug": "take-heart",
+"en": "Take Heart",
+"ko": "브레이브차지",
+"id": "takeheart"
+},
+{
+"slug": "tera-blast",
+"en": "Tera Blast",
+"ko": "테라버스트",
+"id": "terablast"
+},
+{
+"slug": "silk-trap",
+"en": "Silk Trap",
+"ko": "스레드트랩",
+"id": "silktrap"
+},
+{
+"slug": "axe-kick",
+"en": "Axe Kick",
+"ko": "발꿈치찍기",
+"id": "axekick"
+},
+{
+"slug": "last-respects",
+"en": "Last Respects",
+"ko": "성묘",
+"id": "lastrespects"
+},
+{
+"slug": "lumina-crash",
+"en": "Lumina Crash",
+"ko": "루미나콜리전",
+"id": "luminacrash"
+},
+{
+"slug": "order-up",
+"en": "Order Up",
+"ko": "한판내기",
+"id": "orderup"
+},
+{
+"slug": "jet-punch",
+"en": "Jet Punch",
+"ko": "제트펀치",
+"id": "jetpunch"
+},
+{
+"slug": "spicy-extract",
+"en": "Spicy Extract",
+"ko": "하바네로엑기스",
+"id": "spicyextract"
+},
+{
+"slug": "spin-out",
+"en": "Spin Out",
+"ko": "휠스핀",
+"id": "spinout"
+},
+{
+"slug": "population-bomb",
+"en": "Population Bomb",
+"ko": "찍찍베기",
+"id": "populationbomb"
+},
+{
+"slug": "ice-spinner",
+"en": "Ice Spinner",
+"ko": "아이스스피너",
+"id": "icespinner"
+},
+{
+"slug": "glaive-rush",
+"en": "Glaive Rush",
+"ko": "대검돌격",
+"id": "glaiverush"
+},
+{
+"slug": "revival-blessing",
+"en": "Revival Blessing",
+"ko": "회생의기도",
+"id": "revivalblessing"
+},
+{
+"slug": "salt-cure",
+"en": "Salt Cure",
+"ko": "소금절이",
+"id": "saltcure"
+},
+{
+"slug": "triple-dive",
+"en": "Triple Dive",
+"ko": "트리플다이브",
+"id": "tripledive"
+},
+{
+"slug": "mortal-spin",
+"en": "Mortal Spin",
+"ko": "킬러스핀",
+"id": "mortalspin"
+},
+{
+"slug": "doodle",
+"en": "Doodle",
+"ko": "배껴그리기",
+"id": "doodle"
+},
+{
+"slug": "fillet-away",
+"en": "Fillet Away",
+"ko": "제살깎기",
+"id": "filletaway"
+},
+{
+"slug": "kowtow-cleave",
+"en": "Kowtow Cleave",
+"ko": "도각참",
+"id": "kowtowcleave"
+},
+{
+"slug": "flower-trick",
+"en": "Flower Trick",
+"ko": "트릭플라워",
+"id": "flowertrick"
+},
+{
+"slug": "torch-song",
+"en": "Torch Song",
+"ko": "플레어송",
+"id": "torchsong"
+},
+{
+"slug": "aqua-step",
+"en": "Aqua Step",
+"ko": "아쿠아스텝",
+"id": "aquastep"
+},
+{
+"slug": "raging-bull",
+"en": "Raging Bull",
+"ko": "레이징불",
+"id": "ragingbull"
+},
+{
+"slug": "make-it-rain",
+"en": "Make It Rain",
+"ko": "골드러시",
+"id": "makeitrain"
+},
+{
+"slug": "psyblade",
+"en": "Psyblade",
+"ko": "사이코블레이드",
+"id": "psyblade"
+},
+{
+"slug": "hydro-steam",
+"en": "Hydro Steam",
+"ko": "하이드로스팀",
+"id": "hydrosteam"
+},
+{
+"slug": "ruination",
+"en": "Ruination",
+"ko": "카타스트로피",
+"id": "ruination"
+},
+{
+"slug": "collision-course",
+"en": "Collision Course",
+"ko": "엑셀브레이크",
+"id": "collisioncourse"
+},
+{
+"slug": "electro-drift",
+"en": "Electro Drift",
+"ko": "라이트닝드라이브",
+"id": "electrodrift"
+},
+{
+"slug": "shed-tail",
+"en": "Shed Tail",
+"ko": "꼬리자르기",
+"id": "shedtail"
+},
+{
+"slug": "chilly-reception",
+"en": "Chilly Reception",
+"ko": "썰렁개그",
+"id": "chillyreception"
+},
+{
+"slug": "tidy-up",
+"en": "Tidy Up",
+"ko": "정리정돈",
+"id": "tidyup"
+},
+{
+"slug": "snowscape",
+"en": "Snowscape",
+"ko": "설경",
+"id": "snowscape"
+},
+{
+"slug": "pounce",
+"en": "Pounce",
+"ko": "달려들기",
+"id": "pounce"
+},
+{
+"slug": "trailblaze",
+"en": "Trailblaze",
+"ko": "개척하기",
+"id": "trailblaze"
+},
+{
+"slug": "chilling-water",
+"en": "Chilling Water",
+"ko": "찬물끼얹기",
+"id": "chillingwater"
+},
+{
+"slug": "hyper-drill",
+"en": "Hyper Drill",
+"ko": "하이퍼드릴",
+"id": "hyperdrill"
+},
+{
+"slug": "twin-beam",
+"en": "Twin Beam",
+"ko": "트윈빔",
+"id": "twinbeam"
+},
+{
+"slug": "rage-fist",
+"en": "Rage Fist",
+"ko": "분노의주먹",
+"id": "ragefist"
+},
+{
+"slug": "armor-cannon",
+"en": "Armor Cannon",
+"ko": "아머캐논",
+"id": "armorcannon"
+},
+{
+"slug": "bitter-blade",
+"en": "Bitter Blade",
+"ko": "원념의칼",
+"id": "bitterblade"
+},
+{
+"slug": "double-shock",
+"en": "Double Shock",
+"ko": "전광쌍격",
+"id": "doubleshock"
+},
+{
+"slug": "gigaton-hammer",
+"en": "Gigaton Hammer",
+"ko": "거대해머",
+"id": "gigatonhammer"
+},
+{
+"slug": "comeuppance",
+"en": "Comeuppance",
+"ko": "앙갚음",
+"id": "comeuppance"
+},
+{
+"slug": "aqua-cutter",
+"en": "Aqua Cutter",
+"ko": "아쿠아커터",
+"id": "aquacutter"
+},
+{
+"slug": "blazing-torque",
+"en": "Blazing Torque",
+"ko": "번액셀",
+"id": "blazingtorque"
+},
+{
+"slug": "wicked-torque",
+"en": "Wicked Torque",
+"ko": "다크액셀",
+"id": "wickedtorque"
+},
+{
+"slug": "noxious-torque",
+"en": "Noxious Torque",
+"ko": "포이즌액셀",
+"id": "noxioustorque"
+},
+{
+"slug": "combat-torque",
+"en": "Combat Torque",
+"ko": "파이트액셀",
+"id": "combattorque"
+},
+{
+"slug": "magical-torque",
+"en": "Magical Torque",
+"ko": "매지컬액셀",
+"id": "magicaltorque"
+},
+{
+"slug": "blood-moon",
+"en": "Blood Moon",
+"ko": "블러드문",
+"id": "bloodmoon"
+},
+{
+"slug": "matcha-gotcha",
+"en": "Matcha Gotcha",
+"ko": "휘적휘적포",
+"id": "matchagotcha"
+},
+{
+"slug": "syrup-bomb",
+"en": "Syrup Bomb",
+"ko": "시럽봄",
+"id": "syrupbomb"
+},
+{
+"slug": "ivy-cudgel",
+"en": "Ivy Cudgel",
+"ko": "덩굴방망이",
+"id": "ivycudgel"
+},
+{
+"slug": "electro-shot",
+"en": "Electro Shot",
+"ko": "일렉트로빔",
+"id": "electroshot"
+},
+{
+"slug": "tera-starstorm",
+"en": "Tera Starstorm",
+"ko": "테라클러스터",
+"id": "terastarstorm"
+},
+{
+"slug": "fickle-beam",
+"en": "Fickle Beam",
+"ko": "변덕레이저",
+"id": "ficklebeam"
+},
+{
+"slug": "burning-bulwark",
+"en": "Burning Bulwark",
+"ko": "화염의수호",
+"id": "burningbulwark"
+},
+{
+"slug": "thunderclap",
+"en": "Thunderclap",
+"ko": "질풍신뢰",
+"id": "thunderclap"
+},
+{
+"slug": "mighty-cleave",
+"en": "Mighty Cleave",
+"ko": "파워풀에지",
+"id": "mightycleave"
+},
+{
+"slug": "tachyon-cutter",
+"en": "Tachyon Cutter",
+"ko": "타키온커터",
+"id": "tachyoncutter"
+},
+{
+"slug": "hard-press",
+"en": "Hard Press",
+"ko": "하드프레스",
+"id": "hardpress"
+},
+{
+"slug": "dragon-cheer",
+"en": "Dragon Cheer",
+"ko": "드래곤옐",
+"id": "dragoncheer"
+},
+{
+"slug": "alluring-voice",
+"en": "Alluring Voice",
+"ko": "매혹의보이스",
+"id": "alluringvoice"
+},
+{
+"slug": "temper-flare",
+"en": "Temper Flare",
+"ko": "열불내기",
+"id": "temperflare"
+},
+{
+"slug": "supercell-slam",
+"en": "Supercell Slam",
+"ko": "썬더다이브",
+"id": "supercellslam"
+},
+{
+"slug": "psychic-noise",
+"en": "Psychic Noise",
+"ko": "사이코노이즈",
+"id": "psychicnoise"
+},
+{
+"slug": "upper-hand",
+"en": "Upper Hand",
+"ko": "기선제압",
+"id": "upperhand"
+},
+{
+"slug": "malignant-chain",
+"en": "Malignant Chain",
+"ko": "악독사슬",
+"id": "malignantchain"
+},
+{
+"slug": "shadow-rush",
+"en": "Shadow Rush",
+"ko": null,
+"id": "shadowrush"
+},
+{
+"slug": "shadow-blast",
+"en": "Shadow Blast",
+"ko": "다크블라스트",
+"id": "shadowblast"
+},
+{
+"slug": "shadow-blitz",
+"en": "Shadow Blitz",
+"ko": "다크어택",
+"id": "shadowblitz"
+},
+{
+"slug": "shadow-bolt",
+"en": "Shadow Bolt",
+"ko": "다크볼트",
+"id": "shadowbolt"
+},
+{
+"slug": "shadow-break",
+"en": "Shadow Break",
+"ko": "다크브레이크",
+"id": "shadowbreak"
+},
+{
+"slug": "shadow-chill",
+"en": "Shadow Chill",
+"ko": "다크칠",
+"id": "shadowchill"
+},
+{
+"slug": "shadow-end",
+"en": "Shadow End",
+"ko": null,
+"id": "shadowend"
+},
+{
+"slug": "shadow-fire",
+"en": "Shadow Fire",
+"ko": "다크파이어",
+"id": "shadowfire"
+},
+{
+"slug": "shadow-rave",
+"en": "Shadow Rave",
+"ko": "다크레이브",
+"id": "shadowrave"
+},
+{
+"slug": "shadow-storm",
+"en": "Shadow Storm",
+"ko": "다크스톰",
+"id": "shadowstorm"
+},
+{
+"slug": "shadow-wave",
+"en": "Shadow Wave",
+"ko": "다크웨이브",
+"id": "shadowwave"
+},
+{
+"slug": "shadow-down",
+"en": "Shadow Down",
+"ko": "다크다운",
+"id": "shadowdown"
+},
+{
+"slug": "shadow-half",
+"en": "Shadow Half",
+"ko": "다크하프",
+"id": "shadowhalf"
+},
+{
+"slug": "shadow-hold",
+"en": "Shadow Hold",
+"ko": "다크홀드",
+"id": "shadowhold"
+},
+{
+"slug": "shadow-mist",
+"en": "Shadow Mist",
+"ko": "다크미스트",
+"id": "shadowmist"
+},
+{
+"slug": "shadow-panic",
+"en": "Shadow Panic",
+"ko": "다크패닉",
+"id": "shadowpanic"
+},
+{
+"slug": "shadow-shed",
+"en": "Shadow Shed",
+"ko": "다크셰드",
+"id": "shadowshed"
+},
+{
+"slug": "shadow-sky",
+"en": "Shadow Sky",
+"ko": "다크스카이",
+"id": "shadowsky"
+}
+]
+}
