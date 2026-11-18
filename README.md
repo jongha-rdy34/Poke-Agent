@@ -25,18 +25,35 @@ LLM은 요청 분석과 문장화만 맡고, 배율·스피드·조합 계산은
 
 ## 실행 방법
 
-```bash
-cd backend
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-cp .env.example .env                                  # 값 채우기 (아래 참고)
-```
+가상환경은 **저장소 최상단**(`Poke-Agent/.venv`)에 둡니다. VS Code가 작업 영역 인터프리터로 자동 인식합니다.
 
 ```bash
-python run_tools.py          # Tool 단독 실행 (정상 1회 + 실패 2가지)
-python -m pytest -q          # 오프라인 단위 테스트
-uvicorn app.main:app --reload   # http://localhost:8000/docs
+# 1) 저장소 최상단에서 가상환경 생성·활성화
+cd Poke-Agent
+python -m venv .venv
+source .venv/Scripts/activate        # Windows Git Bash
+# .venv\Scripts\activate             # Windows CMD / PowerShell
+# source .venv/bin/activate          # macOS / Linux
+
+# 2) 패키지 설치
+python -m pip install -r backend/requirements.txt
+
+# 3) 환경변수 파일
+cp backend/.env.example backend/.env  # 값 채우기 (아래 참고)
 ```
+
+이후 명령은 모두 `backend` 폴더에서 실행합니다.
+
+```bash
+cd backend
+python run_tools.py                     # Tool 단독 실행 (정상 1회 + 실패 2가지)
+python -m pytest -q                     # 오프라인 단위 테스트
+python -m uvicorn app.main:app --reload # http://localhost:8000/docs
+```
+
+> VS Code에서 import에 빨간 밑줄이 뜨면 `Ctrl+Shift+P` → **Python: Select Interpreter** → `.venv` 선택 후
+> **Python: Restart Language Server**. 루트를 열었을 때 `app.*` import 경고가 남으면 `.vscode/settings.json`에
+> `"python.analysis.extraPaths": ["./backend"]`를 추가합니다.
 
 ## API 키 / 환경변수
 
