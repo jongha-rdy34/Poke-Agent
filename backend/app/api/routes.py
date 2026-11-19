@@ -6,6 +6,7 @@ from starlette.concurrency import run_in_threadpool
 
 from app.agent.graph import run_agent
 from app.domain import rulesets
+from app.tools import call_tool, names
 from app.api.schemas import (ChatRequest, ChatResponse, LogEvent, LogSession, Plan, PlanCreate,
                              PlanSaveResult, PlanUpdate)
 from app.storage import logs as log_store
@@ -20,7 +21,27 @@ logs_router = APIRouter(prefix="/api/logs", tags=["실행 로그"])
 @chat_router.post("", response_model=ChatResponse)
 async def chat(req: ChatRequest) -> dict:
     """메인 Agent 실행. 답변과 함께 실행 단계·Tool 호출 이력(events)을 돌려준다."""
-    return await run_in_threadpool(run_agent, req.message, req.session_id, req.name_choices, req.game, req.battle)
+    return await run_in_threadpool(run_agent, req.message, req.session_id, req.name_choices, req.game, req.battle,
+                                  req.my_team, req.opp_team)
+
+
+@chat_router.get("/pokemon")
+def search_pokemon(q: str = "", game: str | None = None, battle: str | None = None, limit: int = 12) -> list[dict]:
+    """팀 직접 선택용 검색: 이름 일부(한국어/영문)로 후보를 찾는다. q가 비면 지금 규칙의 사용률 상위 포켓몬.
+    본가(sv)에서는 메가 폼을 빼고 돌려준다."""
+    rs = rulesets.resolve(game, battle)
+    limit = max(1, min(limit, 30))
+    if q.strip():
+        return names.search(q, limit, allow_mega=rs["allow_mega"])
+    r = call_tool("get_meta_usage", {"format": rs["format"], "top_n": limit})
+    if not r["ok"]:
+        return []
+    out = []
+    for row in r["data"]["ranking"][:limit]:
+        res = names.resolve_one(row["name"], "pokemon")
+        if res.get("found") and (rs["allow_mega"] or not res.get("is_mega")):
+            out.append({**names._card(res), "usage_pct": row["usage_pct"]})
+    return out
 
 
 @chat_router.get("/rulesets")

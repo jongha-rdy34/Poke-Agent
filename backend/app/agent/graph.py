@@ -35,6 +35,7 @@ FATAL_CODES = {ErrorCode.UPSTREAM_ERROR, ErrorCode.TIMEOUT, ErrorCode.INVALID_KE
 class AgentState(TypedDict, total=False):
     session_id: str
     ruleset: dict
+    teams: dict          # 직접 선택 모드에서 고른 팀 (대화 분석보다 우선)
     message: str
     memory: dict
     intent: str
@@ -93,7 +94,21 @@ def analyze_node(state: AgentState, em: Emitter) -> dict:
     new["schedule"] = {k: v for k, v in (new.get("schedule") or {}).items() if v} or None
     if new["schedule"] and mem["conditions"].get("schedule"):
         new["schedule"] = {**mem["conditions"]["schedule"], **new["schedule"]}  # 일정은 바뀐 항목만 갱신
+    teams = state.get("teams") or {}
+    intent = a.intent
+    if teams.get("my") or teams.get("opp"):
+        # 직접 선택한 팀이 있으면 그 팀을 쓴다 (새 팀이면 이전 선호·제외 조건은 비운다)
+        new["my_team"] = teams.get("my") or new.get("my_team")
+        new["opp_team"] = teams.get("opp") or new.get("opp_team")
+        if intent in ("chitchat", "lookup"):
+            intent = "plan_selection"
+        em.emit("decision", "analyze", decision="teams_from_picker", my=len(teams.get("my") or []),
+                opp=len(teams.get("opp") or []))
     conditions, changed = memory.merge_conditions(mem["conditions"], new, reset=a.reset)
+    if (teams.get("my") or teams.get("opp")) and ({"my_team", "opp_team"} & set(changed)):
+        for k in ("prefer", "exclude", "must_answer", "my_moves"):
+            if not new.get(k):
+                conditions.pop(k, None)  # 팀이 바뀌면 이전 팀 기준의 선호·제외 조건은 버린다
     rs = state.get("ruleset")
     if rs:  # 화면에서 고른 게임·배틀 규칙을 조건에 반영 (이번 메시지에서 직접 말한 값이 우선)
         if not new.get("format"):
@@ -101,13 +116,13 @@ def analyze_node(state: AgentState, em: Emitter) -> dict:
         if not new.get("pick_count"):
             conditions["pick_count"] = rs["pick"]
         conditions["game"], conditions["battle"] = rs["game"], rs["battle"]
-    missing = missing_conditions(a.intent, conditions, mem.get("last"))
+    missing = missing_conditions(intent, conditions, mem.get("last"))
     status = "ask" if missing else "running"
     if missing:
         em.emit("decision", "analyze", decision="ask", missing=missing)
-    return {"intent": a.intent, "intent_reason": a.intent_reason, "conditions": conditions, "changed": changed,
+    return {"intent": intent, "intent_reason": a.intent_reason, "conditions": conditions, "changed": changed,
             "missing": missing, "status": status, "round": 0, "replans": [], "ctx": new_ctx(), "all_steps": [],
-            "_summary": {"intent": a.intent, "changed": changed, "missing": missing}}
+            "_summary": {"intent": intent, "changed": changed, "missing": missing}}
 
 
 @node("plan")
@@ -144,6 +159,10 @@ def judge_node(state: AgentState, em: Emitter) -> dict:
 
     if result.get("satisfied"):
         return {"result": result, "status": "ok", "_summary": "조건 충족"}
+    if intent == "plan_selection" and not result.get("selected") and not fatal:
+        # 규칙상 고를 수 있는 조합 자체가 없음 (메가 1마리 제한, 제외 조건 등) → 재계획해도 같다
+        em.emit("decision", "judge", decision="infeasible", reason=result.get("reason"))
+        return {"result": result, "status": "infeasible", "_summary": "선출 조합 없음"}
     if fatal and not ctx["charts"]:
         # 외부 서버 오류는 다시 해도 결과가 같다 → 재계획하지 않고 안내
         em.emit("decision", "judge", decision="no_replan", reason="외부 데이터 오류", codes=[f["code"] for f in fatal])
@@ -215,7 +234,10 @@ def _draft(state: AgentState) -> dict:
         "format": (ctx.get("basis") or {}).get("format") or c.get("format") or config.DEFAULT_FORMAT,
         "my_team": [label(s) for s in ctx["my"]], "opponent_team": [label(s) for s in ctx["opp"]],
         "selected": r["selected"], "lead": r["lead"],
-        "move_plan": [{k: p[k] for k in ("opponent", "my_pokemon", "move", "offense", "speed", "answered")}
+        "move_plan": [{**{k: p[k] for k in ("opponent", "my_pokemon", "move", "offense", "speed", "answered")},
+                       # 저장용 데미지 요약: 상대 최다 배분 기준
+                       "damage": (f"{p['damage']['results'][0]['min_pct']}~{p['damage']['results'][0]['max_pct']}% "
+                                  f"{p['damage']['results'][0]['ko']}") if p.get("damage") else None}
                       for p in r["move_plan"]],
         "basis": {**(ctx.get("basis") or {}), "game": (state.get("ruleset") or {}).get("game_label"),
                   "replans": len(state.get("replans") or []),
@@ -282,7 +304,8 @@ def _pokemon_cards(ctx: dict) -> dict:
 
 
 def run_agent(message: str, session_id: str | None = None, name_choices: dict[str, str] | None = None,
-              game: str | None = None, battle: str | None = None) -> dict:
+              game: str | None = None, battle: str | None = None,
+              my_team: list[str] | None = None, opp_team: list[str] | None = None) -> dict:
     session_id = session_id or "s-" + uuid.uuid4().hex[:10]
     em = Emitter(session_id)
     mem = memory.get(session_id)
@@ -298,7 +321,7 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
     t0 = time.perf_counter()
     try:
         final = GRAPH.invoke({"session_id": session_id, "message": message, "memory": memory.get(session_id),
-                              "ruleset": ruleset},
+                              "ruleset": ruleset, "teams": {"my": my_team or [], "opp": opp_team or []}},
                              config={"configurable": {"emitter": em}, "recursion_limit": 40})
     except Exception as e:  # noqa: BLE001 - 어떤 경우에도 서비스는 응답한다
         em.emit("error", None, code=ErrorCode.INTERNAL_ERROR, message=type(e).__name__)
@@ -324,6 +347,8 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
         "conditions": final.get("conditions"),
         "opp_profile": (final.get("result") or {}).get("opp_profile"),
         "pokemon_cards": cards,
+        "move_plan": (final.get("result") or {}).get("move_plan"),
+        "rule_notes": (final.get("result") or {}).get("rule_notes") or [],
         "ruleset": ruleset,
         "defense_advice": (final.get("result") or {}).get("defense_advice"),
         "clarify": [  # 화면에서 고를 수 있는 이름 후보 (status=ask일 때)

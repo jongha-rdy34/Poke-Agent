@@ -18,6 +18,8 @@ class ChatRequest(BaseModel):
     session_id: str | None = Field(None, description="이어지는 대화면 이전 응답의 session_id")
     game: Literal["champions", "sv"] | None = Field(None, description="게임 버전: champions(포켓몬 챔피언스·메가진화) / sv(스칼렛·바이올렛·테라스탈)")
     battle: Literal["singles", "doubles"] | None = Field(None, description="singles(6→3) / doubles(6→4)")
+    my_team: list[str] | None = Field(None, max_length=6, description="직접 선택 모드: 내 포켓몬 (검색 결과의 value, 예: Garchomp-Mega-Z)")
+    opp_team: list[str] | None = Field(None, max_length=6, description="직접 선택 모드: 상대 포켓몬")
     name_choices: dict[str, str] | None = Field(
         None, description="되묻기(clarify)에서 사용자가 고른 이름 {입력한 이름: 후보의 value}. 세션에 기억된다.",
         examples=[{"물라오슨": "Urshifu-Rapid-Strike"}])
@@ -48,6 +50,10 @@ class ChatResponse(BaseModel):
     opp_profile: dict | None = Field(None, description=(
         "상대 공격 성향: physical_pct/special_pct, lean(물리 중심/특수 중심/균형), "
         "members[{name, physical_share, roles[{role, pct, typical}], basis}]"))
+    move_plan: list[dict] | None = Field(None, description=(
+        "대면 계획 상세: my_pokemon(공격) → move → opponent(방어), offense(배율), speed/speed_basis, "
+        "damage{attacker, results[{vs(상대 배분), min_pct, max_pct, ko(확정/난수 n타), ohko_pct, two_hko_pct}]}"))
+    rule_notes: list[str] = Field(default_factory=list, description="규칙 안내 (예: 메가진화는 배틀당 1마리)")
     ruleset: dict | None = Field(None, description="이번 실행에 적용한 게임·배틀 규칙 (format, pick, gimmick …)")
     pokemon_cards: dict[str, dict] = Field(default_factory=dict, description=(
         "화면 표시용 {표시 이름: {en, types, sprite(이미지 주소), spe, side(my/opp)}}"))
@@ -65,6 +71,7 @@ class MovePlanItem(BaseModel):
     offense: float | None = None
     speed: str | None = None
     answered: bool | None = None
+    damage: str | None = None
 
 
 class _ScheduleMixin(BaseModel):

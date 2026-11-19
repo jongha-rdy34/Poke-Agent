@@ -16,12 +16,14 @@
 - `game`: `champions`(포켓몬 챔피언스 — 메가진화 룰, SP, 진행 중 시즌) / `sv`(스칼렛·바이올렛 — 테라스탈 룰, 노력치, **종료된 시즌의 마지막 집계**)
 - `battle`: `singles`(6→3) / `doubles`(6→4). 생략하면 세션에 기억된 값, 처음이면 챔피언스·싱글
 - 규칙 목록: `GET /api/chat/rulesets` (포맷 ID, 선출 수 포함)
+- `my_team`, `opp_team`: 직접 선택 모드에서 고른 팀(검색 결과의 `value`). 보내면 대화 분석보다 우선한다
+- 팀 검색: `GET /api/chat/pokemon?q=한카&game=champions` → `[{label, value, sprite}]` (q가 비면 사용률 상위, 본가는 메가 제외)
 - 본가(`sv`)에서 메가 포켓몬을 말하면 `clarify`에 `reason: "NOT_IN_GAME"`과 기본 폼 후보가 온다
 응답 `200`
 ```json
 {
   "session_id": "s-173b20576f", "run_id": "r-…",
-  "status": "ok",                 // ok | ask(되묻기) | limit(재계획 상한) | error
+  "status": "ok",                 // ok | ask(되묻기) | limit(재계획 상한) | infeasible(규칙상 선출 조합 없음) | error
   "intent": "plan_selection", "intent_reason": "내 팀과 상대 팀을 주고 선출을 물음",
   "answer": "**선출 3마리**: …",
   "plan_draft": { "format": "…", "my_team": [], "opponent_team": [], "selected": [], "lead": "…",
@@ -40,6 +42,15 @@
                "roles": [{"role": "물리 고속 딜러", "kind": "attacker", "pct": 66.0, "typical": "AS 명랑"},
                          {"role": "물리막이", "kind": "tank", "pct": 21.5, "typical": "HB 장난꾸러기"}], "basis": "배분 통계"}]},
 "defense_advice": "상대 파티가 특수 중심(…)이라 특수 내구가 좋은 대쓰여너(H120·D75)…가 받아내기 유리합니다 (종족값 기준)."
+```
+
+**대면 계획(move_plan)**: 내 포켓몬(공격) → 기술 → 상대(방어), 데미지 포함.
+```json
+{"my_pokemon": "고릴타", "move": "우드해머", "opponent": "워시로토무", "offense": 2.0,
+ "speed": "배분에 따라 다름", "speed_basis": "내 스피드 105(실전 최다 배분(고집) 기준) vs 상대 최다 106 · 상대 배분의 31%보다 빠름",
+ "damage": {"attacker": "HA 고집 (실전 16.3%)", "results": [
+   {"vs": "최다 배분 CS 겁쟁이 (23.5%)", "min_pct": 162.2, "max_pct": 193.7, "ko": "확정 1타", "ohko_pct": 100.0},
+   {"vs": "물리막이형 HB 대담 (22.7%)", "min_pct": 96.8, "max_pct": 114.6, "ko": "난수 1타 (75.0%)", "ohko_pct": 75.0}]}}
 ```
 
 **포켓몬 카드(pokemon_cards)**: 답변에 나온 표시 이름 → 이미지 주소·타입 (화면용).

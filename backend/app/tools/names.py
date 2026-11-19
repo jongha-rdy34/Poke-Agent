@@ -69,6 +69,7 @@ def _load() -> dict:
             _add(index["pokemon"], k, row)
     index["_forms_by_species"] = forms_by_species
     index["_slugs"] = set(data.get("pokemon_slugs") or [])
+    index["_ids"] = data.get("pokemon_ids") or {}
 
     # 별명: 대상 이름으로 찾은 항목을 별명 키에도 걸어 둔다
     if ALIAS_PATH.exists():
@@ -275,3 +276,60 @@ def resolve_names(names: list[str], kind: Literal["pokemon", "move"] = "pokemon"
             raise ToolError(ErrorCode.AMBIGUOUS, "이름이 여러 대상에 해당합니다. 정확한 이름을 다시 물어보세요.")
         raise ToolError(ErrorCode.NOT_FOUND, f"이름을 찾지 못했습니다: {', '.join(names)}")
     return ok({"kind": kind, "results": results, "source": "로컬 매핑 (PokeAPI 수집본)"})
+
+
+# ---------------------------------------------------------------- 화면용 검색 (팀 직접 선택)
+SPRITE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{id}.png"
+
+
+def sprite_url(pokeapi_name: str | None) -> str | None:
+    pid = _load()["_ids"].get(pokeapi_name or "")
+    return SPRITE_URL.format(id=pid) if pid else None
+
+
+def _card(r: dict) -> dict:
+    return {"label": r.get("ko") or r["en"], "value": r["en"], "sprite": sprite_url(r.get("pokeapi_name"))}
+
+
+def search(q: str, limit: int = 12, allow_mega: bool = True) -> list[dict]:
+    """한국어/영문 일부로 포켓몬 후보를 찾는다: 정확히 일치 → 앞부분 일치 → 포함 → 비슷한 이름 순."""
+    q = q.strip()
+    if not q:
+        return []
+    out: list[dict] = []
+    seen: set[str] = set()
+
+    def add(name: str) -> None:
+        r = resolve_one(name, "pokemon")
+        if not r.get("found") or r["en"] in seen:
+            return
+        if not allow_mega and r.get("is_mega"):
+            return
+        seen.add(r["en"])
+        out.append(_card(r))
+        if allow_mega and not r.get("is_mega"):  # 그 종의 실제 메가 폼(X/Y/Z 포함)도 바로 고를 수 있게
+            for v in _species_variants({"en": r["en"], "ko": r.get("ko")})[1:]:
+                add(v["value"])
+
+    compact = q.replace(" ", "")
+    if allow_mega and compact.startswith("메가") and len(compact) > 2:
+        # '메가한' → 한…으로 시작하는 종의 메가 폼들 (메가한카리아스, 메가한카리아스Z …)
+        for c in search(compact[2:], limit * 2, True):
+            if "-Mega" in c["value"] and c["value"] not in seen:
+                seen.add(c["value"])
+                out.append(c)
+    add(q)
+    keys = [k for k in _load()["pokemon"] if k and not k.isascii()] if not compact.isascii() else \
+           [k for k in _load()["pokemon"] if k and k.isascii()]
+    key_q = compact if not compact.isascii() else to_id(compact)
+    for pred in (lambda k: k.startswith(key_q), lambda k: key_q in k):
+        for k in sorted(keys, key=len):
+            if len(out) >= limit:
+                return out
+            if pred(k):
+                add(k)
+    for c in suggest(q, "pokemon"):
+        if len(out) >= limit:
+            break
+        add(c["value"])
+    return out[:limit]

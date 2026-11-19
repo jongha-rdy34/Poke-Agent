@@ -88,6 +88,8 @@ def aggregate(spreads: dict[str, float], total: float) -> dict | None:
         r["w"] += w
         ex_key = f"{c['code']} {c['nature_ko']}"
         r["examples"][ex_key] = r["examples"].get(ex_key, 0) + w
+        r.setdefault("raw", {})[f"{nature}:{'/'.join(str(points[s]) for s in STATS)}"] = \
+            r.get("raw", {}).get(f"{nature}:{'/'.join(str(points[s]) for s in STATS)}", 0) + w
         weight_sum += w
 
     def pct(x: float) -> float:
@@ -99,7 +101,9 @@ def aggregate(spreads: dict[str, float], total: float) -> dict | None:
         if not r or pct(r["w"]) < 0.5:  # 0.5% 미만인 드문 배분은 목록에서 뺀다 (합계 계산에는 포함)
             continue
         top_ex = max(r["examples"].items(), key=lambda kv: kv[1])[0]
-        out_roles.append({"role": name, "kind": r["kind"], "pct": pct(r["w"]), "typical": top_ex})
+        out_roles.append({"role": name, "kind": r["kind"], "pct": pct(r["w"]), "typical": top_ex,
+                          # 데미지 계산에 쓰는 이 형태의 대표 배분 원문 (예: 'Impish:32/0/32/0/2/0')
+                          "typical_spread": max(r["raw"].items(), key=lambda kv: kv[1])[0]})
     out_roles.sort(key=lambda r: -r["pct"])
 
     attacker_w = sum(r["w"] for r in roles.values() if r["kind"] == "attacker")
@@ -116,7 +120,20 @@ def aggregate(spreads: dict[str, float], total: float) -> dict | None:
         "point_system": "SP(최대 32)" if max_point == 32 else "노력치(최대 252)",
         "coverage_pct": round(weight_sum / total * 100, 1),
         "spread_count": len(parsed),
+        # 스피드 분포: (스피드 투자, 성격 보정) 별 비율 — 상대보다 빠른 비율 계산용
+        "speed_dist": _speed_dist(parsed, weight_sum),
     }
+
+
+def _speed_dist(parsed, weight_sum: float) -> list[dict]:
+    acc: dict[tuple[int, str], float] = {}
+    for (nature, points), w in parsed:
+        plus, minus, _ = NATURES.get(nature, (None, None, ""))
+        mod = "+" if plus == "spe" else "-" if minus == "spe" else "0"
+        key = (points.get("spe", 0), mod)
+        acc[key] = acc.get(key, 0) + w
+    rows = [{"points": k[0], "nature": k[1], "pct": round(v / weight_sum * 100, 2)} for k, v in acc.items()]
+    return sorted(rows, key=lambda r: -r["pct"])
 
 
 # ---------------------------------------------------------------- 파티 단위

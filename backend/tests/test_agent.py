@@ -315,3 +315,66 @@ def test_mega_not_allowed_in_sv(monkeypatch):
     assert r["status"] == "ask" and r["clarify"][0]["reason"] == "NOT_IN_GAME"
     assert r["clarify"][0]["candidates"] == [{"label": "Blaze", "value": "Blaze"}]
     assert run_agent("선출", game="champions")["status"] in ("ok", "limit")  # 챔피언스는 메가 허용
+
+
+# ---------------------------------------------------------------- 메가 1마리 · 직접 선택 · 데미지
+def _mega_tools(monkeypatch, megas):
+    def tool(name, args):
+        res = fake_call_tool(name, args)
+        if name == "resolve_names":
+            for item in res["data"]["results"]:
+                if item["input"] in megas:
+                    item.update(en=item["en"] + "-Mega", is_mega=True)
+        if name == "get_pokemon_detail" and args["name"].endswith("-Mega"):
+            return fake_call_tool(name, {"name": args["name"][:-5]})
+        return res
+    monkeypatch.setattr(executor_mod, "call_tool", tool)
+
+
+def test_champions_selects_at_most_one_mega(monkeypatch):
+    _mega_tools(monkeypatch, {"Aqua", "Leafy"})
+    use_llm(selection())
+    r = run_agent("선출", game="champions")
+    sel = r["result"]["selected"]
+    assert len(sel) == 3 and sum(1 for s in sel if s in ("Aqua-Mega", "Leafy-Mega")) <= 1
+    assert any("1마리" in n for n in r["rule_notes"])
+
+
+def test_too_many_megas_is_infeasible_with_reason(monkeypatch):
+    _mega_tools(monkeypatch, {"Aqua", "Leafy", "Blaze"})  # 일반 포켓몬은 Mud 1마리뿐 → 3마리 조합 불가
+    use_llm(selection())
+    r = run_agent("선출", game="champions")
+    assert r["status"] == "infeasible" and r["replans"] == []
+    assert "일반 포켓몬이 1마리뿐" in r["result"]["reason"]
+
+
+def test_two_preferred_megas_conflict(monkeypatch):
+    _mega_tools(monkeypatch, {"Aqua", "Leafy"})
+    use_llm(selection(prefer=["Aqua", "Leafy"]))
+    r = run_agent("Aqua랑 Leafy 둘 다 넣어줘", game="champions")
+    assert "메가진화는 배틀당 1마리" in (r["result"].get("reason") or "")
+
+
+def test_picked_teams_override_chat_analysis():
+    use_llm({"intent": "chitchat", "intent_reason": "인사처럼 보임"})
+    r = run_agent("이 팀으로 선출 추천해줘", my_team=["Aqua", "Leafy", "Blaze"], opp_team=["Ember", "Sprout"])
+    assert r["intent"] == "plan_selection"
+    assert r["conditions"]["my_team"] == ["Aqua", "Leafy", "Blaze"] and r["status"] in ("ok", "limit")
+
+
+def test_move_plan_has_damage_when_meta_moves_known():
+    use_llm(selection())
+    r = run_agent("선출")
+    with_damage = [p for p in r["move_plan"] if p.get("damage")]
+    assert with_damage, "실전 기술(위력)이 있으면 데미지가 계산되어야 함"
+    res = with_damage[0]["damage"]["results"][0]
+    assert 0 < res["min_pct"] <= res["max_pct"] and res["ko"]
+    assert "가정" in res["vs"] or "최다" in res["vs"]  # 어떤 배분 기준인지 밝힘
+
+
+def test_pokemon_search_endpoint(client):
+    rows = client.get("/api/chat/pokemon", params={"q": "한카", "game": "champions"}).json()
+    labels = [r["label"] for r in rows]
+    assert labels[:3] == ["한카리아스", "메가한카리아스", "메가한카리아스Z"] and rows[0]["sprite"].endswith("/445.png")
+    sv = [r["label"] for r in client.get("/api/chat/pokemon", params={"q": "한카", "game": "sv"}).json()]
+    assert sv == ["한카리아스"]  # 본가는 메가 제외

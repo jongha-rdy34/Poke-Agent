@@ -94,6 +94,12 @@ def get_move_info(moves: list[str]) -> dict:
             "always_hits": acc is True,
             "priority": m.get("priority", 0),
             "contact": bool(m.get("flags", {}).get("contact")),
+            # 데미지 계산용: 연속기, 범위기, 공격/방어에 쓰는 능력치가 바뀌는 기술(바디프레스·사이코쇼크·속임수)
+            "multihit": m.get("multihit"),
+            "target": m.get("target"),
+            "override_offensive_stat": m.get("overrideOffensiveStat"),
+            "override_defensive_stat": m.get("overrideDefensiveStat"),
+            "override_offensive_pokemon": m.get("overrideOffensivePokemon"),
         })
 
     if not any(r["found"] for r in results):

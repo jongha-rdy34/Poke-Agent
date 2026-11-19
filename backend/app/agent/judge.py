@@ -10,7 +10,9 @@ import math
 from app import config
 from app.agent.executor import ATTACK_MOVE_MIN_PCT
 from app.agent.planner import REPLAN_CRITERIA, default_pick
+from app.agent import sets as S
 from app.domain.roles import team_profile
+from app.domain.rulesets import RULESETS
 
 SCARF_MIN_PCT = 10.0
 BASE_SPEED_MARGIN = 15  # 능력치 체계를 모르는 포맷에서 '유력'으로 볼 종족값 차이
@@ -70,14 +72,15 @@ def _move_options(ctx: dict, sid: str, user_moves: list[str] | None, use_meta: b
         for name in user_moves:
             m = _find_move(ctx, name)
             if m and m["category"] != "Status":
-                opts.append({"name": m.get("ko_name") or m["name"], "type": m["type"], "power": m.get("base_power") or 0})
+                opts.append({"name": m.get("ko_name") or m["name"], "type": m["type"], "power": m.get("base_power") or 0,
+                             "move": m})
         return opts, assumptions
     if use_meta and sid in ctx["meta"]:
         for mv in ctx["meta"][sid]["moves"]:
             m = ctx["moves"].get(mv["name"])
             if mv["pct"] >= ATTACK_MOVE_MIN_PCT and m and m["category"] != "Status":
                 opts.append({"name": m.get("ko_name") or m["name"], "type": m["type"], "power": m.get("base_power") or 0,
-                             "pct": mv["pct"]})
+                             "pct": mv["pct"], "move": m})
     for t in detail["types"]:  # 자속 타입은 항상 후보 (기술 이름은 모름)
         if not any(o["type"] == t for o in opts):
             opts.append({"name": f"자속 {t} 기술", "type": t, "power": None})
@@ -195,10 +198,37 @@ def matchup_matrix(ctx: dict, conditions: dict, round_: int) -> tuple[dict, list
             risk_move = max(threats, key=lambda t: ctx["charts"][m].get(t["type"], 1), default=None)
             risk = ctx["charts"][m].get(risk_move["type"], 1) if risk_move else 1
             scarf = next((i["pct"] for i in (ctx["meta"].get(o) or {}).get("items", []) if i["name"] == "choicescarf"), 0)
-            spd = speed_verdict(ctx["detail"][m]["base_stats"]["spe"], ctx["detail"][o]["base_stats"]["spe"], fmt, scarf)
+            spd = S.speed_compare(ctx, m, o, fmt, scarf)
             matrix[(m, o)] = {"offense": off, "best_move": best, "risk": risk, "risk_move": risk_move,
                               "priority_moves": priority, "speed": spd}
     return matrix, assumptions
+
+
+def is_mega(ctx: dict, sid: str) -> bool:
+    # 영문 폼 표기로만 판단한다 ('yanmega', 'meganium' 같은 이름을 메가로 오인하지 않도록)
+    return "-Mega" in (ctx["display"].get(sid, {}).get("en") or "")
+
+
+def best_hit(ctx: dict, m: str, o: str, conditions: dict, fmt: str) -> dict | None:
+    """내 m이 상대 o를 때릴 기술 중 데미지가 가장 큰 것 (실전 기술 또는 사용자가 알려준 기술)."""
+    user = {ctx["names"][x["pokemon"]]["sid"]: x["moves"] for x in (conditions.get("my_moves") or [])
+            if x["pokemon"] in ctx["names"]}
+    opts, _ = _move_options(ctx, m, user.get(m), use_meta=True)
+    doubles = conditions.get("battle") == "doubles" or (conditions.get("pick_count") or 3) >= 4
+    best = None
+    for opt in opts:
+        mv = opt.get("move")
+        if not mv:
+            continue
+        eff = ctx["charts"][o].get(mv["type"], 1)
+        dmg = S.damage_for(ctx, m, o, mv, eff, fmt, doubles)
+        if not dmg:
+            continue
+        head = dmg["results"][0]
+        key = (head["ohko_pct"], head["two_hko_pct"], (head["min_pct"] + head["max_pct"]) / 2)
+        if best is None or key > best["key"]:
+            best = {"key": key, "name": opt["name"], "type": mv["type"], "offense": eff, "damage": dmg}
+    return best
 
 
 def answers(cell: dict, round_: int) -> bool:
@@ -231,10 +261,19 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
     phys_w = (profile["physical_pct"] or 50) / 100
     covers = {m: [o for o in targets if (m, o) in matrix and answers(matrix[(m, o)], round_)] for m in candidates}
 
+    mega_rule = RULESETS.get(conditions.get("game") or "champions", {}).get("allow_mega", False)
     combos = [c for c in itertools.combinations(candidates, min(pick, len(candidates)))
-              if all(p in c for p in prefer if p in candidates)]
+              if all(p in c for p in prefer if p in candidates)
+              and (not mega_rule or sum(is_mega(ctx, m) for m in c) <= 1)]  # 메가진화는 배틀당 1마리
     if not combos:
-        return {"satisfied": False, "reason": "선출 후보가 부족합니다 (제외 조건이나 조회 실패 때문).",
+        reason = "선출 후보가 부족합니다 (제외 조건이나 조회 실패 때문)."
+        normal = [m for m in candidates if not is_mega(ctx, m)]
+        if mega_rule and sum(is_mega(ctx, p) for p in prefer) > 1:
+            reason = "메가진화는 배틀당 1마리만 가능해서, 꼭 넣고 싶은 메가 포켓몬을 둘 다 선출할 수 없습니다."
+        elif mega_rule and len(normal) + 1 < pick:
+            reason = (f"메가진화는 배틀당 1마리라 메가 1마리 + 일반 포켓몬 {pick - 1}마리가 필요한데, "
+                      f"일반 포켓몬이 {len(normal)}마리뿐입니다. 메가가 아닌 포켓몬을 팀에 더 넣어 주세요.")
+        return {"satisfied": False, "reason": reason,
                 "round": round_, "pick": pick, "selected": [], "assumptions": assumptions, "not_judged": not_judged}
 
     def score(c):
@@ -247,23 +286,41 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
     covered = set().union(*[covers[m] for m in best])
     uncovered = [o for o in targets if o not in covered]
 
-    # 대면별 추천: 상대마다 선출한 3마리 중 가장 유리한 포켓몬과 기술
+    # 대면별 추천: 상대마다 선출한 3마리 중 데미지가 가장 큰 대면과 기술
+    fmt = (ctx.get("basis") or {}).get("format") or conditions.get("format") or config.DEFAULT_FORMAT
     move_plan = []
     for o in judged_opp:
         cells = [(m, matrix[(m, o)]) for m in best if (m, o) in matrix]
         if not cells:
             continue
-        m, cell = max(cells, key=lambda mc: (answers(mc[1], round_), mc[1]["offense"] - mc[1]["risk"], is_faster(mc[1]["speed"])))
+        hits = {mc[0]: best_hit(ctx, mc[0], o, conditions, fmt) for mc in cells}
+
+        def rank(mc):
+            h = hits.get(mc[0])
+            return (answers(mc[1], round_), h["key"] if h else (0, 0, 0), mc[1]["offense"] - mc[1]["risk"],
+                    is_faster(mc[1]["speed"]))
+        m, cell = max(cells, key=rank)
+        hit = hits.get(m)
         move_plan.append({
-            "opponent": _label(ctx, o), "my_pokemon": _label(ctx, m), "move": cell["best_move"]["name"],
-            "move_type": cell["best_move"]["type"], "offense": cell["offense"], "risk": cell["risk"],
+            "opponent": _label(ctx, o), "my_pokemon": _label(ctx, m),
+            "move": hit["name"] if hit else cell["best_move"]["name"],
+            "move_type": hit["type"] if hit else cell["best_move"]["type"],
+            "offense": hit["offense"] if hit else cell["offense"], "risk": cell["risk"],
+            "damage": hit["damage"] if hit else None,
             "risk_move": (cell["risk_move"] or {}).get("name"), "speed": cell["speed"]["verdict"],
             "speed_basis": cell["speed"]["basis"],
             "priority_moves": [p["name"] for p in cell["priority_moves"]],
             "answered": answers(cell, round_), "target": o in targets,
         })
 
+    fmt = (ctx.get("basis") or {}).get("format") or conditions.get("format") or config.DEFAULT_FORMAT
     lead = max(best, key=lambda m: (len(covers[m]), ctx["detail"][m]["base_stats"]["spe"]))
+    opp_megas = [_label(ctx, o) for o in judged_opp if is_mega(ctx, o)]
+    rule_notes = []
+    if mega_rule:
+        rule_notes.append("메가진화는 배틀당 1마리 — 메가 포켓몬은 최대 1마리만 선출에 넣었습니다.")
+        if len(opp_megas) >= 2:
+            rule_notes.append(f"상대도 메가는 1마리만 쓸 수 있어 {', '.join(opp_megas)} 중 하나만 메가진화합니다.")
     excluded = []
     for m in ctx["my"]:
         if m in best:
@@ -298,6 +355,8 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
         "not_judged": [_label(ctx, s) for s in not_judged],
         "opp_profile": profile,
         "defense_advice": defense_advice(ctx, profile, candidates),
+        "rule_notes": rule_notes,
+        "damage_assumptions": "Lv50·개체값 31, 급소·날씨·도구·특성·랭크 변화 제외. 배분은 실전 통계(없으면 '가정'으로 표시)",
     }
 
 
@@ -310,12 +369,20 @@ def judge_matchup(ctx: dict, conditions: dict) -> dict:
     cell = matrix[(m, o)]
     user = bool(conditions.get("my_moves"))
     opts, _ = _move_options(ctx, m, [mv for x in conditions.get("my_moves") or [] for mv in x["moves"]] or None, use_meta=True)
-    ranked = sorted(opts, key=lambda x: (-ctx["charts"][o].get(x["type"], 1), -(x.get("power") or 0)))
+    fmt = (ctx.get("basis") or {}).get("format") or conditions.get("format") or config.DEFAULT_FORMAT
+    doubles = conditions.get("battle") == "doubles"
+    for x in opts:
+        if x.get("move"):
+            x["damage"] = S.damage_for(ctx, m, o, x["move"], ctx["charts"][o].get(x["type"], 1), fmt, doubles)
+    ranked = sorted(opts, key=lambda x: (
+        -((x.get("damage") or {}).get("results") or [{}])[0].get("max_pct", 0),
+        -ctx["charts"][o].get(x["type"], 1), -(x.get("power") or 0)))
     return {
         "satisfied": True,
         "my_pokemon": _label(ctx, m), "opponent": _label(ctx, o),
         "speed": cell["speed"],
-        "moves_ranked": [{**x, "multiplier": ctx["charts"][o].get(x["type"], 1)} for x in ranked[:5]],
+        "moves_ranked": [{**{k: v for k, v in x.items() if k != "move"}, "multiplier": ctx["charts"][o].get(x["type"], 1)}
+                         for x in ranked[:5]],
         "moves_source": "사용자가 알려준 기술" if user else "내 포켓몬의 실전 통계 상위 기술 + 자속 타입",
         "risk": cell["risk"], "risk_move": cell["risk_move"], "priority_moves": cell["priority_moves"],
         "opp_items": (ctx["meta"].get(o) or {}).get("items", [])[:3],

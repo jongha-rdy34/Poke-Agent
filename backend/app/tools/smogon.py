@@ -181,7 +181,7 @@ def get_meta_usage(
             "moves": _pct_table(v.get("Moves", {}), total, top_n),
             "items": _pct_table(v.get("Items", {}), total, top_n),
             "abilities": _pct_table(v.get("Abilities", {}), total, 3),
-            "spreads": [{**_spread(s["name"]), "pct": s["pct"]} for s in _pct_table(v.get("Spreads", {}), total, 3)],
+            "spreads": [{**_spread(s["name"]), "pct": s["pct"]} for s in _pct_table(v.get("Spreads", {}), total, 6)],
             "teammates": _pct_table(v.get("Teammates", {}), total, 5),
             "checks_counters": _counters(v.get("Checks and Counters", {}), 5),
         }

@@ -31,6 +31,10 @@
       <button type="button" role="radio" data-battle="singles">싱글 6→3</button>
       <button type="button" role="radio" data-battle="doubles">더블 6→4</button>
     </div>
+    <div class="seg" role="radiogroup" aria-label="입력 방식" id="seg-mode">
+      <button type="button" role="radio" data-mode="chat">대화로 입력</button>
+      <button type="button" role="radio" data-mode="pick">직접 선택</button>
+    </div>
     <span id="rule-note" class="muted small"></span>
   </section>
 
@@ -51,6 +55,21 @@
             <button class="chip" data-example="이 계획 이번 토요일 15:00~15:30 대회 1라운드로 저장해줘">계획 저장</button>
           </div>
         </div>
+      </div>
+    </section>
+    <section id="picker" class="picker hidden" aria-label="팀 직접 선택">
+      <div class="picker-cols">
+        <div class="team" data-side="my"><h4>내 팀 <span class="muted small" data-count></span></h4><div class="slots"></div></div>
+        <div class="team" data-side="opp"><h4>상대 팀 <span class="muted small" data-count></span></h4><div class="slots"></div></div>
+      </div>
+      <div class="picker-search hidden">
+        <input type="search" id="pk-q" placeholder="이름 일부 입력 (예: 한카, 메가한, 워시) — 비우면 지금 많이 쓰이는 포켓몬" autocomplete="off">
+        <div id="pk-results" class="pk-results" role="listbox"></div>
+      </div>
+      <div class="picker-foot">
+        <span id="pk-hint" class="muted small"></span>
+        <button type="button" id="pk-clear" class="ghost">비우기</button>
+        <button type="button" id="pk-go" class="primary" disabled>선출 추천 받기</button>
       </div>
     </section>
     <form id="chat-form" class="composer">

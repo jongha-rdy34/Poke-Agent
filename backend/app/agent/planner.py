@@ -62,9 +62,9 @@ def build_plan(intent: str, c: dict, round_: int) -> list[dict]:
     has_my_moves = bool(c.get("my_moves"))
     if intent == "plan_selection":
         if round_ == 0:
-            steps = ["resolve", "meta_opp", "detail", "moves_opp", "matchup"]
-            if has_my_moves:
-                steps.append("moves_my")
+            # 내 포켓몬의 실전 배분·기술도 처음부터 조회한다 (데미지·스피드 계산용).
+            # 선출 판단 자체는 0회차에 자속 기준, 재계획 1회차부터 실전 기술 기준으로 넓힌다.
+            steps = ["resolve", "meta_opp", "meta_my", "detail", "moves_opp", "moves_my", "matchup"]
             return [_step(a) for a in steps]
         if round_ == 1 and not has_my_moves:
             return [_step("meta_my"), _step("moves_my")]

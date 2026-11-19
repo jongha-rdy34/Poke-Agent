@@ -82,6 +82,11 @@ function renderRule() {
 function setRule(key, value) {
   if (rule[key] === value) return;
   rule[key] = value; store("poke." + key, value); renderRule();
+  if (key === "game") {
+    try { picks = JSON.parse(load("poke.picks." + rule.game)) || { my: [], opp: [] }; } catch { picks = { my: [], opp: [] }; }
+    if (rule.game === "sv") picks.my = picks.my.filter(p => !/-Mega/.test(p.value));  // 본가는 메가 없음
+    renderPicker();
+  }
   const hadChat = messages.querySelectorAll(".msg:not(.intro)").length > 0;
   sessionId = null; store("poke.session");
   if (hadChat) {
@@ -91,6 +96,83 @@ function setRule(key, value) {
 }
 document.querySelectorAll("#seg-game button").forEach(b => b.addEventListener("click", () => setRule("game", b.dataset.game)));
 document.querySelectorAll("#seg-battle button").forEach(b => b.addEventListener("click", () => setRule("battle", b.dataset.battle)));
+
+// ---------------------------------------------------------------- 입력 방식: 대화 / 직접 선택
+let mode = load("poke.mode") || "chat";
+let picks = { my: [], opp: [] };
+try { picks = JSON.parse(load("poke.picks." + rule.game)) || picks; } catch { /* 처음 */ }
+let pickTarget = null;  // {side, index}
+
+function savePicks() { store("poke.picks." + rule.game, JSON.stringify(picks)); }
+function renderMode() {
+  document.querySelectorAll("#seg-mode button").forEach(b => b.setAttribute("aria-checked", String(b.dataset.mode === mode)));
+  $("#picker").classList.toggle("hidden", mode !== "pick");
+  renderPicker();
+}
+function renderPicker() {
+  for (const side of ["my", "opp"]) {
+    const box = $(`.team[data-side="${side}"] .slots`);
+    box.innerHTML = Array.from({ length: 6 }, (_, i) => {
+      const p = picks[side][i];
+      const active = pickTarget && pickTarget.side === side && pickTarget.index === i;
+      return p ? `<button type="button" class="slot filled ${active ? "active" : ""}" data-side="${side}" data-i="${i}" title="${esc(p.value)}">
+          ${p.sprite ? `<img src="${esc(p.sprite)}" alt="" loading="lazy">` : ""}<span>${esc(p.label)}</span>
+          <span class="x" data-remove aria-label="빼기">×</span></button>`
+        : `<button type="button" class="slot ${active ? "active" : ""}" data-side="${side}" data-i="${i}">+ 추가</button>`;
+    }).join("");
+    $(`.team[data-side="${side}"] [data-count]`).textContent = `${picks[side].length}/6`;
+  }
+  const megas = picks.my.filter(p => /-Mega/.test(p.value)).length;
+  $("#pk-hint").textContent = rule.game === "champions" && megas > 1
+    ? `메가 포켓몬 ${megas}마리 — 선출은 메가 1마리까지만 들어갑니다` : "";
+  $("#pk-go").disabled = picks.my.length < 3 || picks.opp.length < 1;
+}
+async function pkSearch() {
+  const q = $("#pk-q").value;
+  const list = $("#pk-results");
+  try {
+    const rows = await api(`/api/chat/pokemon?q=${encodeURIComponent(q)}&game=${rule.game}&battle=${rule.battle}&limit=18`);
+    const taken = new Set([...picks.my, ...picks.opp].filter(Boolean).map(p => p.value));
+    list.innerHTML = rows.length ? rows.map(r => `<button type="button" class="pk-item" role="option" data-v="${esc(r.value)}"
+        data-l="${esc(r.label)}" data-s="${esc(r.sprite || "")}" ${taken.has(r.value) && pickTarget?.side === "my" ? "disabled" : ""}>
+        ${r.sprite ? `<img src="${esc(r.sprite)}" alt="" loading="lazy">` : ""}<span>${esc(r.label)}</span>
+        ${r.usage_pct != null ? `<small>${r.usage_pct}%</small>` : ""}</button>`).join("")
+      : `<p class="muted small">찾는 포켓몬이 없어요.</p>`;
+  } catch (e) { list.innerHTML = `<p class="notice err">${esc(e.message)}</p>`; }
+}
+let pkTimer;
+$("#pk-q").addEventListener("input", () => { clearTimeout(pkTimer); pkTimer = setTimeout(pkSearch, 200); });
+$("#picker").addEventListener("click", ev => {
+  const slot = ev.target.closest(".slot");
+  if (slot) {
+    const side = slot.dataset.side, i = +slot.dataset.i;
+    if (ev.target.closest("[data-remove]")) {
+      picks[side].splice(i, 1); savePicks(); pickTarget = null;
+      $(".picker-search").classList.add("hidden"); renderPicker(); return;
+    }
+    pickTarget = { side, index: Math.min(i, picks[side].length) };
+    $(".picker-search").classList.remove("hidden");
+    $("#pk-q").value = ""; $("#pk-q").focus(); renderPicker(); pkSearch(); return;
+  }
+  const item = ev.target.closest(".pk-item");
+  if (item && pickTarget) {
+    picks[pickTarget.side][pickTarget.index] = { value: item.dataset.v, label: item.dataset.l, sprite: item.dataset.s };
+    picks[pickTarget.side] = picks[pickTarget.side].filter(Boolean);
+    savePicks();
+    const next = picks[pickTarget.side].length;  // 다음 빈 칸으로
+    pickTarget = next < 6 ? { side: pickTarget.side, index: next } : null;
+    if (!pickTarget) $(".picker-search").classList.add("hidden");
+    $("#pk-q").value = ""; renderPicker(); if (pickTarget) pkSearch();
+  }
+});
+$("#pk-clear").addEventListener("click", () => { picks = { my: [], opp: [] }; savePicks(); pickTarget = null; renderPicker(); });
+$("#pk-go").addEventListener("click", () => {
+  const summary = `내 팀: ${picks.my.map(p => p.label).join(", ")} / 상대 팀: ${picks.opp.map(p => p.label).join(", ")}`;
+  send("이 팀으로 선출 추천해줘", null, summary, { my_team: picks.my.map(p => p.value), opp_team: picks.opp.map(p => p.value) });
+});
+document.querySelectorAll("#seg-mode button").forEach(b => b.addEventListener("click", () => {
+  mode = b.dataset.mode; store("poke.mode", mode); renderMode();
+}));
 
 // ---------------------------------------------------------------- 대화
 let sessionId = load("poke.session");
@@ -108,6 +190,7 @@ function addMsg(role, html, cls = "") {
 const STEP_NAME = { analyze: "요청 분석", plan: "작업 계획", execute: "Tool 실행", judge: "제약 판단", respond: "응답 생성" };
 const STATUS_BADGE = {
   ok: ["완료", "ok"], ask: ["확인 필요", "warn"], limit: ["재계획 상한 도달", "warn"], error: ["오류", "err"],
+  infeasible: ["선출 조합 없음", "warn"],
 };
 
 function renderTrace(events) {
@@ -193,11 +276,42 @@ function speedClass(v) {
   return /선공/.test(v || "") ? "fast" : /후공/.test(v || "") ? "slow" : "even";
 }
 
+// 대면 한 줄: 내 포켓몬(공격) → 기술·데미지 → 상대(방어)
+function dmgLine(x, main) {
+  const lo = Math.min(x.min_pct, 100), hi = Math.min(x.max_pct, 100);
+  const cls = /확정 1타/.test(x.ko) ? "ko1" : /난수 1타/.test(x.ko) ? "ko1r" : /2타/.test(x.ko) ? "ko2" : "ko3";
+  return `<div class="dmg ${main ? "" : "sub"}" title="상대 체력 ${x.hp}, 데미지 ${x.min}~${x.max}${x.hits ? " (" + x.hits + ")" : ""}">
+    <span class="hpbar"><span class="hp-sure" style="width:${lo}%"></span><span class="hp-maybe" style="left:${lo}%;width:${Math.max(hi - lo, 0)}%"></span></span>
+    <span class="dmg-pct">${x.min_pct}~${x.max_pct}%</span>
+    <span class="ko ${cls}">${esc(x.ko)}</span>
+    <span class="vs-set">${esc(x.vs)}</span>
+  </div>`;
+}
+function vsRow(m) {
+  const d = m.damage;
+  return `<li class="${m.answered === false ? "weak" : ""}">
+    <span class="vs-side mine">${sprite(m.my_pokemon, "sm")}<b>${esc(m.my_pokemon)}</b></span>
+    <span class="vs-attack">
+      <span class="vs-move-line">
+        <span class="vs-move">${esc(m.move)}</span>
+        ${m.offense != null ? `<span class="mult m${String(m.offense).replace(".", "_")}">×${m.offense}</span>` : ""}
+        <span class="spd ${speedClass(m.speed)}" title="${esc(m.speed_basis || "")}">${esc(m.speed || "")}</span>
+        ${m.answered === false ? `<span class="warn-tag" title="확실히 잡는 대면이 아님">주의</span>` : ""}
+      </span>
+      ${d ? d.results.map((x, i) => dmgLine(x, i === 0)).join("") : `<span class="muted small">위력 정보가 없어 데미지 계산 생략</span>`}
+      ${d ? `<span class="muted small">공격측: ${esc(d.attacker)}</span>` : ""}
+    </span>
+    <span class="vs-arrow" aria-hidden="true">▶</span>
+    <span class="vs-side theirs">${sprite(m.opponent, "sm")}<span>${esc(m.opponent)}</span></span>
+  </li>`;
+}
+
 // 선출 3마리 + 선봉 + 대면 계획 (답변 맨 위)
 function selectionCard(draft) {
   const mp = draft.move_plan || [];
   return `<section class="selection">
     <h3>선출 ${draft.selected.length}마리</h3>
+    ${(draft.rule_notes || []).map(n => `<p class="rule-note">${esc(n)}</p>`).join("")}
     <div class="picks-big">${draft.selected.map(n => `
       <div class="pick-card ${n === draft.lead ? "lead" : ""}">
         ${n === draft.lead ? `<span class="lead-tag">선봉</span>` : ""}
@@ -207,18 +321,8 @@ function selectionCard(draft) {
         <div class="muted small">상대 ${mp.filter(m => m.my_pokemon === n).length}마리 담당</div>
       </div>`).join("")}
     </div>
-    ${mp.length ? `<h4>대면 계획</h4><ul class="vs-list">${mp.map(m => `
-      <li class="${m.answered === false ? "weak" : ""}">
-        <span class="vs-side">${sprite(m.opponent, "sm")}<span>${esc(m.opponent)}</span></span>
-        <span class="vs-arrow" aria-hidden="true">→</span>
-        <span class="vs-side">${sprite(m.my_pokemon, "sm")}<b>${esc(m.my_pokemon)}</b></span>
-        <span class="vs-meta">
-          <span class="vs-move">${esc(m.move)}</span>
-          ${m.offense != null ? `<span class="mult m${String(m.offense).replace(".", "_")}">×${m.offense}</span>` : ""}
-          <span class="spd ${speedClass(m.speed)}">${esc(m.speed || "")}</span>
-          ${m.answered === false ? `<span class="warn-tag" title="확실히 잡는 대면이 아님">주의</span>` : ""}
-        </span>
-      </li>`).join("")}</ul>` : ""}
+    ${mp.length ? `<h4>대면 계획 <span class="muted small">내 포켓몬 → 기술 → 상대</span></h4><ul class="vs-list">${mp.map(m => vsRow(m)).join("")}</ul>
+      <p class="muted small">데미지: Lv50·개체값 31, 급소·날씨·도구·특성·랭크 변화 제외. 배분은 실전 통계 기준(없으면 '가정').</p>` : ""}
   </section>`;
 }
 
@@ -277,13 +381,14 @@ function clarifyCard(items, originalText, msgEl) {
   $(".bubble", msgEl).appendChild(wrap);
 }
 
-async function send(text, nameChoices = null, displayText = null) {
+async function send(text, nameChoices = null, displayText = null, teams = null) {
   addMsg("user", esc(displayText || text));
   const pending = addMsg("agent", `<span class="typing">분석하고 Tool을 호출하는 중 <i></i><i></i><i></i></span>`);
   $("#send").disabled = true;
   try {
     const payload = { message: text, session_id: sessionId, game: rule.game, battle: rule.battle };
     if (nameChoices) payload.name_choices = nameChoices;
+    if (teams) Object.assign(payload, teams);
     const r = await api("/api/chat", { method: "POST", body: JSON.stringify(payload) });
     sessionId = r.session_id; store("poke.session", sessionId);
     const [label, cls] = STATUS_BADGE[r.status] || [r.status || "-", ""];
@@ -300,7 +405,7 @@ async function send(text, nameChoices = null, displayText = null) {
       <details class="trace"><summary>실행 과정 보기</summary>${renderTrace(r.events)}</details>`;
     CARDS = r.pokemon_cards || {};
     if (r.plan_draft) {  // 선출 결과를 맨 위에 크게, 자세한 설명은 접어서 아래에
-      html = selectionCard(r.plan_draft) + `<details class="detail-text"><summary>자세한 설명 보기</summary>${html}</details>`;
+      html = selectionCard({ ...r.plan_draft, move_plan: r.move_plan || r.plan_draft.move_plan, rule_notes: r.rule_notes }) + `<details class="detail-text"><summary>자세한 설명 보기</summary>${html}</details>`;
     }
     pending.querySelector(".bubble").innerHTML = html;
     if (r.status === "error") pending.querySelector(".bubble").classList.add("error");
@@ -426,3 +531,4 @@ async function loadLogDetail(id) {
 }
 $("#logs-refresh").addEventListener("click", loadLogSessions);
 renderRule();
+renderMode();
