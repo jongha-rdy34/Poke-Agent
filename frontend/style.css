@@ -109,6 +109,20 @@ details.trace summary { cursor: pointer; color: var(--muted); }
 .timeline li.decision { color: var(--warn); }
 .timeline .ms { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12px; }
 
+:root { --phys: #d9653b; --spec: #3b72d9; --mixed: #8a5cc7; --wall: #5f6b7a; --support: #2f9d78; }
+@media (prefers-color-scheme: dark) { :root { --phys: #f08a5d; --spec: #6f9df2; --mixed: #b48cf2; --wall: #9aa6b5; --support: #5cc9a2; } }
+.profile { margin-top: 10px; padding: 10px 12px; background: var(--surface-2); border-radius: 10px; }
+.profile h4 { margin: 0 0 8px; font-size: 14px; }
+.ratio { display: flex; height: 24px; border-radius: 6px; overflow: hidden; font-size: 12px; font-weight: 600; color: #fff; }
+.ratio span { display: flex; align-items: center; padding: 0 8px; white-space: nowrap; overflow: hidden; min-width: 0; }
+.ratio .phys { background: var(--phys); } .ratio .spec { background: var(--spec); justify-content: flex-end; }
+.roles { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; font-size: 13px; }
+.roles li { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.roles b { min-width: 96px; }
+.role { padding: 1px 8px; border-radius: 999px; font-size: 12px; border: 1px solid currentColor; }
+.role.phys { color: var(--phys); } .role.spec { color: var(--spec); } .role.mixed { color: var(--mixed); }
+.role.wall { color: var(--wall); } .role.support { color: var(--support); }
+.advice { margin: 8px 0 0; font-size: 13px; }
 .clarify { margin-top: 10px; padding: 10px 12px; background: var(--surface-2); border-radius: 10px; }
 .clarify h4 { margin: 0 0 8px; font-size: 14px; }
 .clarify-row { display: grid; grid-template-columns: minmax(80px, auto) 1fr; gap: 8px; align-items: start; padding: 6px 0; border-top: 1px solid var(--border); }

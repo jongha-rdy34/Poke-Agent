@@ -138,11 +138,11 @@ class Executor:
                 if ko and not self.ctx["display"].get(sid, {}).get("ko"):
                     self.ctx["display"].setdefault(sid, {"en": sid})["ko"] = ko
 
-    def _move_ids(self, sids: list[str]) -> list[str]:
+    def _move_ids(self, sids: list[str], min_pct: float = ATTACK_MOVE_MIN_PCT) -> list[str]:
         ids = []
         for s in sids:
             for m in (self.ctx["meta"].get(s) or {}).get("moves", []):
-                if m["pct"] >= ATTACK_MOVE_MIN_PCT:
+                if m["pct"] >= min_pct:
                     ids.append(m["name"])
         return ids
 
@@ -157,7 +157,8 @@ class Executor:
                         self.ctx["moves"].setdefault(to_id(m["input"]), m)
 
     def _moves_opp(self) -> None:
-        self._fetch_moves(self._move_ids(self.ctx["opp"]))
+        # 상대는 상위 기술 전부를 조회한다: 주력기 판단(≥20%) + 물리/특수 기술 비율 계산에 쓴다
+        self._fetch_moves(self._move_ids(self.ctx["opp"], min_pct=0))
 
     def _moves_my(self) -> None:
         user_moves = [mv for m in (self.c.get("my_moves") or []) for mv in m["moves"]]

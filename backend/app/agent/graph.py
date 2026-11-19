@@ -289,6 +289,8 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
         "result": final.get("result"),
         "error": final.get("error"),
         "conditions": final.get("conditions"),
+        "opp_profile": (final.get("result") or {}).get("opp_profile"),
+        "defense_advice": (final.get("result") or {}).get("defense_advice"),
         "clarify": [  # 화면에서 고를 수 있는 이름 후보 (status=ask일 때)
             {"input": u["input"], "reason": u.get("reason"), "candidates": u.get("candidates") or []}
             for u in ctx.get("unresolved", [])

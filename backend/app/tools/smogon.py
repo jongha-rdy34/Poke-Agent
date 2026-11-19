@@ -12,6 +12,7 @@ from __future__ import annotations
 import re
 
 from app import config
+from app.domain.roles import aggregate as aggregate_roles
 from app.tools.common import ErrorCode, ToolError, http_get, ok, safe_tool, to_id
 from app.tools.names import resolve_one
 
@@ -183,6 +184,8 @@ def get_meta_usage(
             "teammates": _pct_table(v.get("Teammates", {}), total, 5),
             "checks_counters": _counters(v.get("Checks and Counters", {}), 5),
         }
+        # 모든 배분을 운용 형태(물리 고속 딜러 / 특수 딜탱 / 물리막이 …)로 분류한 비율
+        entry["roles"] = aggregate_roles(v.get("Spreads", {}), total)
         tera = {k: w for k, w in v.get("Tera Types", {}).items() if k != "nothing"}
         entry["tera_types"] = _pct_table(tera, total, 3) if tera else []
         if total <= 0:

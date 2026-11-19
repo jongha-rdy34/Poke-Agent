@@ -10,6 +10,7 @@ import math
 from app import config
 from app.agent.executor import ATTACK_MOVE_MIN_PCT
 from app.agent.planner import REPLAN_CRITERIA, default_pick
+from app.domain.roles import team_profile
 
 SCARF_MIN_PCT = 10.0
 BASE_SPEED_MARGIN = 15  # 능력치 체계를 모르는 포맷에서 '유력'으로 볼 종족값 차이
@@ -120,6 +121,53 @@ def _label(ctx: dict, sid: str) -> str:
     return d.get("ko") or d.get("en") or sid
 
 
+# ---------------------------------------------------------------- 상대 공격 성향 (물리/특수)
+def move_physical_share(ctx: dict, sid: str) -> float | None:
+    """실전 기술 통계 기준: 공격기 채용 비율 중 물리 기술의 비율(%)."""
+    phys = spec = 0.0
+    for mv in (ctx["meta"].get(sid) or {}).get("moves", []):
+        m = ctx["moves"].get(mv["name"])
+        if not m:
+            continue
+        if m["category"] == "Physical":
+            phys += mv["pct"]
+        elif m["category"] == "Special":
+            spec += mv["pct"]
+    return round(phys / (phys + spec) * 100, 1) if phys + spec > 0 else None
+
+
+def opponent_profile(ctx: dict, sids: list[str]) -> dict:
+    members = [{"name": _label(ctx, s), "sid": s, "roles": (ctx["meta"].get(s) or {}).get("roles")} for s in sids]
+    return team_profile(members, {s: move_physical_share(ctx, s) for s in sids})
+
+
+def _bulk(ctx: dict, sid: str, physical_w: float) -> float:
+    """물리 비중에 맞춘 내구 지표: HP × (w·방어 + (1-w)·특방). 종족값이 없으면 0."""
+    b = (ctx["detail"].get(sid) or {}).get("base_stats") or {}
+    hp, de, sd = b.get("hp") or 0, b.get("def") or 0, b.get("spd") or 0
+    return hp * (physical_w * de + (1 - physical_w) * sd)
+
+
+def defense_advice(ctx: dict, profile: dict, candidates: list[str]) -> str | None:
+    """상대 공격 성향에 맞춰 받아내기 좋은 내 포켓몬 (종족값 기준)."""
+    if profile.get("physical_pct") is None or not candidates:
+        return None
+    w = profile["physical_pct"] / 100
+    ranked = sorted(candidates, key=lambda m: -_bulk(ctx, m, w))[:2]
+    if not ranked or _bulk(ctx, ranked[0], w) == 0:
+        return None
+    key, stat = ("def", "B") if w >= 0.6 else ("spd", "D") if w <= 0.4 else (None, None)
+    def fmt(m):
+        b = ctx["detail"][m]["base_stats"]
+        if key:
+            return f"{_label(ctx, m)}(H{b.get('hp')}·{stat}{b.get(key)})"
+        return f"{_label(ctx, m)}(H{b.get('hp')}·B{b.get('def')}·D{b.get('spd')})"
+    lean = profile["lean"]
+    return (f"상대 파티가 {lean}(물리 {profile['physical_pct']}% / 특수 {profile['special_pct']}%)이라 "
+            f"{'물리' if key == 'def' else '특수' if key == 'spd' else '양쪽'} 내구가 좋은 "
+            + ", ".join(fmt(m) for m in ranked) + "가 받아내기 유리합니다 (종족값 기준).")
+
+
 # ---------------------------------------------------------------- 대면표
 def matchup_matrix(ctx: dict, conditions: dict, round_: int) -> tuple[dict, list[str]]:
     fmt = (ctx.get("basis") or {}).get("format") or conditions.get("format") or config.DEFAULT_FORMAT
@@ -179,6 +227,8 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
         narrowed = True
 
     candidates = [m for m in ctx["my"] if m in ctx["charts"] and m not in exclude]
+    profile = opponent_profile(ctx, judged_opp)
+    phys_w = (profile["physical_pct"] or 50) / 100
     covers = {m: [o for o in targets if (m, o) in matrix and answers(matrix[(m, o)], round_)] for m in candidates}
 
     combos = [c for c in itertools.combinations(candidates, min(pick, len(candidates)))
@@ -190,7 +240,8 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
     def score(c):
         covered = set().union(*[covers[m] for m in c])
         margin = sum(matrix[(m, o)]["offense"] - matrix[(m, o)]["risk"] for m in c for o in targets if (m, o) in matrix)
-        return len(covered), margin
+        bulk = sum(_bulk(ctx, m, phys_w) for m in c)  # 동점이면 상대 공격 성향을 잘 받는 조합
+        return len(covered), margin, bulk
 
     best = max(combos, key=score)
     covered = set().union(*[covers[m] for m in best])
@@ -245,6 +296,8 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
         "excluded": excluded,
         "assumptions": assumptions,
         "not_judged": [_label(ctx, s) for s in not_judged],
+        "opp_profile": profile,
+        "defense_advice": defense_advice(ctx, profile, candidates),
     }
 
 
@@ -266,6 +319,7 @@ def judge_matchup(ctx: dict, conditions: dict) -> dict:
         "moves_source": "사용자가 알려준 기술" if user else "내 포켓몬의 실전 통계 상위 기술 + 자속 타입",
         "risk": cell["risk"], "risk_move": cell["risk_move"], "priority_moves": cell["priority_moves"],
         "opp_items": (ctx["meta"].get(o) or {}).get("items", [])[:3],
+        "opp_profile": opponent_profile(ctx, [o]),
         "assumptions": assumptions,
     }
 
@@ -277,4 +331,5 @@ def judge_lookup(ctx: dict) -> dict:
     d = ctx["detail"].get(sid)
     meta = ctx["meta"].get(sid)
     return {"satisfied": bool(d), "pokemon": _label(ctx, sid), "detail": d,
-            "sets": {k: meta[k] for k in ("usage_pct", "moves", "items", "abilities", "spreads")} if meta else None}
+            "sets": {k: meta.get(k) for k in ("usage_pct", "moves", "items", "abilities", "spreads", "roles")} if meta else None,
+            "opp_profile": opponent_profile(ctx, [sid]) if meta else None}

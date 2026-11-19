@@ -29,6 +29,9 @@ SYSTEM = f"""너는 포켓몬 대전 선출 코치다. [판단 결과] JSON에 �
 - 선출 계획이면: ① 선출 {{pick}}마리와 선봉 ② 상대별 추천 대면과 기술(배율·선공 판단과 근거) ③ 선출하지 않은 포켓몬과 사유
   ④ 근거(통계 포맷·월·레이팅, 가정) 순서로 쓴다. 잡지 못한 상대(uncovered)가 있으면 숨기지 말고 대처 방향을 한 줄로 쓴다.
 - 재계획(replans)이 있었으면 어떤 기준으로 바꿨는지 한 줄 밝힌다.
+- opp_profile이 있으면 '상대 파티 공격 성향' 단락을 둔다: 파티 물리/특수 비율(lean), 포켓몬별 주된 운용 형태와 비율
+  (예: 한카리아스 — 물리 고속 딜러 66%(AS 명랑), 물리막이 22%(HB 장난꾸러기)), 그리고 defense_advice를 그대로 쓴다.
+  비율이 null인 포켓몬은 '통계 없음'이라고만 쓴다.
 - 확인할 수 없는 값은 '역산 기준'(예: 상대 스피드 실수치 X 이상이면 역전)으로만 말한다.
 - 마크다운 목록으로 간결하게. 마지막 줄은 정확히: {DISCLAIMER}"""
 
@@ -100,6 +103,17 @@ def template_answer(intent: str, facts: dict) -> str:
             lines.append("실전 기술: " + ", ".join(f"{m['name']} {m['pct']}%" for m in r["sets"]["moves"][:6]))
     else:
         lines.append(r.get("reason") or "조건을 만족하는 결과를 찾지 못했습니다.")
+    prof = r.get("opp_profile")
+    if prof and prof.get("physical_pct") is not None:
+        lines.append(f"\n**상대 파티 공격 성향**: {prof['lean']} (물리 {prof['physical_pct']}% / 특수 {prof['special_pct']}%)")
+        for mbr in prof["members"]:
+            if mbr["physical_share"] is None and not mbr.get("roles"):
+                lines.append(f"- {mbr['name']}: 통계 없음")
+                continue
+            kinds = ", ".join(f"{x['role']} {x['pct']}%({x['typical']})" for x in mbr["roles"]) or mbr["basis"]
+            lines.append(f"- {mbr['name']}: {kinds}")
+        if r.get("defense_advice"):
+            lines.append(r["defense_advice"])
     if r.get("assumptions"):
         lines.append("\n가정: " + "; ".join(r["assumptions"][:4]))
     if basis:

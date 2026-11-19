@@ -146,6 +146,26 @@ function draftCard(draft, msgEl) {
   $(".bubble", msgEl).appendChild(wrap);
 }
 
+// 상대 파티 공격 성향: 물리/특수 막대 + 포켓몬별 운용 형태
+const ROLE_CLASS = r => r.includes("물리 ") || r === "물리 딜탱" ? "phys" : r.includes("특수 ") || r === "특수 딜탱" ? "spec"
+  : r.includes("혼합") ? "mixed" : r.includes("서포터") ? "support" : "wall";
+function profileCard(p, advice, msgEl) {
+  if (!p || p.physical_pct == null) return;
+  const wrap = document.createElement("div");
+  wrap.className = "profile";
+  wrap.innerHTML = `<h4>상대 파티 공격 성향 <span class="badge">${esc(p.lean)}</span></h4>
+    <div class="ratio" role="img" aria-label="물리 ${p.physical_pct}%, 특수 ${p.special_pct}%">
+      <span class="phys" style="width:${p.physical_pct}%">물리 ${p.physical_pct}%</span>
+      <span class="spec" style="width:${p.special_pct}%">특수 ${p.special_pct}%</span>
+    </div>
+    <ul class="roles">${p.members.map(m => `<li><b>${esc(m.name)}</b>
+      ${m.physical_share == null && !m.roles.length ? `<span class="muted">통계 없음</span>` :
+        m.roles.length ? m.roles.map(r => `<span class="role ${ROLE_CLASS(r.role)}" title="${esc(r.typical)}">${esc(r.role)} ${r.pct}%</span>`).join("")
+        : `<span class="muted">${esc(m.basis)} · 물리 ${m.physical_share}%</span>`}</li>`).join("")}</ul>
+    ${advice ? `<p class="advice">${esc(advice)}</p>` : ""}`;
+  $(".bubble", msgEl).appendChild(wrap);
+}
+
 // 이름 확인: 후보를 토글 칩으로 보여주고, 고른 이름으로 같은 요청을 다시 보낸다
 function clarifyCard(items, originalText, msgEl) {
   const choices = {};
@@ -203,6 +223,7 @@ async function send(text, nameChoices = null, displayText = null) {
       <details class="trace"><summary>실행 과정 보기</summary>${renderTrace(r.events)}</details>`;
     pending.querySelector(".bubble").innerHTML = html;
     if (r.status === "error") pending.querySelector(".bubble").classList.add("error");
+    profileCard(r.opp_profile, r.defense_advice, pending);
     if (r.plan_draft) draftCard(r.plan_draft, pending);
     if (r.clarify?.length) clarifyCard(r.clarify, text, pending);
   } catch (e) {

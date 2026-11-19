@@ -76,7 +76,7 @@ def build_plan(intent: str, c: dict, round_: int) -> list[dict]:
     if intent == "lookup":
         steps = ["resolve", "detail"]
         if c.get("lookup_kind") == "sets":
-            steps.append("meta_opp")
+            steps += ["meta_opp", "moves_opp"]
         return [_step(a) for a in steps]
     return []  # save_plan, chitchat: Tool 없음
 

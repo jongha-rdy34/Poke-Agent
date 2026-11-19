@@ -43,6 +43,10 @@ class ChatResponse(BaseModel):
     saved: dict | None = None
     replans: list[dict] = []
     error: dict | None = None
+    opp_profile: dict | None = Field(None, description=(
+        "상대 공격 성향: physical_pct/special_pct, lean(물리 중심/특수 중심/균형), "
+        "members[{name, physical_share, roles[{role, pct, typical}], basis}]"))
+    defense_advice: str | None = Field(None, description="상대 성향에 맞춰 받아내기 좋은 내 포켓몬 (종족값 기준)")
     clarify: list[ClarifyItem] = Field(default_factory=list, description="이름 확인이 필요한 항목과 후보 (status=ask)")
     events: list[dict] = Field(default_factory=list, description="실행 단계·Tool 호출·재계획 이력 (실행 순서)")
     total_ms: int

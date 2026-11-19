@@ -199,8 +199,16 @@ def resolve_one(name: str, kind: Literal["pokemon", "move"]) -> dict:
     en = row["en"] + suffix
     if row.get("form"):
         ko = row["ko"]
+    elif not row.get("ko"):
+        ko = None
+    elif suffix in FORM_KO:
+        ko = FORM_KO[suffix] + row["ko"]
+    elif suffix.startswith("-Mega"):  # '-Mega-Z' -> '메가한카리아스Z'
+        ko = "메가" + row["ko"] + suffix[5:].replace("-", "")
+    elif suffix:  # 그 밖의 영문 폼 표기는 종 이름과 구분되게 붙여 둔다
+        ko = f"{row['ko']}({suffix[1:]})"
     else:
-        ko = (FORM_KO.get(suffix, "") + row["ko"]) if row.get("ko") else None
+        ko = row["ko"]
     result = {
         "input": name,
         "found": True,

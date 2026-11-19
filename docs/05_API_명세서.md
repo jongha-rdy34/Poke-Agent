@@ -28,6 +28,15 @@
   "total_ms": 1222
 }
 ```
+**상대 공격 성향(opp_profile)**: 선출 계획·대면·실전 세트 조회 응답에 포함된다.
+```json
+"opp_profile": {"physical_pct": 27.5, "special_pct": 72.5, "lean": "특수 중심", "walls": ["하마돈", "아머까오"],
+  "members": [{"name": "한카리아스", "physical_share": 99.3, "attacker_pct": 68.6, "main_role": "물리 고속 딜러",
+               "roles": [{"role": "물리 고속 딜러", "kind": "attacker", "pct": 66.0, "typical": "AS 명랑"},
+                         {"role": "물리막이", "kind": "tank", "pct": 21.5, "typical": "HB 장난꾸러기"}], "basis": "배분 통계"}]},
+"defense_advice": "상대 파티가 특수 중심(…)이라 특수 내구가 좋은 대쓰여너(H120·D75)…가 받아내기 유리합니다 (종족값 기준)."
+```
+
 **이름 확인(clarify)**: 부정확하거나 여러 대상에 걸리는 이름이 있으면 이름 확인 Tool만 부르고 `status: "ask"`로 멈춘다.
 ```json
 "clarify": [{"input": "물라오슨", "reason": "SUGGEST",
