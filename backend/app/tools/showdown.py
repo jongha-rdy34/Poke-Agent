@@ -100,6 +100,9 @@ def get_move_info(moves: list[str]) -> dict:
             "override_offensive_stat": m.get("overrideOffensiveStat"),
             "override_defensive_stat": m.get("overrideDefensiveStat"),
             "override_offensive_pokemon": m.get("overrideOffensivePokemon"),
+            # 특성 보정용 기술 분류 (단단한발톱=접촉, 철주먹=펀치, 옹골찬턱=물기, 메가런처=파동, 예리함=베기, 펑크록=소리)
+            "flags": sorted(k for k in ("contact", "punch", "bite", "pulse", "slicing", "sound") if m.get("flags", {}).get(k)),
+            "recoil": bool(m.get("recoil")),
         })
 
     if not any(r["found"] for r in results):

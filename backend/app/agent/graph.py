@@ -110,12 +110,12 @@ def analyze_node(state: AgentState, em: Emitter) -> dict:
     choice = state.get("mega_choice") or {}
     if "my_team" in changed and "my_holders" not in choice:
         conditions.pop("my_megas", None)   # 팀이 바뀌면 메가스톤 보유자는 다시 묻는다
-    if "opp_team" in changed and "opp" not in choice:
-        conditions.pop("opp_mega", None)
+    if "opp_team" in changed and "opp_holders" not in choice:
+        conditions.pop("opp_megas", None)
     if "my_holders" in choice:
         conditions["my_megas"] = {k: v for k, v in (choice["my_holders"] or {}).items() if v and v != "none"}
-    if choice.get("opp"):
-        conditions["opp_mega"] = choice["opp"]
+    if "opp_holders" in choice:
+        conditions["opp_megas"] = {k: v for k, v in (choice["opp_holders"] or {}).items() if v and v != "none"}
     if (teams.get("my") or teams.get("opp")) and ({"my_team", "opp_team"} & set(changed)):
         for k in ("prefer", "exclude", "must_answer", "my_moves"):
             if not new.get(k):

@@ -70,3 +70,36 @@ def test_ko_probabilities():
 def test_variable_multihit_distribution_sums_to_one():
     d = move_distribution([[10] * 16], {2: 0.35, 3: 0.35, 4: 0.15, 5: 0.15})
     assert abs(sum(d.values()) - 1) < 1e-9 and min(d) == 20 and max(d) == 50
+
+
+# --- 특성 보정 — 기대값은 @smogon/calc 0.10.0 (특성을 직접 지정, 도구 없음) ----------------
+SCIZOR = {"hp": 70, "atk": 130, "def": 100, "spa": 55, "spd": 80, "spe": 65}
+SYLVEON = {"hp": 95, "atk": 65, "def": 65, "spa": 110, "spd": 130, "spe": 60}
+AZUMARILL = {"hp": 100, "atk": 50, "def": 80, "spa": 60, "spd": 80, "spe": 50}
+DRAGONITE = {"hp": 91, "atk": 134, "def": 95, "spa": 100, "spd": 100, "spe": 80}
+PORYGONZ = {"hp": 85, "atk": 80, "def": 70, "spa": 135, "spd": 75, "spe": 90}
+
+
+def _p(base, evs, nature, types, ability):
+    return {"stats": full_stats(base, evs, nature, "ev"), "types": types, "ability": ability}
+
+
+@pytest.mark.parametrize("atk,dfn,move,eff,chart,expected", [
+    (_p(SCIZOR, ev(atk=252), "Adamant", ["Bug", "Steel"], "technician"), _p(SYLVEON, ev(hp=252), "Bold", ["Fairy"], "cutecharm"),
+     {"id": "bulletpunch", "base_power": 40, "category": "Physical", "type": "Steel", "flags": ["contact", "punch"]}, 2, None, (146, 174)),
+    (_p(SYLVEON, ev(spa=252), "Modest", ["Fairy"], "pixilate"), _p(GARCHOMP, ev(), "Jolly", ["Dragon", "Ground"], "roughskin"),
+     {"id": "hypervoice", "base_power": 90, "category": "Special", "type": "Normal", "flags": ["sound"]}, 1, {"Fairy": 2}, (206, 246)),
+    (_p(AZUMARILL, ev(atk=252), "Adamant", ["Water", "Fairy"], "hugepower"), _p(GARCHOMP, ev(), "Jolly", ["Dragon", "Ground"], "roughskin"),
+     {"id": "aquajet", "base_power": 40, "category": "Physical", "type": "Water", "flags": ["contact"]}, 1, None, (45, 54)),
+    (_p(GHOLDENGO, ev(spa=252), "Modest", ["Steel", "Ghost"], "goodasgold"), _p(DRAGONITE, ev(hp=4), "Adamant", ["Dragon", "Flying"], "multiscale"),
+     {"id": "icebeam", "base_power": 90, "category": "Special", "type": "Ice", "flags": []}, 4, None, (114, 136)),
+    (_p(PORYGONZ, ev(spa=252), "Modest", ["Normal"], "adaptability"), _p(GARCHOMP, ev(), "Jolly", ["Dragon", "Ground"], "roughskin"),
+     {"id": "triattack", "base_power": 80, "category": "Special", "type": "Normal", "flags": []}, 1, None, (118, 140)),
+    (_p(GARCHOMP, ev(atk=252), "Adamant", ["Dragon", "Ground"], "roughskin"), _p(KINGAMBIT, ev(hp=252), "Adamant", ["Dark", "Steel"], "furcoat"),
+     {"id": "earthquake", "base_power": 100, "category": "Physical", "type": "Ground", "flags": []}, 2, None, (84, 98)),
+    (_p(GARCHOMP, ev(atk=252), "Jolly", ["Dragon", "Ground"], "toughclaws"), _p(DRAGONITE, ev(), "Adamant", ["Dragon", "Flying"], "filter"),
+     {"id": "dragonclaw", "base_power": 80, "category": "Physical", "type": "Dragon", "flags": ["contact"]}, 2, None, (139, 166)),
+])
+def test_ability_modifiers_match_smogon_calc(atk, dfn, move, eff, chart, expected):
+    r = calc_move(move, atk, dfn, eff, False, chart)
+    assert (r["min"], r["max"]) == expected and r["ability_notes"]

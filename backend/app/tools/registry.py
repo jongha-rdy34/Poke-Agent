@@ -32,6 +32,8 @@ class MetaUsageInput(BaseModel):
     month: str | None = Field(None, description="집계월 YYYY-MM. 생략 시 가장 최근 집계월.")
     rating: int | None = Field(None, description="레이팅 컷. 생략 시 1500.")
     top_n: int = Field(6, ge=1, le=30, description="기술/도구 등을 상위 몇 개까지 돌려줄지")
+    teammates: list[str] | None = Field(None, max_length=30, description=(
+        "같은 팀 구성 비율을 볼 포켓몬 이름. 각 포켓몬의 team_fit에 '이 포켓몬들과 함께 쓰인 비율(%)'이 붙는다"))
 
 
 class PokemonDetailInput(BaseModel):

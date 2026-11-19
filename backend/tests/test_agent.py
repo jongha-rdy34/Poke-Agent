@@ -320,6 +320,7 @@ def test_mega_not_allowed_in_sv(monkeypatch):
 # ---------------------------------------------------------------- 메가진화 1번 · 직접 선택 · 데미지
 MEGAS = {"Aqua": [""], "Leafy": ["", "Z"], "Ember": [""]}      # 종 → 메가 폼 접미어
 MEGA_USAGE = {"Aqua-Mega": 5.0, "Leafy-Mega": 2.0, "Leafy-Mega-Z": 8.0, "Ember-Mega": 30.0}
+TEAM_FIT: dict = {}   # (폼, 팀원) → 함께 쓰인 비율(%)
 
 
 @pytest.fixture
@@ -333,6 +334,8 @@ def mega_env(monkeypatch):
                 entry["input"] = p
                 if "-Mega" in p:
                     entry.update(found=p in MEGA_USAGE, usage_pct=MEGA_USAGE.get(p, 0), name=p)
+                if args.get("teammates") and entry.get("found"):
+                    entry["team_fit"] = {t: TEAM_FIT.get((p, t), 0) for t in args["teammates"]}
             return res
         if name == "get_pokemon_detail" and "-Mega" in args["name"]:
             return fake_call_tool(name, {"name": args["name"].split("-Mega")[0]})
@@ -354,9 +357,13 @@ def test_asks_which_of_my_pokemon_mega_evolves(mega_env):
     assert r["status"] == "ask" and "메가스톤" in r["answer"]
     opts = {o["pokemon"]: [f["value"] for f in o["forms"]] for o in r["mega"]["my_options"]}
     assert opts == {"Aqua": ["Aqua-Mega"], "Leafy": ["Leafy-Mega", "Leafy-Mega-Z"]}  # 메가 가능한 포켓몬만
-    assert [p["tool"] for p in tool_calls(r)] == ["resolve_names", "get_meta_usage"]  # 고르기 전엔 더 부르지 않음
+    # 고르기 전엔 이름 확인 + 메가 폼 확인(기본 컷) + 상대 메가 예상(상위 컷·팀원) 까지만 부른다
+    assert [p["tool"] for p in tool_calls(r)] == ["resolve_names", "get_meta_usage", "get_meta_usage"]
+    hi = [p for p in tool_calls(r) if p["tool"] == "get_meta_usage"][1]["args"]
+    assert hi["rating"] == 9999 and "Sprout" in hi["teammates"]
     pred = r["mega"]["opp_predictions"][0]
     assert pred["pokemon"] == "Ember" and pred["forms"][0]["share"] == 66.7  # 30 / (15 + 30)
+    assert r["mega"]["opp_holders"] == {"Ember": "Ember-Mega"}  # 50% 이상 → 스톤 보유 예상
 
 
 def test_several_stone_holders_and_best_mega_is_chosen(mega_env):
@@ -381,9 +388,26 @@ def test_several_stone_holders_and_best_mega_is_chosen(mega_env):
 
 def test_no_stone_holders_keeps_base_forms(mega_env):
     use_llm(selection())
-    r = run_agent("선출", game="champions", mega_choice={"my_holders": {"Aqua": "none"}, "opp": "none"})
+    r = run_agent("선출", game="champions", mega_choice={"my_holders": {"Aqua": "none"}, "opp_holders": {}})
     assert r["status"] in ("ok", "limit") and r["mega_evolve"] is None
     assert not any("-Mega" in k for k in r["pokemon_cards"])
+
+
+def test_opponent_mega_prediction_uses_team_fit(mega_env, monkeypatch):
+    # 메가 폼이 이 상대 팀원들과는 거의 안 쓰이고, 기본 폼은 자주 쓰이면 → 메가 확률이 내려간다
+    monkeypatch.setitem(TEAM_FIT, ("Ember", "Sprout"), 60.0)
+    monkeypatch.setitem(TEAM_FIT, ("Ember", "Rocky"), 60.0)
+    use_llm(selection())
+    r = run_agent("선출", game="champions", mega_choice={"my_holders": {}})
+    form = r["mega"]["opp_predictions"][0]["forms"][0]
+    assert form["share"] == 66.7 and form["predicted"] < 50       # 통계 비율만으론 66.7%지만 팀 구성 반영 후 50% 미만
+    assert r["mega"]["opp_holders"] == {}                         # 그래서 스톤 보유로 예상하지 않음
+
+
+def test_several_opponent_holders_can_be_set(mega_env):
+    use_llm(selection(opp_team=["Ember", "Sprout", "Rocky"]))
+    r = run_agent("선출", game="champions", mega_choice={"my_holders": {}, "opp_holders": {"Ember": "Ember-Mega"}})
+    assert r["mega"]["opp_predicted"] is False and "Ember-Mega" in r["pokemon_cards"]
 
 
 def test_picked_teams_override_chat_analysis():

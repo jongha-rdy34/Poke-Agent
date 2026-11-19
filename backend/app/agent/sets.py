@@ -5,8 +5,9 @@
 from __future__ import annotations
 
 from app.domain.damage import calc_move
-from app.domain.roles import NATURES, parse_spread
-from app.domain.stats import calc_stat, full_stats, max_points, system_for
+from app.domain.roles import NATURES, classify, parse_spread
+from app.tools.common import to_id
+from app.domain.stats import calc_stat, full_stats, max_points, system_for  # noqa: F401
 
 BULKY_MIN_PCT = 15.0   # 이 비율 이상인 내구형(막이) 배분이 있으면 그 배분으로도 계산해 보여준다
 NATURE_KO = {k: v[2] for k, v in NATURES.items()}
@@ -19,10 +20,55 @@ def _code(points: dict, mx: int) -> str:
     return "".join(LETTER[s] for s in STATS if points.get(s, 0) >= mx * 0.4) or "무투자"
 
 
+def ability_of(ctx: dict, sid: str) -> str | None:
+    """계산에 쓰는 특성: 실전 통계에서 50% 이상 채용된 특성, 없으면 특성이 하나뿐일 때 그 특성 (Showdown ID)."""
+    meta = ctx["meta"].get(sid) or {}
+    if meta.get("abilities") and meta["abilities"][0]["pct"] >= 50:
+        return to_id(meta["abilities"][0]["name"])
+    abilities = (ctx["detail"].get(sid) or {}).get("abilities") or []
+    return to_id(abilities[0]["name"]) if len(abilities) == 1 else None
+
+
 def _make(ctx: dict, sid: str, nature: str | None, points: dict, system: str, label: str, assumed: bool) -> dict:
     d = ctx["detail"][sid]
     return {"stats": full_stats(d["base_stats"], points, nature, system), "types": d["types"],
-            "label": label, "assumed": assumed, "nature": nature, "points": points}
+            "label": label, "assumed": assumed, "nature": nature, "points": points, "ability": ability_of(ctx, sid)}
+
+
+def primary_set(ctx: dict, sid: str, system: str) -> dict:
+    """내 포켓몬 한 마리당 하나의 세트: 실전 최다 배분. 모든 대면·스피드 판단에 같은 세트를 쓴다 (일관성).
+    통계가 없으면 공격·특공 중 종족값이 높은 쪽 + 스피드 최대 투자를 가정한다."""
+    cache = ctx.setdefault("_primary", {})
+    if sid in cache:
+        return cache[sid]
+    mx = max_points(system)
+    spreads = (ctx["meta"].get(sid) or {}).get("spreads") or []
+    if spreads:
+        sp = spreads[0]
+        out = _make(ctx, sid, sp["nature"], sp["points"], system,
+                    f"{_code(sp['points'], mx)} {NATURE_KO.get(sp['nature'], sp['nature'])} (실전 최다 {sp['pct']}%)", False)
+        c = classify(sp["nature"], sp["points"], mx)
+        out["side"] = c["side"]  # 물리 / 특수 / 혼합 / None(탱커·서포터)
+    else:
+        b = ctx["detail"][sid]["base_stats"]
+        stat = "atk" if (b.get("atk") or 0) >= (b.get("spa") or 0) else "spa"
+        out = _make(ctx, sid, BOOST_NATURE.get(stat), {stat: mx, "spe": mx}, system,
+                    f"가정: {LETTER[stat]}S 최대 투자·보정 성격 (실전 통계 없음)", True)
+        out["side"] = "물리" if stat == "atk" else "특수"
+    cache[sid] = out
+    return out
+
+
+def move_fits_set(move: dict, s: dict) -> bool:
+    """이 세트가 쓸 기술인가: 물리 배분이면 물리기, 특수 배분이면 특수기 (혼합·탱커는 둘 다)."""
+    if move.get("override_offensive_stat") == "def":   # 바디프레스는 방어로 때림
+        return True
+    side = s.get("side")
+    if side == "물리":
+        return move["category"] == "Physical"
+    if side == "특수":
+        return move["category"] == "Special"
+    return True
 
 
 def attacker_set(ctx: dict, sid: str, category: str, system: str, attack_stat: str | None = None) -> dict:
@@ -67,11 +113,10 @@ def damage_for(ctx: dict, my: str, opp: str, move: dict, effectiveness: float, f
     system = system_for(fmt)
     if not move.get("base_power") or move.get("category") == "Status":
         return None
-    atk_stat = move.get("override_offensive_stat") or ("atk" if move["category"] == "Physical" else "spa")
-    attacker = attacker_set(ctx, my, move["category"], system, atk_stat)
+    attacker = primary_set(ctx, my, system)   # 대면마다 배분을 바꾸지 않는다
     rows = []
     for d in defender_sets(ctx, opp, system):
-        r = calc_move(move, attacker, d, effectiveness, doubles)
+        r = calc_move(move, attacker, d, effectiveness, doubles, ctx["charts"].get(opp))
         if r:
             rows.append({**r, "vs": d["label"], "assumed": d["assumed"]})
     if not rows:

@@ -16,8 +16,8 @@
 - `game`: `champions`(포켓몬 챔피언스 — 메가진화 룰, SP, 진행 중 시즌) / `sv`(스칼렛·바이올렛 — 테라스탈 룰, 노력치, **종료된 시즌의 마지막 집계**)
 - `battle`: `singles`(6→3) / `doubles`(6→4). 생략하면 세션에 기억된 값, 처음이면 챔피언스·싱글
 - 규칙 목록: `GET /api/chat/rulesets` (포맷 ID, 선출 수 포함)
-- `mega_choice`: `{"my_holders": {"Garchomp": "Garchomp-Mega-Z", "Absol": "Absol-Mega-Z", "Salamence": "Salamence-Mega"}, "opp": "Golisopod-Mega" | "none"}`
-  — 챔피언스 메가스톤 보유자(여러 마리 가능, 배틀에서 메가진화는 1번). `opp`를 빼면 통계 예상을 쓴다.
+- `mega_choice`: `{"my_holders": {"Garchomp": "Garchomp-Mega-Z", "Absol": "Absol-Mega-Z", "Salamence": "Salamence-Mega"}, "opp_holders": {"Golisopod": "Golisopod-Mega", "Delphox": "Delphox-Mega"}}`
+  — 챔피언스 메가스톤 보유자(양쪽 모두 여러 마리 가능, 배틀에서 메가진화는 1번). `opp_holders`를 빼면 통계 예상(상위 레이팅 + 팀원 구성)을 쓴다.
   아직 안 정했으면 `status: "ask"`와 `mega: {my_options[{pokemon, base, forms[{label, value, usage_pct, sprite}]}], opp_predictions[…], opp, opp_predicted}`가 온다.
   결과에는 `mega_evolve`(이 선출에서 메가진화할 포켓몬)와 `mega_alternatives`(같은 3마리에서 메가 대상을 바꾼 비교)가 온다
 - `my_team`, `opp_team`: 직접 선택 모드에서 고른 팀(검색 결과의 `value`). 보내면 대화 분석보다 우선한다

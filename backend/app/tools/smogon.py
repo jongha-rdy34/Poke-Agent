@@ -84,6 +84,7 @@ def get_meta_usage(
     month: str | None = None,
     rating: int | None = None,
     top_n: int = 6,
+    teammates: list[str] | None = None,
 ) -> dict:
     if top_n < 1 or top_n > 30:
         raise ToolError(ErrorCode.BAD_ARGUMENT, "top_n은 1~30 사이여야 합니다.")
@@ -185,6 +186,10 @@ def get_meta_usage(
             "teammates": _pct_table(v.get("Teammates", {}), total, 5),
             "checks_counters": _counters(v.get("Checks and Counters", {}), 5),
         }
+        if teammates:
+            # 이 포켓몬(폼)과 같은 팀에 들어간 비율: 상대 팀원 구성으로 메가진화 예상을 보정할 때 쓴다
+            tm = {to_id(k): w for k, w in v.get("Teammates", {}).items()}
+            entry["team_fit"] = {t: round(tm.get(to_id(t), 0) / total * 100, 1) if total > 0 else 0 for t in teammates}
         # 모든 배분을 운용 형태(물리 고속 딜러 / 특수 딜탱 / 물리막이 …)로 분류한 비율
         entry["roles"] = aggregate_roles(v.get("Spreads", {}), total)
         tera = {k: w for k, w in v.get("Tera Types", {}).items() if k != "nothing"}

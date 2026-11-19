@@ -204,7 +204,7 @@ class Executor:
 
 
 # ---------------------------------------------------------------- 메가진화 (챔피언스: 배틀당 1마리)
-MEGA_PRED_MIN = 15.0  # 상대 메가 예상으로 표시할 최소 비율(%)
+OPP_HOLDER_MIN = 50.0  # 상대가 메가스톤을 들었다고 예상할 메가 확률(%)
 
 
 def _base_en(en: str) -> str:
@@ -278,42 +278,83 @@ def _mega(self) -> None:
     if my_opts and holders is None:
         ctx["mega_ask"] = True
 
-    # --- 상대 팀: 메가 폼 비율 = 메가 폼 사용률 / (기본 + 메가 폼 사용률)
+    # --- 상대 팀: 메가스톤 보유 예상 (여러 마리 가능)
+    # ① 포켓몬 자체의 메가 폼 비율 — 상위 레이팅(가장 높은 컷) 통계
+    # ② 팀 구성 — 이 상대 팀원들과 '메가 폼'이 같이 쓰인 정도 vs '기본 폼'이 같이 쓰인 정도 (가능도 비)
+    opp_species = {sid: species_of(sid) for sid in ctx["opp"]}
+    opp_forms = {sid: options(sid) for sid in ctx["opp"]}
+    all_names = {sid: [opp_species[sid][0]] + [f["value"] for f in opp_forms[sid]] for sid in ctx["opp"]}
+    hi_usage, fit, hi_rating = {}, {}, None
+    cand = [n for sid in ctx["opp"] if opp_forms[sid] for n in all_names[sid]]
+    if cand:
+        teammates = list(dict.fromkeys(n for names in all_names.values() for n in names))[:30]
+        args = {"pokemon": cand[:24], "top_n": 1, "rating": 9999, "teammates": teammates}
+        if c.get("format"):
+            args["format"] = c["format"]
+        r = self.call("get_meta_usage", args)
+        if r["ok"]:
+            hi_rating = r["data"]["rating"]
+            for p in r["data"]["pokemon"]:
+                if p.get("found"):
+                    hi_usage[p["input"]] = p["usage_pct"]
+                    fit[p["input"]] = p.get("team_fit") or {}
+
+    def team_fit(name: str, sid: str) -> float | None:
+        """name(폼)이 이 상대 팀의 다른 포켓몬들(종 단위)과 함께 쓰인 평균 비율(%)."""
+        if name not in fit:
+            return None
+        vals = [sum(fit[name].get(n, 0) for n in all_names[o]) for o in ctx["opp"] if o != sid]
+        return sum(vals) / len(vals) if vals else None
+
     preds = []
     for sid in ctx["opp"]:
-        base, ko = species_of(sid)
-        forms = options(sid)
+        base, ko = opp_species[sid]
+        forms = opp_forms[sid]
         if not forms:
             continue
-        total = usage.get(base, 0) + sum(f["usage_pct"] for f in forms)
+        src = hi_usage if any(f["value"] in hi_usage for f in forms) else usage  # 상위 컷에 없으면 기본 컷
+        total = src.get(base, 0) + sum(src.get(f["value"], 0) for f in forms)
         if total <= 0:
             continue
+        base_fit = team_fit(base, sid)
+        weights = {"base": src.get(base, 0) / total}
         for f in forms:
-            f["share"] = round(f["usage_pct"] / total * 100, 1)
-        forms.sort(key=lambda f: -f["share"])
+            f["share"] = round(src.get(f["value"], 0) / total * 100, 1)   # ① 메가 폼 비율
+            f_fit = team_fit(f["value"], sid)
+            ratio = (f_fit + 1) / (base_fit + 1) if f_fit is not None and base_fit is not None else 1.0
+            weights[f["value"]] = src.get(f["value"], 0) / total * ratio
+            f["team_fit"] = round(f_fit, 1) if f_fit is not None else None
+        z = sum(weights.values()) or 1
+        for f in forms:
+            f["predicted"] = round(weights[f["value"]] / z * 100, 1)       # ①+② 보정한 메가 확률
+        forms.sort(key=lambda f: -f["predicted"])
         pk = N.resolve_one(base, "pokemon")
         preds.append({"pokemon": ko, "base": base, "sprite": N.sprite_url(pk.get("pokeapi_name")),
-                      "mega_share": round(sum(f["share"] for f in forms), 1), "forms": forms})
-    preds.sort(key=lambda p: -p["mega_share"])
-    opp_explicit = [s for s in ctx["opp"] if "-Mega" in ctx["display"][s]["en"]]
-    opp_choice = c.get("opp_mega")
-    if not opp_choice:
-        if opp_explicit:
-            opp_choice = ctx["display"][opp_explicit[0]]["en"]
-        elif preds and preds[0]["mega_share"] >= MEGA_PRED_MIN:
-            opp_choice = preds[0]["forms"][0]["value"]  # 가장 메가진화 비율이 높은 포켓몬의 최다 메가 폼
-        else:
-            opp_choice = "none"
-    ctx["mega"].update({"opp_predictions": preds, "opp": opp_choice,
-                        "opp_predicted": not c.get("opp_mega") and not opp_explicit})
+                      "mega_share": round(sum(f["share"] for f in forms), 1),
+                      "mega_pct": round(sum(f["predicted"] for f in forms), 1),
+                      "base_team_fit": round(base_fit, 1) if base_fit is not None else None,
+                      "rating": hi_rating if src is hi_usage else None, "forms": forms})
+    preds.sort(key=lambda p: -p["mega_pct"])
+    # 보유자 결정: 사용자가 정했으면 그대로, 아니면 메가 확률 50% 이상인 포켓몬은 스톤을 든 것으로 예상
+    opp_holders = c.get("opp_megas")
+    opp_explicit = {_base_en(ctx["display"][s]["en"]): ctx["display"][s]["en"]
+                    for s in ctx["opp"] if "-Mega" in ctx["display"][s]["en"]}
+    predicted = opp_holders is None
+    if opp_holders is None:
+        opp_holders = {p["base"]: p["forms"][0]["value"] for p in preds if p["mega_pct"] >= OPP_HOLDER_MIN}
+        opp_holders.update(opp_explicit)
+    ctx["mega"].update({"opp_predictions": preds, "opp_holders": opp_holders, "opp_predicted": predicted,
+                        "opp_rating": hi_rating})
 
     # --- 정해진 메가만 메가 폼으로, 나머지는 기본 폼으로
-    def apply(side, chosen_en):
+    def apply(side, chosen: dict[str, str]):
+        """chosen: {기본 영문: 메가 영문}. 여기 있는 포켓몬만 메가 폼으로, 나머지는 기본 폼으로 (한 번에 적용)."""
         new = []
         for sid in ctx[side]:
             en = ctx["display"][sid]["en"]
             base = _base_en(en)
-            target = chosen_en if chosen_en and chosen_en != "none" and _base_en(chosen_en) == base else base
+            pick = chosen.get(base)
+            target = pick if pick and pick != "none" else base
             if target != en:
                 r = N.resolve_one(target, "pokemon")
                 nsid = to_id(target)
@@ -325,7 +366,7 @@ def _mega(self) -> None:
             new.append(sid)
         ctx[side] = new
     if not ctx.get("mega_ask"):
-        apply("my", "none")  # 내 팀은 기본 폼 기준, 메가 폼은 아래에서 따로 연결
+        apply("my", {})  # 내 팀은 기본 폼 기준, 메가 폼은 아래에서 따로 연결
         forms = {}
         for base_en, mega_en in (ctx["mega"]["my_holders"] or {}).items():
             if not mega_en or mega_en == "none":
@@ -337,9 +378,9 @@ def _mega(self) -> None:
                 ctx["display"][msid] = {"en": mega_en, "ko": r.get("ko") if r.get("found") else mega_en}
                 forms[base_sid] = msid
         ctx["my_mega_forms"] = forms
-        apply("opp", ctx["mega"]["opp"])
+        apply("opp", ctx["mega"]["opp_holders"] or {})  # 상대 스톤 보유 예상(또는 지정) 전부 메가 폼으로
         self.em.emit("decision", "execute", decision="mega", my_holders=ctx["mega"]["my_holders"],
-                     opp=ctx["mega"]["opp"], opp_predicted=ctx["mega"]["opp_predicted"])
+                     opp_holders=ctx["mega"]["opp_holders"], opp_predicted=ctx["mega"]["opp_predicted"])
 
 
 Executor._mega = _mega

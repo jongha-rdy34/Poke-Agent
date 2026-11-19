@@ -36,6 +36,8 @@ SYSTEM = f"""너는 포켓몬 대전 선출 코치다. [판단 결과] JSON에 �
   (예: 한카리아스 — 물리 고속 딜러 66%(AS 명랑), 물리막이 22%(HB 장난꾸러기)), 그리고 defense_advice를 그대로 쓴다.
   비율이 null인 포켓몬은 '통계 없음'이라고만 쓴다.
 - 확인할 수 없는 값은 '역산 기준'(예: 상대 스피드 실수치 X 이상이면 역전)으로만 말한다.
+- 데미지는 damage.results의 min_pct~max_pct와 ko(확정/난수 n타)를 그대로 쓰고, 어느 배분 기준(vs)인지 함께 쓴다.
+  ability_notes(특성 보정)와 blocked(특성으로 무효된 기술)가 있으면 반드시 언급한다. 내 포켓몬 배분(my_set/attacker)은 한 가지로 일관되게 말한다.
 - 마크다운 목록으로 간결하게. 마지막 줄은 정확히: {DISCLAIMER}"""
 
 CHITCHAT_SYSTEM = """너는 포켓몬 대전 선출 플래너 'Poke-Agent'다. 인사나 사용법 질문에 짧게 답한다.
@@ -96,7 +98,17 @@ def template_answer(intent: str, facts: dict) -> str:
             lines += [f"- {e['pokemon']}: {e['reason']}" for e in r["excluded"]]
     elif intent == "matchup_advice" and r.get("satisfied"):
         lines.append(f"**{r['my_pokemon']} vs {r['opponent']}** — {r['speed']['verdict']} ({r['speed']['basis']})")
-        lines += [f"- {m['name']} ({m['type']}, {m['multiplier']:g}배)" for m in r["moves_ranked"]]
+        if r.get("my_set"):
+            lines.append(f"(내 배분: {r['my_set']} — 이 배분이 쓰는 기술만 비교)")
+        for m in r["moves_ranked"]:
+            d = ((m.get("damage") or {}).get("results") or [None])[0]
+            if m.get("blocked"):
+                lines.append(f"- {m['name']}: {m['blocked']}")
+            elif d:
+                lines.append(f"- {m['name']} ({m['multiplier']:g}배): {d['min_pct']}~{d['max_pct']}% {d['ko']} — {d['vs']}"
+                             + (f" · {', '.join(d['ability_notes'])}" if d.get("ability_notes") else ""))
+            else:
+                lines.append(f"- {m['name']} ({m['type']}, {m['multiplier']:g}배)")
         if r.get("risk_move"):
             lines.append(f"- 상대 주력기 {r['risk_move']['name']}: 내게 {r['risk']:g}배")
         if r.get("priority_moves"):
