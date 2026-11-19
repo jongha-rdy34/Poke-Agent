@@ -36,3 +36,9 @@ CACHE_DIR = Path(os.getenv("CACHE_DIR", str(BACKEND_DIR / ".cache")))
 GMS_API_KEY = os.getenv("GMS_API_KEY", "")
 GMS_BASE_URL = os.getenv("GMS_BASE_URL", "")
 LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4.1-mini")
+
+# --- Agent / 저장소 (2일차) ---
+MAX_REPLAN = _int("MAX_REPLAN", 3)                     # NF3004 재계획 상한
+DB_PATH = os.getenv("DB_PATH", str(BACKEND_DIR / "poke_agent.sqlite3"))
+LOGGING_AGENT_ENABLED = os.getenv("LOGGING_AGENT_ENABLED", "1") != "0"
+LLM_TIMEOUT = _int("LLM_TIMEOUT", 60)

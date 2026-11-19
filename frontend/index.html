@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poke-Agent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div>
+        <h1>Poke-Agent</h1>
+        <p>포켓몬 대전 선출 · 기술 플래너</p>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="chat" role="tab">대화</button>
+      <button class="tab" data-tab="plans" role="tab">계획 관리</button>
+      <button class="tab" data-tab="logs" role="tab">실행 로그</button>
+    </nav>
+  </header>
+
+  <div id="banner" class="banner hidden"></div>
+
+  <!-- 대화 화면 -->
+  <main id="tab-chat" class="view">
+    <section id="messages" class="messages" aria-live="polite">
+      <div class="msg agent intro">
+        <div class="bubble">
+          <p><b>내 팀 6마리</b>와 <b>상대 팀 6마리</b>를 알려주시면, 실전 통계·종족값·타입 상성으로 확인한 값만으로
+          <b>선출 3마리와 대면별 기술</b>을 추천해요.</p>
+          <div class="examples">
+            <button class="chip" data-example="내 팀: 하마돈, 마스카나, 고릴타, 대쓰여너, 보만다, 루카리오 / 상대 팀: 누리레느, 한카리아스, 브리두라스, 타부자고, 따라큐, 아머까오. 3마리 뭐 뽑아?">선출 계획</button>
+            <button class="chip" data-example="상대 한카리아스한테 내 마스카나가 먼저 때릴 수 있어? 뭐 써야 돼?">대면 판단</button>
+            <button class="chip" data-example="따라큐 실전에서 무슨 기술 들고 나와?">실전 세트 조회</button>
+            <button class="chip" data-example="보만다 빼고 다시 짜줘">조건 바꾸기</button>
+            <button class="chip" data-example="이 계획 이번 토요일 15:00~15:30 대회 1라운드로 저장해줘">계획 저장</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <form id="chat-form" class="composer">
+      <button type="button" id="new-session" class="ghost" title="새 대화">새 대화</button>
+      <textarea id="input" rows="2" placeholder="예) 내 팀: … / 상대 팀: … 3마리 뭐 뽑아?" required></textarea>
+      <button type="submit" id="send" class="primary">보내기</button>
+    </form>
+  </main>
+
+  <!-- 계획 관리 화면 -->
+  <main id="tab-plans" class="view hidden">
+    <div class="toolbar">
+      <h2>저장한 선출 계획</h2>
+      <div>
+        <input type="date" id="plan-filter" aria-label="날짜로 거르기">
+        <button id="plans-refresh" class="ghost">새로고침</button>
+      </div>
+    </div>
+    <div id="plans" class="cards"></div>
+  </main>
+
+  <!-- 실행 로그 화면 -->
+  <main id="tab-logs" class="view hidden">
+    <div class="toolbar">
+      <h2>실행 로그 <small>세션 단위 · 수정 불가</small></h2>
+      <button id="logs-refresh" class="ghost">새로고침</button>
+    </div>
+    <div class="logs-layout">
+      <ul id="log-sessions" class="log-sessions"></ul>
+      <section id="log-detail" class="log-detail"><p class="muted">왼쪽에서 세션을 고르세요.</p></section>
+    </div>
+  </main>
+
+  <template id="tpl-plan-form">
+    <form class="plan-form">
+      <label>제목 <input name="title" required maxlength="100"></label>
+      <label>날짜 <input name="battle_date" type="date" required></label>
+      <label>시작 <input name="start_time" type="time" required></label>
+      <label>종료 <input name="end_time" type="time" required></label>
+      <label class="wide">메모 <input name="memo" maxlength="300"></label>
+      <div class="form-actions"></div>
+    </form>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
