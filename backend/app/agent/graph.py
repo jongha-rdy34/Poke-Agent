@@ -36,6 +36,7 @@ class AgentState(TypedDict, total=False):
     session_id: str
     ruleset: dict
     teams: dict          # 직접 선택 모드에서 고른 팀 (대화 분석보다 우선)
+    mega_choice: dict    # 화면에서 고른 메가진화 {my: 영문 폼 | "none", opp: …}
     message: str
     memory: dict
     intent: str
@@ -105,6 +106,15 @@ def analyze_node(state: AgentState, em: Emitter) -> dict:
         em.emit("decision", "analyze", decision="teams_from_picker", my=len(teams.get("my") or []),
                 opp=len(teams.get("opp") or []))
     conditions, changed = memory.merge_conditions(mem["conditions"], new, reset=a.reset)
+    # 팀이 바뀌면 이전 팀 기준의 메가 선택은 버린다
+    if "my_team" in changed and "my_mega" not in (state.get("mega_choice") or {}):
+        conditions.pop("my_mega", None)
+    if "opp_team" in changed:
+        conditions.pop("opp_mega", None)
+    for side in ("my", "opp"):
+        v = (state.get("mega_choice") or {}).get(side)
+        if v:
+            conditions[f"{side}_mega"] = v
     if (teams.get("my") or teams.get("opp")) and ({"my_team", "opp_team"} & set(changed)):
         for k in ("prefer", "exclude", "must_answer", "my_moves"):
             if not new.get(k):
@@ -148,6 +158,8 @@ def judge_node(state: AgentState, em: Emitter) -> dict:
     if ctx["unresolved"]:
         em.emit("decision", "judge", decision="ask", unresolved=[u["input"] for u in ctx["unresolved"]])
         return {"status": "ask", "_summary": "이름 확인 필요"}
+    if ctx.get("mega_ask"):
+        return {"status": "ask", "missing": ["mega"], "_summary": "메가진화 선택 필요"}
 
     fatal = [f for f in ctx["failures"] if f["code"] in FATAL_CODES]
     if intent == "plan_selection":
@@ -305,7 +317,8 @@ def _pokemon_cards(ctx: dict) -> dict:
 
 def run_agent(message: str, session_id: str | None = None, name_choices: dict[str, str] | None = None,
               game: str | None = None, battle: str | None = None,
-              my_team: list[str] | None = None, opp_team: list[str] | None = None) -> dict:
+              my_team: list[str] | None = None, opp_team: list[str] | None = None,
+              mega_choice: dict | None = None) -> dict:
     session_id = session_id or "s-" + uuid.uuid4().hex[:10]
     em = Emitter(session_id)
     mem = memory.get(session_id)
@@ -321,7 +334,8 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
     t0 = time.perf_counter()
     try:
         final = GRAPH.invoke({"session_id": session_id, "message": message, "memory": memory.get(session_id),
-                              "ruleset": ruleset, "teams": {"my": my_team or [], "opp": opp_team or []}},
+                              "ruleset": ruleset, "teams": {"my": my_team or [], "opp": opp_team or []},
+                              "mega_choice": mega_choice or {}},
                              config={"configurable": {"emitter": em}, "recursion_limit": 40})
     except Exception as e:  # noqa: BLE001 - 어떤 경우에도 서비스는 응답한다
         em.emit("error", None, code=ErrorCode.INTERNAL_ERROR, message=type(e).__name__)
@@ -348,6 +362,7 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
         "opp_profile": (final.get("result") or {}).get("opp_profile"),
         "pokemon_cards": cards,
         "move_plan": (final.get("result") or {}).get("move_plan"),
+        "mega": ctx.get("mega"),  # 내 메가 후보·선택, 상대 메가 예상 (화면 토글용)
         "rule_notes": (final.get("result") or {}).get("rule_notes") or [],
         "ruleset": ruleset,
         "defense_advice": (final.get("result") or {}).get("defense_advice"),

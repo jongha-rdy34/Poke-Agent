@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 from app import config
+from app.domain.rulesets import RULESETS
 
 # action -> (설명, 쓰는 Tool)
 ACTIONS = {
@@ -15,6 +16,7 @@ ACTIONS = {
     "moves_opp": ("상대 주력기 정보 조회", "get_move_info"),
     "moves_my": ("내 기술 정보 조회", "get_move_info"),
     "matchup": ("방어 측별 타입 상성표 조회", "get_type_matchup"),
+    "mega": ("메가진화 가능 폼 확인 · 상대 메가 예상", "get_meta_usage"),
 }
 
 REPLAN_CRITERIA = {
@@ -65,6 +67,8 @@ def build_plan(intent: str, c: dict, round_: int) -> list[dict]:
             # 내 포켓몬의 실전 배분·기술도 처음부터 조회한다 (데미지·스피드 계산용).
             # 선출 판단 자체는 0회차에 자속 기준, 재계획 1회차부터 실전 기술 기준으로 넓힌다.
             steps = ["resolve", "meta_opp", "meta_my", "detail", "moves_opp", "moves_my", "matchup"]
+            if RULESETS.get(c.get("game") or "", {}).get("allow_mega"):
+                steps.insert(1, "mega")  # 메가진화할 포켓몬을 정한 뒤에 나머지를 조회한다
             return [_step(a) for a in steps]
         if round_ == 1 and not has_my_moves:
             return [_step("meta_my"), _step("moves_my")]

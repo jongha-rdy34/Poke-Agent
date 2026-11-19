@@ -90,8 +90,8 @@ def get_meta_usage(
     if month and not re.fullmatch(r"\d{4}-\d{2}", month):
         raise ToolError(ErrorCode.BAD_ARGUMENT, "month는 YYYY-MM 형식이어야 합니다.")
     pokemon = [p for p in (pokemon or []) if str(p).strip()]
-    if len(pokemon) > 12:
-        raise ToolError(ErrorCode.BAD_ARGUMENT, "pokemon은 최대 12마리까지 조회합니다.")
+    if len(pokemon) > 24:
+        raise ToolError(ErrorCode.BAD_ARGUMENT, "pokemon은 최대 24마리까지 조회합니다.")
 
     fmt = to_id(format) if format else config.DEFAULT_FORMAT
     notes: list[str] = []

@@ -61,6 +61,11 @@ class Executor:
                 self.em.emit("decision", "execute", decision="stop_for_names",
                              unresolved=[u["input"] for u in self.ctx["unresolved"]])
                 return
+            if step["action"] == "mega" and self.ctx.get("mega_ask"):
+                # 내 팀에서 누가 메가진화할지 정해야 나머지 계산을 할 수 있다
+                self.em.emit("decision", "execute", decision="ask_mega",
+                             options=[o["pokemon"] for o in self.ctx["mega"]["my_options"]])
+                return
 
     def sid(self, raw: str) -> str:
         r = self.ctx["names"].get(raw)
@@ -192,3 +197,133 @@ class Executor:
             r = self.call("get_type_matchup", args)
             if r["ok"]:
                 self.ctx["charts"][sid] = {row["attack_type"]: row["multiplier"] for row in r["data"]["matchups"]}
+
+
+# ---------------------------------------------------------------- 메가진화 (챔피언스: 배틀당 1마리)
+MEGA_PRED_MIN = 15.0  # 상대 메가 예상으로 표시할 최소 비율(%)
+
+
+def _base_en(en: str) -> str:
+    return en.split("-Mega")[0]
+
+
+def _mega(self) -> None:
+    """내 팀: 메가진화 가능한 포켓몬과 폼을 찾고, 누가 메가진화할지 정해졌는지 확인한다.
+    상대 팀: 실전 통계에서 메가 폼 비율로 누가 메가진화할지 예상한다.
+    정해진 메가 포켓몬은 메가 폼으로 바꿔서 이후 조회·계산을 한다 (나머지는 기본 폼)."""
+    from app.tools import names as N
+    ctx, c = self.ctx, self.c
+
+    def species_of(sid):
+        en = ctx["display"][sid]["en"]
+        base = _base_en(en)
+        r = N.resolve_one(base, "pokemon")
+        return base, (r.get("ko") if r.get("found") else None) or base
+
+    sides = {"my": list(ctx["my"]), "opp": list(ctx["opp"])}
+    variants: dict[str, list[dict]] = {}
+    query: list[str] = []
+    for side, sids in sides.items():
+        for sid in sids:
+            base, ko = species_of(sid)
+            vs = N._species_variants({"en": base, "ko": ko})[1:]
+            variants[sid] = vs
+            query += [base] + [v["value"] for v in vs] if vs else []
+    query = list(dict.fromkeys(query))
+    usage: dict[str, float] = {}
+    for i in range(0, len(query), 24):
+        args = {"pokemon": query[i:i + 24], "top_n": 1}
+        if c.get("format"):
+            args["format"] = c["format"]
+        r = self.call("get_meta_usage", args)
+        if r["ok"]:
+            for p in r["data"]["pokemon"]:
+                if p.get("found"):
+                    usage[p["input"]] = p["usage_pct"]
+
+    def options(sid):
+        """이 포맷 통계에 실제로 나오는 메가 폼만 (안 쓰이거나 금지된 폼은 뺀다)."""
+        out = []
+        for v in variants.get(sid, []):
+            if v["value"] in usage:
+                pk = N.resolve_one(v["value"], "pokemon")
+                out.append({"label": v["label"], "value": v["value"], "usage_pct": usage[v["value"]],
+                            "sprite": N.sprite_url(pk.get("pokeapi_name"))})
+        return out
+
+    # --- 내 팀
+    my_opts = []
+    explicit = [s for s in ctx["my"] if "-Mega" in ctx["display"][s]["en"]]
+    for sid in ctx["my"]:
+        base, ko = species_of(sid)
+        opts = options(sid)
+        if sid in explicit:  # 사용자가 이미 메가 폼으로 말한 경우 그 폼도 후보에
+            en = ctx["display"][sid]["en"]
+            if not any(o["value"] == en for o in opts):
+                pk = N.resolve_one(en, "pokemon")
+                opts.insert(0, {"label": pk.get("ko") or en, "value": en, "usage_pct": usage.get(en),
+                                "sprite": N.sprite_url(pk.get("pokeapi_name"))})
+        if opts:
+            pk = N.resolve_one(base, "pokemon")
+            my_opts.append({"pokemon": ko, "base": base, "sprite": N.sprite_url(pk.get("pokeapi_name")), "forms": opts})
+    chosen = c.get("my_mega")
+    if not chosen and len(explicit) == 1:
+        chosen = ctx["display"][explicit[0]]["en"]  # 메가 포켓몬을 하나만 말했으면 그게 메가진화
+    ctx["mega"] = {"my_options": my_opts, "my": chosen}
+    if my_opts and not chosen:
+        ctx["mega_ask"] = True
+
+    # --- 상대 팀: 메가 폼 비율 = 메가 폼 사용률 / (기본 + 메가 폼 사용률)
+    preds = []
+    for sid in ctx["opp"]:
+        base, ko = species_of(sid)
+        forms = options(sid)
+        if not forms:
+            continue
+        total = usage.get(base, 0) + sum(f["usage_pct"] for f in forms)
+        if total <= 0:
+            continue
+        for f in forms:
+            f["share"] = round(f["usage_pct"] / total * 100, 1)
+        forms.sort(key=lambda f: -f["share"])
+        pk = N.resolve_one(base, "pokemon")
+        preds.append({"pokemon": ko, "base": base, "sprite": N.sprite_url(pk.get("pokeapi_name")),
+                      "mega_share": round(sum(f["share"] for f in forms), 1), "forms": forms})
+    preds.sort(key=lambda p: -p["mega_share"])
+    opp_explicit = [s for s in ctx["opp"] if "-Mega" in ctx["display"][s]["en"]]
+    opp_choice = c.get("opp_mega")
+    if not opp_choice:
+        if opp_explicit:
+            opp_choice = ctx["display"][opp_explicit[0]]["en"]
+        elif preds and preds[0]["mega_share"] >= MEGA_PRED_MIN:
+            opp_choice = preds[0]["forms"][0]["value"]  # 가장 메가진화 비율이 높은 포켓몬의 최다 메가 폼
+        else:
+            opp_choice = "none"
+    ctx["mega"].update({"opp_predictions": preds, "opp": opp_choice,
+                        "opp_predicted": not c.get("opp_mega") and not opp_explicit})
+
+    # --- 정해진 메가만 메가 폼으로, 나머지는 기본 폼으로
+    def apply(side, chosen_en):
+        new = []
+        for sid in ctx[side]:
+            en = ctx["display"][sid]["en"]
+            base = _base_en(en)
+            target = chosen_en if chosen_en and chosen_en != "none" and _base_en(chosen_en) == base else base
+            if target != en:
+                r = N.resolve_one(target, "pokemon")
+                nsid = to_id(target)
+                ctx["display"][nsid] = {"en": target, "ko": r.get("ko") if r.get("found") else target}
+                for raw, e in ctx["names"].items():
+                    if e["sid"] == sid:
+                        ctx["names"][raw] = {"sid": nsid, "en": target, "ko": ctx["display"][nsid]["ko"]}
+                sid = nsid
+            new.append(sid)
+        ctx[side] = new
+    if not ctx.get("mega_ask"):
+        apply("my", ctx["mega"]["my"])
+        apply("opp", ctx["mega"]["opp"])
+        self.em.emit("decision", "execute", decision="mega", my=ctx["mega"]["my"] or "none", opp=ctx["mega"]["opp"],
+                     opp_predicted=ctx["mega"]["opp_predicted"])
+
+
+Executor._mega = _mega

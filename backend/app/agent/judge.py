@@ -317,10 +317,20 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
     lead = max(best, key=lambda m: (len(covers[m]), ctx["detail"][m]["base_stats"]["spe"]))
     opp_megas = [_label(ctx, o) for o in judged_opp if is_mega(ctx, o)]
     rule_notes = []
+    mega = ctx.get("mega") or {}
     if mega_rule:
-        rule_notes.append("메가진화는 배틀당 1마리 — 메가 포켓몬은 최대 1마리만 선출에 넣었습니다.")
-        if len(opp_megas) >= 2:
-            rule_notes.append(f"상대도 메가는 1마리만 쓸 수 있어 {', '.join(opp_megas)} 중 하나만 메가진화합니다.")
+        mine = [_label(ctx, m) for m in ctx["my"] if is_mega(ctx, m)]
+        picked = mine and mine[0] in [_label(ctx, m) for m in best]
+        rule_notes.append(f"메가진화는 배틀당 1번 — 내 메가진화: {mine[0] if mine else '안 함'}"
+                          + (" (선출에 포함)" if picked else " (이번 선출에서는 빠짐 → 메가진화 없이 진행)" if mine else ""))
+        if opp_megas:
+            how = "예상" if mega.get("opp_predicted") else "지정"
+            share = next((f["share"] for p in mega.get("opp_predictions", []) for f in p["forms"]
+                          if f["value"] == mega.get("opp")), None)
+            rule_notes.append(f"상대 메가진화 {how}: {opp_megas[0]}" + (f" (그 포켓몬을 낼 때 메가 폼 비율 {share}%)" if share else "")
+                              + " — 이 폼으로 계산했습니다.")
+        elif mega.get("opp_predictions") is not None:
+            rule_notes.append("상대 팀에서 메가진화가 유력한 포켓몬이 없어 모두 기본 폼으로 계산했습니다.")
     excluded = []
     for m in ctx["my"]:
         if m in best:

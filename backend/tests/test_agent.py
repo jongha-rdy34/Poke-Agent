@@ -317,42 +317,64 @@ def test_mega_not_allowed_in_sv(monkeypatch):
     assert run_agent("선출", game="champions")["status"] in ("ok", "limit")  # 챔피언스는 메가 허용
 
 
-# ---------------------------------------------------------------- 메가 1마리 · 직접 선택 · 데미지
-def _mega_tools(monkeypatch, megas):
+# ---------------------------------------------------------------- 메가진화 1번 · 직접 선택 · 데미지
+MEGAS = {"Aqua": [""], "Leafy": ["", "Z"], "Ember": [""]}      # 종 → 메가 폼 접미어
+MEGA_USAGE = {"Aqua-Mega": 5.0, "Leafy-Mega": 2.0, "Leafy-Mega-Z": 8.0, "Ember-Mega": 30.0}
+
+
+@pytest.fixture
+def mega_env(monkeypatch):
+    from app.tools import names as N
+
     def tool(name, args):
-        res = fake_call_tool(name, args)
-        if name == "resolve_names":
-            for item in res["data"]["results"]:
-                if item["input"] in megas:
-                    item.update(en=item["en"] + "-Mega", is_mega=True)
-        if name == "get_pokemon_detail" and args["name"].endswith("-Mega"):
-            return fake_call_tool(name, {"name": args["name"][:-5]})
-        return res
+        if name == "get_meta_usage":
+            res = fake_call_tool(name, {**args, "pokemon": [p.split("-Mega")[0] for p in args["pokemon"]]})
+            for p, entry in zip(args["pokemon"], res["data"]["pokemon"]):
+                entry["input"] = p
+                if "-Mega" in p:
+                    entry.update(found=p in MEGA_USAGE, usage_pct=MEGA_USAGE.get(p, 0), name=p)
+            return res
+        if name == "get_pokemon_detail" and "-Mega" in args["name"]:
+            return fake_call_tool(name, {"name": args["name"].split("-Mega")[0]})
+        return fake_call_tool(name, args)
+
+    def variants(row):
+        return [{"label": row["en"], "value": row["en"]}] + [
+            {"label": f"메가{row['en']}{x}", "value": row["en"] + "-Mega" + (f"-{x}" if x else "")}
+            for x in MEGAS.get(row["en"], [])]
     monkeypatch.setattr(executor_mod, "call_tool", tool)
+    monkeypatch.setattr(N, "_species_variants", variants)
+    monkeypatch.setattr(N, "resolve_one", lambda n, k: {"found": True, "en": n, "ko": None, "pokeapi_name": n.lower()})
+    monkeypatch.setattr(N, "sprite_url", lambda s: None)
 
 
-def test_champions_selects_at_most_one_mega(monkeypatch):
-    _mega_tools(monkeypatch, {"Aqua", "Leafy"})
+def test_asks_which_of_my_pokemon_mega_evolves(mega_env):
     use_llm(selection())
     r = run_agent("선출", game="champions")
-    sel = r["result"]["selected"]
-    assert len(sel) == 3 and sum(1 for s in sel if s in ("Aqua-Mega", "Leafy-Mega")) <= 1
-    assert any("1마리" in n for n in r["rule_notes"])
+    assert r["status"] == "ask" and "누가 메가진화" in r["answer"]
+    opts = {o["pokemon"]: [f["value"] for f in o["forms"]] for o in r["mega"]["my_options"]}
+    assert opts == {"Aqua": ["Aqua-Mega"], "Leafy": ["Leafy-Mega", "Leafy-Mega-Z"]}  # 메가 가능한 포켓몬만
+    assert [p["tool"] for p in tool_calls(r)] == ["resolve_names", "get_meta_usage"]  # 고르기 전엔 더 부르지 않음
+    pred = r["mega"]["opp_predictions"][0]
+    assert pred["pokemon"] == "Ember" and pred["forms"][0]["share"] == 66.7  # 30 / (15 + 30)
 
 
-def test_too_many_megas_is_infeasible_with_reason(monkeypatch):
-    _mega_tools(monkeypatch, {"Aqua", "Leafy", "Blaze"})  # 일반 포켓몬은 Mud 1마리뿐 → 3마리 조합 불가
+def test_mega_choice_is_applied_and_opponent_mega_predicted(mega_env):
+    use_llm(selection(), selection(my_team=None, opp_team=None, exclude=["Mud"]))
+    r = run_agent("선출", game="champions", mega_choice={"my": "Leafy-Mega-Z"})
+    assert r["status"] in ("ok", "limit") and r["conditions"]["my_mega"] == "Leafy-Mega-Z"
+    assert "Leafy-Mega-Z" in r["pokemon_cards"] and "Leafy" not in r["pokemon_cards"]  # 메가 폼으로 계산
+    assert "Ember-Mega" in r["pokemon_cards"] and r["mega"]["opp_predicted"] is True
+    assert any("상대 메가진화 예상" in n for n in r["rule_notes"])
+    r2 = run_agent("Mud 빼고", r["session_id"])  # 다음 요청은 기억된 선택을 쓴다 (다시 묻지 않음)
+    assert r2["status"] in ("ok", "limit") and "Leafy-Mega-Z" in r2["pokemon_cards"]
+
+
+def test_no_mega_choice_keeps_base_forms(mega_env):
     use_llm(selection())
-    r = run_agent("선출", game="champions")
-    assert r["status"] == "infeasible" and r["replans"] == []
-    assert "일반 포켓몬이 1마리뿐" in r["result"]["reason"]
-
-
-def test_two_preferred_megas_conflict(monkeypatch):
-    _mega_tools(monkeypatch, {"Aqua", "Leafy"})
-    use_llm(selection(prefer=["Aqua", "Leafy"]))
-    r = run_agent("Aqua랑 Leafy 둘 다 넣어줘", game="champions")
-    assert "메가진화는 배틀당 1마리" in (r["result"].get("reason") or "")
+    r = run_agent("선출", game="champions", mega_choice={"my": "none", "opp": "none"})
+    assert r["status"] in ("ok", "limit")
+    assert not any("-Mega" in k for k in r["pokemon_cards"])
 
 
 def test_picked_teams_override_chat_analysis():

@@ -26,7 +26,7 @@ from app.tools.smogon import get_meta_usage
 # 입력 스키마
 # ---------------------------------------------------------------------------
 class MetaUsageInput(BaseModel):
-    pokemon: list[str] = Field(default_factory=list, max_length=12,
+    pokemon: list[str] = Field(default_factory=list, max_length=24,
                                description="예상 세트를 볼 포켓몬 이름(영문/한국어). 비우면 사용률 상위 후보 목록을 돌려준다.")
     format: str | None = Field(None, description="Smogon 포맷 ID. 예: gen9championsbssregmc(싱글 6→3), gen9ou. 생략 시 기본 포맷.")
     month: str | None = Field(None, description="집계월 YYYY-MM. 생략 시 가장 최근 집계월.")

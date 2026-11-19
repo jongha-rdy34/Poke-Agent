@@ -346,6 +346,45 @@ function profileCard(p, advice, msgEl) {
   $(".bubble", msgEl).appendChild(wrap);
 }
 
+// 메가진화 선택: 내 팀은 누가 메가진화할지 고르고, 상대는 통계 예상을 보여주며 바꿀 수 있게 한다
+function megaCard(mega, originalText, msgEl, collapsed) {
+  if (!mega || (!mega.my_options?.length && !mega.opp_predictions?.length)) return;
+  const sel = { my: mega.my || null, opp: mega.opp || "none" };
+  let oppTouched = false;  // 상대 메가는 사용자가 바꿨을 때만 '지정'으로 보낸다 (아니면 계속 통계 예상)
+  const chip = (side, value, label, extra, sprite) => `<button type="button" class="chip toggle mega-chip" role="radio"
+      data-side="${side}" data-value="${esc(value)}" data-label="${esc(label)}" aria-checked="${String(sel[side] === value)}">
+      ${sprite ? `<img src="${esc(sprite)}" alt="" loading="lazy">` : ""}${esc(label)}${extra ? `<small>${esc(extra)}</small>` : ""}</button>`;
+  const myRows = (mega.my_options || []).map(o => `<div class="clarify-row"><div class="clarify-input">${esc(o.pokemon)}</div>
+      <div class="chips" role="radiogroup">${o.forms.map(f => chip("my", f.value, f.label, f.usage_pct != null ? `사용률 ${f.usage_pct}%` : "", f.sprite)).join("")}</div></div>`).join("");
+  const oppRows = (mega.opp_predictions || []).map(p => `<div class="clarify-row"><div class="clarify-input">${esc(p.pokemon)}
+      <small class="muted">메가 ${p.mega_share}%</small></div>
+      <div class="chips" role="radiogroup">${p.forms.map(f => chip("opp", f.value, f.label, `${f.share}%`, f.sprite)).join("")}</div></div>`).join("");
+  const wrap = document.createElement(collapsed ? "details" : "div");
+  wrap.className = "clarify mega" + (collapsed ? " mega-fold" : "");
+  wrap.innerHTML = (collapsed ? `<summary>메가진화 설정 바꾸기</summary>` : "") + `
+    ${myRows ? `<h4>내 팀: 누가 메가진화하나요? <span class="muted small">배틀당 1마리</span></h4>${myRows}
+      <div class="clarify-row"><div></div><div class="chips">${chip("my", "none", "메가진화 안 함")}</div></div>` : ""}
+    ${oppRows ? `<h4>상대 메가진화 예상 <span class="muted small">통계상 메가 폼 비율 · 바꿀 수 있어요</span></h4>${oppRows}
+      <div class="clarify-row"><div></div><div class="chips">${chip("opp", "none", "상대 메가 없음")}</div></div>` : ""}
+    <div class="form-actions"><button type="button" class="primary">이대로 계산</button></div>`;
+  const submit = $(".primary", wrap);
+  const refresh = () => { submit.disabled = !!myRows && !sel.my; };
+  wrap.querySelectorAll(".mega-chip").forEach(btn => btn.addEventListener("click", () => {
+    const side = btn.dataset.side;
+    wrap.querySelectorAll(`.mega-chip[data-side="${side}"]`).forEach(b => b.setAttribute("aria-checked", String(b === btn)));
+    sel[side] = btn.dataset.value; if (side === "opp") oppTouched = true; refresh();
+  }));
+  refresh();
+  submit.addEventListener("click", () => {
+    const name = (side) => sel[side] === "none" ? "안 함"
+      : wrap.querySelector(`.mega-chip[data-side="${side}"][aria-checked="true"]`)?.dataset.label || sel[side];
+    wrap.querySelectorAll("button").forEach(b => b.disabled = true);
+    send(originalText, null, `메가진화 — 내 팀: ${name("my")}${oppRows ? ` / 상대: ${name("opp")}${oppTouched ? "" : " (예상)"}` : ""}`, null,
+         oppTouched ? { my: sel.my || "none", opp: sel.opp || "none" } : { my: sel.my || "none" });
+  });
+  $(".bubble", msgEl).appendChild(wrap);
+}
+
 // 이름 확인: 후보를 토글 칩으로 보여주고, 고른 이름으로 같은 요청을 다시 보낸다
 function clarifyCard(items, originalText, msgEl) {
   const choices = {};
@@ -372,6 +411,10 @@ function clarifyCard(items, originalText, msgEl) {
       submit.disabled = askable.some(a => !choices[a.input]) || items.length > askable.length;
     }));
   });
+  wrap.querySelectorAll(".clarify-row").forEach(row => {  // 후보가 하나뿐이면 미리 골라 둔다
+    const t = row.querySelectorAll(".toggle");
+    if (t.length === 1) t[0].click();
+  });
   submit.addEventListener("click", () => {
     const picked = Object.fromEntries(askable.map(a => [a.input, choices[a.input]]));
     const summary = askable.map(a => `${a.input} → ${choices["__label__" + a.input]}`).join(", ");
@@ -381,14 +424,17 @@ function clarifyCard(items, originalText, msgEl) {
   $(".bubble", msgEl).appendChild(wrap);
 }
 
-async function send(text, nameChoices = null, displayText = null, teams = null) {
+let lastTeams = null;  // 직접 선택 모드로 보낸 팀 (메가 선택 후 다시 계산할 때 같이 보낸다)
+async function send(text, nameChoices = null, displayText = null, teams = null, megaChoice = null) {
   addMsg("user", esc(displayText || text));
   const pending = addMsg("agent", `<span class="typing">분석하고 Tool을 호출하는 중 <i></i><i></i><i></i></span>`);
   $("#send").disabled = true;
   try {
     const payload = { message: text, session_id: sessionId, game: rule.game, battle: rule.battle };
     if (nameChoices) payload.name_choices = nameChoices;
-    if (teams) Object.assign(payload, teams);
+    if (teams) { Object.assign(payload, teams); lastTeams = teams; }
+    else if (megaChoice && lastTeams) Object.assign(payload, lastTeams);
+    if (megaChoice) payload.mega_choice = megaChoice;
     const r = await api("/api/chat", { method: "POST", body: JSON.stringify(payload) });
     sessionId = r.session_id; store("poke.session", sessionId);
     const [label, cls] = STATUS_BADGE[r.status] || [r.status || "-", ""];
@@ -412,6 +458,8 @@ async function send(text, nameChoices = null, displayText = null, teams = null) 
     profileCard(r.opp_profile, r.defense_advice, pending);
     if (r.plan_draft) draftCard(r.plan_draft, pending);
     if (r.clarify?.length) clarifyCard(r.clarify, text, pending);
+    else if (r.mega && r.status === "ask") megaCard(r.mega, text, pending, false);
+    else if (r.mega && r.plan_draft) megaCard(r.mega, text, pending, true);
   } catch (e) {
     pending.querySelector(".bubble").innerHTML = `<div class="notice err">${esc(e.message)}</div>`;
   } finally {

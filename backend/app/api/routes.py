@@ -22,7 +22,7 @@ logs_router = APIRouter(prefix="/api/logs", tags=["실행 로그"])
 async def chat(req: ChatRequest) -> dict:
     """메인 Agent 실행. 답변과 함께 실행 단계·Tool 호출 이력(events)을 돌려준다."""
     return await run_in_threadpool(run_agent, req.message, req.session_id, req.name_choices, req.game, req.battle,
-                                  req.my_team, req.opp_team)
+                                  req.my_team, req.opp_team, req.mega_choice)
 
 
 @chat_router.get("/pokemon")

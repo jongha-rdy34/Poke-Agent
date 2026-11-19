@@ -16,6 +16,8 @@
 - `game`: `champions`(포켓몬 챔피언스 — 메가진화 룰, SP, 진행 중 시즌) / `sv`(스칼렛·바이올렛 — 테라스탈 룰, 노력치, **종료된 시즌의 마지막 집계**)
 - `battle`: `singles`(6→3) / `doubles`(6→4). 생략하면 세션에 기억된 값, 처음이면 챔피언스·싱글
 - 규칙 목록: `GET /api/chat/rulesets` (포맷 ID, 선출 수 포함)
+- `mega_choice`: `{"my": "Garchomp-Mega-Z" | "none", "opp": "Golisopod-Mega" | "none"}` — 챔피언스 메가진화 선택(배틀당 1번). `opp`를 빼면 통계 예상을 쓴다.
+  아직 안 정했으면 `status: "ask"`와 `mega: {my_options[{pokemon, forms[{label, value, usage_pct, sprite}]}], opp_predictions[{pokemon, mega_share, forms[{label, value, share}]}], opp, opp_predicted}`가 온다
 - `my_team`, `opp_team`: 직접 선택 모드에서 고른 팀(검색 결과의 `value`). 보내면 대화 분석보다 우선한다
 - 팀 검색: `GET /api/chat/pokemon?q=한카&game=champions` → `[{label, value, sprite}]` (q가 비면 사용률 상위, 본가는 메가 제외)
 - 본가(`sv`)에서 메가 포켓몬을 말하면 `clarify`에 `reason: "NOT_IN_GAME"`과 기본 폼 후보가 온다

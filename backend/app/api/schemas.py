@@ -20,6 +20,9 @@ class ChatRequest(BaseModel):
     battle: Literal["singles", "doubles"] | None = Field(None, description="singles(6→3) / doubles(6→4)")
     my_team: list[str] | None = Field(None, max_length=6, description="직접 선택 모드: 내 포켓몬 (검색 결과의 value, 예: Garchomp-Mega-Z)")
     opp_team: list[str] | None = Field(None, max_length=6, description="직접 선택 모드: 상대 포켓몬")
+    mega_choice: dict[str, str] | None = Field(
+        None, description="메가진화 선택 {my: 영문 메가 폼 | 'none', opp: 영문 메가 폼 | 'none'} — 세션에 기억된다",
+        examples=[{"my": "Garchomp-Mega-Z", "opp": "Golisopod-Mega"}])
     name_choices: dict[str, str] | None = Field(
         None, description="되묻기(clarify)에서 사용자가 고른 이름 {입력한 이름: 후보의 value}. 세션에 기억된다.",
         examples=[{"물라오슨": "Urshifu-Rapid-Strike"}])
@@ -53,6 +56,9 @@ class ChatResponse(BaseModel):
     move_plan: list[dict] | None = Field(None, description=(
         "대면 계획 상세: my_pokemon(공격) → move → opponent(방어), offense(배율), speed/speed_basis, "
         "damage{attacker, results[{vs(상대 배분), min_pct, max_pct, ko(확정/난수 n타), ohko_pct, two_hko_pct}]}"))
+    mega: dict | None = Field(None, description=(
+        "메가진화: my_options[{pokemon, forms[{label, value, usage_pct, sprite}]}], my(선택), "
+        "opp_predictions[{pokemon, mega_share, forms[{label, value, share}]}], opp(예상 또는 지정), opp_predicted"))
     rule_notes: list[str] = Field(default_factory=list, description="규칙 안내 (예: 메가진화는 배틀당 1마리)")
     ruleset: dict | None = Field(None, description="이번 실행에 적용한 게임·배틀 규칙 (format, pick, gimmick …)")
     pokemon_cards: dict[str, dict] = Field(default_factory=dict, description=(
