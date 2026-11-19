@@ -196,3 +196,63 @@ table.events code { white-space: pre-wrap; word-break: break-all; font-size: 11.
   .logs-layout { grid-template-columns: 1fr; }
   .log-sessions { max-height: 180px; }
 }
+
+/* ---------- 선출 결과 ---------- */
+.selection h3 { margin: 0 0 10px; font-size: 18px; }
+.selection h4 { margin: 16px 0 6px; font-size: 15px; }
+.picks-big { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.pick-card { position: relative; text-align: center; background: var(--surface-2); border: 2px solid transparent;
+  border-radius: 14px; padding: 12px 8px 10px; }
+.pick-card.lead { border-color: var(--accent); }
+.lead-tag { position: absolute; top: 8px; left: 8px; background: var(--accent); color: var(--accent-text);
+  font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+.pick-name { font-size: 18px; font-weight: 700; margin-top: 4px; }
+.types { display: flex; gap: 4px; justify-content: center; margin: 4px 0; flex-wrap: wrap; }
+.small { font-size: 12px; }
+
+.sprite { display: inline-flex; align-items: center; justify-content: center; flex: none; border-radius: 50%;
+  overflow: hidden; background: var(--surface); }
+.sprite img { width: 100%; height: 100%; object-fit: contain; }
+.sprite.lg { width: 104px; height: 104px; background: none; }
+.sprite.sm { width: 40px; height: 40px; }
+.sprite.xs { width: 26px; height: 26px; }
+.sprite.noimg { background: var(--border); color: var(--muted); font-weight: 700; }
+.sprite.lg.noimg { font-size: 36px; }
+
+.type { font-size: 11px; font-weight: 700; color: #fff; padding: 1px 8px; border-radius: 999px; }
+.t-normal { background: #9fa19f; } .t-fire { background: #e62829; } .t-water { background: #2980ef; }
+.t-electric { background: #c9a200; } .t-grass { background: #3fa129; } .t-ice { background: #3dc7ef; }
+.t-fighting { background: #ff8000; } .t-poison { background: #9141cb; } .t-ground { background: #915121; }
+.t-flying { background: #81b9ef; } .t-psychic { background: #ef4179; } .t-bug { background: #91a119; }
+.t-rock { background: #afa981; } .t-ghost { background: #704170; } .t-dragon { background: #5060e1; }
+.t-dark { background: #624d4e; } .t-steel { background: #60a1b8; } .t-fairy { background: #ef70ef; }
+
+.vs-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.vs-list li { display: grid; grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr) minmax(0, 1.3fr);
+  align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; background: var(--surface-2); }
+.vs-list li.weak { outline: 1px dashed var(--warn); }
+.vs-side { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.vs-arrow { color: var(--muted); text-align: center; }
+.vs-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.vs-move { font-weight: 600; margin-right: auto; }
+.mult { font-weight: 700; padding: 1px 8px; border-radius: 6px; background: var(--surface); }
+.mult.m4, .mult.m4_0 { color: #fff; background: var(--ok); }
+.mult.m2, .mult.m2_0 { color: var(--ok); }
+.spd { font-size: 12px; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.spd.fast { background: #e8f6ee; color: #1b6b3d; } .spd.even { background: #fff4e5; color: #7a4a00; }
+.spd.slow { background: #fdecea; color: #a12a20; }
+@media (prefers-color-scheme: dark) {
+  .spd.fast { background: #143323; color: #8fdcb0; } .spd.even { background: #3a2a10; color: #f3cc85; }
+  .spd.slow { background: #3b1a17; color: #ff9d94; }
+}
+.warn-tag { font-size: 11px; color: var(--warn); border: 1px solid var(--warn); padding: 0 6px; border-radius: 999px; }
+details.detail-text { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px; }
+details.detail-text summary { cursor: pointer; color: var(--muted); font-size: 13px; margin-bottom: 6px; }
+.roles li .sprite { margin-right: 2px; }
+@media (max-width: 700px) {
+  .vs-list li { grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr); }
+  .vs-meta { grid-column: 1 / -1; padding-left: 46px; }
+  .picks-big { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .sprite.lg { width: 72px; height: 72px; }
+  .pick-name { font-size: 15px; }
+}

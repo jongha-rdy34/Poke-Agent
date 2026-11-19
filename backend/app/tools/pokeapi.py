@@ -69,6 +69,11 @@ def get_pokemon_detail(name: str) -> dict:
     except ToolError:
         notes.append("한국어 이름을 가져오지 못했습니다 (판단에는 영향 없음).")
 
+    sprites = p.get("sprites") or {}
+    other = sprites.get("other") or {}
+    sprite = ((other.get("official-artwork") or {}).get("front_default")
+              or (other.get("home") or {}).get("front_default") or sprites.get("front_default"))
+
     missing = [k for k in REQUIRED if (k == "types" and not types) or (k != "types" and stats.get(k) is None)]
     return ok({
         "name": p["name"],
@@ -76,6 +81,7 @@ def get_pokemon_detail(name: str) -> dict:
         "types": types,
         "base_stats": {k: stats.get(k) for k in ("hp", "atk", "def", "spa", "spd", "spe")},
         "abilities": abilities,
+        "sprite": sprite,  # 화면 표시용 이미지 주소 (PokeAPI sprites 저장소), 없으면 null
         "judgeable": not missing,
         "missing": missing,
         "notes": notes,

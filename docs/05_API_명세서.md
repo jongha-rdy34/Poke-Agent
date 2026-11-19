@@ -37,6 +37,12 @@
 "defense_advice": "상대 파티가 특수 중심(…)이라 특수 내구가 좋은 대쓰여너(H120·D75)…가 받아내기 유리합니다 (종족값 기준)."
 ```
 
+**포켓몬 카드(pokemon_cards)**: 답변에 나온 표시 이름 → 이미지 주소·타입 (화면용).
+```json
+"pokemon_cards": {"마스카나": {"en": "Meowscarada", "types": ["Grass", "Dark"], "spe": 123, "side": "my",
+                               "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/908.png"}}
+```
+
 **이름 확인(clarify)**: 부정확하거나 여러 대상에 걸리는 이름이 있으면 이름 확인 Tool만 부르고 `status: "ask"`로 멈춘다.
 ```json
 "clarify": [{"input": "물라오슨", "reason": "SUGGEST",

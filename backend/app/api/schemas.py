@@ -46,6 +46,8 @@ class ChatResponse(BaseModel):
     opp_profile: dict | None = Field(None, description=(
         "상대 공격 성향: physical_pct/special_pct, lean(물리 중심/특수 중심/균형), "
         "members[{name, physical_share, roles[{role, pct, typical}], basis}]"))
+    pokemon_cards: dict[str, dict] = Field(default_factory=dict, description=(
+        "화면 표시용 {표시 이름: {en, types, sprite(이미지 주소), spe, side(my/opp)}}"))
     defense_advice: str | None = Field(None, description="상대 성향에 맞춰 받아내기 좋은 내 포켓몬 (종족값 기준)")
     clarify: list[ClarifyItem] = Field(default_factory=list, description="이름 확인이 필요한 항목과 후보 (status=ask)")
     events: list[dict] = Field(default_factory=list, description="실행 단계·Tool 호출·재계획 이력 (실행 순서)")

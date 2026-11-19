@@ -146,6 +146,57 @@ function draftCard(draft, msgEl) {
   $(".bubble", msgEl).appendChild(wrap);
 }
 
+// ---------------------------------------------------------------- 포켓몬 이미지·타입
+const TYPE_KO = { Normal: "노말", Fire: "불꽃", Water: "물", Electric: "전기", Grass: "풀", Ice: "얼음", Fighting: "격투",
+  Poison: "독", Ground: "땅", Flying: "비행", Psychic: "에스퍼", Bug: "벌레", Rock: "바위", Ghost: "고스트",
+  Dragon: "드래곤", Dark: "악", Steel: "강철", Fairy: "페어리" };
+let CARDS = {};  // 최근 응답의 {표시 이름: {sprite, types, …}}
+
+function sprite(name, size = "md") {
+  const c = CARDS[name] || {};
+  const initial = esc((name || "?").slice(0, 1));
+  // 이미지가 없거나 못 불러오면 첫 글자 원으로 대신한다
+  return c.sprite
+    ? `<span class="sprite ${size}"><img src="${esc(c.sprite)}" alt="${esc(name)}" loading="lazy"
+         onerror="this.parentNode.classList.add('noimg');this.parentNode.textContent='${initial}'"></span>`
+    : `<span class="sprite ${size} noimg">${initial}</span>`;
+}
+function typeBadges(name) {
+  return ((CARDS[name] || {}).types || []).map(t => `<span class="type t-${t.toLowerCase()}">${TYPE_KO[t] || t}</span>`).join("");
+}
+function speedClass(v) {
+  return /선공/.test(v || "") ? "fast" : /후공/.test(v || "") ? "slow" : "even";
+}
+
+// 선출 3마리 + 선봉 + 대면 계획 (답변 맨 위)
+function selectionCard(draft) {
+  const mp = draft.move_plan || [];
+  return `<section class="selection">
+    <h3>선출 ${draft.selected.length}마리</h3>
+    <div class="picks-big">${draft.selected.map(n => `
+      <div class="pick-card ${n === draft.lead ? "lead" : ""}">
+        ${n === draft.lead ? `<span class="lead-tag">선봉</span>` : ""}
+        ${sprite(n, "lg")}
+        <div class="pick-name">${esc(n)}</div>
+        <div class="types">${typeBadges(n)}</div>
+        <div class="muted small">상대 ${mp.filter(m => m.my_pokemon === n).length}마리 담당</div>
+      </div>`).join("")}
+    </div>
+    ${mp.length ? `<h4>대면 계획</h4><ul class="vs-list">${mp.map(m => `
+      <li class="${m.answered === false ? "weak" : ""}">
+        <span class="vs-side">${sprite(m.opponent, "sm")}<span>${esc(m.opponent)}</span></span>
+        <span class="vs-arrow" aria-hidden="true">→</span>
+        <span class="vs-side">${sprite(m.my_pokemon, "sm")}<b>${esc(m.my_pokemon)}</b></span>
+        <span class="vs-meta">
+          <span class="vs-move">${esc(m.move)}</span>
+          ${m.offense != null ? `<span class="mult m${String(m.offense).replace(".", "_")}">×${m.offense}</span>` : ""}
+          <span class="spd ${speedClass(m.speed)}">${esc(m.speed || "")}</span>
+          ${m.answered === false ? `<span class="warn-tag" title="확실히 잡는 대면이 아님">주의</span>` : ""}
+        </span>
+      </li>`).join("")}</ul>` : ""}
+  </section>`;
+}
+
 // 상대 파티 공격 성향: 물리/특수 막대 + 포켓몬별 운용 형태
 const ROLE_CLASS = r => r.includes("물리 ") || r === "물리 딜탱" ? "phys" : r.includes("특수 ") || r === "특수 딜탱" ? "spec"
   : r.includes("혼합") ? "mixed" : r.includes("서포터") ? "support" : "wall";
@@ -158,7 +209,7 @@ function profileCard(p, advice, msgEl) {
       <span class="phys" style="width:${p.physical_pct}%">물리 ${p.physical_pct}%</span>
       <span class="spec" style="width:${p.special_pct}%">특수 ${p.special_pct}%</span>
     </div>
-    <ul class="roles">${p.members.map(m => `<li><b>${esc(m.name)}</b>
+    <ul class="roles">${p.members.map(m => `<li>${sprite(m.name, "xs")}<b>${esc(m.name)}</b>
       ${m.physical_share == null && !m.roles.length ? `<span class="muted">통계 없음</span>` :
         m.roles.length ? m.roles.map(r => `<span class="role ${ROLE_CLASS(r.role)}" title="${esc(r.typical)}">${esc(r.role)} ${r.pct}%</span>`).join("")
         : `<span class="muted">${esc(m.basis)} · 물리 ${m.physical_share}%</span>`}</li>`).join("")}</ul>
@@ -221,6 +272,10 @@ async function send(text, nameChoices = null, displayText = null) {
       <span class="badge">Tool ${tools.length}회${fails ? ` · 실패 ${fails}` : ""}</span>
       <span class="badge">${(r.total_ms / 1000).toFixed(1)}s</span></div>
       <details class="trace"><summary>실행 과정 보기</summary>${renderTrace(r.events)}</details>`;
+    CARDS = r.pokemon_cards || {};
+    if (r.plan_draft) {  // 선출 결과를 맨 위에 크게, 자세한 설명은 접어서 아래에
+      html = selectionCard(r.plan_draft) + `<details class="detail-text"><summary>자세한 설명 보기</summary>${html}</details>`;
+    }
     pending.querySelector(".bubble").innerHTML = html;
     if (r.status === "error") pending.querySelector(".bubble").classList.add("error");
     profileCard(r.opp_profile, r.defense_advice, pending);

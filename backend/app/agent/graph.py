@@ -257,6 +257,19 @@ def build_graph():
 GRAPH = build_graph()
 
 
+def _pokemon_cards(ctx: dict) -> dict:
+    """화면 표시용: 이름(답변에 쓰인 표시 이름) → 이미지·타입·스피드 종족값."""
+    cards = {}
+    for sid in dict.fromkeys((ctx.get("my") or []) + (ctx.get("opp") or [])):
+        d = (ctx.get("detail") or {}).get(sid)
+        disp = (ctx.get("display") or {}).get(sid, {})
+        label = disp.get("ko") or disp.get("en") or sid
+        cards[label] = {"en": disp.get("en"), "types": (d or {}).get("types", []),
+                        "sprite": (d or {}).get("sprite"), "spe": ((d or {}).get("base_stats") or {}).get("spe"),
+                        "side": "my" if sid in (ctx.get("my") or []) else "opp"}
+    return cards
+
+
 def run_agent(message: str, session_id: str | None = None, name_choices: dict[str, str] | None = None) -> dict:
     session_id = session_id or "s-" + uuid.uuid4().hex[:10]
     em = Emitter(session_id)
@@ -274,6 +287,7 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
                  "error": {"code": ErrorCode.INTERNAL_ERROR, "message": "내부 오류"}}
     total = round((time.perf_counter() - t0) * 1000)
     ctx = final.get("ctx") or {}
+    cards = _pokemon_cards(ctx)
     em.emit("run_end", None, status=final.get("status"), total_ms=total, tool_calls=ctx.get("calls", 0),
             replans=len(final.get("replans") or []))
     return {
@@ -290,6 +304,7 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
         "error": final.get("error"),
         "conditions": final.get("conditions"),
         "opp_profile": (final.get("result") or {}).get("opp_profile"),
+        "pokemon_cards": cards,
         "defense_advice": (final.get("result") or {}).get("defense_advice"),
         "clarify": [  # 화면에서 고를 수 있는 이름 후보 (status=ask일 때)
             {"input": u["input"], "reason": u.get("reason"), "candidates": u.get("candidates") or []}

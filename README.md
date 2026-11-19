@@ -74,6 +74,9 @@ python -m uvicorn app.main:app --reload # 화면 http://localhost:8000  ·  Swag
 | [PokeAPI](https://pokeapi.co/) | 타입·종족값·특성·한국어 이름 (F3003) | 무료, 공정 이용 정책(로컬 캐시 권장, 남용 시 차단) | 7일 캐시, 한국어 이름 1회 수집 후 재사용 |
 | [Pokémon Showdown data](https://play.pokemonshowdown.com/data/) | 기술 정보·타입 상성 (F3004) | 공개 데이터, 소스 MIT 라이선스 | 24시간 캐시, 출처 표기 |
 
+화면의 포켓몬 이미지는 PokeAPI가 제공하는 [PokeAPI/sprites](https://github.com/PokeAPI/sprites) 저장소의 공식 일러스트 주소를
+브라우저가 직접 불러온다 (서버는 주소만 전달, 이미지를 저장·재배포하지 않음). 불러오지 못하면 이름 첫 글자로 대신 표시한다.
+
 포켓몬 관련 이름·데이터의 권리는 Nintendo / Creatures / GAME FREAK에 있으며, 이 프로젝트는 비상업 교육용입니다.
 추천은 **통계 기반 추정**이며, 상대의 실제 세트와 다를 수 있습니다.
 
