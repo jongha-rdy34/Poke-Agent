@@ -11775,5 +11775,2703 @@
 "ko": "다크스카이",
 "id": "shadowsky"
 }
+],
+"forms": [
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "A",
+"species_slug": "unown"
+},
+{
+"slug": "deoxys-normal",
+"en": "Deoxys-Normal",
+"id": "deoxysnormal",
+"ko": null,
+"ko_form": "노말폼",
+"species_slug": "deoxys"
+},
+{
+"slug": "burmy",
+"en": "Burmy",
+"id": "burmy",
+"ko": null,
+"ko_form": "초목도롱",
+"species_slug": "burmy"
+},
+{
+"slug": "wormadam-plant",
+"en": "Wormadam-Plant",
+"id": "wormadamplant",
+"ko": null,
+"ko_form": "초목도롱",
+"species_slug": "wormadam"
+},
+{
+"slug": "cherrim",
+"en": "Cherrim",
+"id": "cherrim",
+"ko": null,
+"ko_form": "네거폼",
+"species_slug": "cherrim"
+},
+{
+"slug": "shellos",
+"en": "Shellos",
+"id": "shellos",
+"ko": null,
+"ko_form": "서쪽바다",
+"species_slug": "shellos"
+},
+{
+"slug": "gastrodon",
+"en": "Gastrodon",
+"id": "gastrodon",
+"ko": null,
+"ko_form": "서쪽바다",
+"species_slug": "gastrodon"
+},
+{
+"slug": "giratina-altered",
+"en": "Giratina-Altered",
+"id": "giratinaaltered",
+"ko": null,
+"ko_form": "어나더폼",
+"species_slug": "giratina"
+},
+{
+"slug": "shaymin-land",
+"en": "Shaymin-Land",
+"id": "shayminland",
+"ko": null,
+"ko_form": "랜드폼",
+"species_slug": "shaymin"
+},
+{
+"slug": "basculin-red-striped",
+"en": "Basculin-Red-Striped",
+"id": "basculinredstriped",
+"ko": null,
+"ko_form": "적색근의 모습",
+"species_slug": "basculin"
+},
+{
+"slug": "darmanitan-standard",
+"en": "Darmanitan-Standard",
+"id": "darmanitanstandard",
+"ko": null,
+"ko_form": "노말모드",
+"species_slug": "darmanitan"
+},
+{
+"slug": "deerling",
+"en": "Deerling",
+"id": "deerling",
+"ko": null,
+"ko_form": "봄의 모습",
+"species_slug": "deerling"
+},
+{
+"slug": "sawsbuck",
+"en": "Sawsbuck",
+"id": "sawsbuck",
+"ko": null,
+"ko_form": "봄의 모습",
+"species_slug": "sawsbuck"
+},
+{
+"slug": "frillish-male",
+"en": "Frillish-Male",
+"id": "frillishmale",
+"ko": null,
+"ko_form": "수컷의 모습",
+"species_slug": "frillish"
+},
+{
+"slug": "jellicent-male",
+"en": "Jellicent-Male",
+"id": "jellicentmale",
+"ko": null,
+"ko_form": "수컷의 모습",
+"species_slug": "jellicent"
+},
+{
+"slug": "tornadus-incarnate",
+"en": "Tornadus-Incarnate",
+"id": "tornadusincarnate",
+"ko": null,
+"ko_form": "화신폼",
+"species_slug": "tornadus"
+},
+{
+"slug": "thundurus-incarnate",
+"en": "Thundurus-Incarnate",
+"id": "thundurusincarnate",
+"ko": null,
+"ko_form": "화신폼",
+"species_slug": "thundurus"
+},
+{
+"slug": "landorus-incarnate",
+"en": "Landorus-Incarnate",
+"id": "landorusincarnate",
+"ko": null,
+"ko_form": "화신폼",
+"species_slug": "landorus"
+},
+{
+"slug": "keldeo-ordinary",
+"en": "Keldeo-Ordinary",
+"id": "keldeoordinary",
+"ko": null,
+"ko_form": "평상시 모습",
+"species_slug": "keldeo"
+},
+{
+"slug": "meloetta-aria",
+"en": "Meloetta-Aria",
+"id": "meloettaaria",
+"ko": null,
+"ko_form": "보이스폼",
+"species_slug": "meloetta"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "화원의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "pyroar-male",
+"en": "Pyroar-Male",
+"id": "pyroarmale",
+"ko": null,
+"ko_form": "수컷의 모습",
+"species_slug": "pyroar"
+},
+{
+"slug": "flabebe",
+"en": "Flabebe",
+"id": "flabebe",
+"ko": null,
+"ko_form": "빨간 꽃",
+"species_slug": "flabebe"
+},
+{
+"slug": "floette",
+"en": "Floette",
+"id": "floette",
+"ko": null,
+"ko_form": "빨간 꽃",
+"species_slug": "floette"
+},
+{
+"slug": "florges",
+"en": "Florges",
+"id": "florges",
+"ko": null,
+"ko_form": "빨간 꽃",
+"species_slug": "florges"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "야생의 모습",
+"species_slug": "furfrou"
+},
+{
+"slug": "meowstic-male",
+"en": "Meowstic-Male",
+"id": "meowsticmale",
+"ko": null,
+"ko_form": "수컷의 모습",
+"species_slug": "meowstic"
+},
+{
+"slug": "aegislash-shield",
+"en": "Aegislash-Shield",
+"id": "aegislashshield",
+"ko": null,
+"ko_form": "실드폼",
+"species_slug": "aegislash"
+},
+{
+"slug": "pumpkaboo-average",
+"en": "Pumpkaboo-Average",
+"id": "pumpkabooaverage",
+"ko": null,
+"ko_form": "보통 사이즈",
+"species_slug": "pumpkaboo"
+},
+{
+"slug": "gourgeist-average",
+"en": "Gourgeist-Average",
+"id": "gourgeistaverage",
+"ko": null,
+"ko_form": "보통 사이즈",
+"species_slug": "gourgeist"
+},
+{
+"slug": "xerneas",
+"en": "Xerneas",
+"id": "xerneas",
+"ko": null,
+"ko_form": "액티브모드",
+"species_slug": "xerneas"
+},
+{
+"slug": "zygarde-50",
+"en": "Zygarde-50",
+"id": "zygarde50",
+"ko": null,
+"ko_form": "50%폼",
+"species_slug": "zygarde"
+},
+{
+"slug": "hoopa",
+"en": "Hoopa",
+"id": "hoopa",
+"ko": null,
+"ko_form": "굴레에 빠진 후파",
+"species_slug": "hoopa"
+},
+{
+"slug": "oricorio-baile",
+"en": "Oricorio-Baile",
+"id": "oricoriobaile",
+"ko": null,
+"ko_form": "이글이글스타일",
+"species_slug": "oricorio"
+},
+{
+"slug": "lycanroc-midday",
+"en": "Lycanroc-Midday",
+"id": "lycanrocmidday",
+"ko": null,
+"ko_form": "한낮의 모습",
+"species_slug": "lycanroc"
+},
+{
+"slug": "wishiwashi-solo",
+"en": "Wishiwashi-Solo",
+"id": "wishiwashisolo",
+"ko": null,
+"ko_form": "단독의 모습",
+"species_slug": "wishiwashi"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:노말",
+"species_slug": "silvally"
+},
+{
+"slug": "minior-red-meteor",
+"en": "Minior-Red-Meteor",
+"id": "miniorredmeteor",
+"ko": null,
+"ko_form": "유성의 모습",
+"species_slug": "minior"
+},
+{
+"slug": "mimikyu-disguised",
+"en": "Mimikyu-Disguised",
+"id": "mimikyudisguised",
+"ko": null,
+"ko_form": "둔갑한 모습",
+"species_slug": "mimikyu"
+},
+{
+"slug": "toxtricity-amped",
+"en": "Toxtricity-Amped",
+"id": "toxtricityamped",
+"ko": null,
+"ko_form": "하이한 모습",
+"species_slug": "toxtricity"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "밀키바닐라",
+"species_slug": "alcremie"
+},
+{
+"slug": "eiscue-ice",
+"en": "Eiscue-Ice",
+"id": "eiscueice",
+"ko": null,
+"ko_form": "아이스페이스",
+"species_slug": "eiscue"
+},
+{
+"slug": "indeedee-male",
+"en": "Indeedee-Male",
+"id": "indeedeemale",
+"ko": null,
+"ko_form": "수컷의 모습",
+"species_slug": "indeedee"
+},
+{
+"slug": "morpeko-full-belly",
+"en": "Morpeko-Full-Belly",
+"id": "morpekofullbelly",
+"ko": null,
+"ko_form": "배부른 모양",
+"species_slug": "morpeko"
+},
+{
+"slug": "urshifu-single-strike",
+"en": "Urshifu-Single-Strike",
+"id": "urshifusinglestrike",
+"ko": null,
+"ko_form": "일격의 태세",
+"species_slug": "urshifu"
+},
+{
+"slug": "poltchageist",
+"en": "Poltchageist",
+"id": "poltchageist",
+"ko": null,
+"ko_form": "가짜배기의 모습",
+"species_slug": "poltchageist"
+},
+{
+"slug": "sinistcha",
+"en": "Sinistcha",
+"id": "sinistcha",
+"ko": null,
+"ko_form": "범작의 모습",
+"species_slug": "sinistcha"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "B",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "C",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "D",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "E",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "F",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "G",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "H",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "I",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "J",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "K",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "L",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "M",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "N",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "O",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "P",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "Q",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "R",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "S",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "T",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "U",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "V",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "W",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "X",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "Y",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "Z",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "!",
+"species_slug": "unown"
+},
+{
+"slug": "unown",
+"en": "Unown",
+"id": "unown",
+"ko": null,
+"ko_form": "?",
+"species_slug": "unown"
+},
+{
+"slug": "castform-sunny",
+"en": "Castform-Sunny",
+"id": "castformsunny",
+"ko": null,
+"ko_form": "태양의 모습",
+"species_slug": "castform"
+},
+{
+"slug": "castform-rainy",
+"en": "Castform-Rainy",
+"id": "castformrainy",
+"ko": null,
+"ko_form": "빗방울의 모습",
+"species_slug": "castform"
+},
+{
+"slug": "castform-snowy",
+"en": "Castform-Snowy",
+"id": "castformsnowy",
+"ko": null,
+"ko_form": "설운의 모습",
+"species_slug": "castform"
+},
+{
+"slug": "deoxys-attack",
+"en": "Deoxys-Attack",
+"id": "deoxysattack",
+"ko": null,
+"ko_form": "어택폼",
+"species_slug": "deoxys"
+},
+{
+"slug": "deoxys-defense",
+"en": "Deoxys-Defense",
+"id": "deoxysdefense",
+"ko": null,
+"ko_form": "디펜스폼",
+"species_slug": "deoxys"
+},
+{
+"slug": "deoxys-speed",
+"en": "Deoxys-Speed",
+"id": "deoxysspeed",
+"ko": null,
+"ko_form": "스피드폼",
+"species_slug": "deoxys"
+},
+{
+"slug": "burmy",
+"en": "Burmy",
+"id": "burmy",
+"ko": null,
+"ko_form": "모래땅도롱",
+"species_slug": "burmy"
+},
+{
+"slug": "burmy",
+"en": "Burmy",
+"id": "burmy",
+"ko": null,
+"ko_form": "슈레도롱",
+"species_slug": "burmy"
+},
+{
+"slug": "wormadam-sandy",
+"en": "Wormadam-Sandy",
+"id": "wormadamsandy",
+"ko": null,
+"ko_form": "모래땅도롱",
+"species_slug": "wormadam"
+},
+{
+"slug": "wormadam-trash",
+"en": "Wormadam-Trash",
+"id": "wormadamtrash",
+"ko": null,
+"ko_form": "슈레도롱",
+"species_slug": "wormadam"
+},
+{
+"slug": "cherrim",
+"en": "Cherrim",
+"id": "cherrim",
+"ko": null,
+"ko_form": "포지폼",
+"species_slug": "cherrim"
+},
+{
+"slug": "shellos",
+"en": "Shellos",
+"id": "shellos",
+"ko": null,
+"ko_form": "동쪽바다",
+"species_slug": "shellos"
+},
+{
+"slug": "gastrodon",
+"en": "Gastrodon",
+"id": "gastrodon",
+"ko": null,
+"ko_form": "동쪽바다",
+"species_slug": "gastrodon"
+},
+{
+"slug": "rotom-heat",
+"en": "Rotom-Heat",
+"id": "rotomheat",
+"ko": null,
+"ko_form": "히트로토무",
+"species_slug": "rotom"
+},
+{
+"slug": "rotom-wash",
+"en": "Rotom-Wash",
+"id": "rotomwash",
+"ko": null,
+"ko_form": "워시로토무",
+"species_slug": "rotom"
+},
+{
+"slug": "rotom-frost",
+"en": "Rotom-Frost",
+"id": "rotomfrost",
+"ko": null,
+"ko_form": "프로스트로토무",
+"species_slug": "rotom"
+},
+{
+"slug": "rotom-fan",
+"en": "Rotom-Fan",
+"id": "rotomfan",
+"ko": null,
+"ko_form": "스핀로토무",
+"species_slug": "rotom"
+},
+{
+"slug": "rotom-mow",
+"en": "Rotom-Mow",
+"id": "rotommow",
+"ko": null,
+"ko_form": "커트로토무",
+"species_slug": "rotom"
+},
+{
+"slug": "giratina-origin",
+"en": "Giratina-Origin",
+"id": "giratinaorigin",
+"ko": null,
+"ko_form": "오리진폼",
+"species_slug": "giratina"
+},
+{
+"slug": "shaymin-sky",
+"en": "Shaymin-Sky",
+"id": "shayminsky",
+"ko": null,
+"ko_form": "스카이폼",
+"species_slug": "shaymin"
+},
+{
+"slug": "basculin-blue-striped",
+"en": "Basculin-Blue-Striped",
+"id": "basculinbluestriped",
+"ko": null,
+"ko_form": "청색근의 모습",
+"species_slug": "basculin"
+},
+{
+"slug": "darmanitan-zen",
+"en": "Darmanitan-Zen",
+"id": "darmanitanzen",
+"ko": null,
+"ko_form": "달마모드",
+"species_slug": "darmanitan"
+},
+{
+"slug": "deerling",
+"en": "Deerling",
+"id": "deerling",
+"ko": null,
+"ko_form": "여름의 모습",
+"species_slug": "deerling"
+},
+{
+"slug": "deerling",
+"en": "Deerling",
+"id": "deerling",
+"ko": null,
+"ko_form": "가을의 모습",
+"species_slug": "deerling"
+},
+{
+"slug": "deerling",
+"en": "Deerling",
+"id": "deerling",
+"ko": null,
+"ko_form": "겨울의 모습",
+"species_slug": "deerling"
+},
+{
+"slug": "sawsbuck",
+"en": "Sawsbuck",
+"id": "sawsbuck",
+"ko": null,
+"ko_form": "여름의 모습",
+"species_slug": "sawsbuck"
+},
+{
+"slug": "sawsbuck",
+"en": "Sawsbuck",
+"id": "sawsbuck",
+"ko": null,
+"ko_form": "가을의 모습",
+"species_slug": "sawsbuck"
+},
+{
+"slug": "sawsbuck",
+"en": "Sawsbuck",
+"id": "sawsbuck",
+"ko": null,
+"ko_form": "겨울의 모습",
+"species_slug": "sawsbuck"
+},
+{
+"slug": "meloetta-pirouette",
+"en": "Meloetta-Pirouette",
+"id": "meloettapirouette",
+"ko": null,
+"ko_form": "스텝폼",
+"species_slug": "meloetta"
+},
+{
+"slug": "genesect",
+"en": "Genesect",
+"id": "genesect",
+"ko": null,
+"ko_form": "아쿠아카세트",
+"species_slug": "genesect"
+},
+{
+"slug": "genesect",
+"en": "Genesect",
+"id": "genesect",
+"ko": null,
+"ko_form": "번개카세트",
+"species_slug": "genesect"
+},
+{
+"slug": "genesect",
+"en": "Genesect",
+"id": "genesect",
+"ko": null,
+"ko_form": "블레이즈카세트",
+"species_slug": "genesect"
+},
+{
+"slug": "genesect",
+"en": "Genesect",
+"id": "genesect",
+"ko": null,
+"ko_form": "프리즈카세트",
+"species_slug": "genesect"
+},
+{
+"slug": "tornadus-therian",
+"en": "Tornadus-Therian",
+"id": "tornadustherian",
+"ko": null,
+"ko_form": "영물폼",
+"species_slug": "tornadus"
+},
+{
+"slug": "thundurus-therian",
+"en": "Thundurus-Therian",
+"id": "thundurustherian",
+"ko": null,
+"ko_form": "영물폼",
+"species_slug": "thundurus"
+},
+{
+"slug": "landorus-therian",
+"en": "Landorus-Therian",
+"id": "landorustherian",
+"ko": null,
+"ko_form": "영물폼",
+"species_slug": "landorus"
+},
+{
+"slug": "kyurem-black",
+"en": "Kyurem-Black",
+"id": "kyuremblack",
+"ko": null,
+"ko_form": "블랙큐레무",
+"species_slug": "kyurem"
+},
+{
+"slug": "kyurem-white",
+"en": "Kyurem-White",
+"id": "kyuremwhite",
+"ko": null,
+"ko_form": "화이트큐레무",
+"species_slug": "kyurem"
+},
+{
+"slug": "keldeo-resolute",
+"en": "Keldeo-Resolute",
+"id": "keldeoresolute",
+"ko": null,
+"ko_form": "각오의 모습",
+"species_slug": "keldeo"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "빙설의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "설국의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "설원의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "대륙의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "정원의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "우아한 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "모던한 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "마린의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "군도의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "황야의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "사진의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "대하의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "스콜의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "사바나의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "태양의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "오션의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "정글의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "flabebe",
+"en": "Flabebe",
+"id": "flabebe",
+"ko": null,
+"ko_form": "노란 꽃",
+"species_slug": "flabebe"
+},
+{
+"slug": "flabebe",
+"en": "Flabebe",
+"id": "flabebe",
+"ko": null,
+"ko_form": "오렌지색 꽃",
+"species_slug": "flabebe"
+},
+{
+"slug": "flabebe",
+"en": "Flabebe",
+"id": "flabebe",
+"ko": null,
+"ko_form": "파란 꽃",
+"species_slug": "flabebe"
+},
+{
+"slug": "flabebe",
+"en": "Flabebe",
+"id": "flabebe",
+"ko": null,
+"ko_form": "하얀 꽃",
+"species_slug": "flabebe"
+},
+{
+"slug": "floette",
+"en": "Floette",
+"id": "floette",
+"ko": null,
+"ko_form": "노란 꽃",
+"species_slug": "floette"
+},
+{
+"slug": "floette",
+"en": "Floette",
+"id": "floette",
+"ko": null,
+"ko_form": "오렌지색 꽃",
+"species_slug": "floette"
+},
+{
+"slug": "floette",
+"en": "Floette",
+"id": "floette",
+"ko": null,
+"ko_form": "파란 꽃",
+"species_slug": "floette"
+},
+{
+"slug": "floette",
+"en": "Floette",
+"id": "floette",
+"ko": null,
+"ko_form": "하얀 꽃",
+"species_slug": "floette"
+},
+{
+"slug": "florges",
+"en": "Florges",
+"id": "florges",
+"ko": null,
+"ko_form": "노란 꽃",
+"species_slug": "florges"
+},
+{
+"slug": "florges",
+"en": "Florges",
+"id": "florges",
+"ko": null,
+"ko_form": "오렌지색 꽃",
+"species_slug": "florges"
+},
+{
+"slug": "florges",
+"en": "Florges",
+"id": "florges",
+"ko": null,
+"ko_form": "파란 꽃",
+"species_slug": "florges"
+},
+{
+"slug": "florges",
+"en": "Florges",
+"id": "florges",
+"ko": null,
+"ko_form": "하얀 꽃",
+"species_slug": "florges"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "하트컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "스타컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "다이아컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "레이디컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "마담컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "젠틀컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "퀸컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "가부키컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "furfrou",
+"en": "Furfrou",
+"id": "furfrou",
+"ko": null,
+"ko_form": "킹덤컷",
+"species_slug": "furfrou"
+},
+{
+"slug": "meowstic-female",
+"en": "Meowstic-Female",
+"id": "meowsticfemale",
+"ko": null,
+"ko_form": "암컷의 모습",
+"species_slug": "meowstic"
+},
+{
+"slug": "aegislash-blade",
+"en": "Aegislash-Blade",
+"id": "aegislashblade",
+"ko": null,
+"ko_form": "블레이드폼",
+"species_slug": "aegislash"
+},
+{
+"slug": "pumpkaboo-small",
+"en": "Pumpkaboo-Small",
+"id": "pumpkaboosmall",
+"ko": null,
+"ko_form": "작은 사이즈",
+"species_slug": "pumpkaboo"
+},
+{
+"slug": "pumpkaboo-large",
+"en": "Pumpkaboo-Large",
+"id": "pumpkaboolarge",
+"ko": null,
+"ko_form": "큰 사이즈",
+"species_slug": "pumpkaboo"
+},
+{
+"slug": "pumpkaboo-super",
+"en": "Pumpkaboo-Super",
+"id": "pumpkaboosuper",
+"ko": null,
+"ko_form": "특대 사이즈",
+"species_slug": "pumpkaboo"
+},
+{
+"slug": "gourgeist-small",
+"en": "Gourgeist-Small",
+"id": "gourgeistsmall",
+"ko": null,
+"ko_form": "작은 사이즈",
+"species_slug": "gourgeist"
+},
+{
+"slug": "gourgeist-large",
+"en": "Gourgeist-Large",
+"id": "gourgeistlarge",
+"ko": null,
+"ko_form": "큰 사이즈",
+"species_slug": "gourgeist"
+},
+{
+"slug": "gourgeist-super",
+"en": "Gourgeist-Super",
+"id": "gourgeistsuper",
+"ko": null,
+"ko_form": "특대 사이즈",
+"species_slug": "gourgeist"
+},
+{
+"slug": "xerneas",
+"en": "Xerneas",
+"id": "xerneas",
+"ko": null,
+"ko_form": "릴랙스모드",
+"species_slug": "xerneas"
+},
+{
+"slug": "venusaur-mega",
+"en": "Venusaur-Mega",
+"id": "venusaurmega",
+"ko": null,
+"ko_form": "메가이상해꽃",
+"species_slug": "venusaur"
+},
+{
+"slug": "charizard-mega-x",
+"en": "Charizard-Mega-X",
+"id": "charizardmegax",
+"ko": null,
+"ko_form": "메가리자몽X",
+"species_slug": "charizard"
+},
+{
+"slug": "charizard-mega-y",
+"en": "Charizard-Mega-Y",
+"id": "charizardmegay",
+"ko": null,
+"ko_form": "메가리자몽Y",
+"species_slug": "charizard"
+},
+{
+"slug": "blastoise-mega",
+"en": "Blastoise-Mega",
+"id": "blastoisemega",
+"ko": null,
+"ko_form": "메가거북왕",
+"species_slug": "blastoise"
+},
+{
+"slug": "alakazam-mega",
+"en": "Alakazam-Mega",
+"id": "alakazammega",
+"ko": null,
+"ko_form": "메가후딘",
+"species_slug": "alakazam"
+},
+{
+"slug": "gengar-mega",
+"en": "Gengar-Mega",
+"id": "gengarmega",
+"ko": null,
+"ko_form": "메가팬텀",
+"species_slug": "gengar"
+},
+{
+"slug": "kangaskhan-mega",
+"en": "Kangaskhan-Mega",
+"id": "kangaskhanmega",
+"ko": null,
+"ko_form": "메가캥카",
+"species_slug": "kangaskhan"
+},
+{
+"slug": "pinsir-mega",
+"en": "Pinsir-Mega",
+"id": "pinsirmega",
+"ko": null,
+"ko_form": "메가쁘사이저",
+"species_slug": "pinsir"
+},
+{
+"slug": "gyarados-mega",
+"en": "Gyarados-Mega",
+"id": "gyaradosmega",
+"ko": null,
+"ko_form": "메가갸라도스",
+"species_slug": "gyarados"
+},
+{
+"slug": "aerodactyl-mega",
+"en": "Aerodactyl-Mega",
+"id": "aerodactylmega",
+"ko": null,
+"ko_form": "메가프테라",
+"species_slug": "aerodactyl"
+},
+{
+"slug": "mewtwo-mega-x",
+"en": "Mewtwo-Mega-X",
+"id": "mewtwomegax",
+"ko": null,
+"ko_form": "메가뮤츠X",
+"species_slug": "mewtwo"
+},
+{
+"slug": "mewtwo-mega-y",
+"en": "Mewtwo-Mega-Y",
+"id": "mewtwomegay",
+"ko": null,
+"ko_form": "메가뮤츠Y",
+"species_slug": "mewtwo"
+},
+{
+"slug": "ampharos-mega",
+"en": "Ampharos-Mega",
+"id": "ampharosmega",
+"ko": null,
+"ko_form": "메가전룡",
+"species_slug": "ampharos"
+},
+{
+"slug": "scizor-mega",
+"en": "Scizor-Mega",
+"id": "scizormega",
+"ko": null,
+"ko_form": "메가핫삼",
+"species_slug": "scizor"
+},
+{
+"slug": "heracross-mega",
+"en": "Heracross-Mega",
+"id": "heracrossmega",
+"ko": null,
+"ko_form": "메가헤라크로스",
+"species_slug": "heracross"
+},
+{
+"slug": "houndoom-mega",
+"en": "Houndoom-Mega",
+"id": "houndoommega",
+"ko": null,
+"ko_form": "메가헬가",
+"species_slug": "houndoom"
+},
+{
+"slug": "tyranitar-mega",
+"en": "Tyranitar-Mega",
+"id": "tyranitarmega",
+"ko": null,
+"ko_form": "메가마기라스",
+"species_slug": "tyranitar"
+},
+{
+"slug": "blaziken-mega",
+"en": "Blaziken-Mega",
+"id": "blazikenmega",
+"ko": null,
+"ko_form": "메가번치코",
+"species_slug": "blaziken"
+},
+{
+"slug": "gardevoir-mega",
+"en": "Gardevoir-Mega",
+"id": "gardevoirmega",
+"ko": null,
+"ko_form": "메가가디안",
+"species_slug": "gardevoir"
+},
+{
+"slug": "mawile-mega",
+"en": "Mawile-Mega",
+"id": "mawilemega",
+"ko": null,
+"ko_form": "메가입치트",
+"species_slug": "mawile"
+},
+{
+"slug": "aggron-mega",
+"en": "Aggron-Mega",
+"id": "aggronmega",
+"ko": null,
+"ko_form": "메가보스로라",
+"species_slug": "aggron"
+},
+{
+"slug": "medicham-mega",
+"en": "Medicham-Mega",
+"id": "medichammega",
+"ko": null,
+"ko_form": "메가요가램",
+"species_slug": "medicham"
+},
+{
+"slug": "manectric-mega",
+"en": "Manectric-Mega",
+"id": "manectricmega",
+"ko": null,
+"ko_form": "메가썬더볼트",
+"species_slug": "manectric"
+},
+{
+"slug": "banette-mega",
+"en": "Banette-Mega",
+"id": "banettemega",
+"ko": null,
+"ko_form": "메가다크펫",
+"species_slug": "banette"
+},
+{
+"slug": "absol-mega",
+"en": "Absol-Mega",
+"id": "absolmega",
+"ko": null,
+"ko_form": "메가앱솔",
+"species_slug": "absol"
+},
+{
+"slug": "garchomp-mega",
+"en": "Garchomp-Mega",
+"id": "garchompmega",
+"ko": null,
+"ko_form": "메가한카리아스",
+"species_slug": "garchomp"
+},
+{
+"slug": "lucario-mega",
+"en": "Lucario-Mega",
+"id": "lucariomega",
+"ko": null,
+"ko_form": "메가루카리오",
+"species_slug": "lucario"
+},
+{
+"slug": "abomasnow-mega",
+"en": "Abomasnow-Mega",
+"id": "abomasnowmega",
+"ko": null,
+"ko_form": "메가눈설왕",
+"species_slug": "abomasnow"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "팬시한 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "vivillon",
+"en": "Vivillon",
+"id": "vivillon",
+"ko": null,
+"ko_form": "볼의 모양",
+"species_slug": "vivillon"
+},
+{
+"slug": "floette-eternal",
+"en": "Floette-Eternal",
+"id": "floetteeternal",
+"ko": null,
+"ko_form": "영원의 꽃",
+"species_slug": "floette"
+},
+{
+"slug": "latias-mega",
+"en": "Latias-Mega",
+"id": "latiasmega",
+"ko": null,
+"ko_form": "메가라티아스",
+"species_slug": "latias"
+},
+{
+"slug": "latios-mega",
+"en": "Latios-Mega",
+"id": "latiosmega",
+"ko": null,
+"ko_form": "메가라티오스",
+"species_slug": "latios"
+},
+{
+"slug": "swampert-mega",
+"en": "Swampert-Mega",
+"id": "swampertmega",
+"ko": null,
+"ko_form": "메가대짱이",
+"species_slug": "swampert"
+},
+{
+"slug": "sceptile-mega",
+"en": "Sceptile-Mega",
+"id": "sceptilemega",
+"ko": null,
+"ko_form": "메가나무킹",
+"species_slug": "sceptile"
+},
+{
+"slug": "sableye-mega",
+"en": "Sableye-Mega",
+"id": "sableyemega",
+"ko": null,
+"ko_form": "메가깜까미",
+"species_slug": "sableye"
+},
+{
+"slug": "altaria-mega",
+"en": "Altaria-Mega",
+"id": "altariamega",
+"ko": null,
+"ko_form": "메가파비코리",
+"species_slug": "altaria"
+},
+{
+"slug": "gallade-mega",
+"en": "Gallade-Mega",
+"id": "gallademega",
+"ko": null,
+"ko_form": "메가엘레이드",
+"species_slug": "gallade"
+},
+{
+"slug": "audino-mega",
+"en": "Audino-Mega",
+"id": "audinomega",
+"ko": null,
+"ko_form": "메가다부니",
+"species_slug": "audino"
+},
+{
+"slug": "sharpedo-mega",
+"en": "Sharpedo-Mega",
+"id": "sharpedomega",
+"ko": null,
+"ko_form": "메가샤크니아",
+"species_slug": "sharpedo"
+},
+{
+"slug": "slowbro-mega",
+"en": "Slowbro-Mega",
+"id": "slowbromega",
+"ko": null,
+"ko_form": "메가야도란",
+"species_slug": "slowbro"
+},
+{
+"slug": "steelix-mega",
+"en": "Steelix-Mega",
+"id": "steelixmega",
+"ko": null,
+"ko_form": "메가강철톤",
+"species_slug": "steelix"
+},
+{
+"slug": "pidgeot-mega",
+"en": "Pidgeot-Mega",
+"id": "pidgeotmega",
+"ko": null,
+"ko_form": "메가피죤투",
+"species_slug": "pidgeot"
+},
+{
+"slug": "glalie-mega",
+"en": "Glalie-Mega",
+"id": "glaliemega",
+"ko": null,
+"ko_form": "메가얼음귀신",
+"species_slug": "glalie"
+},
+{
+"slug": "diancie-mega",
+"en": "Diancie-Mega",
+"id": "dianciemega",
+"ko": null,
+"ko_form": "메가디안시",
+"species_slug": "diancie"
+},
+{
+"slug": "metagross-mega",
+"en": "Metagross-Mega",
+"id": "metagrossmega",
+"ko": null,
+"ko_form": "메가메타그로스",
+"species_slug": "metagross"
+},
+{
+"slug": "kyogre-primal",
+"en": "Kyogre-Primal",
+"id": "kyogreprimal",
+"ko": null,
+"ko_form": "원시회귀의 모습",
+"species_slug": "kyogre"
+},
+{
+"slug": "groudon-primal",
+"en": "Groudon-Primal",
+"id": "groudonprimal",
+"ko": null,
+"ko_form": "원시회귀의 모습",
+"species_slug": "groudon"
+},
+{
+"slug": "rayquaza-mega",
+"en": "Rayquaza-Mega",
+"id": "rayquazamega",
+"ko": null,
+"ko_form": "메가레쿠쟈",
+"species_slug": "rayquaza"
+},
+{
+"slug": "hoopa-unbound",
+"en": "Hoopa-Unbound",
+"id": "hoopaunbound",
+"ko": null,
+"ko_form": "굴레를 벗어난 후파",
+"species_slug": "hoopa"
+},
+{
+"slug": "camerupt-mega",
+"en": "Camerupt-Mega",
+"id": "cameruptmega",
+"ko": null,
+"ko_form": "메가폭타",
+"species_slug": "camerupt"
+},
+{
+"slug": "lopunny-mega",
+"en": "Lopunny-Mega",
+"id": "lopunnymega",
+"ko": null,
+"ko_form": "메가이어롭",
+"species_slug": "lopunny"
+},
+{
+"slug": "salamence-mega",
+"en": "Salamence-Mega",
+"id": "salamencemega",
+"ko": null,
+"ko_form": "메가보만다",
+"species_slug": "salamence"
+},
+{
+"slug": "beedrill-mega",
+"en": "Beedrill-Mega",
+"id": "beedrillmega",
+"ko": null,
+"ko_form": "메가독침붕",
+"species_slug": "beedrill"
+},
+{
+"slug": "rattata-alola",
+"en": "Rattata-Alola",
+"id": "rattataalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "rattata"
+},
+{
+"slug": "raticate-alola",
+"en": "Raticate-Alola",
+"id": "raticatealola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "raticate"
+},
+{
+"slug": "pikachu-original-cap",
+"en": "Pikachu-Original-Cap",
+"id": "pikachuoriginalcap",
+"ko": null,
+"ko_form": "오리지널캡",
+"species_slug": "pikachu"
+},
+{
+"slug": "pikachu-hoenn-cap",
+"en": "Pikachu-Hoenn-Cap",
+"id": "pikachuhoenncap",
+"ko": null,
+"ko_form": "호연캡",
+"species_slug": "pikachu"
+},
+{
+"slug": "pikachu-sinnoh-cap",
+"en": "Pikachu-Sinnoh-Cap",
+"id": "pikachusinnohcap",
+"ko": null,
+"ko_form": "신오캡",
+"species_slug": "pikachu"
+},
+{
+"slug": "pikachu-unova-cap",
+"en": "Pikachu-Unova-Cap",
+"id": "pikachuunovacap",
+"ko": null,
+"ko_form": "하나캡",
+"species_slug": "pikachu"
+},
+{
+"slug": "pikachu-kalos-cap",
+"en": "Pikachu-Kalos-Cap",
+"id": "pikachukaloscap",
+"ko": null,
+"ko_form": "칼로스캡",
+"species_slug": "pikachu"
+},
+{
+"slug": "pikachu-alola-cap",
+"en": "Pikachu-Alola-Cap",
+"id": "pikachualolacap",
+"ko": null,
+"ko_form": "알로라캡",
+"species_slug": "pikachu"
+},
+{
+"slug": "raichu-alola",
+"en": "Raichu-Alola",
+"id": "raichualola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "raichu"
+},
+{
+"slug": "sandshrew-alola",
+"en": "Sandshrew-Alola",
+"id": "sandshrewalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "sandshrew"
+},
+{
+"slug": "sandslash-alola",
+"en": "Sandslash-Alola",
+"id": "sandslashalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "sandslash"
+},
+{
+"slug": "vulpix-alola",
+"en": "Vulpix-Alola",
+"id": "vulpixalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "vulpix"
+},
+{
+"slug": "ninetales-alola",
+"en": "Ninetales-Alola",
+"id": "ninetalesalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "ninetales"
+},
+{
+"slug": "diglett-alola",
+"en": "Diglett-Alola",
+"id": "diglettalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "diglett"
+},
+{
+"slug": "dugtrio-alola",
+"en": "Dugtrio-Alola",
+"id": "dugtrioalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "dugtrio"
+},
+{
+"slug": "meowth-alola",
+"en": "Meowth-Alola",
+"id": "meowthalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "meowth"
+},
+{
+"slug": "persian-alola",
+"en": "Persian-Alola",
+"id": "persianalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "persian"
+},
+{
+"slug": "geodude-alola",
+"en": "Geodude-Alola",
+"id": "geodudealola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "geodude"
+},
+{
+"slug": "graveler-alola",
+"en": "Graveler-Alola",
+"id": "graveleralola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "graveler"
+},
+{
+"slug": "golem-alola",
+"en": "Golem-Alola",
+"id": "golemalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "golem"
+},
+{
+"slug": "grimer-alola",
+"en": "Grimer-Alola",
+"id": "grimeralola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "grimer"
+},
+{
+"slug": "muk-alola",
+"en": "Muk-Alola",
+"id": "mukalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "muk"
+},
+{
+"slug": "exeggutor-alola",
+"en": "Exeggutor-Alola",
+"id": "exeggutoralola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "exeggutor"
+},
+{
+"slug": "marowak-alola",
+"en": "Marowak-Alola",
+"id": "marowakalola",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "marowak"
+},
+{
+"slug": "greninja-ash",
+"en": "Greninja-Ash",
+"id": "greninjaash",
+"ko": null,
+"ko_form": "지우개굴닌자",
+"species_slug": "greninja"
+},
+{
+"slug": "zygarde-10-power-construct",
+"en": "Zygarde-10-Power-Construct",
+"id": "zygarde10powerconstruct",
+"ko": null,
+"ko_form": "10%폼",
+"species_slug": "zygarde"
+},
+{
+"slug": "zygarde-50-power-construct",
+"en": "Zygarde-50-Power-Construct",
+"id": "zygarde50powerconstruct",
+"ko": null,
+"ko_form": "50%폼",
+"species_slug": "zygarde"
+},
+{
+"slug": "zygarde-complete",
+"en": "Zygarde-Complete",
+"id": "zygardecomplete",
+"ko": null,
+"ko_form": "퍼펙트폼",
+"species_slug": "zygarde"
+},
+{
+"slug": "oricorio-pom-pom",
+"en": "Oricorio-Pom-Pom",
+"id": "oricoriopompom",
+"ko": null,
+"ko_form": "파칙파칙스타일",
+"species_slug": "oricorio"
+},
+{
+"slug": "oricorio-pau",
+"en": "Oricorio-Pau",
+"id": "oricoriopau",
+"ko": null,
+"ko_form": "훌라훌라스타일",
+"species_slug": "oricorio"
+},
+{
+"slug": "oricorio-sensu",
+"en": "Oricorio-Sensu",
+"id": "oricoriosensu",
+"ko": null,
+"ko_form": "하늘하늘스타일",
+"species_slug": "oricorio"
+},
+{
+"slug": "lycanroc-midnight",
+"en": "Lycanroc-Midnight",
+"id": "lycanrocmidnight",
+"ko": null,
+"ko_form": "한밤중의 모습",
+"species_slug": "lycanroc"
+},
+{
+"slug": "wishiwashi-school",
+"en": "Wishiwashi-School",
+"id": "wishiwashischool",
+"ko": null,
+"ko_form": "군집의 모습",
+"species_slug": "wishiwashi"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:파이팅",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:플라잉",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:포이즌",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:그라운드",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:락",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:버그",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:고스트",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:스틸",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:파이어",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:워터",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:그래스",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:일렉트릭",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:사이킥",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:아이스",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:드래곤",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:다크",
+"species_slug": "silvally"
+},
+{
+"slug": "silvally",
+"en": "Silvally",
+"id": "silvally",
+"ko": null,
+"ko_form": "타입:페어리",
+"species_slug": "silvally"
+},
+{
+"slug": "minior-orange-meteor",
+"en": "Minior-Orange-Meteor",
+"id": "miniororangemeteor",
+"ko": null,
+"ko_form": "유성의 모습",
+"species_slug": "minior"
+},
+{
+"slug": "minior-yellow-meteor",
+"en": "Minior-Yellow-Meteor",
+"id": "minioryellowmeteor",
+"ko": null,
+"ko_form": "유성의 모습",
+"species_slug": "minior"
+},
+{
+"slug": "minior-green-meteor",
+"en": "Minior-Green-Meteor",
+"id": "miniorgreenmeteor",
+"ko": null,
+"ko_form": "유성의 모습",
+"species_slug": "minior"
+},
+{
+"slug": "minior-blue-meteor",
+"en": "Minior-Blue-Meteor",
+"id": "miniorbluemeteor",
+"ko": null,
+"ko_form": "유성의 모습",
+"species_slug": "minior"
+},
+{
+"slug": "minior-indigo-meteor",
+"en": "Minior-Indigo-Meteor",
+"id": "miniorindigometeor",
+"ko": null,
+"ko_form": "유성의 모습",
+"species_slug": "minior"
+},
+{
+"slug": "minior-violet-meteor",
+"en": "Minior-Violet-Meteor",
+"id": "miniorvioletmeteor",
+"ko": null,
+"ko_form": "유성의 모습",
+"species_slug": "minior"
+},
+{
+"slug": "minior-red",
+"en": "Minior-Red",
+"id": "miniorred",
+"ko": null,
+"ko_form": "빨간색 코어",
+"species_slug": "minior"
+},
+{
+"slug": "minior-orange",
+"en": "Minior-Orange",
+"id": "miniororange",
+"ko": null,
+"ko_form": "주황색 코어",
+"species_slug": "minior"
+},
+{
+"slug": "minior-yellow",
+"en": "Minior-Yellow",
+"id": "minioryellow",
+"ko": null,
+"ko_form": "노란색 코어",
+"species_slug": "minior"
+},
+{
+"slug": "minior-green",
+"en": "Minior-Green",
+"id": "miniorgreen",
+"ko": null,
+"ko_form": "초록색 코어",
+"species_slug": "minior"
+},
+{
+"slug": "minior-blue",
+"en": "Minior-Blue",
+"id": "miniorblue",
+"ko": null,
+"ko_form": "옥색 코어",
+"species_slug": "minior"
+},
+{
+"slug": "minior-indigo",
+"en": "Minior-Indigo",
+"id": "miniorindigo",
+"ko": null,
+"ko_form": "파란색 코어",
+"species_slug": "minior"
+},
+{
+"slug": "minior-violet",
+"en": "Minior-Violet",
+"id": "miniorviolet",
+"ko": null,
+"ko_form": "보라색 코어",
+"species_slug": "minior"
+},
+{
+"slug": "mimikyu-busted",
+"en": "Mimikyu-Busted",
+"id": "mimikyubusted",
+"ko": null,
+"ko_form": "들킨 모습",
+"species_slug": "mimikyu"
+},
+{
+"slug": "magearna-original",
+"en": "Magearna-Original",
+"id": "magearnaoriginal",
+"ko": null,
+"ko_form": "500년 전의 색",
+"species_slug": "magearna"
+},
+{
+"slug": "pikachu-partner-cap",
+"en": "Pikachu-Partner-Cap",
+"id": "pikachupartnercap",
+"ko": null,
+"ko_form": "너로정했다캡",
+"species_slug": "pikachu"
+},
+{
+"slug": "marowak-totem",
+"en": "Marowak-Totem",
+"id": "marowaktotem",
+"ko": null,
+"ko_form": "알로라의 모습",
+"species_slug": "marowak"
+},
+{
+"slug": "lycanroc-dusk",
+"en": "Lycanroc-Dusk",
+"id": "lycanrocdusk",
+"ko": null,
+"ko_form": "황혼의 모습",
+"species_slug": "lycanroc"
+},
+{
+"slug": "necrozma-dusk",
+"en": "Necrozma-Dusk",
+"id": "necrozmadusk",
+"ko": null,
+"ko_form": "황혼의 갈기",
+"species_slug": "necrozma"
+},
+{
+"slug": "necrozma-dawn",
+"en": "Necrozma-Dawn",
+"id": "necrozmadawn",
+"ko": null,
+"ko_form": "새벽의 날개",
+"species_slug": "necrozma"
+},
+{
+"slug": "necrozma-ultra",
+"en": "Necrozma-Ultra",
+"id": "necrozmaultra",
+"ko": null,
+"ko_form": "울트라네크로즈마",
+"species_slug": "necrozma"
+},
+{
+"slug": "pikachu-world-cap",
+"en": "Pikachu-World-Cap",
+"id": "pikachuworldcap",
+"ko": null,
+"ko_form": "월드캡",
+"species_slug": "pikachu"
+},
+{
+"slug": "meowth-galar",
+"en": "Meowth-Galar",
+"id": "meowthgalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "meowth"
+},
+{
+"slug": "ponyta-galar",
+"en": "Ponyta-Galar",
+"id": "ponytagalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "ponyta"
+},
+{
+"slug": "rapidash-galar",
+"en": "Rapidash-Galar",
+"id": "rapidashgalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "rapidash"
+},
+{
+"slug": "slowpoke-galar",
+"en": "Slowpoke-Galar",
+"id": "slowpokegalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "slowpoke"
+},
+{
+"slug": "slowbro-galar",
+"en": "Slowbro-Galar",
+"id": "slowbrogalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "slowbro"
+},
+{
+"slug": "farfetchd-galar",
+"en": "Farfetchd-Galar",
+"id": "farfetchdgalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "farfetchd"
+},
+{
+"slug": "weezing-galar",
+"en": "Weezing-Galar",
+"id": "weezinggalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "weezing"
+},
+{
+"slug": "mr-mime-galar",
+"en": "Mr-Mime-Galar",
+"id": "mrmimegalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "mr"
+},
+{
+"slug": "articuno-galar",
+"en": "Articuno-Galar",
+"id": "articunogalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "articuno"
+},
+{
+"slug": "zapdos-galar",
+"en": "Zapdos-Galar",
+"id": "zapdosgalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "zapdos"
+},
+{
+"slug": "moltres-galar",
+"en": "Moltres-Galar",
+"id": "moltresgalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "moltres"
+},
+{
+"slug": "slowking-galar",
+"en": "Slowking-Galar",
+"id": "slowkinggalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "slowking"
+},
+{
+"slug": "corsola-galar",
+"en": "Corsola-Galar",
+"id": "corsolagalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "corsola"
+},
+{
+"slug": "zigzagoon-galar",
+"en": "Zigzagoon-Galar",
+"id": "zigzagoongalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "zigzagoon"
+},
+{
+"slug": "linoone-galar",
+"en": "Linoone-Galar",
+"id": "linoonegalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "linoone"
+},
+{
+"slug": "darumaka-galar",
+"en": "Darumaka-Galar",
+"id": "darumakagalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "darumaka"
+},
+{
+"slug": "darmanitan-galar-standard",
+"en": "Darmanitan-Galar-Standard",
+"id": "darmanitangalarstandard",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "darmanitan"
+},
+{
+"slug": "darmanitan-galar-zen",
+"en": "Darmanitan-Galar-Zen",
+"id": "darmanitangalarzen",
+"ko": null,
+"ko_form": "달마모드",
+"species_slug": "darmanitan"
+},
+{
+"slug": "yamask-galar",
+"en": "Yamask-Galar",
+"id": "yamaskgalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "yamask"
+},
+{
+"slug": "stunfisk-galar",
+"en": "Stunfisk-Galar",
+"id": "stunfiskgalar",
+"ko": null,
+"ko_form": "가라르의 모습",
+"species_slug": "stunfisk"
+},
+{
+"slug": "zygarde-10",
+"en": "Zygarde-10",
+"id": "zygarde10",
+"ko": null,
+"ko_form": "10%폼",
+"species_slug": "zygarde"
+},
+{
+"slug": "cramorant-gulping",
+"en": "Cramorant-Gulping",
+"id": "cramorantgulping",
+"ko": null,
+"ko_form": "그대로 삼킨 모습",
+"species_slug": "cramorant"
+},
+{
+"slug": "cramorant-gorging",
+"en": "Cramorant-Gorging",
+"id": "cramorantgorging",
+"ko": null,
+"ko_form": "통째로 삼킨 모습",
+"species_slug": "cramorant"
+},
+{
+"slug": "toxtricity-low-key",
+"en": "Toxtricity-Low-Key",
+"id": "toxtricitylowkey",
+"ko": null,
+"ko_form": "로우한 모습",
+"species_slug": "toxtricity"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "밀키루비",
+"species_slug": "alcremie"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "밀키말차",
+"species_slug": "alcremie"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "밀키민트",
+"species_slug": "alcremie"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "밀키레몬",
+"species_slug": "alcremie"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "밀키솔트",
+"species_slug": "alcremie"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "루비믹스",
+"species_slug": "alcremie"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "캐러멜믹스",
+"species_slug": "alcremie"
+},
+{
+"slug": "alcremie",
+"en": "Alcremie",
+"id": "alcremie",
+"ko": null,
+"ko_form": "트리플믹스",
+"species_slug": "alcremie"
+},
+{
+"slug": "eiscue-noice",
+"en": "Eiscue-Noice",
+"id": "eiscuenoice",
+"ko": null,
+"ko_form": "나이스페이스",
+"species_slug": "eiscue"
+},
+{
+"slug": "indeedee-female",
+"en": "Indeedee-Female",
+"id": "indeedeefemale",
+"ko": null,
+"ko_form": "암컷의 모습",
+"species_slug": "indeedee"
+},
+{
+"slug": "morpeko-hangry",
+"en": "Morpeko-Hangry",
+"id": "morpekohangry",
+"ko": null,
+"ko_form": "배고픈 모양",
+"species_slug": "morpeko"
+},
+{
+"slug": "zacian-crowned",
+"en": "Zacian-Crowned",
+"id": "zaciancrowned",
+"ko": null,
+"ko_form": "검왕",
+"species_slug": "zacian"
+},
+{
+"slug": "zamazenta-crowned",
+"en": "Zamazenta-Crowned",
+"id": "zamazentacrowned",
+"ko": null,
+"ko_form": "방패왕",
+"species_slug": "zamazenta"
+},
+{
+"slug": "eternatus-eternamax",
+"en": "Eternatus-Eternamax",
+"id": "eternatuseternamax",
+"ko": null,
+"ko_form": "무한다이맥스",
+"species_slug": "eternatus"
+},
+{
+"slug": "urshifu-rapid-strike",
+"en": "Urshifu-Rapid-Strike",
+"id": "urshifurapidstrike",
+"ko": null,
+"ko_form": "연격의 태세",
+"species_slug": "urshifu"
+},
+{
+"slug": "zarude-dada",
+"en": "Zarude-Dada",
+"id": "zarudedada",
+"ko": null,
+"ko_form": "아빠",
+"species_slug": "zarude"
+},
+{
+"slug": "calyrex-ice",
+"en": "Calyrex-Ice",
+"id": "calyrexice",
+"ko": null,
+"ko_form": "백마 탄 모습",
+"species_slug": "calyrex"
+},
+{
+"slug": "calyrex-shadow",
+"en": "Calyrex-Shadow",
+"id": "calyrexshadow",
+"ko": null,
+"ko_form": "흑마 탄 모습",
+"species_slug": "calyrex"
+},
+{
+"slug": "ursaluna-bloodmoon",
+"en": "Ursaluna-Bloodmoon",
+"id": "ursalunabloodmoon",
+"ko": null,
+"ko_form": "붉은 달",
+"species_slug": "ursaluna"
+},
+{
+"slug": "ogerpon-wellspring-mask",
+"en": "Ogerpon-Wellspring-Mask",
+"id": "ogerponwellspringmask",
+"ko": null,
+"ko_form": "우물의가면",
+"species_slug": "ogerpon"
+},
+{
+"slug": "ogerpon-hearthflame-mask",
+"en": "Ogerpon-Hearthflame-Mask",
+"id": "ogerponhearthflamemask",
+"ko": null,
+"ko_form": "화덕의가면",
+"species_slug": "ogerpon"
+},
+{
+"slug": "ogerpon-cornerstone-mask",
+"en": "Ogerpon-Cornerstone-Mask",
+"id": "ogerponcornerstonemask",
+"ko": null,
+"ko_form": "주춧돌의가면",
+"species_slug": "ogerpon"
+},
+{
+"slug": "poltchageist",
+"en": "Poltchageist",
+"id": "poltchageist",
+"ko": null,
+"ko_form": "알짜배기의 모습",
+"species_slug": "poltchageist"
+},
+{
+"slug": "sinistcha",
+"en": "Sinistcha",
+"id": "sinistcha",
+"ko": null,
+"ko_form": "걸작의 모습",
+"species_slug": "sinistcha"
+},
+{
+"slug": "pyroar-male",
+"en": "Pyroar-Male",
+"id": "pyroarmale",
+"ko": null,
+"ko_form": "암컷의 모습",
+"species_slug": "pyroar"
+},
+{
+"slug": "frillish-male",
+"en": "Frillish-Male",
+"id": "frillishmale",
+"ko": null,
+"ko_form": "암컷의 모습",
+"species_slug": "frillish"
+},
+{
+"slug": "jellicent-male",
+"en": "Jellicent-Male",
+"id": "jellicentmale",
+"ko": null,
+"ko_form": "암컷의 모습",
+"species_slug": "jellicent"
+}
 ]
 }

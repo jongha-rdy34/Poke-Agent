@@ -19,6 +19,25 @@ MAP_PATH = Path(__file__).resolve().parents[1] / "data" / "name_map.json"
 FORM_PREFIXES = {"메가": "-Mega", "알로라": "-Alola", "가라르": "-Galar", "히스이": "-Hisui", "팔데아": "-Paldea"}
 
 
+# 폼 설명에서 떼어낼 꼬리말: '연격의 태세' -> '연격', '우물의가면' -> '우물', '백마 탄 모습' -> '백마'
+FORM_TAILS = ("의 모습", "의모습", "의 태세", "의태세", "의가면", "의 가면", " 탄 모습", "탄모습", " 모습", "모습", " 폼", "폼")
+
+
+def _form_short(ko_form: str) -> str:
+    for tail in FORM_TAILS:
+        if ko_form.endswith(tail) and len(ko_form) > len(tail):
+            return ko_form[: -len(tail)].replace(" ", "")
+    return ko_form.replace(" ", "")
+
+
+def _add(index: dict, key: str, row: dict) -> None:
+    if not key:
+        return
+    bucket = index.setdefault(key, [])
+    if row not in bucket:
+        bucket.append(row)
+
+
 @lru_cache(maxsize=1)
 def _load() -> dict:
     if not MAP_PATH.exists():
@@ -27,14 +46,43 @@ def _load() -> dict:
     index: dict[str, dict[str, list[dict]]] = {"pokemon": {}, "move": {}}
     for kind, rows in (("pokemon", data["species"]), ("move", data["moves"])):
         for row in rows:
-            keys = {row["id"], to_id(row["slug"])}
-            if row.get("ko"):
-                keys.add(row["ko"].replace(" ", ""))
-            for k in keys:
-                index[kind].setdefault(k, [])
-                if row not in index[kind][k]:
-                    index[kind][k].append(row)
+            for k in {row["id"], to_id(row["slug"]), (row.get("ko") or "").replace(" ", "")}:
+                _add(index[kind], k, row)
+
+    # 폼: '워시로토무'(rotom-wash), '연격우라오스'(urshifu-rapid-strike), '우물오거폰'(ogerpon-wellspring-mask) …
+    species_ko = {r["slug"]: r["ko"] for r in data["species"] if r.get("ko")}
+    forms_by_species: dict[str, list[dict]] = {}
+    for f in data.get("forms", []):
+        sp_ko = species_ko.get(f["species_slug"])
+        ko_form = (f.get("ko") or f.get("ko_form") or "").replace(" ", "")
+        if not sp_ko or not ko_form:
+            continue
+        display = ko_form if sp_ko in ko_form else f"{_form_short(ko_form)}{sp_ko}"
+        row = {"slug": f["slug"], "en": f["en"], "id": f["id"], "ko": display, "form": True}
+        forms_by_species.setdefault(sp_ko, []).append(row)
+        for k in {f["id"], to_id(f["slug"]), display, ko_form + sp_ko, sp_ko + _form_short(ko_form)}:
+            _add(index["pokemon"], k, row)
+    index["_forms_by_species"] = forms_by_species
     return index
+
+
+def _pick_form(hits: list[dict]) -> list[dict]:
+    """같은 이름에 폼이 여럿이면(지가르데-10 / 지가르데-10-스웜체인지) 이름이 가장 짧은 기본 폼을 고른다."""
+    if len(hits) > 1 and all(h.get("form") for h in hits):
+        shortest = min(hits, key=lambda h: len(h["slug"]))
+        if all(h["slug"].startswith(shortest["slug"]) for h in hits):
+            return [shortest]
+    return hits
+
+
+def _form_candidates(compact: str) -> list[dict]:
+    """'워시로토무'를 못 찾았을 때처럼 이름 안에 종 이름이 들어 있으면 그 종의 폼을 후보로 돌려준다."""
+    forms = _load()["_forms_by_species"]
+    matches = [sp for sp in forms if sp in compact and sp != compact]
+    if not matches:
+        return []
+    sp = max(matches, key=len)
+    return forms[sp]
 
 
 def _split_form(name: str) -> tuple[str, str]:
@@ -50,9 +98,14 @@ def resolve_one(name: str, kind: Literal["pokemon", "move"]) -> dict:
     """이름 하나를 변환. 찾지 못하면 found=False로 돌려준다 (예외 없음)."""
     index = _load()[kind]
     raw = name.strip()
-    base, suffix = _split_form(raw) if kind == "pokemon" else (raw.replace(" ", ""), "")
-
-    hits = index.get(base) or index.get(to_id(base)) or []
+    compact = raw.replace(" ", "")
+    hits = index.get(compact) or index.get(to_id(compact)) or [] if kind == "pokemon" else []
+    suffix = ""
+    if hits:
+        hits = _pick_form(hits)
+    else:
+        base, suffix = _split_form(raw) if kind == "pokemon" else (compact, "")
+        hits = index.get(base) or index.get(to_id(base)) or []
     if not hits and kind == "pokemon" and "-" in raw:
         # 'Garchomp-Mega-Z', 'Indeedee-F' 처럼 영문 폼 표기는 앞부분이 종 이름
         head, _, tail = raw.partition("-")
@@ -60,22 +113,30 @@ def resolve_one(name: str, kind: Literal["pokemon", "move"]) -> dict:
         suffix = "-" + tail if hits else ""
 
     if not hits:
+        cands = _form_candidates(compact) if kind == "pokemon" and not raw.isascii() else []
+        if cands:
+            return {"input": name, "found": False, "reason": "AMBIGUOUS",
+                    "candidates": [f"{c['ko']}({c['en']})" for c in cands]}
         return {"input": name, "found": False, "reason": "NOT_FOUND"}
     if len(hits) > 1:
         return {"input": name, "found": False, "reason": "AMBIGUOUS",
-                "candidates": [h["en"] for h in hits]}
+                "candidates": [f"{h['ko']}({h['en']})" if h.get("ko") else h["en"] for h in hits]}
 
     row = hits[0]
     en = row["en"] + suffix
+    if row.get("form"):
+        ko = row["ko"]
+    else:
+        ko = (FORM_KO.get(suffix, "") + row["ko"]) if row.get("ko") else None
     result = {
         "input": name,
         "found": True,
         "en": en,
-        "ko": (FORM_KO.get(suffix, "") + row["ko"]) if row.get("ko") else None,
+        "ko": ko,
         "showdown_id": to_id(en),          # get_meta_usage / get_move_info 입력
     }
     if kind == "pokemon":
-        result["pokeapi_name"] = en.lower().replace(" ", "-").replace(".", "").replace("'", "").replace(":", "")
+        result["pokeapi_name"] = row["slug"] if row.get("form") else en.lower().replace(" ", "-").replace(".", "").replace("'", "").replace(":", "")
     return result
 
 

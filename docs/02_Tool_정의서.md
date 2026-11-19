@@ -193,7 +193,16 @@ AMBIGUOUS가 나오면 Tool을 더 부르지 말고 사용자에게 정확한 �
 | `kind` | `"pokemon"` \| `"move"` | 기본 pokemon |
 
 출력: `results: [{input, found, en, ko, showdown_id, pokeapi_name}]`, 실패 항목은 `found:false, reason: NOT_FOUND | AMBIGUOUS`.
-데이터: `backend/app/data/name_map.json` (포켓몬 1025종, 기술 937개 — `scripts/build_name_map.py`로 재생성).
+데이터: `backend/app/data/name_map.json` (포켓몬 1025종, **폼 337개**, 기술 937개 — `scripts/build_name_map.py`로 재생성,
+폼만 추가할 때는 `--forms-only`).
+
+**폼 이름 처리**
+- PokeAPI `pokemon-form`의 한국어 폼 이름으로 색인: `워시로토무`→`Rotom-Wash`, `스핀로토무`→`Rotom-Fan`
+- 폼 이름이 설명형이면 실제로 부르는 이름을 만들어 색인: `연격의 태세`+`우라오스`→`연격우라오스`, `우물의가면`+`오거폰`→`우물오거폰`
+- 접두 표기(`메가`, `알로라`, `가라르`, `히스이`, `팔데아`)는 종 이름 + 폼 접미어로 변환
+- 모르는 폼 이름이지만 종 이름이 들어 있으면(`이상한로토무`) **AMBIGUOUS + 그 종의 폼 후보** → Agent가 되묻는다
+- Smogon은 폼 표기가 달라서(`Ogerpon-Wellspring`, `Indeedee-F`) `get_meta_usage`가 앞부분 일치로 보정하고 notes에 남긴다.
+  다른 폼을 기본 종으로 붙이지는 않는다 (`Rotom-Heat`가 통계에 없으면 `Rotom`으로 대체하지 않고 NOT_IN_FORMAT).
 
 ---
 

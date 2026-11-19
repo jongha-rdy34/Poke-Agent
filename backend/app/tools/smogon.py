@@ -63,6 +63,18 @@ def _counters(table: dict, top_n: int) -> list[dict]:
     return rows[:top_n]
 
 
+def _match_form(sid: str, by_id: dict[str, str]) -> str | None:
+    """PokeAPI와 Smogon의 폼 표기 차이 보정.
+
+    'ogerponwellspringmask' -> 'Ogerpon-Wellspring', 'indeedeefemale' -> 'Indeedee-F'처럼
+    Smogon 이름이 요청 ID의 앞부분과 일치하면 가장 긴 것을 고른다.
+    단, 폼(rotomwash)을 기본 종(rotom)으로 잘못 붙이지 않도록 후보 자체가 폼 표기일 때만 인정한다.
+    """
+    cands = [k for k in by_id if sid.startswith(k) and len(k) > 4 and k != sid]
+    cands = [k for k in cands if any(o != k and k.startswith(o) for o in by_id) or sid[len(k):] in ("mask", "male", "female")]
+    return by_id[max(cands, key=len)] if cands else None
+
+
 @safe_tool
 def get_meta_usage(
     pokemon: list[str] | None = None,
@@ -148,6 +160,10 @@ def get_meta_usage(
         resolved = resolve_one(raw, "pokemon") if not raw.isascii() else None
         sid = resolved["showdown_id"] if resolved and resolved.get("found") else to_id(raw)
         key = by_id.get(sid)
+        if key is None:
+            key = _match_form(sid, by_id)
+            if key:
+                notes.append(f"'{raw}'은(는) Smogon에서 '{key}'(으)로 표기되어 있어 그 이름으로 조회했습니다.")
         if key is None:
             results.append({"input": raw, "found": False, "reason": "NOT_IN_FORMAT",
                             "message": f"{fmt} {used_month} 통계에 없는 포켓몬입니다 (사용률이 매우 낮거나 이름이 다름)."})

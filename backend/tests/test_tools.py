@@ -163,3 +163,33 @@ def test_resolve_names_korean():
     r = call_tool("resolve_names", {"names": ["한카리아스", "메가한카리아스"]})
     assert [x["showdown_id"] for x in r["data"]["results"]] == ["garchomp", "garchompmega"]
     assert call_tool("resolve_names", {"names": ["없는포켓몬"]})["error"]["code"] == ErrorCode.NOT_FOUND
+
+
+# --- 폼 이름 ----------------------------------------------------------------
+@pytest.mark.parametrize("name,en,slug", [
+    ("워시로토무", "Rotom-Wash", "rotom-wash"),
+    ("스핀로토무", "Rotom-Fan", "rotom-fan"),
+    ("연격우라오스", "Urshifu-Rapid-Strike", "urshifu-rapid-strike"),
+    ("우물오거폰", "Ogerpon-Wellspring-Mask", "ogerpon-wellspring-mask"),
+    ("로토무", "Rotom", "rotom"),
+    ("알로라나인테일", "Ninetales-Alola", "ninetales-alola"),
+])
+def test_resolve_form_names(name, en, slug):
+    r = call_tool("resolve_names", {"names": [name]})["data"]["results"][0]
+    assert r["found"] and r["en"] == en and r["pokeapi_name"] == slug
+
+
+def test_unknown_form_suggests_candidates():
+    r = call_tool("resolve_names", {"names": ["이상한로토무", "한카리아스"]})["data"]["results"][0]
+    assert r["reason"] == "AMBIGUOUS" and any("워시로토무" in c for c in r["candidates"])
+
+
+def test_meta_matches_smogon_form_spelling(monkeypatch):
+    stats = {"info": {}, "data": {"Ogerpon": STATS["data"]["Garchomp"], "Ogerpon-Wellspring": STATS["data"]["Garchomp"],
+                                  "Rotom-Wash": STATS["data"]["Garchomp"]}}
+    monkeypatch.setattr(smogon, "http_get", lambda url, **_: stats if url.endswith(".json") else fake_smogon(url))
+    d = call_tool("get_meta_usage", {"pokemon": ["Ogerpon-Wellspring-Mask", "워시로토무", "Rotom-Heat"]})["data"]
+    found = [(p["input"], p.get("name")) for p in d["pokemon"]]
+    assert found[0] == ("Ogerpon-Wellspring-Mask", "Ogerpon-Wellspring")
+    assert found[1] == ("워시로토무", "Rotom-Wash")
+    assert d["pokemon"][2]["found"] is False  # 다른 폼을 기본 종으로 잘못 붙이지 않음

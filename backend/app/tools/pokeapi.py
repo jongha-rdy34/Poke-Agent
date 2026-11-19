@@ -46,12 +46,14 @@ def get_pokemon_detail(name: str) -> dict:
 
     notes: list[str] = []
     slug = _slug(name)
+    form_ko = None
     if not name.isascii():  # 한국어 이름 → 영문 식별자
         r = resolve_one(name, "pokemon")
         if not r["found"]:
             code = ErrorCode.AMBIGUOUS if r["reason"] == "AMBIGUOUS" else ErrorCode.NOT_FOUND
             raise ToolError(code, f"'{name}'에 해당하는 포켓몬을 찾지 못했습니다.")
         slug = r["pokeapi_name"]
+        form_ko = r.get("ko")  # 워시로토무처럼 폼 이름이 있으면 그 이름을 쓴다
 
     p, fetch_notes = _fetch_pokemon(slug)
     notes += fetch_notes
@@ -60,10 +62,10 @@ def get_pokemon_detail(name: str) -> dict:
     stats = {STAT_KEYS[s["stat"]["name"]]: s.get("base_stat") for s in p.get("stats", []) if s["stat"]["name"] in STAT_KEYS}
     abilities = [{"name": a["ability"]["name"], "hidden": a.get("is_hidden", False)} for a in p.get("abilities", [])]
 
-    ko_name = None
+    ko_name = form_ko
     try:
         species = http_get(p["species"]["url"], ttl=TTL)
-        ko_name = next((n["name"] for n in species.get("names", []) if n["language"]["name"] == "ko"), None)
+        ko_name = ko_name or next((n["name"] for n in species.get("names", []) if n["language"]["name"] == "ko"), None)
     except ToolError:
         notes.append("한국어 이름을 가져오지 못했습니다 (판단에는 영향 없음).")
 
