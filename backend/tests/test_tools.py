@@ -210,3 +210,20 @@ def test_meta_matches_smogon_form_spelling(monkeypatch):
     assert found[0] == ("Ogerpon-Wellspring-Mask", "Ogerpon-Wellspring")
     assert found[1] == ("워시로토무", "Rotom-Wash")
     assert d["pokemon"][2]["found"] is False  # 다른 폼을 기본 종으로 잘못 붙이지 않음
+
+
+# --- 메가진화 표기 ----------------------------------------------------------
+@pytest.mark.parametrize("name,en", [
+    ("메가한카리아스z", "Garchomp-Mega-Z"), ("메가한카리아스Z", "Garchomp-Mega-Z"), ("메가 한카리아스 Z", "Garchomp-Mega-Z"),
+    ("한카리아스 메가Z", "Garchomp-Mega-Z"), ("메가앱솔z", "Absol-Mega-Z"), ("메가리자몽x", "Charizard-Mega-X"),
+    ("메가보만다", "Salamence-Mega"),
+])
+def test_mega_names(name, en):
+    r = call_tool("resolve_names", {"names": [name]})["data"]["results"][0]
+    assert r["found"] and r["en"] == en and r["is_mega"] is True
+
+
+def test_nonexistent_or_unclear_mega_is_not_invented():
+    r = call_tool("resolve_names", {"names": ["메가고릴타", "메가리자몽", "한카리아스"]})["data"]["results"]
+    assert r[0]["reason"] == "SUGGEST" and [c["value"] for c in r[0]["candidates"]] == ["Rillaboom"]
+    assert {c["value"] for c in r[1]["candidates"]} == {"Charizard", "Charizard-Mega-X", "Charizard-Mega-Y"}

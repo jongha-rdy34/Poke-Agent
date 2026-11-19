@@ -18,6 +18,7 @@ from app.tools.names import resolve_one
 
 INDEX_TTL = 6 * 3600          # 월 목록/포맷 목록은 자주 바뀌지 않음
 MONTH_TTL = 30 * 24 * 3600    # 한 달 집계 파일은 공개 후 바뀌지 않음
+MONTH_LOOKBACK = 24
 _MONTH_RE = re.compile(r'href="(\d{4}-\d{2})/"')
 
 
@@ -105,12 +106,12 @@ def get_meta_usage(
         used_month = month
     else:
         # 요청 월이 없거나(미래/미공개) 지정하지 않음 → 해당 포맷이 있는 가장 최근 월
-        for m in reversed(months[-6:]):
+        for m in reversed(months[-MONTH_LOOKBACK:]):  # 끝난 시즌(본가) 통계도 찾도록 넉넉히
             if fmt in _chaos_files(m):
                 used_month = m
                 break
         if used_month is None:
-            raise ToolError(ErrorCode.NOT_FOUND, f"최근 6개월 통계에 포맷 '{fmt}'이(가) 없습니다.")
+            raise ToolError(ErrorCode.NOT_FOUND, f"최근 {MONTH_LOOKBACK}개월 통계에 포맷 '{fmt}'이(가) 없습니다.")
         if month:
             estimated = True
             notes.append(f"{month} 통계는 아직 없어 가장 최근 집계월 {used_month} 기준으로 추정했습니다.")

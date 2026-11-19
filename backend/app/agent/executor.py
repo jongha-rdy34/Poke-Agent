@@ -13,7 +13,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 from app.events.bus import Emitter
 from app.tools import call_tool
+from app.domain.rulesets import RULESETS
 from app.tools.common import to_id
+from app.tools.names import resolve_one
 
 ATTACK_MOVE_MIN_PCT = 20.0  # 이 비율 이상 채용된 기술만 '주력기'로 본다
 
@@ -85,10 +87,16 @@ class Executor:
         r = self.call("resolve_names", {"names": query, "kind": "pokemon"})
         results = r["data"]["results"] if r["ok"] else [{"input": n, "found": False, "reason": "NOT_FOUND"} for n in query]
         if not r["ok"] and r["error"]["code"] == "AMBIGUOUS":  # 전부 모호하면 Tool이 실패로 돌려주므로 항목별로 다시 본다
-            from app.tools.names import resolve_one
             results = [resolve_one(n, "pokemon") for n in query]
+        allow_mega = RULESETS.get(self.c.get("game") or "champions", {}).get("allow_mega", True)
         for raw, item in zip(names, results):
             item = {**item, "input": raw}
+            if item.get("found") and item.get("is_mega") and not allow_mega:
+                base = item["en"].split("-Mega")[0]
+                b = resolve_one(base, "pokemon")
+                self.ctx["unresolved"].append({"input": raw, "reason": "NOT_IN_GAME", "candidates": [
+                    {"label": b.get("ko") or base, "value": base}]})
+                continue
             if item["found"]:
                 entry = {"sid": item["showdown_id"], "en": item["en"], "ko": item.get("ko")}
             elif item["reason"] == "NOT_FOUND" and raw.isascii():

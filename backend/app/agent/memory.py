@@ -10,7 +10,7 @@ import copy
 import threading
 
 CONDITION_KEYS = ("my_team", "opp_team", "format", "pick_count", "month", "must_answer", "prefer",
-                  "exclude", "my_moves", "focus_my", "focus_opp", "lookup_target", "lookup_kind", "schedule")
+                  "exclude", "my_moves", "focus_my", "focus_opp", "lookup_target", "lookup_kind", "schedule", "game", "battle")
 MAX_HISTORY = 6
 
 _store: dict[str, dict] = {}

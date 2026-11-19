@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import re
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -16,6 +16,8 @@ class ChatRequest(BaseModel):
         "내 팀: 하마돈, 마스카나, 고릴타, 대쓰여너, 보만다, 루카리오 / "
         "상대: 누리레느, 한카리아스, 브리두라스, 타부자고, 따라큐, 아머까오. 3마리 뭐 뽑아?"])
     session_id: str | None = Field(None, description="이어지는 대화면 이전 응답의 session_id")
+    game: Literal["champions", "sv"] | None = Field(None, description="게임 버전: champions(포켓몬 챔피언스·메가진화) / sv(스칼렛·바이올렛·테라스탈)")
+    battle: Literal["singles", "doubles"] | None = Field(None, description="singles(6→3) / doubles(6→4)")
     name_choices: dict[str, str] | None = Field(
         None, description="되묻기(clarify)에서 사용자가 고른 이름 {입력한 이름: 후보의 value}. 세션에 기억된다.",
         examples=[{"물라오슨": "Urshifu-Rapid-Strike"}])
@@ -46,6 +48,7 @@ class ChatResponse(BaseModel):
     opp_profile: dict | None = Field(None, description=(
         "상대 공격 성향: physical_pct/special_pct, lean(물리 중심/특수 중심/균형), "
         "members[{name, physical_share, roles[{role, pct, typical}], basis}]"))
+    ruleset: dict | None = Field(None, description="이번 실행에 적용한 게임·배틀 규칙 (format, pick, gimmick …)")
     pokemon_cards: dict[str, dict] = Field(default_factory=dict, description=(
         "화면 표시용 {표시 이름: {en, types, sprite(이미지 주소), spe, side(my/opp)}}"))
     defense_advice: str | None = Field(None, description="상대 성향에 맞춰 받아내기 좋은 내 포켓몬 (종족값 기준)")

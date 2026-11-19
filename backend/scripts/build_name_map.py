@@ -112,9 +112,12 @@ def main() -> None:
     else:
         data = {"source": "PokeAPI (pokeapi.co)", "species": collect("pokemon-species"), "moves": collect("move")}
     data["forms"] = collect_forms()
+    # 존재하는 포켓몬(폼 포함) 전체 목록: '메가고릴타'처럼 없는 폼을 지어내지 않도록 확인용
+    data["pokemon_slugs"] = sorted(r["name"] for r in fetch(f"{BASE}/pokemon?limit=3000")["results"])
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=0), encoding="utf-8")
-    print(f"saved {len(data['species'])} species, {len(data['forms'])} forms, {len(data['moves'])} moves -> {OUT}")
+    print(f"saved {len(data['species'])} species, {len(data['forms'])} forms, {len(data['moves'])} moves, "
+          f"{len(data['pokemon_slugs'])} pokemon -> {OUT}")
 
 
 if __name__ == "__main__":

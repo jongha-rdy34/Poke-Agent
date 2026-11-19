@@ -256,3 +256,12 @@ details.detail-text summary { cursor: pointer; color: var(--muted); font-size: 1
   .sprite.lg { width: 72px; height: 72px; }
   .pick-name { font-size: 15px; }
 }
+
+/* ---------- 게임 규칙 토글 ---------- */
+.rulebar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 10px 20px;
+  background: var(--surface); border-bottom: 1px solid var(--border); }
+.seg { display: inline-flex; background: var(--surface-2); padding: 3px; border-radius: 10px; gap: 2px; }
+.seg button { border: 0; background: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; color: var(--muted); font-size: 14px; }
+.seg button small { font-size: 11px; opacity: .8; margin-left: 2px; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--accent-text); font-weight: 600; }
+@media (max-width: 700px) { .rulebar { padding: 8px 16px; } .seg button small { display: none; } }

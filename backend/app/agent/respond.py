@@ -28,6 +28,7 @@ SYSTEM = f"""너는 포켓몬 대전 선출 코치다. [판단 결과] JSON에 �
 - 포켓몬·기술·숫자(배율, 종족값, 실수치, 비율)를 새로 만들거나 바꾸지 않는다. JSON에 없으면 말하지 않는다.
 - 선출 계획이면: ① 선출 {{pick}}마리와 선봉 ② 상대별 추천 대면과 기술(배율·선공 판단과 근거) ③ 선출하지 않은 포켓몬과 사유
   ④ 근거(통계 포맷·월·레이팅, 가정) 순서로 쓴다. 잡지 못한 상대(uncovered)가 있으면 숨기지 말고 대처 방향을 한 줄로 쓴다.
+- ruleset(게임·배틀 규칙)을 근거 단락 첫 줄에 쓴다. 본가(스칼렛·바이올렛)면 '종료된 시즌의 마지막 집계 통계'임을 밝힌다.
 - 재계획(replans)이 있었으면 어떤 기준으로 바꿨는지 한 줄 밝힌다.
 - opp_profile이 있으면 '상대 파티 공격 성향' 단락을 둔다: 파티 물리/특수 비율(lean), 포켓몬별 주된 운용 형태와 비율
   (예: 한카리아스 — 물리 고속 딜러 66%(AS 명랑), 물리막이 22%(HB 장난꾸러기)), 그리고 defense_advice를 그대로 쓴다.
@@ -44,7 +45,9 @@ def ask_text(missing: list[str], unresolved: list[dict] | None = None) -> str:
     lines = []
     for u in unresolved or []:
         names = ", ".join(c["label"] for c in u.get("candidates") or [])
-        if u.get("reason") == "AMBIGUOUS":
+        if u.get("reason") == "NOT_IN_GAME":
+            lines.append(f"'{u['input']}'은(는) 지금 고른 게임(스칼렛·바이올렛)에는 없는 메가진화예요. {names}(으)로 볼까요?")
+        elif u.get("reason") == "AMBIGUOUS":
             lines.append(f"'{u['input']}'이(가) 여러 포켓몬에 해당합니다: {names}. 어느 쪽인가요?")
         elif u.get("reason") == "SUGGEST":
             lines.append(f"'{u['input']}'을(를) 정확히 찾지 못했어요. 혹시 {names} 중 하나인가요?")
@@ -117,6 +120,9 @@ def template_answer(intent: str, facts: dict) -> str:
     if r.get("assumptions"):
         lines.append("\n가정: " + "; ".join(r["assumptions"][:4]))
     if basis:
+        rs = facts.get("ruleset") or {}
+        if rs.get("game_label"):
+            lines.append(f"규칙: {rs['game_label']} {rs.get('battle_label', '')} ({rs.get('gimmick')} 룰, {rs.get('status')})")
         lines.append(f"근거: {basis.get('format')} · {basis.get('month')} · 레이팅 {basis.get('rating')} 통계"
                      + (" (추정)" if basis.get("estimated") else ""))
     lines.append("\n" + DISCLAIMER)

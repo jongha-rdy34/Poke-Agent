@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import difflib
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
@@ -67,6 +68,7 @@ def _load() -> dict:
         for k in {f["id"], to_id(f["slug"]), display, ko_form + sp_ko, sp_ko + _form_short(ko_form)}:
             _add(index["pokemon"], k, row)
     index["_forms_by_species"] = forms_by_species
+    index["_slugs"] = set(data.get("pokemon_slugs") or [])
 
     # 별명: 대상 이름으로 찾은 항목을 별명 키에도 걸어 둔다
     if ALIAS_PATH.exists():
@@ -157,13 +159,31 @@ def _form_candidates(compact: str) -> list[dict]:
     return forms[sp]
 
 
+_MEGA_LETTER = re.compile(r"^(?P<base>.+?)(?P<letter>[XYZxyzＸＹＺｘｙｚ])$")
+_FULLWIDTH = str.maketrans("ＸＹＺｘｙｚ", "XYZxyz")
+
+
 def _split_form(name: str) -> tuple[str, str]:
-    """'메가한카리아스' -> ('한카리아스', '-Mega'). 폼 표기가 없으면 접미어는 ''."""
-    compact = name.replace(" ", "")
-    for ko, suffix in FORM_PREFIXES.items():
-        if compact.startswith(ko) and len(compact) > len(ko):
-            return compact[len(ko):], suffix
-    return compact, ""
+    """'메가한카리아스' -> ('한카리아스', '-Mega'), '메가한카리아스z' -> ('한카리아스', '-Mega-Z'),
+    '한카리아스 메가Z' -> ('한카리아스', '-Mega-Z'). 폼 표기가 없으면 접미어는 ''."""
+    compact = name.replace(" ", "").translate(_FULLWIDTH)
+    if compact.startswith("메가") and len(compact) > 2:
+        base, suffix = compact[2:], "-Mega"
+    elif "메가" in compact[1:]:  # 이름 뒤에 메가를 붙인 경우
+        base, _, tail = compact.partition("메가")
+        if tail and not _MEGA_LETTER.fullmatch("_" + tail):
+            return compact, ""
+        base, suffix = base, "-Mega" + (f"-{tail.upper()}" if tail else "")
+        return base, suffix
+    else:
+        for ko, sfx in FORM_PREFIXES.items():
+            if ko != "메가" and compact.startswith(ko) and len(compact) > len(ko):
+                return compact[len(ko):], sfx
+        return compact, ""
+    m = _MEGA_LETTER.fullmatch(base)
+    if m and base not in _load()["pokemon"]:  # '한카리아스z' → 한카리아스 + 메가 Z
+        return m["base"], f"-Mega-{m['letter'].upper()}"
+    return base, suffix
 
 
 def resolve_one(name: str, kind: Literal["pokemon", "move"]) -> dict:
@@ -218,7 +238,28 @@ def resolve_one(name: str, kind: Literal["pokemon", "move"]) -> dict:
     }
     if kind == "pokemon":
         result["pokeapi_name"] = row["slug"] if row.get("form") else en.lower().replace(" ", "-").replace(".", "").replace("'", "").replace(":", "")
+        if suffix and not row.get("form") and not _exists(result["pokeapi_name"]):
+            # '메가고릴타'처럼 존재하지 않는 폼은 지어내지 않고, 그 종의 실제 폼(기본·메가)을 후보로 준다
+            return {"input": name, "found": False, "reason": "SUGGEST", "candidates": _species_variants(row)}
+        result["is_mega"] = "-mega" in result["pokeapi_name"]
     return result
+
+
+def _exists(slug: str) -> bool:
+    slugs = _load().get("_slugs")
+    return True if not slugs else slug in slugs
+
+
+def _species_variants(row: dict) -> list[dict]:
+    """기본 종 + 실제로 존재하는 메가 폼 (예: 한카리아스, 메가한카리아스, 메가한카리아스Z)."""
+    base = row["en"].lower().replace(" ", "-").replace(".", "").replace("'", "")
+    out = [{"label": row.get("ko") or row["en"], "value": row["en"]}]
+    for slug in sorted(_load().get("_slugs") or []):
+        if slug.startswith(base + "-mega"):
+            tail = slug[len(base) + 5:].replace("-", "").upper()
+            en = row["en"] + "-Mega" + (f"-{tail}" if tail else "")
+            out.append({"label": f"메가{row.get('ko') or row['en']}{tail}", "value": en})
+    return out
 
 
 FORM_KO = {v: k for k, v in FORM_PREFIXES.items()}

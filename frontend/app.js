@@ -67,6 +67,31 @@ document.querySelectorAll(".tab").forEach(btn => btn.addEventListener("click", (
 })();
 function showBanner(text) { const b = $("#banner"); b.textContent = text; b.classList.remove("hidden"); }
 
+// ---------------------------------------------------------------- 게임 규칙 토글
+// 챔피언스(메가진화) / 스칼렛·바이올렛(테라스탈) × 싱글 / 더블. 바꾸면 새 대화로 시작한다 (팀·통계가 달라지므로)
+const RULE_NOTE = {
+  champions: "메가진화 룰 · 능력치 SP(최대 32) · 진행 중인 시즌 통계",
+  sv: "테라스탈 룰 · 메가진화 없음 · 노력치(최대 252) · 종료된 시즌의 마지막 집계 통계",
+};
+let rule = { game: load("poke.game") || "champions", battle: load("poke.battle") || "singles" };
+function renderRule() {
+  document.querySelectorAll("#seg-game button").forEach(b => b.setAttribute("aria-checked", String(b.dataset.game === rule.game)));
+  document.querySelectorAll("#seg-battle button").forEach(b => b.setAttribute("aria-checked", String(b.dataset.battle === rule.battle)));
+  $("#rule-note").textContent = RULE_NOTE[rule.game];
+}
+function setRule(key, value) {
+  if (rule[key] === value) return;
+  rule[key] = value; store("poke." + key, value); renderRule();
+  const hadChat = messages.querySelectorAll(".msg:not(.intro)").length > 0;
+  sessionId = null; store("poke.session");
+  if (hadChat) {
+    [...messages.querySelectorAll(".msg:not(.intro)")].forEach(m => m.remove());
+    addMsg("agent", `<span class="muted">규칙을 <b>${esc($(`[data-${key}="${value}"]`).textContent.trim())}</b>(으)로 바꿨어요. 새 대화로 시작합니다.</span>`);
+  }
+}
+document.querySelectorAll("#seg-game button").forEach(b => b.addEventListener("click", () => setRule("game", b.dataset.game)));
+document.querySelectorAll("#seg-battle button").forEach(b => b.addEventListener("click", () => setRule("battle", b.dataset.battle)));
+
 // ---------------------------------------------------------------- 대화
 let sessionId = load("poke.session");
 const messages = $("#messages");
@@ -257,7 +282,7 @@ async function send(text, nameChoices = null, displayText = null) {
   const pending = addMsg("agent", `<span class="typing">분석하고 Tool을 호출하는 중 <i></i><i></i><i></i></span>`);
   $("#send").disabled = true;
   try {
-    const payload = { message: text, session_id: sessionId };
+    const payload = { message: text, session_id: sessionId, game: rule.game, battle: rule.battle };
     if (nameChoices) payload.name_choices = nameChoices;
     const r = await api("/api/chat", { method: "POST", body: JSON.stringify(payload) });
     sessionId = r.session_id; store("poke.session", sessionId);
@@ -270,7 +295,8 @@ async function send(text, nameChoices = null, displayText = null) {
       <span class="badge ${cls}">${label}</span>
       ${r.replans.length ? `<span class="badge replan">재계획 ${r.replans.length}회</span>` : ""}
       <span class="badge">Tool ${tools.length}회${fails ? ` · 실패 ${fails}` : ""}</span>
-      <span class="badge">${(r.total_ms / 1000).toFixed(1)}s</span></div>
+      <span class="badge">${(r.total_ms / 1000).toFixed(1)}s</span>
+      ${r.ruleset ? `<span class="badge">${esc(r.ruleset.game_label)} · ${esc(r.ruleset.battle_label)}</span>` : ""}</div>
       <details class="trace"><summary>실행 과정 보기</summary>${renderTrace(r.events)}</details>`;
     CARDS = r.pokemon_cards || {};
     if (r.plan_draft) {  // 선출 결과를 맨 위에 크게, 자세한 설명은 접어서 아래에
@@ -399,3 +425,4 @@ async function loadLogDetail(id) {
   } catch (e) { box.innerHTML = `<div class="notice err">${esc(e.message)}</div>`; }
 }
 $("#logs-refresh").addEventListener("click", loadLogSessions);
+renderRule();

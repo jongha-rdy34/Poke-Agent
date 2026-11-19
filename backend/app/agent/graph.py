@@ -23,6 +23,7 @@ from app.agent.analyze import analyze
 from app.agent.executor import Executor, new_ctx
 from app.agent.llm import classify_llm_error
 from app.agent.planner import REPLAN_CRITERIA, build_plan, missing_conditions
+from app.domain import rulesets
 from app.agent.respond import ask_text, chitchat_answer, llm_answer, template_answer
 from app.events.bus import Emitter
 from app.storage import plans as plan_store
@@ -33,6 +34,7 @@ FATAL_CODES = {ErrorCode.UPSTREAM_ERROR, ErrorCode.TIMEOUT, ErrorCode.INVALID_KE
 
 class AgentState(TypedDict, total=False):
     session_id: str
+    ruleset: dict
     message: str
     memory: dict
     intent: str
@@ -79,7 +81,7 @@ def node(name: str):
 def analyze_node(state: AgentState, em: Emitter) -> dict:
     mem = state["memory"]
     try:
-        a = analyze(state["message"], mem)
+        a = analyze(state["message"], mem, state.get("ruleset"))
     except Exception as e:  # noqa: BLE001
         err = classify_llm_error(e)
         em.emit("error", "analyze", code=err.code, message=err.message)
@@ -92,6 +94,13 @@ def analyze_node(state: AgentState, em: Emitter) -> dict:
     if new["schedule"] and mem["conditions"].get("schedule"):
         new["schedule"] = {**mem["conditions"]["schedule"], **new["schedule"]}  # 일정은 바뀐 항목만 갱신
     conditions, changed = memory.merge_conditions(mem["conditions"], new, reset=a.reset)
+    rs = state.get("ruleset")
+    if rs:  # 화면에서 고른 게임·배틀 규칙을 조건에 반영 (이번 메시지에서 직접 말한 값이 우선)
+        if not new.get("format"):
+            conditions["format"] = rs["format"]
+        if not new.get("pick_count"):
+            conditions["pick_count"] = rs["pick"]
+        conditions["game"], conditions["battle"] = rs["game"], rs["battle"]
     missing = missing_conditions(a.intent, conditions, mem.get("last"))
     status = "ask" if missing else "running"
     if missing:
@@ -173,6 +182,7 @@ def respond_node(state: AgentState, em: Emitter) -> dict:
             answer = "안녕하세요! 내 팀 6마리와 상대 팀 6마리를 알려주시면 선출 3마리와 대면별 기술을 추천해 드려요."
     else:
         facts = {"intent": intent, "status": status, "result": state.get("result"), "basis": ctx.get("basis"),
+                 "ruleset": {k: (state.get("ruleset") or {}).get(k) for k in ("game_label", "battle_label", "gimmick", "status")},
                  "replans": state.get("replans"), "tool_failures": [
                      {"tool": f["tool"], "code": f["code"]} for f in ctx.get("failures", [])],
                  "replan_limit_reached": status == "limit"}
@@ -207,7 +217,8 @@ def _draft(state: AgentState) -> dict:
         "selected": r["selected"], "lead": r["lead"],
         "move_plan": [{k: p[k] for k in ("opponent", "my_pokemon", "move", "offense", "speed", "answered")}
                       for p in r["move_plan"]],
-        "basis": {**(ctx.get("basis") or {}), "replans": len(state.get("replans") or []),
+        "basis": {**(ctx.get("basis") or {}), "game": (state.get("ruleset") or {}).get("game_label"),
+                  "replans": len(state.get("replans") or []),
                   "uncovered": r.get("uncovered")},
     }
 
@@ -270,16 +281,24 @@ def _pokemon_cards(ctx: dict) -> dict:
     return cards
 
 
-def run_agent(message: str, session_id: str | None = None, name_choices: dict[str, str] | None = None) -> dict:
+def run_agent(message: str, session_id: str | None = None, name_choices: dict[str, str] | None = None,
+              game: str | None = None, battle: str | None = None) -> dict:
     session_id = session_id or "s-" + uuid.uuid4().hex[:10]
     em = Emitter(session_id)
-    em.emit("run_start", None, message=message)
+    mem = memory.get(session_id)
+    prev = mem["conditions"]
+    ruleset = rulesets.resolve(game or prev.get("game"), battle or prev.get("battle"))
+    em.emit("run_start", None, message=message, game=ruleset["game"], battle=ruleset["battle"],
+            format=ruleset["format"])
+    if prev.get("game") and (prev.get("game"), prev.get("battle")) != (ruleset["game"], ruleset["battle"]):
+        em.emit("decision", None, decision="ruleset_changed", to=f"{ruleset['game_label']} {ruleset['battle_label']}")
     if name_choices:
         memory.add_aliases(session_id, name_choices)
         em.emit("decision", None, decision="name_choice", choices=name_choices)
     t0 = time.perf_counter()
     try:
-        final = GRAPH.invoke({"session_id": session_id, "message": message, "memory": memory.get(session_id)},
+        final = GRAPH.invoke({"session_id": session_id, "message": message, "memory": memory.get(session_id),
+                              "ruleset": ruleset},
                              config={"configurable": {"emitter": em}, "recursion_limit": 40})
     except Exception as e:  # noqa: BLE001 - 어떤 경우에도 서비스는 응답한다
         em.emit("error", None, code=ErrorCode.INTERNAL_ERROR, message=type(e).__name__)
@@ -305,6 +324,7 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
         "conditions": final.get("conditions"),
         "opp_profile": (final.get("result") or {}).get("opp_profile"),
         "pokemon_cards": cards,
+        "ruleset": ruleset,
         "defense_advice": (final.get("result") or {}).get("defense_advice"),
         "clarify": [  # 화면에서 고를 수 있는 이름 후보 (status=ask일 때)
             {"input": u["input"], "reason": u.get("reason"), "candidates": u.get("candidates") or []}

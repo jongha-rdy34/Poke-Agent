@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException, Query, Response
 from starlette.concurrency import run_in_threadpool
 
 from app.agent.graph import run_agent
+from app.domain import rulesets
 from app.api.schemas import (ChatRequest, ChatResponse, LogEvent, LogSession, Plan, PlanCreate,
                              PlanSaveResult, PlanUpdate)
 from app.storage import logs as log_store
@@ -19,7 +20,13 @@ logs_router = APIRouter(prefix="/api/logs", tags=["실행 로그"])
 @chat_router.post("", response_model=ChatResponse)
 async def chat(req: ChatRequest) -> dict:
     """메인 Agent 실행. 답변과 함께 실행 단계·Tool 호출 이력(events)을 돌려준다."""
-    return await run_in_threadpool(run_agent, req.message, req.session_id, req.name_choices)
+    return await run_in_threadpool(run_agent, req.message, req.session_id, req.name_choices, req.game, req.battle)
+
+
+@chat_router.get("/rulesets")
+def get_rulesets() -> list[dict]:
+    """화면 첫 토글용: 게임 버전(챔피언스/본가)과 배틀 방식(싱글/더블), 각 규칙의 포맷·선출 수."""
+    return rulesets.public_list()
 
 
 # ---------------------------------------------------------------- 계획

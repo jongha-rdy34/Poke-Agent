@@ -58,7 +58,7 @@ def fake_call_tool(tool: str, args: dict) -> dict:
         return {"ok": True, "data": {"format": "gen9ou", "month": "2026-10", "rating": 1500, "battles": 1,
                                      "estimated": False, "notes": [], "pokemon": out}}
     if tool == "get_pokemon_detail":
-        if args["name"] == "Broken":
+        if args["name"] == "Broken" or args["name"] not in POKEMON:
             return {"ok": False, "error": {"code": "NOT_FOUND", "message": "없음"}}
         types, spe = POKEMON[args["name"]]
         return {"ok": True, "data": {"name": args["name"].lower(), "ko_name": None, "types": types,
@@ -286,3 +286,32 @@ def test_logs_api_has_no_update(client):
     assert client.patch(f"/api/logs/{sid}", json={}).status_code == 405
     assert client.delete(f"/api/logs/{sid}").status_code == 204
     assert client.get(f"/api/logs/{sid}").status_code == 404
+
+
+# ---------------------------------------------------------------- 게임 규칙 (챔피언스 / 본가)
+def test_ruleset_sets_format_and_pick():
+    from app.domain.rulesets import RULESETS
+    use_llm(selection(), selection())
+    r = run_agent("선출", game="sv", battle="doubles")
+    assert r["ruleset"]["format"] == RULESETS["sv"]["battles"]["doubles"]["format"]
+    assert r["conditions"]["pick_count"] == 4 and r["conditions"]["game"] == "sv"
+    r2 = run_agent("선출", r["session_id"])  # 다음 요청은 세션에 기억된 규칙을 쓴다
+    assert r2["ruleset"]["game"] == "sv" and r2["ruleset"]["battle"] == "doubles"
+
+
+def test_mega_not_allowed_in_sv(monkeypatch):
+    def with_mega(tool, args):
+        if tool == "resolve_names":
+            res = fake_call_tool(tool, args)
+            for item in res["data"]["results"]:
+                if item["input"] == "Blaze":
+                    item.update(en="Blaze-Mega", is_mega=True)
+            return res
+        return fake_call_tool(tool, args)
+    monkeypatch.setattr(executor_mod, "call_tool", with_mega)
+    monkeypatch.setattr(executor_mod, "resolve_one", lambda n, k: {"found": True, "en": n, "ko": None})
+    use_llm(selection(), selection())
+    r = run_agent("선출", game="sv")
+    assert r["status"] == "ask" and r["clarify"][0]["reason"] == "NOT_IN_GAME"
+    assert r["clarify"][0]["candidates"] == [{"label": "Blaze", "value": "Blaze"}]
+    assert run_agent("선출", game="champions")["status"] in ("ok", "limit")  # 챔피언스는 메가 허용

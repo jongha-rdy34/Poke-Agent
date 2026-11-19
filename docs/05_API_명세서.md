@@ -10,8 +10,13 @@
 
 요청
 ```json
-{ "message": "내 팀: 하마돈, 마스카나, … / 상대 팀: 누리레느, 한카리아스, … 3마리 뭐 뽑아?", "session_id": null }
+{ "message": "내 팀: 하마돈, 마스카나, … / 상대 팀: 누리레느, 한카리아스, … 3마리 뭐 뽑아?", "session_id": null,
+  "game": "champions", "battle": "singles" }
 ```
+- `game`: `champions`(포켓몬 챔피언스 — 메가진화 룰, SP, 진행 중 시즌) / `sv`(스칼렛·바이올렛 — 테라스탈 룰, 노력치, **종료된 시즌의 마지막 집계**)
+- `battle`: `singles`(6→3) / `doubles`(6→4). 생략하면 세션에 기억된 값, 처음이면 챔피언스·싱글
+- 규칙 목록: `GET /api/chat/rulesets` (포맷 ID, 선출 수 포함)
+- 본가(`sv`)에서 메가 포켓몬을 말하면 `clarify`에 `reason: "NOT_IN_GAME"`과 기본 폼 후보가 온다
 응답 `200`
 ```json
 {

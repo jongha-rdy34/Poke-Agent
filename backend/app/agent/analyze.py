@@ -56,13 +56,15 @@ SYSTEM = """너는 포켓몬 대전 선출 플래너의 '요청 분석기'다. �
 - 날짜는 오늘 날짜를 기준으로 YYYY-MM-DD로 바꾼다."""
 
 
-def analyze(message: str, memory: dict) -> Analysis:
+def analyze(message: str, memory: dict, ruleset: dict | None = None) -> Analysis:
     now = datetime.now()
     weekday = "월화수목금토일"[now.weekday()]
     mem_text = json.dumps({"conditions": memory.get("conditions", {}),
                            "last_result": (memory.get("last") or {}).get("summary")}, ensure_ascii=False)
     history = memory.get("history", [])[-4:]
-    messages = [("system", SYSTEM + f"\n오늘: {now:%Y-%m-%d} ({weekday}요일)\n[기억] {mem_text}")]
+    rule = (f"\n[규칙] {ruleset['game_label']} {ruleset['battle_label']} — {ruleset['gimmick']} 룰. "
+            "pick_count와 format은 사용자가 이번 메시지에서 직접 다르게 말한 경우에만 채운다.") if ruleset else ""
+    messages = [("system", SYSTEM + f"\n오늘: {now:%Y-%m-%d} ({weekday}요일)\n[기억] {mem_text}" + rule)]
     messages += [(h["role"] if h["role"] == "user" else "ai", h["content"]) for h in history]
     messages.append(("user", message))
     llm = get_llm().with_structured_output(Analysis, method="function_calling")

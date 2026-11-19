@@ -22,6 +22,18 @@
     </nav>
   </header>
 
+  <section class="rulebar" aria-label="게임 규칙">
+    <div class="seg" role="radiogroup" aria-label="게임 버전" id="seg-game">
+      <button type="button" role="radio" data-game="champions">포켓몬 챔피언스 <small>메가진화</small></button>
+      <button type="button" role="radio" data-game="sv">스칼렛·바이올렛 <small>테라스탈 · 종료 시즌</small></button>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="배틀 방식" id="seg-battle">
+      <button type="button" role="radio" data-battle="singles">싱글 6→3</button>
+      <button type="button" role="radio" data-battle="doubles">더블 6→4</button>
+    </div>
+    <span id="rule-note" class="muted small"></span>
+  </section>
+
   <div id="banner" class="banner hidden"></div>
 
   <!-- 대화 화면 -->
