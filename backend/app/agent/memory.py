@@ -19,8 +19,16 @@ _lock = threading.Lock()
 
 def get(session_id: str) -> dict:
     with _lock:
-        mem = _store.setdefault(session_id, {"conditions": {}, "last": None, "history": []})
+        mem = _store.setdefault(session_id, {"conditions": {}, "last": None, "history": [], "aliases": {}})
+        mem.setdefault("aliases", {})
         return copy.deepcopy(mem)
+
+
+def add_aliases(session_id: str, choices: dict[str, str]) -> None:
+    """사용자가 후보 중에서 고른 이름을 이 세션에 기억한다: {'물라오슨': 'Urshifu-Rapid-Strike'}"""
+    with _lock:
+        mem = _store.setdefault(session_id, {"conditions": {}, "last": None, "history": [], "aliases": {}})
+        mem.setdefault("aliases", {}).update({k: v for k, v in choices.items() if k and v})
 
 
 def merge_conditions(old: dict, new: dict, reset: bool = False) -> tuple[dict, list[str]]:
@@ -39,7 +47,7 @@ def merge_conditions(old: dict, new: dict, reset: bool = False) -> tuple[dict, l
 
 def save(session_id: str, conditions: dict, last: dict | None, user_msg: str, answer: str) -> None:
     with _lock:
-        mem = _store.setdefault(session_id, {"conditions": {}, "last": None, "history": []})
+        mem = _store.setdefault(session_id, {"conditions": {}, "last": None, "history": [], "aliases": {}})
         mem["conditions"] = conditions
         if last is not None:
             mem["last"] = last

@@ -146,12 +146,49 @@ function draftCard(draft, msgEl) {
   $(".bubble", msgEl).appendChild(wrap);
 }
 
-async function send(text) {
-  addMsg("user", esc(text));
+// 이름 확인: 후보를 토글 칩으로 보여주고, 고른 이름으로 같은 요청을 다시 보낸다
+function clarifyCard(items, originalText, msgEl) {
+  const choices = {};
+  const wrap = document.createElement("div");
+  wrap.className = "clarify";
+  const askable = items.filter(it => it.candidates.length);
+  wrap.innerHTML = `<h4>어떤 포켓몬인가요?</h4>` + askable.map((it, i) => `
+    <div class="clarify-row" data-i="${i}">
+      <div class="clarify-input">'${esc(it.input)}'</div>
+      <div class="chips" role="radiogroup" aria-label="${esc(it.input)} 후보">
+        ${it.candidates.map(c => `<button type="button" class="chip toggle" role="radio" aria-checked="false"
+            data-value="${esc(c.value)}" title="${esc(c.value)}">${esc(c.label)}</button>`).join("")}
+      </div>
+    </div>`).join("") +
+    (items.length > askable.length ? `<p class="muted">후보가 없는 이름은 다시 입력해 주세요.</p>` : "") +
+    `<div class="form-actions"><button type="button" class="primary" disabled>선택한 이름으로 다시 계산</button></div>`;
+  const submit = $(".primary", wrap);
+  wrap.querySelectorAll(".clarify-row").forEach(row => {
+    const item = askable[+row.dataset.i];
+    row.querySelectorAll(".toggle").forEach(btn => btn.addEventListener("click", () => {
+      row.querySelectorAll(".toggle").forEach(b => b.setAttribute("aria-checked", String(b === btn)));
+      choices[item.input] = btn.dataset.value;
+      choices["__label__" + item.input] = btn.textContent;
+      submit.disabled = askable.some(a => !choices[a.input]) || items.length > askable.length;
+    }));
+  });
+  submit.addEventListener("click", () => {
+    const picked = Object.fromEntries(askable.map(a => [a.input, choices[a.input]]));
+    const summary = askable.map(a => `${a.input} → ${choices["__label__" + a.input]}`).join(", ");
+    wrap.querySelectorAll("button").forEach(b => b.disabled = true);
+    send(originalText, picked, `이름 선택: ${summary}`);
+  });
+  $(".bubble", msgEl).appendChild(wrap);
+}
+
+async function send(text, nameChoices = null, displayText = null) {
+  addMsg("user", esc(displayText || text));
   const pending = addMsg("agent", `<span class="typing">분석하고 Tool을 호출하는 중 <i></i><i></i><i></i></span>`);
   $("#send").disabled = true;
   try {
-    const r = await api("/api/chat", { method: "POST", body: JSON.stringify({ message: text, session_id: sessionId }) });
+    const payload = { message: text, session_id: sessionId };
+    if (nameChoices) payload.name_choices = nameChoices;
+    const r = await api("/api/chat", { method: "POST", body: JSON.stringify(payload) });
     sessionId = r.session_id; store("poke.session", sessionId);
     const [label, cls] = STATUS_BADGE[r.status] || [r.status || "-", ""];
     const tools = r.events.filter(e => e.type === "tool_call_end");
@@ -167,6 +204,7 @@ async function send(text) {
     pending.querySelector(".bubble").innerHTML = html;
     if (r.status === "error") pending.querySelector(".bubble").classList.add("error");
     if (r.plan_draft) draftCard(r.plan_draft, pending);
+    if (r.clarify?.length) clarifyCard(r.clarify, text, pending);
   } catch (e) {
     pending.querySelector(".bubble").innerHTML = `<div class="notice err">${esc(e.message)}</div>`;
   } finally {

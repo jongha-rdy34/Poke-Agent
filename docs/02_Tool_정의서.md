@@ -196,6 +196,11 @@ AMBIGUOUS가 나오면 Tool을 더 부르지 말고 사용자에게 정확한 �
 데이터: `backend/app/data/name_map.json` (포켓몬 1025종, **폼 337개**, 기술 937개 — `scripts/build_name_map.py`로 재생성,
 폼만 추가할 때는 `--forms-only`).
 
+**별명과 부정확한 이름**
+- 별명 사전 `backend/app/data/aliases.json`: 물라오스→연격우라오스, 악라오스→일격우라오스, 물로토무→워시로토무, 불오거폰 등 (직접 추가 가능)
+- 정확히 일치하지 않으면 **자모 단위 유사도**(예: 물라오슨 ↔ 물라오스)로 최대 5개 후보를 `reason: "SUGGEST"`로 돌려준다
+- 후보 형식: `{"label": "연격우라오스", "value": "Urshifu-Rapid-Strike"}` — 화면은 label을 보여주고, 고른 value를 `/api/chat`의 `name_choices`로 보낸다
+
 **폼 이름 처리**
 - PokeAPI `pokemon-form`의 한국어 폼 이름으로 색인: `워시로토무`→`Rotom-Wash`, `스핀로토무`→`Rotom-Fan`
 - 폼 이름이 설명형이면 실제로 부르는 이름을 만들어 색인: `연격의 태세`+`우라오스`→`연격우라오스`, `우물의가면`+`오거폰`→`우물오거폰`

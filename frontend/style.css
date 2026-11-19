@@ -109,6 +109,16 @@ details.trace summary { cursor: pointer; color: var(--muted); }
 .timeline li.decision { color: var(--warn); }
 .timeline .ms { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12px; }
 
+.clarify { margin-top: 10px; padding: 10px 12px; background: var(--surface-2); border-radius: 10px; }
+.clarify h4 { margin: 0 0 8px; font-size: 14px; }
+.clarify-row { display: grid; grid-template-columns: minmax(80px, auto) 1fr; gap: 8px; align-items: start; padding: 6px 0; border-top: 1px solid var(--border); }
+.clarify-row:first-of-type { border-top: 0; }
+.clarify-input { font-weight: 600; padding-top: 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip.toggle { background: var(--surface); }
+.chip.toggle[aria-checked="true"] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); font-weight: 600; }
+.chip.toggle:disabled { cursor: default; }
+.clarify .form-actions { margin-top: 8px; }
 .draft { margin-top: 10px; padding: 10px 12px; background: var(--surface-2); border-radius: 10px; }
 .draft h4 { margin: 0 0 6px; font-size: 14px; }
 

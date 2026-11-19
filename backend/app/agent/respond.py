@@ -40,8 +40,11 @@ CHITCHAT_SYSTEM = """너는 포켓몬 대전 선출 플래너 'Poke-Agent'다. �
 def ask_text(missing: list[str], unresolved: list[dict] | None = None) -> str:
     lines = []
     for u in unresolved or []:
+        names = ", ".join(c["label"] for c in u.get("candidates") or [])
         if u.get("reason") == "AMBIGUOUS":
-            lines.append(f"'{u['input']}'이(가) 여러 포켓몬에 해당합니다: {', '.join(u.get('candidates', []))}. 어느 쪽인가요?")
+            lines.append(f"'{u['input']}'이(가) 여러 포켓몬에 해당합니다: {names}. 어느 쪽인가요?")
+        elif u.get("reason") == "SUGGEST":
+            lines.append(f"'{u['input']}'을(를) 정확히 찾지 못했어요. 혹시 {names} 중 하나인가요?")
         else:
             lines.append(f"'{u['input']}'을(를) 찾지 못했습니다. 이름을 다시 확인해 주세요 (영문 이름도 됩니다).")
     lines += [ASK_TEXT.get(m, m) for m in missing]

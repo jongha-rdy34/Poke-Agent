@@ -43,7 +43,8 @@ def fake_call_tool(tool: str, args: dict) -> dict:
         res = []
         for n in args["names"]:
             if n == "모호몬":
-                res.append({"input": n, "found": False, "reason": "AMBIGUOUS", "candidates": ["A", "B"]})
+                res.append({"input": n, "found": False, "reason": "AMBIGUOUS",
+                            "candidates": [{"label": "엠버", "value": "Ember"}, {"label": "스프라웃", "value": "Sprout"}]})
             else:
                 res.append({"input": n, "found": True, "en": n, "ko": None, "showdown_id": n.lower(), "pokeapi_name": n.lower()})
         return {"ok": True, "data": {"results": res}}
@@ -157,6 +158,24 @@ def test_ambiguous_name_asks_user():
     use_llm(selection(opp_team=["Ember", "모호몬"]))
     r = run_agent("선출")
     assert r["status"] == "ask" and "여러 포켓몬" in r["answer"]
+    assert [p["tool"] for p in tool_calls(r)] == ["resolve_names"]  # 이름 확인 전에는 다른 Tool을 부르지 않음
+    assert r["clarify"] == [{"input": "모호몬", "reason": "AMBIGUOUS",
+                             "candidates": [{"label": "엠버", "value": "Ember"}, {"label": "스프라웃", "value": "Sprout"}]}]
+
+
+def test_name_choice_is_applied_and_remembered():
+    use_llm(selection(opp_team=["Sprout", "모호몬"]), selection(opp_team=["Sprout", "모호몬"]),
+            selection(my_team=None, opp_team=None, exclude=["Blaze"]))
+    r1 = run_agent("선출")
+    assert r1["status"] == "ask"
+    # 화면에서 후보를 고르면 같은 메시지를 name_choices와 함께 다시 보낸다
+    r2 = run_agent("선출", r1["session_id"], {"모호몬": "Ember"})
+    assert r2["status"] in ("ok", "limit") and r2["clarify"] == []
+    resolve = next(p for p in tool_calls(r2) if p["tool"] == "resolve_names")
+    assert "Ember" in resolve["args"]["names"] and "모호몬" not in resolve["args"]["names"]
+    # 다음 요청에서도 세션이 고른 이름을 기억한다
+    r3 = run_agent("Blaze 빼고", r1["session_id"])
+    assert r3["status"] in ("ok", "limit")
 
 
 def test_memory_updates_only_changed_conditions():

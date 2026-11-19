@@ -114,7 +114,7 @@ def plan_node(state: AgentState, em: Emitter) -> dict:
 def execute_node(state: AgentState, em: Emitter) -> dict:
     ctx = state["ctx"]
     before = ctx["calls"]
-    Executor(ctx, state["conditions"], state["intent"], em).run(state["steps"])
+    Executor(ctx, state["conditions"], state["intent"], em, state["memory"].get("aliases")).run(state["steps"])
     return {"ctx": ctx, "_summary": {"tool_calls": ctx["calls"] - before, "failures": len(ctx["failures"])}}
 
 
@@ -257,10 +257,13 @@ def build_graph():
 GRAPH = build_graph()
 
 
-def run_agent(message: str, session_id: str | None = None) -> dict:
+def run_agent(message: str, session_id: str | None = None, name_choices: dict[str, str] | None = None) -> dict:
     session_id = session_id or "s-" + uuid.uuid4().hex[:10]
     em = Emitter(session_id)
     em.emit("run_start", None, message=message)
+    if name_choices:
+        memory.add_aliases(session_id, name_choices)
+        em.emit("decision", None, decision="name_choice", choices=name_choices)
     t0 = time.perf_counter()
     try:
         final = GRAPH.invoke({"session_id": session_id, "message": message, "memory": memory.get(session_id)},
@@ -286,6 +289,10 @@ def run_agent(message: str, session_id: str | None = None) -> dict:
         "result": final.get("result"),
         "error": final.get("error"),
         "conditions": final.get("conditions"),
+        "clarify": [  # 화면에서 고를 수 있는 이름 후보 (status=ask일 때)
+            {"input": u["input"], "reason": u.get("reason"), "candidates": u.get("candidates") or []}
+            for u in ctx.get("unresolved", [])
+        ] if final.get("status") == "ask" else [],
         "events": em.events,
         "total_ms": total,
     }

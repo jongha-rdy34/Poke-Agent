@@ -28,6 +28,16 @@
   "total_ms": 1222
 }
 ```
+**이름 확인(clarify)**: 부정확하거나 여러 대상에 걸리는 이름이 있으면 이름 확인 Tool만 부르고 `status: "ask"`로 멈춘다.
+```json
+"clarify": [{"input": "물라오슨", "reason": "SUGGEST",
+             "candidates": [{"label": "연격우라오스", "value": "Urshifu-Rapid-Strike"}, {"label": "우라오스", "value": "Urshifu"}]}]
+```
+화면에서 고른 뒤 **같은 메시지**를 `name_choices`와 함께 다시 보낸다. 고른 이름은 세션에 기억되어 다음 요청에도 적용된다.
+```json
+{ "message": "(같은 메시지)", "session_id": "s-…", "name_choices": {"물라오슨": "Urshifu-Rapid-Strike"} }
+```
+
 Tool 실패·LLM 오류도 `200`으로 오고 `status`/`error`로 구분한다 (서비스가 멈추지 않음).
 
 ## 2. 계획 관리

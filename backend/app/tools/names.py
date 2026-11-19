@@ -6,6 +6,7 @@ PokeAPI에서 한 번 수집해 둔 매핑 파일(app/data/name_map.json)로 변
 """
 from __future__ import annotations
 
+import difflib
 import json
 from functools import lru_cache
 from pathlib import Path
@@ -14,6 +15,9 @@ from typing import Literal
 from app.tools.common import ErrorCode, ToolError, ok, safe_tool, to_id
 
 MAP_PATH = Path(__file__).resolve().parents[1] / "data" / "name_map.json"
+ALIAS_PATH = Path(__file__).resolve().parents[1] / "data" / "aliases.json"  # 별명 사전 (물라오스, 악라오스 …)
+SUGGEST_CUTOFF = 0.6   # 자모 유사도 이 값 이상만 후보로
+MAX_SUGGEST = 5
 
 # 한국어 폼 접두/접미어 → Showdown 폼 접미어
 FORM_PREFIXES = {"메가": "-Mega", "알로라": "-Alola", "가라르": "-Galar", "히스이": "-Hisui", "팔데아": "-Paldea"}
@@ -63,7 +67,74 @@ def _load() -> dict:
         for k in {f["id"], to_id(f["slug"]), display, ko_form + sp_ko, sp_ko + _form_short(ko_form)}:
             _add(index["pokemon"], k, row)
     index["_forms_by_species"] = forms_by_species
+
+    # 별명: 대상 이름으로 찾은 항목을 별명 키에도 걸어 둔다
+    if ALIAS_PATH.exists():
+        aliases = json.loads(ALIAS_PATH.read_text(encoding="utf-8"))
+        for alias, target in aliases.items():
+            if alias.startswith("_"):
+                continue
+            rows = index["pokemon"].get(to_id(target))
+            if not rows:
+                head, _, tail = target.partition("-")
+                base = index["pokemon"].get(to_id(head))
+                rows = [{**base[0], "en": target, "slug": target.lower(), "ko": alias, "form": True}] if base and tail else None
+            if rows:
+                _add(index["pokemon"], alias.replace(" ", ""), _pick_form(rows)[0])
+
+    # 비슷한 이름 후보용: 한국어 키 → (자모열, 대표 항목)
+    index["_suggest"] = {
+        kind: [(k, _jamo(k), _pick_form(rows)[0]) for k, rows in index[kind].items()
+               if k and not k.isascii() and len(_pick_form(rows)) == 1]
+        for kind in ("pokemon", "move")
+    }
     return index
+
+
+def _jamo(text: str) -> str:
+    """한글 음절을 자모로 풀어 비교한다: '라오스' vs '라우스'처럼 한 글자만 틀려도 비슷하게 잡힌다."""
+    out = []
+    for ch in text:
+        code = ord(ch) - 0xAC00
+        if 0 <= code < 11172:
+            out += [chr(0x1100 + code // 588), chr(0x1161 + (code % 588) // 28)]
+            if code % 28:
+                out.append(chr(0x11A7 + code % 28))
+        else:
+            out.append(ch.lower())
+    return "".join(out)
+
+
+def _candidate(row: dict) -> dict:
+    """화면에서 고를 수 있는 후보: label(보여줄 이름), value(다시 넣을 영문 이름)."""
+    return {"label": row.get("ko") or row["en"], "value": row["en"]}
+
+
+def suggest(name: str, kind: Literal["pokemon", "move"] = "pokemon") -> list[dict]:
+    """정확히 일치하지 않는 이름에 대해 비슷한 이름 후보를 돌려준다."""
+    compact = name.replace(" ", "")
+    if compact.isascii():
+        index = _load()[kind]
+        keys = difflib.get_close_matches(to_id(compact), [k for k in index if k.isascii()], n=MAX_SUGGEST, cutoff=0.75)
+        rows = [_pick_form(index[k])[0] for k in keys]
+    else:
+        target = _jamo(compact)
+        scored = []
+        for key, jamo, row in _load()["_suggest"][kind]:
+            ratio = difflib.SequenceMatcher(None, target, jamo).ratio()
+            if ratio >= SUGGEST_CUTOFF:
+                scored.append((ratio, key, row))
+        scored.sort(key=lambda x: -x[0])
+        rows = [r for _, _, r in scored]
+    out, seen = [], set()
+    for r in rows:
+        c = _candidate(r)
+        if c["value"] not in seen:
+            seen.add(c["value"])
+            out.append(c)
+        if len(out) >= MAX_SUGGEST:
+            break
+    return out
 
 
 def _pick_form(hits: list[dict]) -> list[dict]:
@@ -78,7 +149,8 @@ def _pick_form(hits: list[dict]) -> list[dict]:
 def _form_candidates(compact: str) -> list[dict]:
     """'워시로토무'를 못 찾았을 때처럼 이름 안에 종 이름이 들어 있으면 그 종의 폼을 후보로 돌려준다."""
     forms = _load()["_forms_by_species"]
-    matches = [sp for sp in forms if sp in compact and sp != compact]
+    # 폼 이름은 '워시로토무'처럼 종 이름 앞에 붙는다 → 종 이름으로 끝날 때만 (오타 '따라큐우'는 제외)
+    matches = [sp for sp in forms if compact.endswith(sp) and sp != compact]
     if not matches:
         return []
     sp = max(matches, key=len)
@@ -113,14 +185,15 @@ def resolve_one(name: str, kind: Literal["pokemon", "move"]) -> dict:
         suffix = "-" + tail if hits else ""
 
     if not hits:
-        cands = _form_candidates(compact) if kind == "pokemon" and not raw.isascii() else []
-        if cands:
-            return {"input": name, "found": False, "reason": "AMBIGUOUS",
-                    "candidates": [f"{c['ko']}({c['en']})" for c in cands]}
-        return {"input": name, "found": False, "reason": "NOT_FOUND"}
+        forms = _form_candidates(compact) if kind == "pokemon" and not raw.isascii() else []
+        if forms:  # 종 이름은 들어 있는데 폼을 모름 → 그 종의 폼 중에서 고르게 한다
+            return {"input": name, "found": False, "reason": "AMBIGUOUS", "candidates": [_candidate(c) for c in forms]}
+        cands = suggest(raw, kind)
+        if cands:  # 비슷한 이름이 있음 → 맞는지 되묻는다
+            return {"input": name, "found": False, "reason": "SUGGEST", "candidates": cands}
+        return {"input": name, "found": False, "reason": "NOT_FOUND", "candidates": []}
     if len(hits) > 1:
-        return {"input": name, "found": False, "reason": "AMBIGUOUS",
-                "candidates": [f"{h['ko']}({h['en']})" if h.get("ko") else h["en"] for h in hits]}
+        return {"input": name, "found": False, "reason": "AMBIGUOUS", "candidates": [_candidate(h) for h in hits]}
 
     row = hits[0]
     en = row["en"] + suffix
@@ -149,7 +222,7 @@ def resolve_names(names: list[str], kind: Literal["pokemon", "move"] = "pokemon"
         raise ToolError(ErrorCode.BAD_ARGUMENT, "names에 빈 이름이 있습니다.")
     results = [resolve_one(n, kind) for n in names]
     if not any(r["found"] for r in results):
-        if any(r.get("reason") == "AMBIGUOUS" for r in results):
+        if any(r.get("reason") in ("AMBIGUOUS", "SUGGEST") for r in results):
             raise ToolError(ErrorCode.AMBIGUOUS, "이름이 여러 대상에 해당합니다. 정확한 이름을 다시 물어보세요.")
         raise ToolError(ErrorCode.NOT_FOUND, f"이름을 찾지 못했습니다: {', '.join(names)}")
     return ok({"kind": kind, "results": results, "source": "로컬 매핑 (PokeAPI 수집본)"})

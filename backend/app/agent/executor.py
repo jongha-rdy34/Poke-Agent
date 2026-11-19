@@ -25,7 +25,8 @@ def new_ctx() -> dict:
 
 
 class Executor:
-    def __init__(self, ctx: dict, conditions: dict, intent: str, emitter: Emitter):
+    def __init__(self, ctx: dict, conditions: dict, intent: str, emitter: Emitter, aliases: dict | None = None):
+        self.aliases = aliases or {}  # 사용자가 후보에서 고른 이름 {입력: 영문 이름}
         self.ctx = ctx
         self.c = conditions
         self.intent = intent
@@ -53,6 +54,11 @@ class Executor:
     def run(self, steps: list[dict]) -> None:
         for step in steps:
             getattr(self, "_" + step["action"])()
+            if step["action"] == "resolve" and self.ctx["unresolved"]:
+                # 이름을 확인해야 하면 나머지 Tool은 부르지 않고 바로 되묻는다
+                self.em.emit("decision", "execute", decision="stop_for_names",
+                             unresolved=[u["input"] for u in self.ctx["unresolved"]])
+                return
 
     def sid(self, raw: str) -> str:
         r = self.ctx["names"].get(raw)
@@ -75,10 +81,14 @@ class Executor:
         extra = (self.c.get("prefer") or []) + (self.c.get("exclude") or []) + (self.c.get("must_answer") or [])
         extra += [m["pokemon"] for m in (self.c.get("my_moves") or [])]
         names = list(dict.fromkeys(my + opp + extra))
-        r = self.call("resolve_names", {"names": names, "kind": "pokemon"})
-        results = r["data"]["results"] if r["ok"] else [{"input": n, "found": False, "reason": "NOT_FOUND"} for n in names]
-        for item in results:
-            raw = item["input"]
+        query = [self.aliases.get(n, n) for n in names]
+        r = self.call("resolve_names", {"names": query, "kind": "pokemon"})
+        results = r["data"]["results"] if r["ok"] else [{"input": n, "found": False, "reason": "NOT_FOUND"} for n in query]
+        if not r["ok"] and r["error"]["code"] == "AMBIGUOUS":  # 전부 모호하면 Tool이 실패로 돌려주므로 항목별로 다시 본다
+            from app.tools.names import resolve_one
+            results = [resolve_one(n, "pokemon") for n in query]
+        for raw, item in zip(names, results):
+            item = {**item, "input": raw}
             if item["found"]:
                 entry = {"sid": item["showdown_id"], "en": item["en"], "ko": item.get("ko")}
             elif item["reason"] == "NOT_FOUND" and raw.isascii():

@@ -19,7 +19,7 @@ logs_router = APIRouter(prefix="/api/logs", tags=["실행 로그"])
 @chat_router.post("", response_model=ChatResponse)
 async def chat(req: ChatRequest) -> dict:
     """메인 Agent 실행. 답변과 함께 실행 단계·Tool 호출 이력(events)을 돌려준다."""
-    return await run_in_threadpool(run_agent, req.message, req.session_id)
+    return await run_in_threadpool(run_agent, req.message, req.session_id, req.name_choices)
 
 
 # ---------------------------------------------------------------- 계획

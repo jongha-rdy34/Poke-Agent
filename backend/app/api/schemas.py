@@ -16,6 +16,20 @@ class ChatRequest(BaseModel):
         "내 팀: 하마돈, 마스카나, 고릴타, 대쓰여너, 보만다, 루카리오 / "
         "상대: 누리레느, 한카리아스, 브리두라스, 타부자고, 따라큐, 아머까오. 3마리 뭐 뽑아?"])
     session_id: str | None = Field(None, description="이어지는 대화면 이전 응답의 session_id")
+    name_choices: dict[str, str] | None = Field(
+        None, description="되묻기(clarify)에서 사용자가 고른 이름 {입력한 이름: 후보의 value}. 세션에 기억된다.",
+        examples=[{"물라오슨": "Urshifu-Rapid-Strike"}])
+
+
+class ClarifyCandidate(BaseModel):
+    label: str = Field(..., description="보여줄 이름 (예: 연격우라오스)")
+    value: str = Field(..., description="name_choices에 넣을 값 (예: Urshifu-Rapid-Strike)")
+
+
+class ClarifyItem(BaseModel):
+    input: str
+    reason: str | None = Field(None, description="AMBIGUOUS(여러 대상) / SUGGEST(비슷한 이름) / NOT_FOUND")
+    candidates: list[ClarifyCandidate] = []
 
 
 class ChatResponse(BaseModel):
@@ -29,6 +43,7 @@ class ChatResponse(BaseModel):
     saved: dict | None = None
     replans: list[dict] = []
     error: dict | None = None
+    clarify: list[ClarifyItem] = Field(default_factory=list, description="이름 확인이 필요한 항목과 후보 (status=ask)")
     events: list[dict] = Field(default_factory=list, description="실행 단계·Tool 호출·재계획 이력 (실행 순서)")
     total_ms: int
 

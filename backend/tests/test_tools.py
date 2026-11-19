@@ -181,7 +181,24 @@ def test_resolve_form_names(name, en, slug):
 
 def test_unknown_form_suggests_candidates():
     r = call_tool("resolve_names", {"names": ["이상한로토무", "한카리아스"]})["data"]["results"][0]
-    assert r["reason"] == "AMBIGUOUS" and any("워시로토무" in c for c in r["candidates"])
+    assert r["reason"] == "AMBIGUOUS"
+    assert {"label": "워시로토무", "value": "Rotom-Wash"} in r["candidates"]
+
+
+@pytest.mark.parametrize("alias,en", [("물라오스", "Urshifu-Rapid-Strike"), ("악라오스", "Urshifu-Single-Strike"),
+                                      ("물로토무", "Rotom-Wash"), ("불오거폰", "Ogerpon-Hearthflame-Mask")])
+def test_aliases(alias, en):
+    r = call_tool("resolve_names", {"names": [alias]})["data"]["results"][0]
+    assert r["found"] and r["en"] == en
+
+
+@pytest.mark.parametrize("typo,expected", [("물라오슨", "Urshifu-Rapid-Strike"), ("한카리야스", "Garchomp"),
+                                           ("루카리온", "Lucario"), ("따라큐우", "Mimikyu"), ("Garchmop", "Garchomp")])
+def test_typo_returns_suggestions(typo, expected):
+    r = call_tool("resolve_names", {"names": [typo, "한카리아스"]})["data"]["results"][0]
+    assert r["reason"] == "SUGGEST"
+    assert r["candidates"][0]["value"] == expected  # 가장 비슷한 이름이 첫 후보
+    assert len(r["candidates"]) <= 5
 
 
 def test_meta_matches_smogon_form_spelling(monkeypatch):
