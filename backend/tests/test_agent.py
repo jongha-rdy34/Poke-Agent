@@ -351,7 +351,7 @@ def mega_env(monkeypatch):
 def test_asks_which_of_my_pokemon_mega_evolves(mega_env):
     use_llm(selection())
     r = run_agent("선출", game="champions")
-    assert r["status"] == "ask" and "누가 메가진화" in r["answer"]
+    assert r["status"] == "ask" and "메가스톤" in r["answer"]
     opts = {o["pokemon"]: [f["value"] for f in o["forms"]] for o in r["mega"]["my_options"]}
     assert opts == {"Aqua": ["Aqua-Mega"], "Leafy": ["Leafy-Mega", "Leafy-Mega-Z"]}  # 메가 가능한 포켓몬만
     assert [p["tool"] for p in tool_calls(r)] == ["resolve_names", "get_meta_usage"]  # 고르기 전엔 더 부르지 않음
@@ -359,21 +359,30 @@ def test_asks_which_of_my_pokemon_mega_evolves(mega_env):
     assert pred["pokemon"] == "Ember" and pred["forms"][0]["share"] == 66.7  # 30 / (15 + 30)
 
 
-def test_mega_choice_is_applied_and_opponent_mega_predicted(mega_env):
+def test_several_stone_holders_and_best_mega_is_chosen(mega_env):
     use_llm(selection(), selection(my_team=None, opp_team=None, exclude=["Mud"]))
-    r = run_agent("선출", game="champions", mega_choice={"my": "Leafy-Mega-Z"})
-    assert r["status"] in ("ok", "limit") and r["conditions"]["my_mega"] == "Leafy-Mega-Z"
-    assert "Leafy-Mega-Z" in r["pokemon_cards"] and "Leafy" not in r["pokemon_cards"]  # 메가 폼으로 계산
-    assert "Ember-Mega" in r["pokemon_cards"] and r["mega"]["opp_predicted"] is True
-    assert any("상대 메가진화 예상" in n for n in r["rule_notes"])
-    r2 = run_agent("Mud 빼고", r["session_id"])  # 다음 요청은 기억된 선택을 쓴다 (다시 묻지 않음)
-    assert r2["status"] in ("ok", "limit") and "Leafy-Mega-Z" in r2["pokemon_cards"]
+    holders = {"Aqua": "Aqua-Mega", "Leafy": "Leafy-Mega-Z"}   # 두 마리가 메가스톤을 든다
+    r = run_agent("선출", game="champions", mega_choice={"my_holders": holders})
+    assert r["status"] in ("ok", "limit") and r["conditions"]["my_megas"] == holders
+    # 기본 폼과 메가 폼을 모두 계산했다
+    for name in ("Aqua", "Aqua-Mega", "Leafy", "Leafy-Mega-Z"):
+        assert name in r["pokemon_cards"]
+    sel = r["result"]["selected"]
+    assert sum(1 for x in sel if "-Mega" in x) <= 1                     # 배틀에서 메가진화는 1번
+    if r["mega_evolve"]:
+        assert r["mega_evolve"] in sel
+    alts = r["mega_alternatives"]
+    assert any(a["mega"] is None for a in alts) and sum(a["chosen"] for a in alts) == 1
+    assert any("메가스톤" in n for n in r["rule_notes"])
+    assert "Ember-Mega" in r["pokemon_cards"] and r["mega"]["opp_predicted"] is True  # 상대 메가 예상
+    r2 = run_agent("Mud 빼고", r["session_id"])  # 기억된 보유자로 다시 계산 (다시 묻지 않음)
+    assert r2["status"] in ("ok", "limit") and r2["conditions"]["my_megas"] == holders
 
 
-def test_no_mega_choice_keeps_base_forms(mega_env):
+def test_no_stone_holders_keeps_base_forms(mega_env):
     use_llm(selection())
-    r = run_agent("선출", game="champions", mega_choice={"my": "none", "opp": "none"})
-    assert r["status"] in ("ok", "limit")
+    r = run_agent("선출", game="champions", mega_choice={"my_holders": {"Aqua": "none"}, "opp": "none"})
+    assert r["status"] in ("ok", "limit") and r["mega_evolve"] is None
     assert not any("-Mega" in k for k in r["pokemon_cards"])
 
 

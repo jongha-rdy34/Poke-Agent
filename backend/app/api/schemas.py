@@ -20,9 +20,10 @@ class ChatRequest(BaseModel):
     battle: Literal["singles", "doubles"] | None = Field(None, description="singles(6→3) / doubles(6→4)")
     my_team: list[str] | None = Field(None, max_length=6, description="직접 선택 모드: 내 포켓몬 (검색 결과의 value, 예: Garchomp-Mega-Z)")
     opp_team: list[str] | None = Field(None, max_length=6, description="직접 선택 모드: 상대 포켓몬")
-    mega_choice: dict[str, str] | None = Field(
-        None, description="메가진화 선택 {my: 영문 메가 폼 | 'none', opp: 영문 메가 폼 | 'none'} — 세션에 기억된다",
-        examples=[{"my": "Garchomp-Mega-Z", "opp": "Golisopod-Mega"}])
+    mega_choice: dict[str, Any] | None = Field(
+        None, description=("메가스톤 보유 {my_holders: {기본 영문: 메가 영문 | 'none'}, opp: 상대 메가 영문 | 'none'}. "
+                           "여러 마리가 스톤을 들 수 있고, 선출 추천에서 누가 메가진화할지 계산한다. 세션에 기억된다"),
+        examples=[{"my_holders": {"Garchomp": "Garchomp-Mega-Z", "Absol": "Absol-Mega-Z", "Salamence": "Salamence-Mega"}}])
     name_choices: dict[str, str] | None = Field(
         None, description="되묻기(clarify)에서 사용자가 고른 이름 {입력한 이름: 후보의 value}. 세션에 기억된다.",
         examples=[{"물라오슨": "Urshifu-Rapid-Strike"}])
@@ -59,6 +60,9 @@ class ChatResponse(BaseModel):
     mega: dict | None = Field(None, description=(
         "메가진화: my_options[{pokemon, forms[{label, value, usage_pct, sprite}]}], my(선택), "
         "opp_predictions[{pokemon, mega_share, forms[{label, value, share}]}], opp(예상 또는 지정), opp_predicted"))
+    mega_evolve: str | None = Field(None, description="이 선출에서 메가진화할 포켓몬 (메가 폼 이름), 없으면 null")
+    mega_alternatives: list[dict] = Field(default_factory=list, description=(
+        "같은 3마리에서 메가진화 대상을 바꿨을 때 비교 [{mega, covered, covered_names, chosen}]"))
     rule_notes: list[str] = Field(default_factory=list, description="규칙 안내 (예: 메가진화는 배틀당 1마리)")
     ruleset: dict | None = Field(None, description="이번 실행에 적용한 게임·배틀 규칙 (format, pick, gimmick …)")
     pokemon_cards: dict[str, dict] = Field(default_factory=dict, description=(

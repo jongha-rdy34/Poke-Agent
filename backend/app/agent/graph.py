@@ -107,14 +107,15 @@ def analyze_node(state: AgentState, em: Emitter) -> dict:
                 opp=len(teams.get("opp") or []))
     conditions, changed = memory.merge_conditions(mem["conditions"], new, reset=a.reset)
     # 팀이 바뀌면 이전 팀 기준의 메가 선택은 버린다
-    if "my_team" in changed and "my_mega" not in (state.get("mega_choice") or {}):
-        conditions.pop("my_mega", None)
-    if "opp_team" in changed:
+    choice = state.get("mega_choice") or {}
+    if "my_team" in changed and "my_holders" not in choice:
+        conditions.pop("my_megas", None)   # 팀이 바뀌면 메가스톤 보유자는 다시 묻는다
+    if "opp_team" in changed and "opp" not in choice:
         conditions.pop("opp_mega", None)
-    for side in ("my", "opp"):
-        v = (state.get("mega_choice") or {}).get(side)
-        if v:
-            conditions[f"{side}_mega"] = v
+    if "my_holders" in choice:
+        conditions["my_megas"] = {k: v for k, v in (choice["my_holders"] or {}).items() if v and v != "none"}
+    if choice.get("opp"):
+        conditions["opp_mega"] = choice["opp"]
     if (teams.get("my") or teams.get("opp")) and ({"my_team", "opp_team"} & set(changed)):
         for k in ("prefer", "exclude", "must_answer", "my_moves"):
             if not new.get(k):
@@ -305,13 +306,14 @@ GRAPH = build_graph()
 def _pokemon_cards(ctx: dict) -> dict:
     """화면 표시용: 이름(답변에 쓰인 표시 이름) → 이미지·타입·스피드 종족값."""
     cards = {}
-    for sid in dict.fromkeys((ctx.get("my") or []) + (ctx.get("opp") or [])):
+    mega_forms = list((ctx.get("my_mega_forms") or {}).values())
+    for sid in dict.fromkeys((ctx.get("my") or []) + mega_forms + (ctx.get("opp") or [])):
         d = (ctx.get("detail") or {}).get(sid)
         disp = (ctx.get("display") or {}).get(sid, {})
         label = disp.get("ko") or disp.get("en") or sid
         cards[label] = {"en": disp.get("en"), "types": (d or {}).get("types", []),
                         "sprite": (d or {}).get("sprite"), "spe": ((d or {}).get("base_stats") or {}).get("spe"),
-                        "side": "my" if sid in (ctx.get("my") or []) else "opp"}
+                        "side": "opp" if sid in (ctx.get("opp") or []) else "my"}
     return cards
 
 
@@ -362,7 +364,9 @@ def run_agent(message: str, session_id: str | None = None, name_choices: dict[st
         "opp_profile": (final.get("result") or {}).get("opp_profile"),
         "pokemon_cards": cards,
         "move_plan": (final.get("result") or {}).get("move_plan"),
-        "mega": ctx.get("mega"),  # 내 메가 후보·선택, 상대 메가 예상 (화면 토글용)
+        "mega": ctx.get("mega"),  # 내 메가스톤 후보·보유, 상대 메가 예상 (화면 토글용)
+        "mega_evolve": (final.get("result") or {}).get("mega_evolve"),
+        "mega_alternatives": (final.get("result") or {}).get("mega_alternatives") or [],
         "rule_notes": (final.get("result") or {}).get("rule_notes") or [],
         "ruleset": ruleset,
         "defense_advice": (final.get("result") or {}).get("defense_advice"),

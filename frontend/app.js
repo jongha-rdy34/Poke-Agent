@@ -311,10 +311,15 @@ function selectionCard(draft) {
   const mp = draft.move_plan || [];
   return `<section class="selection">
     <h3>선출 ${draft.selected.length}마리</h3>
-    ${(draft.rule_notes || []).map(n => `<p class="rule-note">${esc(n)}</p>`).join("")}
+    ${(draft.rule_notes || []).map(n => `<p class="rule-note">${md(n).replace(/^<p>|<\/p>$/g, "")}</p>`).join("")}
+    ${draft.mega_alternatives?.length ? `<div class="mega-compare"><span class="muted small">메가진화 비교 (이 3마리 기준):</span>
+      ${draft.mega_alternatives.slice().sort((a, b) => b.covered - a.covered).map(a => `<span class="mega-alt ${a.chosen ? "chosen" : ""}"
+        title="${esc((a.covered_names || []).join(", "))}">${esc(a.mega || "메가진화 안 함")} · 상대 ${a.covered}마리 커버${a.chosen ? " ✓" : ""}</span>`).join("")}
+    </div>` : ""}
     <div class="picks-big">${draft.selected.map(n => `
-      <div class="pick-card ${n === draft.lead ? "lead" : ""}">
+      <div class="pick-card ${n === draft.lead ? "lead" : ""} ${n === draft.mega_evolve ? "mega-evo" : ""}">
         ${n === draft.lead ? `<span class="lead-tag">선봉</span>` : ""}
+        ${n === draft.mega_evolve ? `<span class="mega-tag">메가진화</span>` : ""}
         ${sprite(n, "lg")}
         <div class="pick-name">${esc(n)}</div>
         <div class="types">${typeBadges(n)}</div>
@@ -346,41 +351,53 @@ function profileCard(p, advice, msgEl) {
   $(".bubble", msgEl).appendChild(wrap);
 }
 
-// 메가진화 선택: 내 팀은 누가 메가진화할지 고르고, 상대는 통계 예상을 보여주며 바꿀 수 있게 한다
+// 메가진화: 내 팀은 '메가스톤을 든 포켓몬'을 여러 마리 고른다 (배틀에서 메가진화는 그중 1번 → 선출 추천이 누가 할지 계산).
+// 상대는 통계 예상을 보여주고 바꿀 수 있게 한다.
 function megaCard(mega, originalText, msgEl, collapsed) {
   if (!mega || (!mega.my_options?.length && !mega.opp_predictions?.length)) return;
-  const sel = { my: mega.my || null, opp: mega.opp || "none" };
+  const held = mega.my_holders || {};
+  const hasHolders = Object.keys(held).length > 0;
+  // 행마다 하나 고름: 이미 정한 스톤 → 없으면 가장 많이 쓰이는 메가 폼을 미리 선택
+  const holders = {};
+  for (const o of mega.my_options || []) {
+    const best = [...o.forms].sort((a, b) => (b.usage_pct || 0) - (a.usage_pct || 0))[0];
+    holders[o.base] = hasHolders ? (held[o.base] || "none") : (best ? best.value : "none");
+  }
+  let opp = mega.opp || "none";
   let oppTouched = false;  // 상대 메가는 사용자가 바꿨을 때만 '지정'으로 보낸다 (아니면 계속 통계 예상)
-  const chip = (side, value, label, extra, sprite) => `<button type="button" class="chip toggle mega-chip" role="radio"
-      data-side="${side}" data-value="${esc(value)}" data-label="${esc(label)}" aria-checked="${String(sel[side] === value)}">
+  const chip = (group, value, label, extra, sprite, checked) => `<button type="button" class="chip toggle mega-chip" role="radio"
+      data-group="${esc(group)}" data-value="${esc(value)}" data-label="${esc(label)}" aria-checked="${String(checked)}">
       ${sprite ? `<img src="${esc(sprite)}" alt="" loading="lazy">` : ""}${esc(label)}${extra ? `<small>${esc(extra)}</small>` : ""}</button>`;
   const myRows = (mega.my_options || []).map(o => `<div class="clarify-row"><div class="clarify-input">${esc(o.pokemon)}</div>
-      <div class="chips" role="radiogroup">${o.forms.map(f => chip("my", f.value, f.label, f.usage_pct != null ? `사용률 ${f.usage_pct}%` : "", f.sprite)).join("")}</div></div>`).join("");
+      <div class="chips" role="radiogroup" aria-label="${esc(o.pokemon)} 메가스톤">
+        ${chip("my:" + o.base, "none", "스톤 없음", "", "", holders[o.base] === "none")}
+        ${o.forms.map(f => chip("my:" + o.base, f.value, f.label, f.usage_pct != null ? `사용률 ${f.usage_pct}%` : "", f.sprite, holders[o.base] === f.value)).join("")}
+      </div></div>`).join("");
   const oppRows = (mega.opp_predictions || []).map(p => `<div class="clarify-row"><div class="clarify-input">${esc(p.pokemon)}
       <small class="muted">메가 ${p.mega_share}%</small></div>
-      <div class="chips" role="radiogroup">${p.forms.map(f => chip("opp", f.value, f.label, `${f.share}%`, f.sprite)).join("")}</div></div>`).join("");
+      <div class="chips" role="radiogroup">${p.forms.map(f => chip("opp", f.value, f.label, `${f.share}%`, f.sprite, opp === f.value)).join("")}</div></div>`).join("");
   const wrap = document.createElement(collapsed ? "details" : "div");
   wrap.className = "clarify mega" + (collapsed ? " mega-fold" : "");
-  wrap.innerHTML = (collapsed ? `<summary>메가진화 설정 바꾸기</summary>` : "") + `
-    ${myRows ? `<h4>내 팀: 누가 메가진화하나요? <span class="muted small">배틀당 1마리</span></h4>${myRows}
-      <div class="clarify-row"><div></div><div class="chips">${chip("my", "none", "메가진화 안 함")}</div></div>` : ""}
+  wrap.innerHTML = (collapsed ? `<summary>메가스톤·상대 메가 설정 바꾸기</summary>` : "") + `
+    ${myRows ? `<h4>내 팀: 메가스톤을 든 포켓몬 <span class="muted small">여러 마리 가능 · 배틀에서 메가진화는 1번 → 누가 할지는 선출 추천에서 계산</span></h4>${myRows}` : ""}
     ${oppRows ? `<h4>상대 메가진화 예상 <span class="muted small">통계상 메가 폼 비율 · 바꿀 수 있어요</span></h4>${oppRows}
-      <div class="clarify-row"><div></div><div class="chips">${chip("opp", "none", "상대 메가 없음")}</div></div>` : ""}
+      <div class="clarify-row"><div></div><div class="chips">${chip("opp", "none", "상대 메가 없음", "", "", opp === "none")}</div></div>` : ""}
     <div class="form-actions"><button type="button" class="primary">이대로 계산</button></div>`;
-  const submit = $(".primary", wrap);
-  const refresh = () => { submit.disabled = !!myRows && !sel.my; };
   wrap.querySelectorAll(".mega-chip").forEach(btn => btn.addEventListener("click", () => {
-    const side = btn.dataset.side;
-    wrap.querySelectorAll(`.mega-chip[data-side="${side}"]`).forEach(b => b.setAttribute("aria-checked", String(b === btn)));
-    sel[side] = btn.dataset.value; if (side === "opp") oppTouched = true; refresh();
+    const g = btn.dataset.group;
+    wrap.querySelectorAll(`.mega-chip[data-group="${g}"]`).forEach(b => b.setAttribute("aria-checked", String(b === btn)));
+    if (g === "opp") { opp = btn.dataset.value; oppTouched = true; }
+    else holders[g.slice(3)] = btn.dataset.value;
   }));
-  refresh();
-  submit.addEventListener("click", () => {
-    const name = (side) => sel[side] === "none" ? "안 함"
-      : wrap.querySelector(`.mega-chip[data-side="${side}"][aria-checked="true"]`)?.dataset.label || sel[side];
+  $(".primary", wrap).addEventListener("click", () => {
+    const names = Object.entries(holders).filter(([, v]) => v !== "none")
+      .map(([b, v]) => wrap.querySelector(`.mega-chip[data-group="my:${b}"][data-value="${v}"]`)?.dataset.label || v);
+    const oppName = opp === "none" ? "없음" : wrap.querySelector(`.mega-chip[data-group="opp"][data-value="${opp}"]`)?.dataset.label || opp;
     wrap.querySelectorAll("button").forEach(b => b.disabled = true);
-    send(originalText, null, `메가진화 — 내 팀: ${name("my")}${oppRows ? ` / 상대: ${name("opp")}${oppTouched ? "" : " (예상)"}` : ""}`, null,
-         oppTouched ? { my: sel.my || "none", opp: sel.opp || "none" } : { my: sel.my || "none" });
+    const choice = { my_holders: holders };
+    if (oppTouched) choice.opp = opp;
+    send(originalText, null, `메가스톤: ${names.join(", ") || "없음"}${oppRows ? ` / 상대 메가: ${oppName}${oppTouched ? "" : " (예상)"}` : ""}`,
+         null, choice);
   });
   $(".bubble", msgEl).appendChild(wrap);
 }
@@ -451,7 +468,8 @@ async function send(text, nameChoices = null, displayText = null, teams = null, 
       <details class="trace"><summary>실행 과정 보기</summary>${renderTrace(r.events)}</details>`;
     CARDS = r.pokemon_cards || {};
     if (r.plan_draft) {  // 선출 결과를 맨 위에 크게, 자세한 설명은 접어서 아래에
-      html = selectionCard({ ...r.plan_draft, move_plan: r.move_plan || r.plan_draft.move_plan, rule_notes: r.rule_notes }) + `<details class="detail-text"><summary>자세한 설명 보기</summary>${html}</details>`;
+      html = selectionCard({ ...r.plan_draft, move_plan: r.move_plan || r.plan_draft.move_plan, rule_notes: r.rule_notes,
+                                mega_evolve: r.mega_evolve, mega_alternatives: r.mega_alternatives }) + `<details class="detail-text"><summary>자세한 설명 보기</summary>${html}</details>`;
     }
     pending.querySelector(".bubble").innerHTML = html;
     if (r.status === "error") pending.querySelector(".bubble").classList.add("error");

@@ -182,7 +182,7 @@ def matchup_matrix(ctx: dict, conditions: dict, round_: int) -> tuple[dict, list
             user_moves_sid[entry["sid"]] = mv
     assumptions: list[str] = []
     matrix: dict = {}
-    for m in ctx["my"]:
+    for m in dict.fromkeys(ctx["my"] + list((ctx.get("my_mega_forms") or {}).values())):
         if m not in ctx["charts"]:
             continue
         opts, a = _move_options(ctx, m, user_moves_sid.get(m), use_meta=round_ >= 1)
@@ -259,20 +259,16 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
     candidates = [m for m in ctx["my"] if m in ctx["charts"] and m not in exclude]
     profile = opponent_profile(ctx, judged_opp)
     phys_w = (profile["physical_pct"] or 50) / 100
-    covers = {m: [o for o in targets if (m, o) in matrix and answers(matrix[(m, o)], round_)] for m in candidates}
-
     mega_rule = RULESETS.get(conditions.get("game") or "champions", {}).get("allow_mega", False)
+    # 메가스톤을 든 포켓몬 → 메가 폼 (메가 폼 정보까지 확인된 것만)
+    forms = {b: f for b, f in (ctx.get("my_mega_forms") or {}).items() if f in ctx["charts"]} if mega_rule else {}
+    evaluated = candidates + [forms[m] for m in candidates if m in forms]
+    covers = {m: [o for o in targets if (m, o) in matrix and answers(matrix[(m, o)], round_)] for m in evaluated}
+
     combos = [c for c in itertools.combinations(candidates, min(pick, len(candidates)))
-              if all(p in c for p in prefer if p in candidates)
-              and (not mega_rule or sum(is_mega(ctx, m) for m in c) <= 1)]  # 메가진화는 배틀당 1마리
+              if all(p in c for p in prefer if p in candidates)]
     if not combos:
         reason = "선출 후보가 부족합니다 (제외 조건이나 조회 실패 때문)."
-        normal = [m for m in candidates if not is_mega(ctx, m)]
-        if mega_rule and sum(is_mega(ctx, p) for p in prefer) > 1:
-            reason = "메가진화는 배틀당 1마리만 가능해서, 꼭 넣고 싶은 메가 포켓몬을 둘 다 선출할 수 없습니다."
-        elif mega_rule and len(normal) + 1 < pick:
-            reason = (f"메가진화는 배틀당 1마리라 메가 1마리 + 일반 포켓몬 {pick - 1}마리가 필요한데, "
-                      f"일반 포켓몬이 {len(normal)}마리뿐입니다. 메가가 아닌 포켓몬을 팀에 더 넣어 주세요.")
         return {"satisfied": False, "reason": reason,
                 "round": round_, "pick": pick, "selected": [], "assumptions": assumptions, "not_judged": not_judged}
 
@@ -282,7 +278,21 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
         bulk = sum(_bulk(ctx, m, phys_w) for m in c)  # 동점이면 상대 공격 성향을 잘 받는 조합
         return len(covered), margin, bulk
 
-    best = max(combos, key=score)
+    def lineups(c):
+        """이 3마리로 낼 수 있는 경우: 메가진화 안 함 + 스톤을 든 포켓몬 중 1마리만 메가진화."""
+        yield None, c
+        for m in c:
+            if m in forms:
+                yield m, tuple(forms[x] if x == m else x for x in c)
+
+    scored = [(score(members), mega_of, c, members) for c in combos for mega_of, members in lineups(c)]
+    _, mega_of, best_combo, best = max(scored, key=lambda t: (t[0], t[1] is not None))
+    # 같은 3마리에서 다른 포켓몬을 메가진화시켰을 때와 비교 (화면에 대안으로 보여준다)
+    mega_alternatives = [
+        {"mega": _label(ctx, forms[mo]) if mo else None,
+         "covered": sc[0], "covered_names": [_label(ctx, o) for o in targets if o in set().union(*[covers[x] for x in mem])],
+         "chosen": mo == mega_of}
+        for sc, mo, cc, mem in scored if cc == best_combo]
     covered = set().union(*[covers[m] for m in best])
     uncovered = [o for o in targets if o not in covered]
 
@@ -319,10 +329,11 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
     rule_notes = []
     mega = ctx.get("mega") or {}
     if mega_rule:
-        mine = [_label(ctx, m) for m in ctx["my"] if is_mega(ctx, m)]
-        picked = mine and mine[0] in [_label(ctx, m) for m in best]
-        rule_notes.append(f"메가진화는 배틀당 1번 — 내 메가진화: {mine[0] if mine else '안 함'}"
-                          + (" (선출에 포함)" if picked else " (이번 선출에서는 빠짐 → 메가진화 없이 진행)" if mine else ""))
+        holders = [_label(ctx, f) for f in forms.values()]
+        if holders:
+            rule_notes.append(f"메가스톤: {', '.join(holders)} — 배틀에서 메가진화는 1번. "
+                              + (f"이 선출에서는 **{_label(ctx, forms[mega_of])}**로 메가진화하는 게 가장 좋습니다."
+                                 if mega_of else "이 선출에서는 메가진화하지 않는 쪽이 가장 좋습니다."))
         if opp_megas:
             how = "예상" if mega.get("opp_predicted") else "지정"
             share = next((f["share"] for p in mega.get("opp_predictions", []) for f in p["forms"]
@@ -333,7 +344,7 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
             rule_notes.append("상대 팀에서 메가진화가 유력한 포켓몬이 없어 모두 기본 폼으로 계산했습니다.")
     excluded = []
     for m in ctx["my"]:
-        if m in best:
+        if m in best_combo:
             continue
         if m in exclude:
             reason = "사용자가 제외"
@@ -342,6 +353,8 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
         else:
             bad = [(o, matrix[(m, o)]) for o in targets if (m, o) in matrix and matrix[(m, o)]["risk"] >= 2]
             reason = f"잡을 수 있는 상대 {len(covers.get(m, []))}마리"
+            if m in forms:
+                reason += f" (메가진화하면 {len(covers.get(forms[m], []))}마리)"
             if bad:
                 reason += ", 약점 대면: " + ", ".join(
                     f"{_label(ctx, o)}의 {c['risk_move']['name']}({c['risk']:g}배)" for o, c in bad[:2])
@@ -353,6 +366,8 @@ def judge_selection(ctx: dict, conditions: dict, round_: int) -> dict:
         "criteria": REPLAN_CRITERIA.get(round_, "자속 기술 기준 · '2배 이상 & (안전하거나 선공)'이면 잡는다"),
         "pick": pick,
         "selected": [_label(ctx, m) for m in best],
+        "mega_evolve": _label(ctx, forms[mega_of]) if mega_of else None,   # 이 선출에서 메가진화할 포켓몬 (메가 폼 이름)
+        "mega_alternatives": mega_alternatives if forms else [],
         "lead": _label(ctx, lead),
         "targets": [_label(ctx, o) for o in targets],
         "targets_narrowed": narrowed,

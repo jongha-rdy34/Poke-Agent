@@ -11,7 +11,7 @@ import threading
 
 CONDITION_KEYS = ("my_team", "opp_team", "format", "pick_count", "month", "must_answer", "prefer",
                   "exclude", "my_moves", "focus_my", "focus_opp", "lookup_target", "lookup_kind", "schedule", "game", "battle",
-                  "my_mega", "opp_mega")
+                  "my_megas", "opp_mega")
 MAX_HISTORY = 6
 
 _store: dict[str, dict] = {}

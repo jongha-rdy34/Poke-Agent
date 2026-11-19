@@ -67,6 +67,10 @@ class Executor:
                              options=[o["pokemon"] for o in self.ctx["mega"]["my_options"]])
                 return
 
+    def my_all(self) -> list[str]:
+        """내 팀 조회 대상: 기본 폼 + 메가스톤을 든 포켓몬의 메가 폼 (둘 다 계산해서 누가 메가진화할지 고른다)."""
+        return list(dict.fromkeys(self.ctx["my"] + list((self.ctx.get("my_mega_forms") or {}).values())))
+
     def sid(self, raw: str) -> str:
         r = self.ctx["names"].get(raw)
         return r["sid"] if r else to_id(raw)
@@ -138,10 +142,10 @@ class Executor:
         self._meta([s for s in self.ctx["opp"] if s not in self.ctx["meta"]])
 
     def _meta_my(self) -> None:
-        self._meta([s for s in self.ctx["my"] if s not in self.ctx["meta"]])
+        self._meta([s for s in self.my_all() if s not in self.ctx["meta"]])
 
     def _detail(self) -> None:
-        targets = [s for s in dict.fromkeys(self.ctx["my"] + self.ctx["opp"]) if s not in self.ctx["detail"]]
+        targets = [s for s in dict.fromkeys(self.my_all() + self.ctx["opp"]) if s not in self.ctx["detail"]]
         with ThreadPoolExecutor(max_workers=6) as ex:
             results = list(ex.map(lambda s: self.call("get_pokemon_detail", {"name": self.en(s)}), targets))
         for sid, r in zip(targets, results):
@@ -175,7 +179,7 @@ class Executor:
 
     def _moves_my(self) -> None:
         user_moves = [mv for m in (self.c.get("my_moves") or []) for mv in m["moves"]]
-        self._fetch_moves(user_moves + self._move_ids(self.ctx["my"]))
+        self._fetch_moves(user_moves + self._move_ids(self.my_all()))
 
     def ability_for(self, sid: str) -> str | None:
         """상성에 반영할 특성: 통계에서 50% 이상 채용된 특성, 없으면 특성이 하나뿐일 때 그 특성."""
@@ -186,7 +190,7 @@ class Executor:
         return abilities[0]["name"] if len(abilities) == 1 else None
 
     def _matchup(self) -> None:
-        for sid in dict.fromkeys(self.ctx["my"] + self.ctx["opp"]):
+        for sid in dict.fromkeys(self.my_all() + self.ctx["opp"]):
             d = self.ctx["detail"].get(sid)
             if not d or not d.get("judgeable") or sid in self.ctx["charts"]:
                 continue
@@ -266,11 +270,12 @@ def _mega(self) -> None:
         if opts:
             pk = N.resolve_one(base, "pokemon")
             my_opts.append({"pokemon": ko, "base": base, "sprite": N.sprite_url(pk.get("pokeapi_name")), "forms": opts})
-    chosen = c.get("my_mega")
-    if not chosen and len(explicit) == 1:
-        chosen = ctx["display"][explicit[0]]["en"]  # 메가 포켓몬을 하나만 말했으면 그게 메가진화
-    ctx["mega"] = {"my_options": my_opts, "my": chosen}
-    if my_opts and not chosen:
+    # 메가스톤을 든 포켓몬: {기본 영문: 메가 영문}. 여러 마리 가능, 배틀에서 메가진화는 그중 1마리
+    holders = c.get("my_megas")
+    if holders is None and explicit:  # '메가한카리아스z'처럼 메가 폼으로 말한 포켓몬은 스톤을 든 것으로 본다
+        holders = {_base_en(ctx["display"][s]["en"]): ctx["display"][s]["en"] for s in explicit}
+    ctx["mega"] = {"my_options": my_opts, "my_holders": holders or {}}
+    if my_opts and holders is None:
         ctx["mega_ask"] = True
 
     # --- 상대 팀: 메가 폼 비율 = 메가 폼 사용률 / (기본 + 메가 폼 사용률)
@@ -320,10 +325,21 @@ def _mega(self) -> None:
             new.append(sid)
         ctx[side] = new
     if not ctx.get("mega_ask"):
-        apply("my", ctx["mega"]["my"])
+        apply("my", "none")  # 내 팀은 기본 폼 기준, 메가 폼은 아래에서 따로 연결
+        forms = {}
+        for base_en, mega_en in (ctx["mega"]["my_holders"] or {}).items():
+            if not mega_en or mega_en == "none":
+                continue
+            base_sid = next((s for s in ctx["my"] if _base_en(ctx["display"][s]["en"]) == base_en), None)
+            if base_sid:
+                r = N.resolve_one(mega_en, "pokemon")
+                msid = to_id(mega_en)
+                ctx["display"][msid] = {"en": mega_en, "ko": r.get("ko") if r.get("found") else mega_en}
+                forms[base_sid] = msid
+        ctx["my_mega_forms"] = forms
         apply("opp", ctx["mega"]["opp"])
-        self.em.emit("decision", "execute", decision="mega", my=ctx["mega"]["my"] or "none", opp=ctx["mega"]["opp"],
-                     opp_predicted=ctx["mega"]["opp_predicted"])
+        self.em.emit("decision", "execute", decision="mega", my_holders=ctx["mega"]["my_holders"],
+                     opp=ctx["mega"]["opp"], opp_predicted=ctx["mega"]["opp_predicted"])
 
 
 Executor._mega = _mega
